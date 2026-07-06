@@ -83,19 +83,19 @@ a {
 }
 
 .site-header {
-  padding: 3.5rem 0 0;
+  padding: clamp(1.75rem, 3.2vh, 3.5rem) 0 0;
   background: var(--paper);
 }
 
 .masthead {
-  padding-bottom: 2rem;
+  padding-bottom: clamp(1.1rem, 2vh, 2rem);
   text-align: center;
 }
 
 .site-name {
   display: inline-block;
   font-family: var(--font-display);
-  font-size: clamp(4.5rem, 9vw, 8rem);
+  font-size: clamp(3.75rem, 7.6vw, 7rem);
   font-weight: 300;
   letter-spacing: -0.055em;
   line-height: 0.95;
@@ -103,7 +103,7 @@ a {
 }
 
 .masthead p {
-  margin: 1.25rem 0 0;
+  margin: clamp(0.75rem, 1.4vh, 1.25rem) 0 0;
   color: var(--muted);
   font-family: var(--font-display);
   font-size: 0.76rem;
@@ -117,16 +117,15 @@ a {
   align-items: center;
   justify-content: center;
   gap: clamp(1rem, 3vw, 2.25rem);
-  min-height: 4rem;
+  min-height: clamp(3rem, 5.5vh, 4rem);
   border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--line);
   font-family: var(--font-sans);
   font-size: 0.78rem;
 }
 
 .main-nav a {
   position: relative;
-  padding: 1.2rem 0;
+  padding: clamp(0.8rem, 1.6vh, 1.2rem) 0;
   text-decoration: none;
 }
 
@@ -157,8 +156,8 @@ a {
 .intro {
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(2.25rem, 4vw, 3.5rem);
-  padding-top: clamp(3rem, 5.5vw, 5.5rem);
+  gap: clamp(1.25rem, 2.5vh, 2rem);
+  padding-top: clamp(1.5rem, 3.5vh, 3.5rem);
   padding-bottom: clamp(4rem, 7vw, 6.5rem);
 }
 
@@ -220,7 +219,7 @@ a {
 
 .intro-lead {
   max-width: 760px;
-  margin: clamp(2.5rem, 5vw, 4.5rem) 0 0;
+  margin: clamp(1.5rem, 3vh, 3rem) 0 0;
   font-family: var(--font-sans);
   font-size: clamp(1.35rem, 2.35vw, 2rem);
   line-height: 1.45;
@@ -228,7 +227,7 @@ a {
 
 .intro-support {
   max-width: 650px;
-  margin: 1.75rem 0 0;
+  margin: clamp(1rem, 2vh, 1.75rem) 0 0;
   color: var(--ink-soft);
   font-size: 1rem;
 }
@@ -238,7 +237,7 @@ a {
   flex-wrap: wrap;
   align-items: center;
   gap: 1.75rem;
-  margin-top: 2.75rem;
+  margin-top: clamp(1.4rem, 2.8vh, 2.75rem);
 }
 
 .button {

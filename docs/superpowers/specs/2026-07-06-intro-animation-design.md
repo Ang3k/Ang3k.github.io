@@ -45,6 +45,12 @@ Learning à identidade pessoal.
   resíduo e grade visíveis na cena do nome.
 - A intro aguarda a aba ficar visível (`visibilitychange`) antes de começar,
   para não rodar invisível em abas de fundo.
+- Header e "Sobre mim" compactados para caber no primeiro viewport 16:9 a
+  100%: espaçamentos do header e da intro passam a usar clamps em `vh` (mais
+  apertados em telas baixas, mais generosos em telas altas), nome do header
+  reduzido para `clamp(3.75rem, 7.6vw, 7rem)` e removida a linha cinza sob o
+  nav (fica só a linha superior sob o nome). O FLIP da animação continua
+  lendo o tamanho do nome em runtime, então aterrissa correto sem ajuste.
 
 ## Abordagem técnica
 
