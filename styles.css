@@ -157,8 +157,8 @@ a {
 
 .intro {
   display: grid;
-  grid-template-columns: minmax(150px, 0.7fr) minmax(0, 2.3fr);
-  gap: clamp(2rem, 8vw, 8rem);
+  grid-template-columns: 1fr;
+  gap: clamp(2.25rem, 4vw, 3.5rem);
   padding-top: clamp(5rem, 10vw, 9rem);
   padding-bottom: clamp(6rem, 12vw, 11rem);
 }
@@ -167,7 +167,6 @@ a {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  padding-top: 0.55rem;
   font-family: var(--font-display);
   text-transform: uppercase;
 }
