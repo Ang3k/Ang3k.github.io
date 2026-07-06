@@ -25,9 +25,11 @@ Learning à identidade pessoal.
 ### Refinamentos aprovados em iteração (2026-07-06)
 
 - Gráfico com aparência analítica real: grade 5×5 sutil, moldura completa,
-  valores fictícios 0–100 nos dois eixos, rótulos "Valor previsto (ŷ)" (X) e
-  "Valor real (y)" (Y) — a leitura é um gráfico de avaliação previsto × real,
-  em que o outlier significa "a realidade superou a previsão do modelo".
+  valores fictícios 0–100 nos dois eixos, rótulos "Experiência" (X) e
+  "Performance" (Y) — o outlier é quem performa acima do que o modelo
+  prevê para o seu nível de experiência.
+- O nome parte da borda externa do anel pulsante (folga de 24px), não do
+  ponto, para o pulso nunca invadir o texto.
 - Tendência quadrática (Bézier `M75 515 Q560 470 940 135`) com 32 pontos
   orgânicos: espaçamento irregular, ruído variado e dispersão maior no topo.
 - Outlier enfatizado: vermelho (`--red`), maior (r 7,5), com halo suave, e

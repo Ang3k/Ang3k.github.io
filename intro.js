@@ -109,7 +109,10 @@
   function placeNameBesideOutlier() {
     var dotRect = outlierDot.getBoundingClientRect();
     var nameRect = nameEl.getBoundingClientRect();
-    var left = dotRect.right + 18;
+    /* O nome parte da borda do anel pulsante (não do ponto), com folga
+       para o pulso que escala até 1.12. */
+    var ringRect = ring.getBoundingClientRect();
+    var left = Math.max(ringRect.right, dotRect.right) + 24;
     var top = dotRect.top + dotRect.height / 2 - nameRect.height / 2;
 
     if (left + nameRect.width > window.innerWidth - 12) {
