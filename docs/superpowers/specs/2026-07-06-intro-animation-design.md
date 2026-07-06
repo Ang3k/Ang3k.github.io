@@ -51,6 +51,13 @@ Learning à identidade pessoal.
   reduzido para `clamp(3.75rem, 7.6vw, 7rem)` e removida a linha cinza sob o
   nav (fica só a linha superior sob o nome). O FLIP da animação continua
   lendo o tamanho do nome em runtime, então aterrissa correto sem ajuste.
+- Densidade final calibrada com `html { zoom: 0.9 }` em `@media (min-width:
+  901px)` — equivale a abrir o site com zoom 90%, densidade preferida pelo
+  proprietário, e faz o "Sobre mim" completo (incluindo os botões) caber no
+  primeiro viewport 16:9 a 100%. Verificado que o overlay da intro cobre a
+  tela inteira sob o zoom e que o FLIP é imune ao zoom (as deltas do FLIP
+  cancelam o fator de escala, pois origem e destino compartilham o mesmo
+  contexto zoomado). Mobile mantém a escala natural.
 
 ## Abordagem técnica
 

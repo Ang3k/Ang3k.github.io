@@ -27,6 +27,16 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Densidade visual calibrada: em telas de desktop o site é renderizado a
+   90% (equivale a abrir o navegador com zoom 90%), o que faz o hero e a
+   seção "Sobre mim" caberem no primeiro viewport 16:9. O mobile mantém a
+   escala natural. */
+@media (min-width: 901px) {
+  html {
+    zoom: 0.9;
+  }
+}
+
 body {
   margin: 0;
   overflow-x: clip;
