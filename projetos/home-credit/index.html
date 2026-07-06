@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Estudo de caso de Angel Mansilla sobre análise de risco e previsão de atraso em pagamentos para o Home Credit Group."
+    >
+    <meta name="theme-color" content="#f4f3ef">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Risco de crédito com Home Credit — Angel Mansilla">
+    <meta
+      property="og:description"
+      content="Análise exploratória e modelagem com LightGBM para identificar clientes com risco de atraso."
+    >
+    <title>Risco de crédito com Home Credit — Angel Mansilla</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../case-study.css">
+  </head>
+  <body class="case-page" id="top">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="case-topbar">
+      <div class="container">
+        <a class="case-brand" href="../../index.html">Angel Mansilla</a>
+        <nav class="case-nav" aria-label="Navegação do estudo de caso">
+          <a href="../../index.html#sobre">Sobre</a>
+          <a href="../../index.html#projetos">Projetos</a>
+          <a href="../../index.html#contato">Contato</a>
+          <a
+            href="https://angejesufern.wixsite.com/angel-mansilla/c%C3%B3pia-introdu%C3%A7%C3%A3o-ao-projeto"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Projeto original ↗
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="case-hero">
+        <div class="container">
+          <p class="case-breadcrumb">
+            <a href="../../index.html#projetos">Projetos</a>
+            <span aria-hidden="true">/</span>
+            <span>Risco de crédito</span>
+          </p>
+          <div class="case-hero-grid">
+            <div>
+              <p class="case-kicker">Classificação · LightGBM · CRISP-DM</p>
+              <h1>Risco de crédito com <em>Home Credit</em></h1>
+            </div>
+            <p class="case-lead">
+              Análise de dados e previsão do atraso no pagamento de crédito,
+              buscando superar um modelo que quase não identificava os clientes
+              inadimplentes.
+            </p>
+          </div>
+          <dl class="case-hero-stats">
+            <div>
+              <dt>Modelo</dt>
+              <dd>LightGBM · DART</dd>
+            </div>
+            <div>
+              <dt>AUC alcançada</dt>
+              <dd>0,764</dd>
+            </div>
+            <div>
+              <dt>Baseline informado</dt>
+              <dd>0,719</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <figure class="case-cover case-cover-contained">
+        <img
+          src="../../wix-images-to-use/imagem_2025-03-12_012533243.png"
+          alt="Marca Home Credit"
+        >
+      </figure>
+
+      <div class="case-layout container">
+        <aside class="case-toc" aria-label="Índice do estudo de caso">
+          <p>Neste estudo</p>
+          <ol>
+            <li><a href="#contexto">Contexto de negócio</a></li>
+            <li><a href="#requisitos">Requisitos e dados</a></li>
+            <li><a href="#eda">Análise exploratória</a></li>
+            <li><a href="#modelagem">Modelagem preditiva</a></li>
+            <li><a href="#resultados">Resultados</a></li>
+          </ol>
+        </aside>
+
+        <article class="case-content">
+          <section class="case-section" id="contexto">
+            <p class="case-part">Parte 1</p>
+            <h2>Contexto de negócio</h2>
+            <p class="case-intro">
+              Uma instituição financeira chamada Home Credit Group está tendo
+              problemas em identificar quando seus clientes terão dificuldades
+              para realizar o pagamento dos créditos solicitados.
+            </p>
+            <p>
+              Como estão passando por problemas financeiros, querem garantir que
+              só fornecerão crédito àqueles clientes que puderem pagar, evitando
+              prejuízos.
+            </p>
+            <p>
+              Diante disso, buscaram o auxílio de um cientista de dados, com a
+              intenção de desenvolver um modelo de Machine Learning capaz de
+              prever a probabilidade de um cliente ter problemas, baseado em
+              informações como gênero, número de parentes, salário e pertences.
+              Além disso, solicitaram uma análise dos dados para extrair insights
+              sobre o perfil dos clientes e seus padrões de comportamento.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../wix-images-to-use/imagem_2025-03-10_004925586.png"
+                alt="Amostra do conjunto de dados do Home Credit, com informações demográficas e financeiras"
+                loading="lazy"
+              >
+              <figcaption>Amostra das variáveis utilizadas no projeto.</figcaption>
+            </figure>
+          </section>
+
+          <section class="case-section" id="requisitos">
+            <p class="case-part">Parte 1 · Continuação</p>
+            <h2>Requisitos e metodologia</h2>
+            <p>
+              Durante a conversa entre o cientista e a empresa, foi perguntado
+              quais eram as principais informações que eles gostariam de obter.
+              Em resposta, a empresa definiu um conjunto de perguntas
+              estratégicas essenciais para orientar as análises:
+            </p>
+            <ul class="question-list">
+              <li>Qual é o perfil dos clientes que solicitam crédito? E dos que se atrasam?</li>
+              <li>Fatores naturais como idade podem sinalizar riscos de atraso?</li>
+              <li>O tipo de emprego é um indicativo? E sua escolaridade?</li>
+              <li>Estado civil e número de dependentes impactam a necessidade de crédito?</li>
+              <li>Os pertences comunicados ao banco servem como garantia?</li>
+              <li>Como é a situação financeira dos clientes que atrasam?</li>
+              <li>Clientes com salários altos têm menos dificuldade?</li>
+              <li>Quem solicita mais do que precisa encontra mais dificuldade?</li>
+              <li>Existem contratos com maior taxa de atrasos?</li>
+            </ul>
+            <p>
+              Além das perguntas, a empresa solicitou o treinamento de um modelo
+              para prever atrasos, um relatório sobre seu potencial impacto
+              financeiro e a identificação dos fatores que mais indicam um
+              possível atraso.
+            </p>
+            <ul>
+              <li>Desenvolver um modelo capaz de prever clientes atrasando.</li>
+              <li>Identificar as características que evidenciam um atraso.</li>
+              <li>Explicar os benefícios financeiros do novo modelo.</li>
+            </ul>
+            <div class="case-note">
+              <p>
+                O Home Credit já possuía um Random Forest Classifier com AUC de
+                aproximadamente 0,71. Embora o valor não parecesse ruim, ele era
+                praticamente incapaz de acertar quando os clientes atrasavam —
+                o principal problema que o projeto buscou superar.
+              </p>
+            </div>
+
+            <h3>CRISP-DM</h3>
+            <p>
+              Neste projeto, adotei uma das metodologias mais conhecidas para a
+              resolução de problemas de dados: a CRISP-DM, que em tradução livre
+              significa “Processo Padrão Transversal para Mineração de Dados”.
+            </p>
+            <p>
+              Trata-se de um método iterativo que permite ao cientista de dados
+              ir e voltar entre as etapas, como Modelagem e Preparação dos Dados.
+              Essa flexibilidade é útil, pois alguns insights surgem em diferentes
+              fases do processo.
+            </p>
+
+            <h3>Dicionário de dados</h3>
+            <p>
+              O dataset inclui informações de localização, idade, estado civil e
+              empregabilidade, além de relações financeiras, sociais e
+              temporais. Como são mais de 120 colunas, o dicionário abaixo
+              apresenta apenas as principais usadas na análise.
+            </p>
+            <details class="data-details">
+              <summary>Abrir as principais variáveis</summary>
+              <dl>
+                <dt>SK_ID_CURR</dt><dd>Identificador único do cliente.</dd>
+                <dt>TARGET</dt><dd>Indicador de inadimplência: 1 para inadimplente.</dd>
+                <dt>NAME_CONTRACT_TYPE</dt><dd>Tipo de contrato de crédito.</dd>
+                <dt>CODE_GENDER</dt><dd>Gênero do cliente.</dd>
+                <dt>FLAG_OWN_CAR</dt><dd>Indica se o cliente possui carro.</dd>
+                <dt>FLAG_OWN_REALTY</dt><dd>Indica se possui imóvel.</dd>
+                <dt>CNT_CHILDREN</dt><dd>Número de filhos.</dd>
+                <dt>AMT_INCOME_TOTAL</dt><dd>Renda anual total.</dd>
+                <dt>AMT_CREDIT</dt><dd>Valor total do crédito concedido.</dd>
+                <dt>AMT_ANNUITY</dt><dd>Valor anual de pagamento do crédito.</dd>
+                <dt>AMT_GOODS_PRICE</dt><dd>Preço dos bens financiados.</dd>
+                <dt>NAME_INCOME_TYPE</dt><dd>Tipo de fonte de renda.</dd>
+                <dt>NAME_EDUCATION_TYPE</dt><dd>Nível educacional.</dd>
+                <dt>NAME_FAMILY_STATUS</dt><dd>Estado civil.</dd>
+                <dt>NAME_HOUSING_TYPE</dt><dd>Tipo de moradia.</dd>
+                <dt>DAYS_BIRTH</dt><dd>Idade em dias, representada como valor negativo.</dd>
+                <dt>DAYS_EMPLOYED</dt><dd>Tempo de emprego em dias.</dd>
+                <dt>OCCUPATION_TYPE</dt><dd>Tipo de ocupação.</dd>
+                <dt>CNT_FAM_MEMBERS</dt><dd>Número de membros da família.</dd>
+                <dt>EXT_SOURCE_1</dt><dd>Pontuação de fonte externa sobre risco de crédito.</dd>
+              </dl>
+            </details>
+          </section>
+
+          <section class="case-section" id="eda">
+            <p class="case-part">Parte 2</p>
+            <h2>Análise exploratória de dados</h2>
+            <p class="case-intro">
+              Nesta etapa, buscamos responder às perguntas solicitadas e
+              identificar novas correlações que a empresa poderia não ter
+              considerado, usando Python, Matplotlib e Seaborn.
+            </p>
+
+            <h3>Idade traz mais responsabilidade?</h3>
+            <p>
+              É um senso comum que pessoas mais velhas tendem a ser mais
+              responsáveis, mas era necessário conferir essa informação. Para
+              isso, criei histogramas que contam quantas pessoas em diferentes
+              idades atrasam ou não o pagamento.
+            </p>
+            <p>
+              Entre os clientes que não costumam atrasar, a idade parece bem
+              distribuída. No gráfico dos clientes que atrasam, é possível
+              observar uma queda conforme a idade aumenta. Isso pode indicar que
+              clientes mais velhos são mais confiáveis para obter crédito.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../wix-images-to-use/imagem_2025-03-07_191255168.png"
+                alt="Comparação da distribuição de idade entre bons pagantes e clientes com atraso"
+                loading="lazy"
+              >
+              <figcaption>Distribuição de idade por tipo de cliente.</figcaption>
+            </figure>
+
+            <h3>Fatores financeiros ao longo da idade</h3>
+            <p>
+              Nos gráficos, a linha preta representa clientes que não atrasam e
+              a cinza representa os que atrasam. Em geral, os clientes que
+              atrasam solicitam mais crédito e possuem bens mais caros a pagar.
+            </p>
+            <p>
+              Embora o salário seja parecido, os clientes que atrasam costumam
+              solicitar mais dinheiro e financiar bens mais caros. O problema
+              atinge seu pico por volta dos 50 anos. Os clientes mais jovens
+              solicitam menos dinheiro, mas atrasam com maior frequência.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../wix-images-to-use/imagem_2025-03-07_192859658.png"
+                alt="Crédito, salário, anuidade e preço dos bens por idade e tipo de cliente"
+                loading="lazy"
+              >
+              <figcaption>Fatores financeiros observados por idade.</figcaption>
+            </figure>
+
+            <p>
+              A discrepância entre clientes pontuais e os que atrasam fica
+              evidente: em média, quem atrasa solicita 11.379 a mais em crédito,
+              um possível indicativo de solicitação excessiva.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../wix-images-to-use/imagem_2025-03-07_233946263.png"
+                alt="Relação entre valores dos bens e crédito solicitado por clientes pontuais e atrasados"
+                loading="lazy"
+              >
+              <figcaption>Diferença entre crédito solicitado e valor dos bens.</figcaption>
+            </figure>
+
+            <div class="case-quote">
+              <p>
+                Clientes jovens atrasam mais, mas devem menos; clientes mais
+                velhos atrasam menos, mas, quando atrasam, devem mais dinheiro.
+              </p>
+            </div>
+            <ul>
+              <li>Clientes mais jovens têm maior chance de atraso.</li>
+              <li>Clientes mais velhos pedem mais crédito e financiam bens mais caros.</li>
+              <li>Há mais casos extremos de endividamento entre os clientes que atrasam.</li>
+              <li>Os 50 anos parecem formar um ponto crítico nos valores solicitados.</li>
+            </ul>
+
+            <h3>Perfil ocupacional e familiar</h3>
+            <p>
+              A grande maioria dos clientes não possui educação superior, mas
+              percebemos maior pontualidade entre os que possuem. Clientes com
+              cargos mais elevados, como Core Staff ou High Skill Tech Staff,
+              também aparentam ser mais pontuais.
+            </p>
+            <p>
+              A maioria das solicitações está relacionada a eletrônicos. As
+              solicitações mais caras, para veículos, medicina e turismo, são
+              quase inexistentes ou negadas, reforçando a leitura de uma base
+              majoritariamente de baixa e média renda.
+            </p>
+            <p>
+              Nos fatores familiares, há poucas diferenças entre clientes
+              pontuais e atrasados. A maioria é solteira, mora com poucas pessoas
+              e geralmente não possui filhos. Existe um pequeno aumento na taxa
+              de atraso conforme o número de filhos cresce, mas a porcentagem é
+              baixa.
+            </p>
+          </section>
+
+          <section class="case-section" id="modelagem">
+            <p class="case-part">Parte 3</p>
+            <h2>Modelagem preditiva com Python</h2>
+
+            <h3>1 — Preparação e limpeza</h3>
+            <p>
+              No dataset existiam informações inúteis, informações que poderiam
+              ser agregadas, valores faltantes e outliers potencialmente ruins
+              para o modelo. O primeiro passo foi remover colunas irrelevantes e
+              combinar determinadas variáveis por meio de médias, reduzindo a
+              dimensionalidade sem perder informação significativa.
+            </p>
+            <p>
+              Criei funções para localizar e visualizar valores faltantes.
+              Colunas com mais de 60% de ausência foram removidas. Nas demais,
+              valores numéricos foram preenchidos com a média e variáveis de
+              texto com a moda.
+            </p>
+            <p>
+              Depois, removi outliers de colunas específicas e codifiquei as
+              variáveis categóricas. Colunas binárias viraram zeros e uns, e o
+              grau escolar foi transformado com OrdinalEncoder.
+            </p>
+
+            <h3>2 — Modelo de Machine Learning</h3>
+            <p>
+              Comecei selecionando as variáveis de treinamento e a variável de
+              previsão. Apliquei uma técnica de undersampling chamada NearMiss,
+              porque existiam menos pessoas atrasando do que pagando em dia, e
+              depois padronizei os dados com StandardScaler.
+            </p>
+            <p>
+              Em seguida, defini os hiperparâmetros do LightGBM usando o método
+              DART para melhorar a regularização e evitar overfitting. Ajustei a
+              taxa de aprendizado, o número de folhas e a fração de features
+              usadas em cada iteração.
+            </p>
+            <p>
+              Para lidar com o desbalanceamento, apliquei
+              <code>scale_pos_weight</code>, dando mais peso à classe minoritária.
+              O treinamento utilizou validação cruzada estratificada com cinco
+              folds e monitoramento da AUC por até 600 iterações.
+            </p>
+          </section>
+
+          <section class="case-section" id="resultados">
+            <p class="case-part">Resultados</p>
+            <h2>Separar melhor os clientes que atrasam</h2>
+            <p>
+              Como os dados estavam desbalanceados, a troca entre precision e
+              recall era muito custosa. Por isso, o foco principal foi AUC-ROC,
+              métrica que avalia quão bem o modelo separa as classes. Uma AUC de
+              0,5 equivale a um modelo aleatório; quanto mais próximo de 1,
+              melhor.
+            </p>
+            <div class="metric-grid">
+              <div><span>Modelo anterior</span><strong>0,719</strong></div>
+              <div><span>Novo modelo</span><strong>0,764</strong></div>
+              <div><span>Recorde citado da competição</span><strong>0,806</strong></div>
+            </div>
+            <p>
+              O resultado de 0,764 significa que o modelo tem 76,4% de chance de
+              classificar corretamente um cliente que atrasará o pagamento
+              quando comparado a um cliente que não atrasará.
+            </p>
+            <p>
+              Embora o modelo antigo apresentasse uma taxa de acerto geral
+              ligeiramente superior, o novo se destacou na identificação de
+              inadimplentes. Em uma amostra, o modelo antigo identificou
+              corretamente apenas quatro clientes, enquanto o novo acertou 222.
+            </p>
+            <div class="case-quote">
+              <p>
+                Foram 218 clientes adicionais com risco identificado. No cálculo
+                apresentado no projeto, isso representa mais de ¥21,88 milhões
+                em perdas potenciais detectadas em um escopo de 30.752 previsões.
+              </p>
+            </div>
+            <p>
+              Considerando que cada cliente inadimplente solicita em média
+              ¥557.778 em crédito e atrasa o pagamento por quatro meses, o banco
+              pode ter prejuízo médio de até ¥100.400 por caso. Os valores são uma
+              estimativa de impacto do cenário analisado, não uma garantia de
+              retorno financeiro.
+            </p>
+
+            <p class="case-source">
+              Texto migrado e reorganizado a partir do
+              <a
+                href="https://angejesufern.wixsite.com/angel-mansilla/c%C3%B3pia-introdu%C3%A7%C3%A3o-ao-projeto"
+                target="_blank"
+                rel="noreferrer"
+              >estudo original no Wix</a>.
+            </p>
+          </section>
+        </article>
+      </div>
+
+      <section class="case-next">
+        <a class="container" href="../imdb/index.html">
+          <span>Próximo estudo</span>
+          <strong>Análise da indústria cinematográfica</strong>
+          <i aria-hidden="true">→</i>
+        </a>
+      </section>
+    </main>
+
+    <footer class="case-footer">
+      <div class="container">
+        <p>© 2026 Angel Mansilla</p>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>

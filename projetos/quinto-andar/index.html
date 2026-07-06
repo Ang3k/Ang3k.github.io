@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Estudo de caso de Angel Mansilla sobre web scraping e análise de dados imobiliários do QuintoAndar."
+    >
+    <meta name="theme-color" content="#f4f3ef">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:title" content="Web scraping e dados do QuintoAndar — Angel Mansilla">
+    <meta
+      property="og:description"
+      content="Construção de um dataset imobiliário com Selenium e BeautifulSoup, análise SQL e visualização no Power BI."
+    >
+    <title>Web scraping e dados do QuintoAndar — Angel Mansilla</title>
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../case-study.css">
+  </head>
+  <body class="case-page" id="top">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="case-topbar">
+      <div class="container">
+        <a class="case-brand" href="../../index.html">Angel Mansilla</a>
+        <nav class="case-nav" aria-label="Navegação do estudo de caso">
+          <a href="../../index.html#sobre">Sobre</a>
+          <a href="../../index.html#projetos">Projetos</a>
+          <a href="../../index.html#contato">Contato</a>
+          <a
+            href="https://angejesufern.wixsite.com/angel-mansilla/c%C3%B3pia-imdb"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Projeto original ↗
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="case-hero">
+        <div class="container">
+          <p class="case-breadcrumb">
+            <a href="../../index.html#projetos">Projetos</a>
+            <span aria-hidden="true">/</span>
+            <span>Web scraping e Data Analysis</span>
+          </p>
+          <div class="case-hero-grid">
+            <div>
+              <p class="case-kicker">Selenium · BeautifulSoup · MySQL · Power BI</p>
+              <h1>Dados imobiliários do <em>QuintoAndar</em></h1>
+            </div>
+            <p class="case-lead">
+              Construção de um conjunto de dados original por meio de web
+              scraping, seguido de limpeza, modelagem relacional e análise do
+              mercado imobiliário.
+            </p>
+          </div>
+          <dl class="case-hero-stats">
+            <div>
+              <dt>Imóveis coletados</dt>
+              <dd>8.250 registros informados</dd>
+            </div>
+            <div>
+              <dt>Estrutura</dt>
+              <dd>16 colunas · 4 tabelas</dd>
+            </div>
+            <div>
+              <dt>Período</dt>
+              <dd>2023—2024</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <figure class="case-cover">
+        <img
+          src="../../wix-images-to-use/QuintoAndar-lanca-modelo-de-assessoria-para-multiplos-imoveis_edited_edited_edited.jpg"
+          alt="Marca QuintoAndar sobre fundo azul"
+        >
+      </figure>
+
+      <div class="case-layout container">
+        <aside class="case-toc" aria-label="Índice do estudo de caso">
+          <p>Neste estudo</p>
+          <ol>
+            <li><a href="#objetivo">Objetivo</a></li>
+            <li><a href="#coleta">Web scraping</a></li>
+            <li><a href="#dados">Dados e modelagem</a></li>
+            <li><a href="#analise">Análise com SQL</a></li>
+            <li><a href="#reflexoes">Dashboard e reflexões</a></li>
+          </ol>
+        </aside>
+
+        <article class="case-content">
+          <section class="case-section" id="objetivo">
+            <p class="case-part">Visão geral</p>
+            <h2>Objetivo e ferramentas</h2>
+            <p class="case-intro">
+              Neste projeto, objetivei desenvolver um conjunto de dados único,
+              para trabalhar com algo mais original e treinar minhas capacidades
+              com APIs e web scraping.
+            </p>
+            <p>
+              Fiz isso extraindo informações imobiliárias da empresa
+              QuintoAndar em seu site e, posteriormente, realizando análises nos
+              dados coletados.
+            </p>
+            <p>
+              Utilizei Python e as bibliotecas Pandas, Selenium e BeautifulSoup
+              para o data mining e a criação dos datasets, além de MySQL para as
+              análises e Power BI para a visualização dos insights.
+            </p>
+            <ul class="tool-list" aria-label="Ferramentas do projeto">
+              <li>Python</li>
+              <li>Pandas</li>
+              <li>Selenium</li>
+              <li>BeautifulSoup</li>
+              <li>MySQL</li>
+              <li>Power BI</li>
+            </ul>
+          </section>
+
+          <section class="case-section" id="coleta">
+            <p class="case-part">Parte 1</p>
+            <h2>Web scraping e limpeza em Python</h2>
+
+            <h3>1 — Contexto de negócio</h3>
+            <p>
+              Roberto, um corretor de imóveis, decide se mudar para o Rio de
+              Janeiro em busca de melhores oportunidades de trabalho. Porém,
+              percebe que as características, valores e itens dos imóveis são
+              diferentes daqueles com os quais está acostumado, reduzindo a
+              efetividade de seu serviço.
+            </p>
+            <p>
+              Ele encontra uma possível solução ao decidir realizar uma análise
+              de dados no site do QuintoAndar, uma das principais plataformas de
+              venda e aluguel de imóveis, que reúne informações detalhadas sobre
+              valores, interiores e outros atributos.
+            </p>
+
+            <h3>2 — Extração de dados</h3>
+            <p>
+              Primeiramente, busquei uma API para realizar a coleta. Entretanto,
+              a maioria dos sites semelhantes ao QuintoAndar não possuía uma API
+              ou limitava demais as consultas gratuitas. Por isso, optei por
+              realizar web scraping com Python, usando BeautifulSoup4 e Selenium.
+            </p>
+            <p>
+              Mesmo que inicialmente o projeto tenha sido pensado para utilizar
+              apenas BeautifulSoup, fez-se necessário usar Selenium devido à
+              dinamicidade do site e ao conteúdo carregado com JavaScript.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../wix-images-to-use/codetoimg-snippet (28).png"
+                alt="Trecho de código Python com as bibliotecas usadas no web scraping"
+                loading="lazy"
+              >
+              <figcaption>Preparação do ambiente de coleta.</figcaption>
+            </figure>
+
+            <h3>3 — Web scraping em Python</h3>
+            <p>
+              O processo para extrair o conteúdo era simples, mas complexo em
+              execução. Existiam links escondidos nas imagens que redirecionavam
+              para páginas com os dados completos dos imóveis.
+            </p>
+            <p>
+              Programei o Selenium para atravessar o site e clicar em “Ver mais”
+              por uma quantidade opcional de vezes. Depois, o HTML completo era
+              entregue ao BeautifulSoup. Uma função chamada
+              <code>extrair_links</code> identificava os links escondidos com
+              base em um padrão encontrado durante a exploração.
+            </p>
+            <p>
+              Esses links continham preço, quantidade de quartos, IPTU e várias
+              outras informações. Criei cerca de onze funções para extrair e
+              limpar os conteúdos — por exemplo, remover “R$” dos preços e
+              transformar a identificação do imóvel em uma chave numérica.
+            </p>
+            <p>
+              As informações foram agrupadas em quatro datasets de categorias
+              semelhantes, posteriormente concatenados com os demais arquivos de
+              estados do Sudeste.
+            </p>
+          </section>
+
+          <section class="case-section" id="dados">
+            <p class="case-part">Parte 1 · Continuação</p>
+            <h2>Carregamento e estrutura dos dados</h2>
+            <p>
+              Com o web scraping concluído, os dados foram colocados em arquivos
+              CSV e carregados no MySQL. As quatro tabelas foram criadas conforme
+              as especificações do dicionário e preenchidas com
+              <code>LOAD DATA LOCAL INFILE</code>.
+            </p>
+
+            <h3>Dicionário de dados</h3>
+            <details class="data-details">
+              <summary>Tabela 1 — Descrição do imóvel</summary>
+              <dl>
+                <dt>ID</dt><dd>Identificador único do imóvel.</dd>
+                <dt>Tipo</dt><dd>Tipo de imóvel.</dd>
+                <dt>Descrição</dt><dd>Descrição detalhada.</dd>
+                <dt>Bairro</dt><dd>Bairro onde está localizado.</dd>
+                <dt>Logradouro</dt><dd>Endereço completo.</dd>
+                <dt>Publicação(Dias)</dt><dd>Dias desde a publicação do anúncio.</dd>
+              </dl>
+            </details>
+            <details class="data-details">
+              <summary>Tabela 2 — Custos</summary>
+              <dl>
+                <dt>ID</dt><dd>Identificador único do imóvel.</dd>
+                <dt>Preço</dt><dd>Preço de venda.</dd>
+                <dt>Condomínio</dt><dd>Valor do condomínio.</dd>
+                <dt>IPTU</dt><dd>Valor mensal do IPTU.</dd>
+              </dl>
+            </details>
+            <details class="data-details">
+              <summary>Tabela 3 — Especificações internas</summary>
+              <dl>
+                <dt>Quartos</dt><dd>Número de quartos.</dd>
+                <dt>Área</dt><dd>Área total em metros quadrados.</dd>
+                <dt>Proximidade com metrô</dt><dd>Indica se existe metrô próximo.</dd>
+                <dt>Vagas</dt><dd>Vagas de estacionamento.</dd>
+                <dt>Banheiros</dt><dd>Número de banheiros.</dd>
+                <dt>Andares</dt><dd>Faixa de andares em que se localiza.</dd>
+                <dt>Mobiliagem</dt><dd>Indica se é mobiliado.</dd>
+              </dl>
+            </details>
+            <details class="data-details">
+              <summary>Tabela 4 — Expansão dos itens</summary>
+              <dl>
+                <dt>ID</dt><dd>Identificador único do imóvel.</dd>
+                <dt>Item</dt><dd>Item presente no imóvel, extraído da descrição.</dd>
+              </dl>
+            </details>
+
+            <figure class="case-figure">
+              <img
+                src="../../wix-images-to-use/Untitled (2).png"
+                alt="Diagrama de relacionamento entre as tabelas de imóveis, custos, especificações e itens"
+                loading="lazy"
+              >
+              <figcaption>Diagrama de relacionamento de entidades.</figcaption>
+            </figure>
+
+            <h3>Escopo da coleta</h3>
+            <p>
+              Eu adoraria ter um conjunto maior, com informações de todo o Brasil
+              e mais imóveis, mas, por limitações do site e de desempenho no
+              computador, essa foi a maior quantidade que consegui extrair.
+              Ainda assim, o material foi suficiente para gerar bons insights
+              sobre a região.
+            </p>
+            <div class="metric-grid">
+              <div><span>Linhas informadas</span><strong>8.250</strong></div>
+              <div><span>Colunas</span><strong>16</strong></div>
+              <div><span>Período</span><strong>2023—24</strong></div>
+            </div>
+            <div class="case-note">
+              <p>
+                O texto original também registra “2.950 imóveis para cada
+                estado”, valor que não fecha com o total de 8.250. Mantive o
+                número geral informado no projeto, mas essa contagem precisa ser
+                conferida na base antes de uma afirmação definitiva.
+              </p>
+            </div>
+            <p>
+              Agradeço aos usuários do Reddit BrDev, Dados Brasil e Stack, que
+              contribuíram com comentários ao longo do desenvolvimento.
+            </p>
+          </section>
+
+          <section class="case-section" id="analise">
+            <p class="case-part">Parte 2</p>
+            <h2>Analisando com MySQL e Power BI</h2>
+            <p class="case-intro">
+              A seguir estão as queries mais interessantes do projeto,
+              acompanhadas de contexto e visualizações criadas para tornar os
+              resultados mais claros.
+            </p>
+
+            <h3>1 — Média de preço por tipo de imóvel</h3>
+            <p>
+              A query mostra a variação de preço por tipo de imóvel, organizada
+              em ordem decrescente e agrupada por capital. Belo Horizonte lidera
+              nos preços de casas e apartamentos. Studios são a opção mais barata;
+              apenas em São Paulo apresentam custo semelhante ao de apartamentos.
+            </p>
+
+            <h3>2 — Quantidade de imóveis por tipo</h3>
+            <p>
+              Rio de Janeiro e Belo Horizonte possuem 95,8% de seus imóveis
+              classificados como casas ou apartamentos. Em São Paulo, 8% dos
+              imóveis à venda são studios, fazendo da cidade a líder nessa
+              categoria.
+            </p>
+
+            <h3>3 — Preço e mobília</h3>
+            <p>
+              A consulta demonstra como a presença de mobília afeta tipos de
+              imóveis de maneiras diferentes. Casas sem mobília custam 2,26% a
+              menos; apartamentos, 7,44%; e studios, 17,85%.
+            </p>
+
+            <h3>4 — Preço e data de publicação</h3>
+            <p>
+              Embora o gráfico seja crescente, isso não implica aumento dos
+              preços ao longo do tempo. Indica que anúncios antigos tendem a
+              receber reduções: em média, os imóveis custam cerca de 40,8% menos
+              após um ano de publicação.
+            </p>
+
+            <h3>5 — Principais logradouros por capital</h3>
+            <p>
+              A query mostra os dez logradouros com maior quantidade de imóveis
+              em diferentes capitais, ajudando a evidenciar pontos de
+              oportunidade.
+            </p>
+
+            <h3>6 — Padrão de publicação ao longo da semana</h3>
+            <p>
+              Existe aparentemente um padrão: nos finais de semana, as pessoas
+              costumam publicar mais imóveis. Quarta e quinta-feira são os dias
+              de menor movimento.
+            </p>
+
+            <h3>7 — Custo por metro quadrado</h3>
+            <p>
+              São Paulo é a capital com maior custo por metro quadrado, com
+              destaque para Jardins. Rio de Janeiro e Belo Horizonte disputam a
+              segunda posição, com bairros como Humaitá e Glória entre os mais
+              caros.
+            </p>
+
+            <h3>8 — Itens mais e menos comuns</h3>
+            <p>
+              Para casas e apartamentos, box, área de serviço e armários na
+              cozinha aparecem como itens quase indispensáveis. Em studios, área
+              de serviço é menos comum. Salão de jogos, academia e sauna estão
+              entre os itens mais raros.
+            </p>
+
+            <figure class="case-figure">
+              <img
+                src="../../wix-images-to-use/codetoimg-snippet (41).png"
+                alt="Trecho de consulta SQL do estudo imobiliário"
+                loading="lazy"
+              >
+              <figcaption>Exemplo de consulta utilizada na etapa analítica.</figcaption>
+            </figure>
+          </section>
+
+          <section class="case-section" id="reflexoes">
+            <p class="case-part">Parte 3</p>
+            <h2>Dashboard e conclusão</h2>
+            <p>
+              Para tornar a visualização mais intuitiva, construí um dashboard
+              em que o usuário pode selecionar as capitais que deseja comparar e
+              acessar informações como média de preço por tipo ou flutuação de
+              preços com o tempo de publicação.
+            </p>
+
+            <h3>Otimização do código e escolha da página</h3>
+            <p>
+              Meu código de web scraping não era muito otimizado, pois as
+              operações demoravam bastante. A página do QuintoAndar, embora
+              excelente em conteúdo, carregava todos os imóveis no mesmo lugar,
+              tornando o processo lento e consumindo muita memória RAM.
+            </p>
+
+            <h3>Planejamento das informações</h3>
+            <p>
+              Pensei que seria capaz de extrair mais insights com os dados
+              obtidos. No projeto anterior, consegui gerar quinze análises de
+              qualidade satisfatória; neste, foram oito. Isso se deve tanto à
+              minha experiência inicial quanto à quantidade e variedade dos
+              dados coletados.
+            </p>
+
+            <h3>Melhoria nas técnicas</h3>
+            <p>
+              Nos primeiros projetos, utilizei principalmente tecnologias do
+              campo da análise de dados, como SQL e Power BI. A partir daqui,
+              passei a buscar análises mais profundas com Machine Learning em
+              Python, tornando os estudos mais detalhados e estimulantes.
+            </p>
+
+            <div class="case-quote">
+              <p>
+                Sendo minha primeira experiência prática com web scraping,
+                localizei as principais características de cada anúncio, consegui
+                extraí-las e analisá-las com bom grau de clareza e profundidade.
+              </p>
+            </div>
+
+            <p class="case-source">
+              Texto migrado e reorganizado a partir do
+              <a
+                href="https://angejesufern.wixsite.com/angel-mansilla/c%C3%B3pia-imdb"
+                target="_blank"
+                rel="noreferrer"
+              >estudo original no Wix</a>.
+              O antigo link público do repositório retorna 404; por isso, ele não
+              foi utilizado como destino nesta versão.
+            </p>
+          </section>
+        </article>
+      </div>
+
+      <section class="case-next">
+        <a class="container" href="../churn/index.html">
+          <span>Voltar ao primeiro estudo</span>
+          <strong>Previsão de churn bancário</strong>
+          <i aria-hidden="true">→</i>
+        </a>
+      </section>
+    </main>
+
+    <footer class="case-footer">
+      <div class="container">
+        <p>© 2026 Angel Mansilla</p>
+        <a href="#top">Voltar ao topo ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>

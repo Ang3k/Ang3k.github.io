@@ -1,0 +1,16 @@
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editores e arquivos temporários
+.vscode/
+.idea/
+*.swp
+*.tmp
+*.log
+
+# Servidores e ferramentas locais
+node_modules/
+.cache/
+dist/
