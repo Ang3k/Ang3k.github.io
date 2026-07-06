@@ -1331,20 +1331,19 @@ html.intro-pending .intro-name.is-visible {
   fill: none;
   stroke: var(--ink);
   stroke-width: 2.5;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
   vector-effect: non-scaling-stroke;
-  transition: stroke-dashoffset 1400ms cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.intro-line.is-on {
-  stroke-dashoffset: 0;
+/* A curva é revelada por um clipPath que se expande da esquerda para a
+   direita. Dash + non-scaling-stroke não servem aqui: o navegador calcula
+   o tracejado em espaço de tela e a curva vazaria em janelas largas. */
+.intro-line-reveal {
+  width: 0;
+  transition: width 1400ms cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-/* Após o traçado, remove o tracejado: com non-scaling-stroke o navegador
-   recalcula o dash em espaço de tela e a reta sumiria durante o zoom. */
-.intro-line.is-drawn {
-  stroke-dasharray: none;
+.intro-line-reveal.is-on {
+  width: 880px;
 }
 
 .intro-point {

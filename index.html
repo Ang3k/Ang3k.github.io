@@ -51,6 +51,11 @@
         aria-hidden="true"
         focusable="false"
       >
+        <defs>
+          <clipPath id="intro-line-clip">
+            <rect class="intro-line-reveal" id="intro-line-reveal" x="70" y="0" width="0" height="620" />
+          </clipPath>
+        </defs>
         <g class="intro-world" id="intro-world">
           <g class="intro-frame">
             <path
@@ -91,7 +96,7 @@
           <text class="intro-caption intro-metric" id="intro-metric" x="940" y="42" text-anchor="end">
             R² = 0,94
           </text>
-          <path class="intro-line" id="intro-line" d="M75 515 Q560 470 940 135" />
+          <path class="intro-line" id="intro-line" clip-path="url(#intro-line-clip)" d="M75 515 Q560 470 940 135" />
           <g id="intro-points"></g>
           <path class="intro-residual" id="intro-residual" d="M700 120 V307" />
           <circle class="intro-ring" id="intro-ring" cx="700" cy="104" r="20" />

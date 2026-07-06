@@ -14,14 +14,14 @@
   var pointsGroup = document.getElementById("intro-points");
   var caption = document.getElementById("intro-caption");
   var metric = document.getElementById("intro-metric");
-  var line = document.getElementById("intro-line");
+  var lineReveal = document.getElementById("intro-line-reveal");
   var residual = document.getElementById("intro-residual");
   var ring = document.getElementById("intro-ring");
   var skipButton = document.getElementById("intro-skip");
   var nameEl = document.getElementById("intro-name");
   var headerName = document.querySelector(".site-name");
 
-  if (!overlay || !world || !pointsGroup || !line || !nameEl || !headerName) {
+  if (!overlay || !world || !pointsGroup || !lineReveal || !nameEl || !headerName) {
     root.classList.remove("intro-pending");
     return;
   }
@@ -168,9 +168,8 @@
     pointsGroup.classList.add("intro-points-on");
     await wait(2100);
 
-    line.classList.add("is-on");
+    lineReveal.classList.add("is-on");
     await wait(1450);
-    line.classList.add("is-drawn");
 
     metric.classList.add("is-on");
     await wait(450);
