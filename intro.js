@@ -12,7 +12,6 @@
   var overlay = document.getElementById("intro-overlay");
   var world = document.getElementById("intro-world");
   var pointsGroup = document.getElementById("intro-points");
-  var caption = document.getElementById("intro-caption");
   var metric = document.getElementById("intro-metric");
   var lineReveal = document.getElementById("intro-line-reveal");
   var residual = document.getElementById("intro-residual");
@@ -32,17 +31,20 @@
     /* Sem storage, a intro roda mesmo assim, apenas sem memória de sessão. */
   }
 
-  /* Coordenadas no viewBox (1000x620). A tendência segue a curva
-     M75 515 Q560 470 940 135, com ruído irregular e dispersão maior no
-     topo, como dados reais; o outlier fica bem acima da curva. */
+  /* Coordenadas no viewBox (1000x620) como [x, y, raio]. Pontos gerados
+     por amostragem aleatória ao redor da curva M75 515 Q560 470 940 135
+     (ruído gaussiano de cauda pesada, aglomerados e vazios naturais);
+     o outlier fica bem acima da curva. */
   var POINTS = [
-    [108, 496], [131, 522], [154, 489], [177, 513], [223, 476],
-    [241, 502], [288, 461], [302, 490], [317, 470], [345, 484],
-    [367, 442], [398, 460], [409, 429], [431, 452], [458, 415],
-    [486, 439], [494, 407], [521, 419], [549, 375], [585, 397],
-    [604, 349], [633, 371], [664, 318], [688, 340], [716, 288],
-    [749, 305], [781, 243], [808, 271], [836, 208], [871, 232],
-    [897, 174], [921, 143]
+    [138, 525, 6.2], [176, 488, 5.2], [198, 490, 5.7], [203, 484, 6.3],
+    [222, 510, 5.9], [223, 461, 4.9], [346, 464, 5.1], [368, 435, 5.1],
+    [383, 458, 5.2], [400, 460, 6.1], [448, 433, 5.8], [460, 463, 5.2],
+    [471, 410, 6.3], [480, 382, 4.8], [485, 415, 4.5], [496, 401, 5.5],
+    [556, 396, 5.0], [558, 363, 5.1], [572, 379, 5.4], [610, 392, 4.6],
+    [656, 309, 5.6], [663, 319, 6.0], [683, 340, 5.6], [676, 265, 6.0],
+    [720, 284, 5.3], [741, 284, 4.7], [776, 282, 6.1], [808, 218, 6.4],
+    [817, 242, 5.8], [830, 207, 4.7], [855, 261, 6.3], [884, 182, 4.8],
+    [885, 203, 5.1], [912, 169, 5.0]
   ];
   var OUTLIER = { x: 700, y: 104 };
   var SVG_NS = "http://www.w3.org/2000/svg";
@@ -82,7 +84,7 @@
       dot.setAttribute("class", "intro-point");
       dot.setAttribute("cx", pair[0]);
       dot.setAttribute("cy", pair[1]);
-      dot.setAttribute("r", 5.5);
+      dot.setAttribute("r", pair[2]);
       dot.style.animationDelay = ((index * 167) % 1250) + "ms";
       pointsGroup.appendChild(dot);
     });
@@ -162,7 +164,6 @@
       wait(900)
     ]);
 
-    caption.classList.add("is-on");
     await wait(350);
 
     pointsGroup.classList.add("intro-points-on");
