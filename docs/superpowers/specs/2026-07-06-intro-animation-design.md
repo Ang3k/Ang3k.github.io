@@ -30,11 +30,15 @@ Learning à identidade pessoal.
   prevê para o seu nível de experiência.
 - O nome parte da borda externa do anel pulsante (folga de 24px), não do
   ponto, para o pulso nunca invadir o texto.
-- Tendência quadrática (Bézier `M75 515 Q560 470 940 135`) com 34 pontos
-  gerados por amostragem aleatória (ruído gaussiano de cauda pesada,
-  aglomerados e vazios naturais, raios variados por ponto). A curva tem
-  4px com pontas arredondadas. A legenda "Conjunto de teste" foi removida;
-  permanece só o "R² = 0,94".
+- 34 pontos gerados por amostragem aleatória (ruído gaussiano de cauda
+  pesada, aglomerados e vazios naturais, raios variados por ponto). A
+  curva é uma spline Catmull-Rom pelas médias locais dos aglomerados —
+  um ajuste sensível, quase overfittando, com platôs e ondulações — em
+  4px com pontas arredondadas. A legenda "Conjunto de teste" foi
+  removida; permanece só o "R² = 0,97".
+- O outlier fica no valor 60 do eixo X (viewBox 592, 150), sobre a linha
+  de grade do 60; o resíduo tracejado desce por ela até a curva. Zoom em
+  `translate(-714.8px, -145px) scale(1.9)`.
 - Outlier enfatizado: vermelho (`--red`), maior (r 7,5), com halo suave, e
   plotado por último, depois de todos os pontos comuns.
 - Zoom reenquadrado (`translate(-980px, -38px) scale(2)`) para manter curva,

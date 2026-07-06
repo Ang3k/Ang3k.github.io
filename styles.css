@@ -158,8 +158,8 @@ a {
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(2.25rem, 4vw, 3.5rem);
-  padding-top: clamp(5rem, 10vw, 9rem);
-  padding-bottom: clamp(6rem, 12vw, 11rem);
+  padding-top: clamp(3rem, 5.5vw, 5.5rem);
+  padding-bottom: clamp(4rem, 7vw, 6.5rem);
 }
 
 .section-label {
@@ -1043,7 +1043,7 @@ a {
   }
 
   .intro {
-    padding-top: 4rem;
+    padding-top: 2rem;
   }
 
   .intro h1,
@@ -1263,7 +1263,7 @@ html.intro-pending .intro-name.is-visible {
 }
 
 .intro-world.is-zoomed {
-  transform: translate(-980px, -38px) scale(2);
+  transform: translate(-714.8px, -145px) scale(1.9);
 }
 
 .intro-frame {

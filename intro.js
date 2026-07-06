@@ -32,9 +32,11 @@
   }
 
   /* Coordenadas no viewBox (1000x620) como [x, y, raio]. Pontos gerados
-     por amostragem aleatória ao redor da curva M75 515 Q560 470 940 135
-     (ruído gaussiano de cauda pesada, aglomerados e vazios naturais);
-     o outlier fica bem acima da curva. */
+     por amostragem aleatória ao redor da tendência (ruído gaussiano de
+     cauda pesada, aglomerados e vazios naturais). A curva do gráfico é
+     uma spline Catmull-Rom pelas médias locais dos aglomerados — um
+     ajuste sensível, quase overfittando. O outlier fica bem acima dela,
+     no valor 60 do eixo x. */
   var POINTS = [
     [138, 525, 6.2], [176, 488, 5.2], [198, 490, 5.7], [203, 484, 6.3],
     [222, 510, 5.9], [223, 461, 4.9], [346, 464, 5.1], [368, 435, 5.1],
@@ -46,7 +48,7 @@
     [817, 242, 5.8], [830, 207, 4.7], [855, 261, 6.3], [884, 182, 4.8],
     [885, 203, 5.1], [912, 169, 5.0]
   ];
-  var OUTLIER = { x: 700, y: 104 };
+  var OUTLIER = { x: 592, y: 150 };
   var SVG_NS = "http://www.w3.org/2000/svg";
 
   var done = false;
