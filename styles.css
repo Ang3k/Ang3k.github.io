@@ -1198,3 +1198,286 @@ a {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Introdução — o ponto fora da curva */
+
+.intro-overlay,
+.intro-name {
+  display: none;
+}
+
+html.intro-pending {
+  overflow: hidden;
+}
+
+html.intro-pending .intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: block;
+  background: var(--paper);
+  transition: opacity 480ms ease;
+}
+
+html.intro-pending .intro-overlay.is-leaving {
+  opacity: 0;
+}
+
+html.intro-pending .intro-name {
+  position: fixed;
+  z-index: 61;
+  top: 0;
+  left: 0;
+  display: block;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: 300;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  white-space: nowrap;
+  opacity: 0;
+  transform-origin: 0 0;
+  transition: opacity 500ms ease;
+  will-change: transform;
+}
+
+html.intro-pending .intro-name.is-visible {
+  opacity: 1;
+}
+
+.intro-chart {
+  width: 100%;
+  height: 100%;
+  transition: opacity 700ms ease;
+}
+
+.intro-overlay.is-flip .intro-chart,
+.intro-overlay.is-flip .intro-skip {
+  opacity: 0;
+}
+
+.intro-world {
+  transform-origin: 0 0;
+  transition: transform 1700ms cubic-bezier(0.6, 0, 0.25, 1);
+  will-change: transform;
+}
+
+.intro-world.is-zoomed {
+  transform: translate(-980px, -38px) scale(2);
+}
+
+.intro-frame {
+  opacity: 0;
+  animation: intro-fade-in 700ms ease 150ms forwards;
+}
+
+@keyframes intro-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+.intro-grid {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+  opacity: 0.45;
+  vector-effect: non-scaling-stroke;
+}
+
+.intro-axes {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.intro-ticks text {
+  fill: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+
+.intro-axis-label {
+  fill: var(--muted);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.intro-caption {
+  fill: var(--muted);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.intro-caption.is-on {
+  opacity: 1;
+}
+
+.intro-overlay.is-zoom .intro-caption {
+  opacity: 0;
+}
+
+.intro-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  vector-effect: non-scaling-stroke;
+  transition: stroke-dashoffset 1400ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.intro-line.is-on {
+  stroke-dashoffset: 0;
+}
+
+/* Após o traçado, remove o tracejado: com non-scaling-stroke o navegador
+   recalcula o dash em espaço de tela e a reta sumiria durante o zoom. */
+.intro-line.is-drawn {
+  stroke-dasharray: none;
+}
+
+.intro-point {
+  fill: var(--ink-soft);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.intro-point-outlier {
+  fill: var(--red);
+}
+
+.intro-halo {
+  fill: var(--red);
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.intro-points-on .intro-point {
+  animation: intro-point-in 420ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
+}
+
+.intro-points-on .intro-halo {
+  animation: intro-halo-in 700ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
+}
+
+@keyframes intro-halo-in {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+
+  to {
+    opacity: 0.16;
+    transform: scale(1);
+  }
+}
+
+@keyframes intro-point-in {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.intro-residual {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 7;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  transition: opacity 500ms ease 250ms;
+}
+
+.intro-residual.is-on {
+  opacity: 1;
+}
+
+.intro-ring {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.intro-ring.is-on {
+  animation:
+    intro-ring-in 500ms ease-out forwards,
+    intro-ring-pulse 1800ms ease-in-out 500ms infinite;
+}
+
+@keyframes intro-ring-in {
+  from {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes intro-ring-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.65;
+    transform: scale(1.12);
+  }
+}
+
+.intro-skip {
+  position: absolute;
+  right: clamp(1rem, 4vw, 2.5rem);
+  bottom: clamp(1rem, 4vw, 2rem);
+  padding: 0.6rem 0.2rem;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+.intro-skip:hover {
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-overlay,
+  .intro-name {
+    display: none !important;
+  }
+}

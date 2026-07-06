@@ -24,9 +24,84 @@
       rel="stylesheet"
     >
     <link rel="stylesheet" href="./styles.css">
+    <script>
+      (function () {
+        try {
+          if (
+            !location.hash &&
+            !sessionStorage.getItem("introPlayed") &&
+            !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ) {
+            document.documentElement.classList.add("intro-pending");
+          }
+        } catch (error) {
+          /* Sem storage disponível, o site abre direto, sem intro. */
+        }
+      })();
+    </script>
   </head>
   <body id="top">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <div class="intro-overlay" id="intro-overlay">
+      <svg
+        class="intro-chart"
+        viewBox="0 0 1000 620"
+        preserveAspectRatio="xMidYMid meet"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <g class="intro-world" id="intro-world">
+          <g class="intro-frame">
+            <path
+              class="intro-grid"
+              d="M244 60 V560 M418 60 V560 M592 60 V560 M766 60 V560 M940 60 V560 M70 60 H940 M70 160 H940 M70 260 H940 M70 360 H940 M70 460 H940"
+            />
+            <path class="intro-axes" d="M70 60 V560 H940" />
+            <g class="intro-ticks">
+              <text x="70" y="584" text-anchor="middle">0</text>
+              <text x="244" y="584" text-anchor="middle">20</text>
+              <text x="418" y="584" text-anchor="middle">40</text>
+              <text x="592" y="584" text-anchor="middle">60</text>
+              <text x="766" y="584" text-anchor="middle">80</text>
+              <text x="940" y="584" text-anchor="middle">100</text>
+              <text x="56" y="564" text-anchor="end">0</text>
+              <text x="56" y="464" text-anchor="end">20</text>
+              <text x="56" y="364" text-anchor="end">40</text>
+              <text x="56" y="264" text-anchor="end">60</text>
+              <text x="56" y="164" text-anchor="end">80</text>
+              <text x="56" y="64" text-anchor="end">100</text>
+            </g>
+            <text class="intro-axis-label" x="505" y="608" text-anchor="middle">
+              Valor previsto (ŷ)
+            </text>
+            <text
+              class="intro-axis-label"
+              x="20"
+              y="310"
+              text-anchor="middle"
+              transform="rotate(-90 20 310)"
+            >
+              Valor real (y)
+            </text>
+          </g>
+          <text class="intro-caption" id="intro-caption" x="70" y="42">
+            Conjunto de teste
+          </text>
+          <text class="intro-caption intro-metric" id="intro-metric" x="940" y="42" text-anchor="end">
+            R² = 0,94
+          </text>
+          <path class="intro-line" id="intro-line" d="M75 515 Q560 470 940 135" />
+          <g id="intro-points"></g>
+          <path class="intro-residual" id="intro-residual" d="M700 120 V307" />
+          <circle class="intro-ring" id="intro-ring" cx="700" cy="104" r="20" />
+        </g>
+      </svg>
+      <button class="intro-skip" id="intro-skip" type="button">
+        Pular introdução <span aria-hidden="true">→</span>
+      </button>
+    </div>
+    <div class="intro-name" id="intro-name" aria-hidden="true">Angel Mansilla</div>
 
     <header class="site-header">
       <div class="container">
@@ -464,5 +539,11 @@
         <a href="#top">Voltar ao topo <span aria-hidden="true">↑</span></a>
       </div>
     </footer>
+
+    <script
+      src="./intro.js"
+      defer
+      onerror="document.documentElement.classList.remove('intro-pending')"
+    ></script>
   </body>
 </html>
