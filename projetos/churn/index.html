@@ -10,17 +10,17 @@
     <meta name="theme-color" content="#f4f3ef">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:title" content="Previsão de churn bancário — Angel Mansilla">
+    <meta property="og:title" content="Previsão de churn bancário | Angel Mansilla">
     <meta
       property="og:description"
       content="Análise exploratória, tratamento de dados e comparação de modelos para prever cancelamentos de cartões."
     >
-    <title>Previsão de churn bancário — Angel Mansilla</title>
+    <title>Previsão de churn bancário | Angel Mansilla</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap"
       rel="stylesheet"
     >
     <link rel="stylesheet" href="../../styles.css">
@@ -127,8 +127,8 @@
             <p>
               Realizo uma limpeza rigorosa dos dados, tratando valores faltantes
               e outliers e aplicando codificação para variáveis categóricas.
-              Foram desenvolvidos três modelos de Machine Learning supervisionados
-              — DecisionTreeClassifier, RandomForestClassifier e XGBoost — com
+              Foram desenvolvidos três modelos de Machine Learning supervisionados:
+              DecisionTreeClassifier, RandomForestClassifier e XGBoost, todos com
               uma precisão superior a 90% em todos os casos.
             </p>
             <p>
@@ -159,7 +159,7 @@
             <p class="case-part">Parte 1</p>
             <h2>Introdução ao conjunto de dados</h2>
 
-            <h3>1 — Contexto de negócio</h3>
+            <h3>1. Contexto de negócio</h3>
             <p>
               Um gerente do banco está preocupado com o número crescente de
               clientes que estão deixando os serviços de cartão de crédito. Eles
@@ -178,7 +178,7 @@
               modelo.
             </p>
 
-            <h3>2 — Dicionário de dados</h3>
+            <h3>2. Dicionário de dados</h3>
             <details class="data-details">
               <summary>Abrir o dicionário das principais variáveis</summary>
               <dl>
@@ -204,7 +204,7 @@
               </dl>
             </details>
 
-            <h3>3 — Metodologia do projeto</h3>
+            <h3>3. Metodologia do projeto</h3>
             <p>
               Neste projeto, optei por adotar uma metodologia de resolução de
               problemas de dados apresentada em um dos livros mais renomados
@@ -222,7 +222,7 @@
               <li>Lance, monitore e mantenha seu sistema.</li>
             </ol>
 
-            <h3>4 — Requisitos de solução</h3>
+            <h3>4. Requisitos de solução</h3>
             <p>
               Durante a conversa com o gerente, Angel perguntou quais eram as
               principais informações que ele gostaria de obter. Em resposta, o
@@ -263,7 +263,7 @@
               melhor as dinâmicas de crédito e churn.
             </p>
 
-            <h3>1 — Distribuição de variáveis</h3>
+            <h3>1. Distribuição de variáveis</h3>
             <p>
               O código funciona criando três subplots que servem como template
               para dois tipos de gráficos sobrepostos, um KDE plot e um histplot,
@@ -284,7 +284,7 @@
               <figcaption>Distribuições utilizadas para compreender o perfil inicial da base.</figcaption>
             </figure>
 
-            <h3>2 — Variáveis e limite de crédito</h3>
+            <h3>2. Variáveis e limite de crédito</h3>
             <p>
               O código executa o agrupamento das variáveis categóricas em relação
               à média do limite de crédito, incorporando também a variável de
@@ -317,7 +317,7 @@
               </figure>
             </div>
 
-            <h3>3 — Correlações entre variáveis numéricas</h3>
+            <h3>3. Correlações entre variáveis numéricas</h3>
             <p>
               A matriz foi gerada com <code>pandas.corr()</code> e visualizada
               em um heatmap. Entre os relacionamentos observados:
@@ -330,7 +330,7 @@
               <li>Average Open To Buy versus Utilization: correlação negativa de −0,54.</li>
             </ul>
 
-            <h3>4 — Categorias e probabilidade de churn</h3>
+            <h3>4. Categorias e probabilidade de churn</h3>
             <p>
               A maioria dos clientes se divide entre solteiros e casados, com
               uma pequena porcentagem de divorciados. De modo geral, ser casado
@@ -356,7 +356,7 @@
               </figure>
             </div>
 
-            <h3>5 — Perfil do cliente e variáveis financeiras</h3>
+            <h3>5. Perfil do cliente e variáveis financeiras</h3>
             <p>
               Depois dos 30 anos, observa-se que as mulheres possuem limite de
               crédito menor que o dos homens. Em contrapartida, fazem maior uso
@@ -378,7 +378,7 @@
               <figcaption>Perfil do cliente relacionado às variáveis financeiras.</figcaption>
             </figure>
 
-            <h3>6 — Tipo de cartão e educação</h3>
+            <h3>6. Tipo de cartão e educação</h3>
             <p>
               A esmagadora maioria dos clientes possui cartão Blue. Os níveis
               educacionais não apresentam influência significativa na
@@ -387,7 +387,7 @@
               pós-doutorado.
             </p>
 
-            <h3>7 — Distribuição estatística e churn</h3>
+            <h3>7. Distribuição estatística e churn</h3>
             <p>
               A fidelidade ao banco varia entre 20 e 55 meses, tanto entre
               cancelados quanto ativos. Clientes que cancelaram fazem
@@ -419,7 +419,7 @@
             <p class="case-part">Parte 3</p>
             <h2>Tratamento do conjunto de dados</h2>
 
-            <h3>1 — Estratégias e procedimentos</h3>
+            <h3>1. Estratégias e procedimentos</h3>
             <p>
               Tal como se faz uma limpeza em um quarto ou em uma sala, para
               realizar a limpeza em um conjunto de dados é necessário ter um
@@ -434,7 +434,7 @@
               dataset limpo e pronto para funcionar em um modelo de ML.
             </p>
 
-            <h3>2 — Valores nulos</h3>
+            <h3>2. Valores nulos</h3>
             <p>
               Conforme eu trabalhava com o dataset, percebi que não existiam
               valores <code>np.nan</code>, porque eles se apresentavam de outra
@@ -449,7 +449,7 @@
               ordenei antes pelo limite de crédito.
             </p>
 
-            <h3>3 — Outliers</h3>
+            <h3>3. Outliers</h3>
             <p>
               Para identificar e remover outliers, utilizei o método de John
               Tukey, o mesmo empregado na criação de boxplots. Uma função retorna
@@ -457,15 +457,15 @@
               pelos quartis de cada coluna.
             </p>
 
-            <h3>4 — Variáveis categóricas</h3>
+            <h3>4. Variáveis categóricas</h3>
             <p>
               Como havia poucas linhas, tentei usar <code>pd.get_dummies</code>
               o mínimo possível. Apenas gênero e estado civil viraram dummies,
               criando três novas colunas com <code>drop_first=True</code>.
             </p>
             <p>
-              Para variáveis com ordem implícita — em que se espera, por exemplo,
-              que um cartão Platinum seja mais relevante que um Gold — estabeleci
+              Para variáveis com ordem implícita, em que se espera, por exemplo,
+              que um cartão Platinum seja mais relevante que um Gold, estabeleci
               essa ordem em listas e utilizei ferramentas do
               <code>sklearn.preprocessing</code> para atribuir valores numéricos.
             </p>
@@ -475,7 +475,7 @@
             <p class="case-part">Parte 4</p>
             <h2>Previsões com Machine Learning</h2>
 
-            <h3>1 — Seleção inicial de modelos</h3>
+            <h3>1. Seleção inicial de modelos</h3>
             <p>
               Separei as variáveis em features e target, apliquei um
               StandardScaler e escolhi alguns dos principais modelos clássicos
@@ -491,7 +491,7 @@
               <figcaption>Comparação inicial dos modelos antes da etapa de tuning.</figcaption>
             </figure>
 
-            <h3>2 — Refinando a Decision Tree</h3>
+            <h3>2. Refinando a Decision Tree</h3>
             <p>
               No site original, mostrei apenas a tunagem de um dos modelos, já
               que o processo dos três era parecido. Utilizei GridSearch para
@@ -508,7 +508,7 @@
               </p>
             </div>
 
-            <h3>3 — Comparação entre previsões</h3>
+            <h3>3. Comparação entre previsões</h3>
             <p>
               As previsões foram realizadas em um conjunto de teste que os
               modelos ainda não tinham visto. Os resultados foram organizados em
@@ -516,7 +516,7 @@
               com os valores reais.
             </p>
 
-            <h3>4 — Importância das features</h3>
+            <h3>4. Importância das features</h3>
             <p>
               Com <code>feature_importances_</code>, foi possível determinar o
               grau de importância de cada coluna. Average Open To Buy e Income
@@ -543,7 +543,7 @@
               </figure>
             </div>
 
-            <h3>5 — Matrizes de confusão</h3>
+            <h3>5. Matrizes de confusão</h3>
             <p>
               As matrizes mostram resultados semelhantes e coerentes com as
               acurácias: a Decision Tree possui mais falsos positivos e negativos,

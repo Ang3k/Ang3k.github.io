@@ -10,17 +10,17 @@
     <meta name="theme-color" content="#f4f3ef">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:title" content="Análise da indústria cinematográfica — Angel Mansilla">
+    <meta property="og:title" content="Análise da indústria cinematográfica | Angel Mansilla">
     <meta
       property="og:description"
       content="Extração, transformação e análise de mais de 158 milhões de linhas com Python, MySQL e Power BI."
     >
-    <title>Análise da indústria cinematográfica — Angel Mansilla</title>
+    <title>Análise da indústria cinematográfica | Angel Mansilla</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap"
       rel="stylesheet"
     >
     <link rel="stylesheet" href="../../styles.css">
@@ -77,7 +77,7 @@
             </div>
             <div>
               <dt>Cobertura</dt>
-              <dd>1894—2024 · 240+ países</dd>
+              <dd>1894 a 2024 · 240+ países</dd>
             </div>
           </dl>
         </div>
@@ -130,7 +130,7 @@
             <p class="case-part">Parte 1</p>
             <h2>Entendendo e coletando os dados</h2>
 
-            <h3>1 — Introdução</h3>
+            <h3>1. Introdução</h3>
             <p>
               Júlia é uma entusiasta no setor de cinema e decide se aventurar
               investindo em uma startup, a MoviesNow. Porém, percebe que a
@@ -145,7 +145,7 @@
               valiosas e acionáveis. Para isso, parte em busca de um dataset.
             </p>
 
-            <h3>2 — Conjunto de dados</h3>
+            <h3>2. Conjunto de dados</h3>
             <p>
               Júlia busca um dataset robusto e informativo, o que a leva ao IMDb,
               que possui uma fonte extensa e atualizada com detalhes sobre o
@@ -153,7 +153,7 @@
               de produção e muitos outros dados.
             </p>
 
-            <h3>3 — Dicionário de dados</h3>
+            <h3>3. Dicionário de dados</h3>
             <details class="data-details">
               <summary>title.akas.tsv.gz</summary>
               <dl>
@@ -233,21 +233,21 @@
               visualizações para melhorar o storytelling.
             </p>
 
-            <h3>1 — Os 25 melhores filmes no IMDb</h3>
+            <h3>1. Os 25 melhores filmes no IMDb</h3>
             <p>
               A query traz os 25 filmes com melhor avaliação. Ela é duplamente
               filtrada por <code>averageRating</code> para manter a relevância,
               mas ordenada principalmente por <code>numVotes</code> na subquery.
             </p>
 
-            <h3>2 — Gêneros promissores para 2024+</h3>
+            <h3>2. Gêneros promissores para 2024+</h3>
             <p>
               A consulta conta os gêneros esperados para filmes, séries e curtas
               com lançamento de 2024 em diante, ajudando a compreender tendências
               futuras do mercado.
             </p>
 
-            <h3>3 — Faixa etária entre atores</h3>
+            <h3>3. Faixa etária entre atores</h3>
             <p>
               Como o dataset não fornecia a idade diretamente, utilizei
               <code>COALESCE</code> para calculá-la, considerando que vários
@@ -255,7 +255,7 @@
               primeira query do projeto.
             </p>
 
-            <h3>4 — Curtas e longas ao longo dos anos</h3>
+            <h3>4. Curtas e longas ao longo dos anos</h3>
             <p>
               A extensão do dataset permitiu comparar curtas e longas-metragens
               desde 1874 até o presente, mostrando como produções menores se
@@ -263,14 +263,14 @@
               distribuição.
             </p>
 
-            <h3>5 — Tendências temporais: duração e crítica</h3>
+            <h3>5. Tendências temporais: duração e crítica</h3>
             <p>
               A consulta analisa como o tempo afetou a duração dos filmes e suas
               avaliações. Em 2008, a duração média de um “filme nota 10” era de
               78 minutos; em 2024, era de 102 minutos e 24 segundos.
             </p>
 
-            <h3>6 — Regiões por contagem de adaptações</h3>
+            <h3>6. Regiões por contagem de adaptações</h3>
             <p>
               Uma das queries mais simples, contando títulos adaptados para
               diferentes regiões. O Brasil aparece no top 13, com 126.385
@@ -285,7 +285,7 @@
               <figcaption>Distribuição geográfica das adaptações.</figcaption>
             </figure>
 
-            <h3>7 — Homens e mulheres no entretenimento</h3>
+            <h3>7. Homens e mulheres no entretenimento</h3>
             <p>
               A query traz à tona a discussão sobre gênero no mercado de
               trabalho. Uma pena o dataset não incluir salários, que permitiriam
@@ -300,28 +300,28 @@
               <figcaption>Quantidade de créditos por profissão.</figcaption>
             </figure>
 
-            <h3>8 — Profissionais mais prolíficos</h3>
+            <h3>8. Profissionais mais prolíficos</h3>
             <p>
               A consulta traz as pessoas mais creditadas no IMDb, isto é, os
               profissionais que aparecem com mais frequência nos créditos. Foi
               também uma das queries mais pesadas em termos de desempenho.
             </p>
 
-            <h3>9 — Seriados mais antigos ainda em andamento</h3>
+            <h3>9. Seriados mais antigos ainda em andamento</h3>
             <p>
               A query lista as séries mais antigas que continuam recebendo
               atualizações. Surpreendentemente, Os Simpsons aparecem apenas na
               nona posição.
             </p>
 
-            <h3>10 — Lucros da indústria por ano</h3>
+            <h3>10. Lucros da indústria por ano</h3>
             <p>
               A partir daqui, uma tabela adicional do TMDB adiciona custos e
               lucros. A consulta acompanha o lucro geral entre 1913 e 2024 e
               evidencia o impacto da pandemia de COVID-19 entre 2019 e 2021.
             </p>
 
-            <h3>11 — Ganhos brutos por empresa</h3>
+            <h3>11. Ganhos brutos por empresa</h3>
             <p>
               A query apresenta, por ano, as somas cumulativas de ganhos e custos
               de empresas. <code>SUBSTRING_INDEX</code> seleciona apenas a empresa
@@ -336,14 +336,14 @@
               <figcaption>Visualização interativa dos resultados por empresa.</figcaption>
             </figure>
 
-            <h3>12 — Lucros por região do mundo</h3>
+            <h3>12. Lucros por região do mundo</h3>
             <p>
               A função <code>SUM</code> com a cláusula
               <code>OVER</code> calcula a soma acumulada dos lucros para cada
               país, permitindo observar a concentração geográfica da indústria.
             </p>
 
-            <h3>13 — Lucro por gênero de filmes</h3>
+            <h3>13. Lucro por gênero de filmes</h3>
             <p>
               A consulta relaciona lucros e avaliações. Eles não andam sempre de
               mãos dadas: documentários, por exemplo, possuem algumas das melhores
@@ -392,7 +392,7 @@
               <p>
                 A situação simulada com Júlia e a MoviesNow foi útil para gerar
                 contexto de negócio ao trabalho. Muito aprendizado foi colocado
-                neste projeto — e mais ainda foi obtido com ele.
+                neste projeto, e mais ainda foi obtido com ele.
               </p>
             </div>
 

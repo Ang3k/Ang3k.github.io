@@ -34,7 +34,7 @@
   /* Coordenadas no viewBox (1000x620) como [x, y, raio]. Pontos gerados
      por amostragem aleatória ao redor da tendência (ruído gaussiano de
      cauda pesada, aglomerados e vazios naturais). A curva do gráfico é
-     uma spline Catmull-Rom pelas médias locais dos aglomerados — um
+     uma spline Catmull-Rom pelas médias locais dos aglomerados, formando um
      ajuste sensível, quase overfittando. O outlier fica bem acima dela,
      no valor 60 do eixo x. */
   var POINTS = [
@@ -110,6 +110,17 @@
     pointsGroup.appendChild(outlierDot);
   }
 
+  function getPageZoom() {
+    var zoom = parseFloat(getComputedStyle(root).zoom);
+    return Number.isFinite(zoom) && zoom > 0 ? zoom : 1;
+  }
+
+  function placeFixedElement(element, left, top) {
+    var zoom = getPageZoom();
+    element.style.left = left / zoom + "px";
+    element.style.top = top / zoom + "px";
+  }
+
   function placeNameBesideOutlier() {
     var dotRect = outlierDot.getBoundingClientRect();
     var nameRect = nameEl.getBoundingClientRect();
@@ -124,8 +135,7 @@
       top = dotRect.bottom + 14;
     }
 
-    nameEl.style.left = left + "px";
-    nameEl.style.top = top + "px";
+    placeFixedElement(nameEl, left, top);
   }
 
   function flipToHeader() {
@@ -133,16 +143,16 @@
     var startFontSize = parseFloat(getComputedStyle(nameEl).fontSize);
     var targetFontSize = parseFloat(getComputedStyle(headerName).fontSize);
     var targetRect = headerName.getBoundingClientRect();
+    var zoom = getPageZoom();
 
     nameEl.style.fontSize = targetFontSize + "px";
-    nameEl.style.left = targetRect.left + "px";
-    nameEl.style.top = targetRect.top + "px";
+    placeFixedElement(nameEl, targetRect.left, targetRect.top);
 
     var last = nameEl.getBoundingClientRect();
     var scale = startFontSize / targetFontSize;
     nameEl.style.transform =
-      "translate(" + (first.left - last.left) + "px, " +
-      (first.top - last.top) + "px) scale(" + scale + ")";
+      "translate(" + (first.left - last.left) / zoom + "px, " +
+      (first.top - last.top) / zoom + "px) scale(" + scale + ")";
     nameEl.getBoundingClientRect();
     nameEl.style.transition = "transform 1150ms cubic-bezier(0.22, 1, 0.36, 1)";
     nameEl.style.transform = "none";

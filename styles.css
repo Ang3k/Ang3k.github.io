@@ -1215,7 +1215,23 @@ a {
 }
 
 html.intro-pending {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+html.intro-pending body {
+  position: fixed;
+  inset: 0;
+  width: 100%;
   overflow: hidden;
+}
+
+html.intro-pending::-webkit-scrollbar {
+  background: var(--paper);
+}
+
+html.intro-pending::-webkit-scrollbar-thumb {
+  background: transparent;
 }
 
 html.intro-pending .intro-overlay {

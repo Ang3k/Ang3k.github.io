@@ -10,17 +10,17 @@
     <meta name="theme-color" content="#f4f3ef">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:title" content="Web scraping e dados do QuintoAndar — Angel Mansilla">
+    <meta property="og:title" content="Web scraping e dados do QuintoAndar | Angel Mansilla">
     <meta
       property="og:description"
       content="Construção de um dataset imobiliário com Selenium e BeautifulSoup, análise SQL e visualização no Power BI."
     >
-    <title>Web scraping e dados do QuintoAndar — Angel Mansilla</title>
+    <title>Web scraping e dados do QuintoAndar | Angel Mansilla</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap"
       rel="stylesheet"
     >
     <link rel="stylesheet" href="../../styles.css">
@@ -77,7 +77,7 @@
             </div>
             <div>
               <dt>Período</dt>
-              <dd>2023—2024</dd>
+              <dd>2023 a 2024</dd>
             </div>
           </dl>
         </div>
@@ -135,7 +135,7 @@
             <p class="case-part">Parte 1</p>
             <h2>Web scraping e limpeza em Python</h2>
 
-            <h3>1 — Contexto de negócio</h3>
+            <h3>1. Contexto de negócio</h3>
             <p>
               Roberto, um corretor de imóveis, decide se mudar para o Rio de
               Janeiro em busca de melhores oportunidades de trabalho. Porém,
@@ -150,7 +150,7 @@
               valores, interiores e outros atributos.
             </p>
 
-            <h3>2 — Extração de dados</h3>
+            <h3>2. Extração de dados</h3>
             <p>
               Primeiramente, busquei uma API para realizar a coleta. Entretanto,
               a maioria dos sites semelhantes ao QuintoAndar não possuía uma API
@@ -171,7 +171,7 @@
               <figcaption>Preparação do ambiente de coleta.</figcaption>
             </figure>
 
-            <h3>3 — Web scraping em Python</h3>
+            <h3>3. Web scraping em Python</h3>
             <p>
               O processo para extrair o conteúdo era simples, mas complexo em
               execução. Existiam links escondidos nas imagens que redirecionavam
@@ -187,7 +187,7 @@
             <p>
               Esses links continham preço, quantidade de quartos, IPTU e várias
               outras informações. Criei cerca de onze funções para extrair e
-              limpar os conteúdos — por exemplo, remover “R$” dos preços e
+              limpar os conteúdos. Por exemplo, remover “R$” dos preços e
               transformar a identificação do imóvel em uma chave numérica.
             </p>
             <p>
@@ -209,7 +209,7 @@
 
             <h3>Dicionário de dados</h3>
             <details class="data-details">
-              <summary>Tabela 1 — Descrição do imóvel</summary>
+              <summary>Tabela 1: Descrição do imóvel</summary>
               <dl>
                 <dt>ID</dt><dd>Identificador único do imóvel.</dd>
                 <dt>Tipo</dt><dd>Tipo de imóvel.</dd>
@@ -220,7 +220,7 @@
               </dl>
             </details>
             <details class="data-details">
-              <summary>Tabela 2 — Custos</summary>
+              <summary>Tabela 2: Custos</summary>
               <dl>
                 <dt>ID</dt><dd>Identificador único do imóvel.</dd>
                 <dt>Preço</dt><dd>Preço de venda.</dd>
@@ -229,7 +229,7 @@
               </dl>
             </details>
             <details class="data-details">
-              <summary>Tabela 3 — Especificações internas</summary>
+              <summary>Tabela 3: Especificações internas</summary>
               <dl>
                 <dt>Quartos</dt><dd>Número de quartos.</dd>
                 <dt>Área</dt><dd>Área total em metros quadrados.</dd>
@@ -241,7 +241,7 @@
               </dl>
             </details>
             <details class="data-details">
-              <summary>Tabela 4 — Expansão dos itens</summary>
+              <summary>Tabela 4: Expansão dos itens</summary>
               <dl>
                 <dt>ID</dt><dd>Identificador único do imóvel.</dd>
                 <dt>Item</dt><dd>Item presente no imóvel, extraído da descrição.</dd>
@@ -268,7 +268,7 @@
             <div class="metric-grid">
               <div><span>Linhas informadas</span><strong>8.250</strong></div>
               <div><span>Colunas</span><strong>16</strong></div>
-              <div><span>Período</span><strong>2023—24</strong></div>
+              <div><span>Período</span><strong>2023 a 2024</strong></div>
             </div>
             <div class="case-note">
               <p>
@@ -293,7 +293,7 @@
               resultados mais claros.
             </p>
 
-            <h3>1 — Média de preço por tipo de imóvel</h3>
+            <h3>1. Média de preço por tipo de imóvel</h3>
             <p>
               A query mostra a variação de preço por tipo de imóvel, organizada
               em ordem decrescente e agrupada por capital. Belo Horizonte lidera
@@ -301,7 +301,7 @@
               apenas em São Paulo apresentam custo semelhante ao de apartamentos.
             </p>
 
-            <h3>2 — Quantidade de imóveis por tipo</h3>
+            <h3>2. Quantidade de imóveis por tipo</h3>
             <p>
               Rio de Janeiro e Belo Horizonte possuem 95,8% de seus imóveis
               classificados como casas ou apartamentos. Em São Paulo, 8% dos
@@ -309,14 +309,14 @@
               categoria.
             </p>
 
-            <h3>3 — Preço e mobília</h3>
+            <h3>3. Preço e mobília</h3>
             <p>
               A consulta demonstra como a presença de mobília afeta tipos de
               imóveis de maneiras diferentes. Casas sem mobília custam 2,26% a
               menos; apartamentos, 7,44%; e studios, 17,85%.
             </p>
 
-            <h3>4 — Preço e data de publicação</h3>
+            <h3>4. Preço e data de publicação</h3>
             <p>
               Embora o gráfico seja crescente, isso não implica aumento dos
               preços ao longo do tempo. Indica que anúncios antigos tendem a
@@ -324,21 +324,21 @@
               após um ano de publicação.
             </p>
 
-            <h3>5 — Principais logradouros por capital</h3>
+            <h3>5. Principais logradouros por capital</h3>
             <p>
               A query mostra os dez logradouros com maior quantidade de imóveis
               em diferentes capitais, ajudando a evidenciar pontos de
               oportunidade.
             </p>
 
-            <h3>6 — Padrão de publicação ao longo da semana</h3>
+            <h3>6. Padrão de publicação ao longo da semana</h3>
             <p>
               Existe aparentemente um padrão: nos finais de semana, as pessoas
               costumam publicar mais imóveis. Quarta e quinta-feira são os dias
               de menor movimento.
             </p>
 
-            <h3>7 — Custo por metro quadrado</h3>
+            <h3>7. Custo por metro quadrado</h3>
             <p>
               São Paulo é a capital com maior custo por metro quadrado, com
               destaque para Jardins. Rio de Janeiro e Belo Horizonte disputam a
@@ -346,7 +346,7 @@
               caros.
             </p>
 
-            <h3>8 — Itens mais e menos comuns</h3>
+            <h3>8. Itens mais e menos comuns</h3>
             <p>
               Para casas e apartamentos, box, área de serviço e armários na
               cozinha aparecem como itens quase indispensáveis. Em studios, área
