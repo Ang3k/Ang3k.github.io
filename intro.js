@@ -81,13 +81,23 @@
   }
 
   function buildPoints() {
-    POINTS.forEach(function (pair, index) {
+    /* Varredura da esquerda para a direita: o atraso de cada ponto é
+       proporcional à sua posição X. Onde há aglomerado, vários surgem
+       quase juntos; onde há vazio no eixo, uma pausa — como uma linha de
+       scan avançando pelos dados. */
+    var xs = POINTS.map(function (pair) { return pair[0]; });
+    var minX = Math.min.apply(null, xs);
+    var maxX = Math.max.apply(null, xs);
+    var sweep = 1350;
+
+    POINTS.forEach(function (pair) {
       var dot = document.createElementNS(SVG_NS, "circle");
       dot.setAttribute("class", "intro-point");
       dot.setAttribute("cx", pair[0]);
       dot.setAttribute("cy", pair[1]);
       dot.setAttribute("r", pair[2]);
-      dot.style.animationDelay = ((index * 167) % 1250) + "ms";
+      var t = (pair[0] - minX) / (maxX - minX);
+      dot.style.animationDelay = Math.round(t * sweep) + "ms";
       pointsGroup.appendChild(dot);
     });
 
