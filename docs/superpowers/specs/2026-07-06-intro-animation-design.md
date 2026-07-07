@@ -32,10 +32,14 @@ Learning à identidade pessoal.
   ponto, para o pulso nunca invadir o texto.
 - 34 pontos gerados por amostragem aleatória (ruído gaussiano de cauda
   pesada, aglomerados e vazios naturais, raios variados por ponto). A
-  curva é uma spline Catmull-Rom pelas médias locais dos aglomerados —
-  um ajuste sensível, quase overfittando, com platôs e ondulações — em
+  curva é a **parábola de mínimos quadrados** ajustada aos pontos
+  (regressão polinomial), representada por uma única Bézier quadrática
+  exata `M75 514 Q507.5 469.5 940 153` — suave e confiante, com feeling
+  de modelo ajustado à tendência (a spline Catmull-Rom anterior, que
+  serpenteava entre os aglomerados, parecia interpolação, não regressão).
   4px com pontas arredondadas. A legenda "Conjunto de teste" foi
-  removida; permanece só o "R² = 0,97".
+  removida; permanece só o "R² = 0,97". O resíduo tracejado termina em
+  y=362, onde a curva passa em x=592.
 - O outlier fica no valor 60 do eixo X (viewBox 592, 150), sobre a linha
   de grade do 60; o resíduo tracejado desce por ela até a curva. Zoom em
   `translate(-714.8px, -145px) scale(1.9)`.
