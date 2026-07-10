@@ -57,12 +57,13 @@
 @media (min-width: 901px) {
   /* Marca as trocas de parte e reduz o espaço acumulado nos dois lados. */
   .imdb-refactor .case-section.imdb-chapter {
-    padding-bottom: 1.5rem;
+    padding-bottom: var(--project-section-transition);
   }
 
   .imdb-refactor .case-section.imdb-chapter + .case-section.imdb-chapter {
     position: relative;
-    padding-top: 1.5rem;
+    padding-top: var(--project-section-transition);
+    padding-bottom: var(--project-section-transition);
     border-top: 1px solid var(--project-line);
   }
 
@@ -78,11 +79,11 @@
   }
 
   .imdb-refactor .imdb-chapter > :is(.imdb-story-flow, .imdb-analysis-list) > :last-child {
-    padding-bottom: 1.5rem;
+    padding-bottom: var(--project-section-transition);
   }
 
   .imdb-refactor .imdb-chapter + .imdb-chapter .imdb-chapter-header {
-    padding-top: 1.5rem;
+    padding-top: var(--project-section-transition);
   }
 
   /* Os comentários das análises usam a largura disponível e absorvem sobras curtas. */

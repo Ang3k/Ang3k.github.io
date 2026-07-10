@@ -123,12 +123,13 @@
 @media (min-width: 901px) {
   /* Marca a troca de partes e elimina o vazio excessivo entre os capítulos. */
   .churn-refactor .case-section.churn-chapter {
-    padding-bottom: 1.5rem;
+    padding-bottom: var(--project-section-transition);
   }
 
   .churn-refactor .case-section.churn-chapter + .case-section.churn-chapter {
     position: relative;
-    padding-top: 1.5rem;
+    padding-top: var(--project-section-transition);
+    padding-bottom: var(--project-section-transition);
     border-top: 1px solid var(--project-line);
   }
 
@@ -144,11 +145,11 @@
   }
 
   .churn-refactor .churn-chapter > :is(.churn-story-flow, .churn-analysis-list) > :last-child {
-    padding-bottom: 1.5rem;
+    padding-bottom: var(--project-section-transition);
   }
 
   .churn-refactor .churn-chapter + .churn-chapter .churn-chapter-header {
-    padding-top: 1.5rem;
+    padding-top: var(--project-section-transition);
   }
 
   /* Os insights curtos usam toda a largura editorial para absorver a sobra na linha anterior. */

@@ -13,6 +13,10 @@
   --project-editorial-width: 880px;
   --project-media-width: 940px;
   --project-wide-media-width: 1120px;
+  --project-block-space: clamp(1.65rem, 3vw, 2.8rem);
+  --project-media-space: clamp(1.1rem, 2.2vw, 1.65rem);
+  --project-follow-up-space: 0.7rem;
+  --project-section-transition: 1.5rem;
 }
 
 .portfolio-case-study {
@@ -42,9 +46,9 @@
 }
 
 /* Capítulos modernos */
-.portfolio-case-study :is(.case-section.imdb-chapter, .case-section.churn-chapter, .home-credit-chapter),
-.portfolio-case-study :is(.case-section.imdb-chapter, .case-section.churn-chapter, .home-credit-chapter)
-  + :is(.case-section.imdb-chapter, .case-section.churn-chapter, .home-credit-chapter) {
+.portfolio-case-study .case-section.imdb-chapter,
+.portfolio-case-study .case-section.churn-chapter,
+.portfolio-case-study .home-credit-chapter {
   padding: clamp(2.75rem, 5vw, 4.75rem) 0;
   border: 0;
   background: #fff;
@@ -130,7 +134,7 @@
 ) {
   width: min(100%, var(--project-editorial-width));
   margin-inline: auto;
-  padding: clamp(1.65rem, 3vw, 2.8rem) 0;
+  padding: var(--project-block-space) 0;
   border: 0;
   background: #fff;
   text-align: left;
@@ -143,7 +147,7 @@
   .home-credit-results + .home-credit-results
 ) {
   margin-top: 0;
-  padding-top: clamp(1.65rem, 3vw, 2.8rem);
+  padding-top: var(--project-block-space);
   border-top: 0;
 }
 
@@ -199,7 +203,9 @@
   .home-credit-results
 ) > p:not(.home-credit-block-label):not(.home-credit-note) {
   max-width: var(--project-text-width);
-  margin: 0.7rem 0 0;
+  margin: var(--project-follow-up-space) 0 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1rem, 1.35vw, 1.13rem);
   line-height: 1.7;
   text-align: left;
 }
@@ -235,7 +241,7 @@
 /* Mídia */
 .portfolio-case-study :is(.imdb-media, .churn-media, .home-credit-media) {
   width: min(100%, var(--project-media-width));
-  margin: clamp(1.1rem, 2.2vw, 1.65rem) auto 0;
+  margin: var(--project-media-space) auto 0;
   padding: 0;
   border: 0;
   background: transparent;
@@ -274,7 +280,7 @@
 ) {
   display: grid;
   width: min(100%, var(--project-wide-media-width));
-  margin: clamp(1.1rem, 2.2vw, 1.65rem) auto 0;
+  margin: var(--project-media-space) auto 0;
   gap: clamp(0.7rem, 1.5vw, 1.15rem);
   align-items: start;
 }
@@ -314,7 +320,25 @@
 
 .portfolio-case-study .imdb-analysis > :is(.imdb-media, .imdb-query) {
   width: 100%;
-  margin-top: clamp(1.1rem, 2.2vw, 1.65rem);
+  margin-top: var(--project-media-space);
+}
+
+/* O par resultado/consulta parte sempre da mesma linha de base. */
+.portfolio-case-study #parte-2 .imdb-analysis {
+  align-items: start;
+}
+
+/* A continuação da narrativa depois de uma imagem usa o mesmo intervalo dos títulos. */
+.portfolio-case-study :is(
+  .imdb-media,
+  .churn-media,
+  .home-credit-media,
+  .imdb-result-gallery,
+  .churn-result-gallery,
+  .home-credit-gallery,
+  .home-credit-code-gallery
+) + p {
+  margin-top: var(--project-follow-up-space);
 }
 
 /* Detalhes expansíveis */

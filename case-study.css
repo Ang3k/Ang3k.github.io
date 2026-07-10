@@ -981,14 +981,16 @@
   }
 }
 
-/* Churn — composição inspirada diretamente na página original do Wix.
-   Mantém a hierarquia visual da referência, mas remove o canvas fixo e os
-   elementos proprietários para que a página continue fluida e acessível. */
+/* Os estudos modernizados compartilham a escala natural no desktop. */
 @media (min-width: 901px) {
-  html:has(.wix-churn-case, .wix-imdb-case) {
+  html:has(.wix-churn-case, .wix-imdb-case, .home-credit-case) {
     zoom: 1;
   }
 }
+
+/* Churn — composição inspirada diretamente na página original do Wix.
+   Mantém a hierarquia visual da referência, mas remove o canvas fixo e os
+   elementos proprietários para que a página continue fluida e acessível. */
 
 .wix-project-header {
   padding: clamp(4.1rem, 8vw, 5.15rem) 1rem clamp(2.85rem, 5vw, 3.7rem);

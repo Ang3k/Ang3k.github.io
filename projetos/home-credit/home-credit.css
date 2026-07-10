@@ -1278,13 +1278,14 @@
 
 @media (min-width: 901px) {
   /* Marca a troca de partes e elimina o vazio excessivo entre os capítulos. */
-  .home-credit-refactor .home-credit-chapter {
-    padding-bottom: 1.5rem;
+  .home-credit-refactor .home-credit-content .home-credit-chapter {
+    padding-bottom: var(--project-section-transition);
   }
 
   .home-credit-refactor .home-credit-chapter + .home-credit-chapter {
     position: relative;
-    padding-top: 1.5rem;
+    padding-top: var(--project-section-transition);
+    padding-bottom: var(--project-section-transition);
     border-top: 1px solid var(--hc-line);
   }
 
@@ -1300,11 +1301,11 @@
   }
 
   .home-credit-refactor .home-credit-chapter > .container > :last-child {
-    padding-bottom: 1.5rem;
+    padding-bottom: var(--project-section-transition);
   }
 
   .home-credit-refactor .home-credit-chapter + .home-credit-chapter .home-credit-chapter-header {
-    padding-top: 1.5rem;
+    padding-top: var(--project-section-transition);
   }
 
   /* Os insights curtos usam toda a largura editorial para absorver a sobra na linha anterior. */
@@ -1376,7 +1377,10 @@
 
 .home-credit-refactor .home-credit-chapter-nav {
   grid-template-columns: repeat(5, minmax(0, 1fr));
+  width: min(100%, var(--project-wide-media-width));
   margin-top: clamp(1rem, 3vw, 2rem);
+  margin-right: auto;
+  margin-left: auto;
   border-color: var(--hc-ink);
 }
 
