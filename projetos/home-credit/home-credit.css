@@ -1,0 +1,932 @@
+/*
+ * Estilos exclusivos do estudo de caso Home Credit.
+ * O escopo .home-credit-refactor impede alterações nos demais projetos.
+ */
+
+.home-credit-refactor {
+  --hc-accent: #b43c32;
+  --hc-accent-soft: #f3e6e3;
+  --hc-ink: #151515;
+  --hc-muted: #66635f;
+  --hc-line: #d8d4cc;
+  --hc-panel: #f6f4ef;
+  --hc-dark: #171717;
+  background: var(--paper, #fff);
+  color: var(--ink, #111);
+}
+
+.home-credit-refactor main,
+.home-credit-refactor .home-credit-content,
+.home-credit-refactor .home-credit-chapter,
+.home-credit-refactor .home-credit-overview,
+.home-credit-refactor article,
+.home-credit-refactor figure,
+.home-credit-refactor details,
+.home-credit-refactor img {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.home-credit-refactor img {
+  display: block;
+  height: auto;
+  object-fit: contain;
+}
+
+.home-credit-refactor .home-credit-hero {
+  padding-top: clamp(3rem, 7vw, 6.5rem);
+  padding-bottom: clamp(3.5rem, 8vw, 7rem);
+  border-bottom: 1px solid var(--hc-line);
+  background:
+    linear-gradient(135deg, rgba(180, 60, 50, 0.055), transparent 42%),
+    var(--paper-bright, #fff);
+}
+
+.home-credit-refactor .home-credit-hero .case-breadcrumb {
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+
+.home-credit-refactor .home-credit-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  align-items: end;
+  gap: clamp(2.5rem, 7vw, 7rem);
+}
+
+.home-credit-refactor .home-credit-hero-copy h1 {
+  max-width: 900px;
+  margin: 0;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(3.7rem, 7.6vw, 8rem);
+  font-weight: 300;
+  letter-spacing: -0.052em;
+  line-height: 0.96;
+  overflow-wrap: anywhere;
+}
+
+.home-credit-refactor .home-credit-stack {
+  margin: 1.6rem 0 1.35rem;
+  color: var(--hc-accent);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.home-credit-refactor .home-credit-hero-copy .case-lead {
+  max-width: 680px;
+  margin: 0;
+}
+
+.home-credit-refactor .home-credit-hero-figure {
+  margin: 0;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid var(--hc-line);
+  background: #fff;
+  box-shadow: 0 1.25rem 3rem rgba(30, 24, 20, 0.08);
+}
+
+.home-credit-refactor .home-credit-hero-figure img {
+  width: 100%;
+}
+
+.home-credit-refactor figcaption {
+  margin-top: 0.85rem;
+  color: var(--hc-muted);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.home-credit-refactor .home-credit-content {
+  overflow: clip;
+}
+
+.home-credit-refactor .home-credit-overview {
+  padding: clamp(4.5rem, 9vw, 8rem) 0 clamp(4rem, 8vw, 7rem);
+  background: var(--paper-bright, #fff);
+}
+
+.home-credit-refactor .home-credit-overview-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.72fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: start;
+}
+
+.home-credit-refactor .home-credit-overview-copy {
+  max-width: 760px;
+}
+
+.home-credit-refactor .home-credit-eyebrow,
+.home-credit-refactor .home-credit-block-label,
+.home-credit-refactor .home-credit-chapter-header > p {
+  margin: 0;
+  color: var(--hc-accent);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.home-credit-refactor .home-credit-overview h2,
+.home-credit-refactor .home-credit-chapter-header h2,
+.home-credit-refactor .home-credit-conclusion h3 {
+  margin: 0;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+}
+
+.home-credit-refactor .home-credit-overview h2 {
+  max-width: 720px;
+  margin-top: 0.8rem;
+  font-size: clamp(2.7rem, 5.5vw, 5rem);
+}
+
+.home-credit-refactor .home-credit-overview-copy > p:not(.home-credit-eyebrow) {
+  max-width: 720px;
+  margin: 1.4rem 0 0;
+  color: var(--hc-ink);
+  font-size: clamp(1rem, 1.35vw, 1.16rem);
+  line-height: 1.8;
+}
+
+.home-credit-refactor .home-credit-facts {
+  margin: 0;
+  border-top: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-facts div {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-facts dt {
+  color: var(--hc-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.home-credit-refactor .home-credit-facts dd {
+  margin: 0;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.home-credit-refactor .home-credit-chapter-nav {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: clamp(3.5rem, 7vw, 6.5rem);
+  border-top: 1px solid var(--hc-line);
+  border-bottom: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-chapter-nav a {
+  display: flex;
+  min-height: 7.4rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.6rem;
+  padding: 1.15rem 1.1rem 1.25rem;
+  color: var(--hc-ink);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 0.84rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.home-credit-refactor .home-credit-chapter-nav a + a {
+  border-left: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-chapter-nav a:hover,
+.home-credit-refactor .home-credit-chapter-nav a:focus-visible {
+  background: var(--hc-accent);
+  color: #fff;
+  outline: none;
+}
+
+.home-credit-refactor .home-credit-chapter-nav span {
+  color: var(--hc-accent);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  transition: color 180ms ease;
+}
+
+.home-credit-refactor .home-credit-chapter-nav a:hover span,
+.home-credit-refactor .home-credit-chapter-nav a:focus-visible span {
+  color: #fff;
+}
+
+.home-credit-refactor .home-credit-disclaimer {
+  max-width: 840px;
+  margin: 1.5rem 0 0;
+  color: var(--hc-muted);
+  font-size: 0.78rem;
+  line-height: 1.65;
+}
+
+.home-credit-refactor .home-credit-chapter {
+  scroll-margin-top: 2rem;
+  padding: clamp(5rem, 10vw, 9rem) 0;
+  border-top: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-chapter:nth-of-type(even) {
+  background: var(--hc-panel);
+}
+
+.home-credit-refactor .home-credit-chapter-header {
+  display: grid;
+  grid-template-columns: minmax(95px, 0.25fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 5vw, 5rem);
+  align-items: start;
+  margin-bottom: clamp(4.5rem, 9vw, 8rem);
+}
+
+.home-credit-refactor .home-credit-chapter-header > p {
+  padding-top: 0.65rem;
+}
+
+.home-credit-refactor .home-credit-chapter-header h2 {
+  max-width: 970px;
+  font-size: clamp(3.1rem, 7vw, 6.7rem);
+}
+
+.home-credit-refactor .home-credit-chapter-header div > p {
+  max-width: 720px;
+  margin: 1.35rem 0 0;
+  color: var(--hc-muted);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  line-height: 1.75;
+}
+
+.home-credit-refactor .home-credit-story,
+.home-credit-refactor .home-credit-analysis,
+.home-credit-refactor .home-credit-process,
+.home-credit-refactor .home-credit-results,
+.home-credit-refactor .home-credit-conclusion {
+  width: min(100%, 1040px);
+  margin-inline: auto;
+}
+
+.home-credit-refactor .home-credit-story + .home-credit-story,
+.home-credit-refactor .home-credit-analysis + .home-credit-analysis,
+.home-credit-refactor .home-credit-process + .home-credit-process,
+.home-credit-refactor .home-credit-results + .home-credit-results {
+  margin-top: clamp(5.5rem, 11vw, 10rem);
+  padding-top: clamp(5rem, 9vw, 8rem);
+  border-top: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-story h3,
+.home-credit-refactor .home-credit-analysis h3,
+.home-credit-refactor .home-credit-process h3,
+.home-credit-refactor .home-credit-results h3,
+.home-credit-refactor .home-credit-takeaways h3,
+.home-credit-refactor .home-credit-insight-grid h3 {
+  max-width: 860px;
+  margin: 0.75rem 0 0;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.home-credit-refactor .home-credit-story > p:not(.home-credit-block-label),
+.home-credit-refactor .home-credit-analysis > p:not(.home-credit-block-label),
+.home-credit-refactor .home-credit-process > p:not(.home-credit-block-label),
+.home-credit-refactor .home-credit-results > p:not(.home-credit-block-label):not(.home-credit-note),
+.home-credit-refactor .home-credit-conclusion > p:not(.home-credit-eyebrow):not(.home-credit-source-links) {
+  max-width: 760px;
+  margin: 1.3rem 0 0;
+  color: var(--hc-ink);
+  font-size: clamp(1rem, 1.25vw, 1.1rem);
+  line-height: 1.82;
+}
+
+.home-credit-refactor .home-credit-question-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--hc-line);
+  list-style: none;
+}
+
+.home-credit-refactor .home-credit-question-list li {
+  position: relative;
+  min-height: 7.5rem;
+  padding: 1.4rem 1.5rem 1.4rem 3rem;
+  border-bottom: 1px solid var(--hc-line);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.home-credit-refactor .home-credit-question-list li:nth-child(odd) {
+  border-right: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-question-list li::before {
+  position: absolute;
+  top: 1.45rem;
+  left: 1rem;
+  color: var(--hc-accent);
+  content: "→";
+  font-family: var(--font-display, "Oswald", sans-serif);
+}
+
+.home-credit-refactor .home-credit-media {
+  width: min(100%, 860px);
+  margin: clamp(2.5rem, 6vw, 5rem) auto 0;
+}
+
+.home-credit-refactor .home-credit-media img,
+.home-credit-refactor .home-credit-code-figure img,
+.home-credit-refactor .home-credit-table-figure img {
+  width: auto;
+  margin-inline: auto;
+  border: 1px solid var(--hc-line);
+  background: #fff;
+}
+
+.home-credit-refactor .home-credit-media--wide {
+  width: min(100%, 960px);
+}
+
+.home-credit-refactor .home-credit-media--diagram {
+  width: min(100%, 760px);
+}
+
+.home-credit-refactor .home-credit-media--medium {
+  width: min(100%, 720px);
+}
+
+.home-credit-refactor .home-credit-media--compact {
+  width: min(100%, 680px);
+  margin-top: 0;
+}
+
+.home-credit-refactor .home-credit-media--dataset {
+  width: min(100%, 1040px);
+}
+
+.home-credit-refactor .home-credit-media--dataset img {
+  width: 100%;
+}
+
+.home-credit-refactor .home-credit-media--result {
+  width: min(100%, 460px);
+}
+
+.home-credit-refactor .home-credit-details {
+  width: min(100%, 900px);
+  margin-top: 2.2rem;
+  border-top: 1px solid var(--hc-line);
+  border-bottom: 1px solid var(--hc-line);
+  background: rgba(255, 255, 255, 0.54);
+}
+
+.home-credit-refactor .home-credit-details summary {
+  position: relative;
+  padding: 1.2rem 3.4rem 1.2rem 0;
+  color: var(--hc-ink);
+  cursor: pointer;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.055em;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.home-credit-refactor .home-credit-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.home-credit-refactor .home-credit-details summary::after {
+  position: absolute;
+  top: 50%;
+  right: 0.35rem;
+  width: 1.6rem;
+  color: var(--hc-accent);
+  content: "+";
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+.home-credit-refactor .home-credit-details[open] summary::after {
+  content: "−";
+}
+
+.home-credit-refactor .home-credit-details summary:focus-visible {
+  outline: 2px solid var(--hc-accent);
+  outline-offset: 4px;
+}
+
+.home-credit-refactor .home-credit-details-content {
+  padding: 0.5rem 0 2rem;
+}
+
+.home-credit-refactor .home-credit-details--media {
+  margin-inline: auto;
+}
+
+.home-credit-refactor .home-credit-dictionary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem 3rem;
+  padding-top: 1rem;
+}
+
+.home-credit-refactor .home-credit-dictionary section:last-child {
+  grid-column: 1 / -1;
+}
+
+.home-credit-refactor .home-credit-dictionary h4 {
+  margin: 0 0 1rem;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.home-credit-refactor .home-credit-dictionary dl {
+  margin: 0;
+}
+
+.home-credit-refactor .home-credit-dictionary dl div {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-dictionary dt {
+  color: var(--hc-accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.76rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.home-credit-refactor .home-credit-dictionary dd {
+  margin: 0.35rem 0 0;
+  color: var(--hc-muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.home-credit-refactor .home-credit-gallery {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  width: min(100%, 1040px);
+  margin: clamp(2.5rem, 6vw, 5rem) auto 0;
+}
+
+.home-credit-refactor .home-credit-gallery--two,
+.home-credit-refactor .home-credit-gallery--metrics {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.home-credit-refactor .home-credit-gallery .home-credit-media {
+  width: 100%;
+  margin: 0;
+}
+
+.home-credit-refactor .home-credit-gallery .home-credit-media img {
+  width: 100%;
+}
+
+.home-credit-refactor .home-credit-gallery--metrics {
+  width: min(100%, 800px);
+}
+
+.home-credit-refactor .home-credit-gallery--metrics .home-credit-media img {
+  width: auto;
+}
+
+.home-credit-refactor .home-credit-takeaways {
+  width: min(100%, 1040px);
+  margin: clamp(6rem, 12vw, 11rem) auto 0;
+  padding: clamp(2rem, 5vw, 4rem);
+  background: var(--hc-dark);
+  color: #f5f3ee;
+}
+
+.home-credit-refactor .home-credit-takeaways h3 {
+  color: #fff;
+}
+
+.home-credit-refactor .home-credit-takeaways ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  list-style: none;
+}
+
+.home-credit-refactor .home-credit-takeaways li {
+  padding: 1.25rem 1.25rem 1.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  color: #d6d2ca;
+  line-height: 1.65;
+}
+
+.home-credit-refactor .home-credit-takeaways li:nth-child(odd) {
+  padding-right: 1.75rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.home-credit-refactor .home-credit-takeaways li:nth-child(even) {
+  padding-left: 1.75rem;
+}
+
+.home-credit-refactor .home-credit-code-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.home-credit-refactor .home-credit-code-figure,
+.home-credit-refactor .home-credit-table-figure {
+  margin: 0;
+}
+
+.home-credit-refactor .home-credit-code-figure img {
+  width: 100%;
+}
+
+.home-credit-refactor .home-credit-metric-grid,
+.home-credit-refactor .home-credit-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(100%, 1040px);
+  margin: clamp(2.5rem, 6vw, 5rem) auto 0;
+  border-top: 1px solid var(--hc-line);
+  border-bottom: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-metric-grid > div,
+.home-credit-refactor .home-credit-impact-grid > div {
+  display: flex;
+  min-height: 9.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 1.25rem;
+}
+
+.home-credit-refactor .home-credit-metric-grid > div + div,
+.home-credit-refactor .home-credit-impact-grid > div + div {
+  border-left: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-metric-grid span,
+.home-credit-refactor .home-credit-impact-grid span {
+  color: var(--hc-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.home-credit-refactor .home-credit-metric-grid strong,
+.home-credit-refactor .home-credit-impact-grid strong {
+  color: var(--hc-accent);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(1.65rem, 3.4vw, 3rem);
+  font-weight: 300;
+  line-height: 1;
+}
+
+.home-credit-refactor .home-credit-metric-grid small {
+  color: var(--hc-muted);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.home-credit-refactor .home-credit-impact-grid > div:last-child {
+  background: var(--hc-accent);
+}
+
+.home-credit-refactor .home-credit-impact-grid > div:last-child span,
+.home-credit-refactor .home-credit-impact-grid > div:last-child strong {
+  color: #fff;
+}
+
+.home-credit-refactor .home-credit-table-figure {
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.home-credit-refactor .home-credit-table-figure img {
+  width: 704px;
+  max-width: none;
+}
+
+.home-credit-refactor .home-credit-note {
+  max-width: 860px;
+  margin: 2.5rem 0 0;
+  padding: 1.3rem 1.5rem;
+  border-left: 3px solid var(--hc-accent);
+  background: var(--hc-accent-soft);
+  color: #4b3734;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.home-credit-refactor .home-credit-chapter--summary {
+  background: var(--paper-bright, #fff);
+}
+
+.home-credit-refactor .home-credit-insight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--hc-line);
+  border-left: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-insight-grid article {
+  min-height: 20rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-right: 1px solid var(--hc-line);
+  border-bottom: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-insight-grid span {
+  color: var(--hc-accent);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+}
+
+.home-credit-refactor .home-credit-insight-grid h3 {
+  margin-top: 3rem;
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+}
+
+.home-credit-refactor .home-credit-insight-grid p {
+  margin: 1.2rem 0 0;
+  color: var(--hc-muted);
+  font-size: 0.92rem;
+  line-height: 1.72;
+}
+
+.home-credit-refactor .home-credit-conclusion {
+  margin-top: clamp(6rem, 12vw, 11rem);
+  padding-top: clamp(4rem, 8vw, 7rem);
+  border-top: 1px solid var(--hc-line);
+}
+
+.home-credit-refactor .home-credit-conclusion h3 {
+  max-width: 900px;
+  margin-top: 0.9rem;
+  font-size: clamp(2.8rem, 6vw, 5.7rem);
+}
+
+.home-credit-refactor .home-credit-source-links {
+  margin: 2rem 0 0;
+  color: var(--hc-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.home-credit-refactor .home-credit-source-links a {
+  color: var(--hc-accent);
+  font-weight: 700;
+}
+
+.home-credit-refactor .case-next strong {
+  max-width: 860px;
+}
+
+.home-credit-refactor .case-footer a {
+  color: inherit;
+}
+
+@media (max-width: 1100px) {
+  .home-credit-refactor .home-credit-hero-grid,
+  .home-credit-refactor .home-credit-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-credit-refactor .home-credit-hero-figure {
+    width: min(100%, 720px);
+  }
+
+  .home-credit-refactor .home-credit-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-credit-refactor .home-credit-facts div:nth-child(odd) {
+    padding-right: 1.5rem;
+    border-right: 1px solid var(--hc-line);
+  }
+
+  .home-credit-refactor .home-credit-facts div:nth-child(even) {
+    padding-left: 1.5rem;
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav a:nth-child(4) {
+    border-left: 0;
+    border-top: 1px solid var(--hc-line);
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav a:nth-child(5) {
+    border-top: 1px solid var(--hc-line);
+  }
+
+  .home-credit-refactor .home-credit-metric-grid,
+  .home-credit-refactor .home-credit-impact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-credit-refactor .home-credit-metric-grid > div:nth-child(3),
+  .home-credit-refactor .home-credit-impact-grid > div:nth-child(3) {
+    border-left: 0;
+    border-top: 1px solid var(--hc-line);
+  }
+
+  .home-credit-refactor .home-credit-metric-grid > div:nth-child(4),
+  .home-credit-refactor .home-credit-impact-grid > div:nth-child(4) {
+    border-top: 1px solid var(--hc-line);
+  }
+
+  .home-credit-refactor .home-credit-insight-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .home-credit-refactor .home-credit-hero-copy h1 {
+    font-size: clamp(3rem, 13vw, 5.3rem);
+  }
+
+  .home-credit-refactor .home-credit-facts,
+  .home-credit-refactor .home-credit-question-list,
+  .home-credit-refactor .home-credit-dictionary,
+  .home-credit-refactor .home-credit-gallery--two,
+  .home-credit-refactor .home-credit-gallery--metrics,
+  .home-credit-refactor .home-credit-code-gallery,
+  .home-credit-refactor .home-credit-takeaways ul,
+  .home-credit-refactor .home-credit-insight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-credit-refactor .home-credit-facts div:nth-child(odd),
+  .home-credit-refactor .home-credit-facts div:nth-child(even) {
+    padding-right: 0;
+    padding-left: 0;
+    border-right: 0;
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav a:nth-child(3),
+  .home-credit-refactor .home-credit-chapter-nav a:nth-child(5) {
+    border-left: 0;
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav a:nth-child(3) {
+    border-top: 1px solid var(--hc-line);
+  }
+
+  .home-credit-refactor .home-credit-chapter-header {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .home-credit-refactor .home-credit-chapter-header h2 {
+    font-size: clamp(2.7rem, 13vw, 4.8rem);
+  }
+
+  .home-credit-refactor .home-credit-question-list li {
+    min-height: 0;
+    border-right: 0 !important;
+  }
+
+  .home-credit-refactor .home-credit-dictionary section:last-child {
+    grid-column: auto;
+  }
+
+  .home-credit-refactor .home-credit-takeaways li,
+  .home-credit-refactor .home-credit-takeaways li:nth-child(odd),
+  .home-credit-refactor .home-credit-takeaways li:nth-child(even) {
+    padding-right: 0;
+    padding-left: 0;
+    border-right: 0;
+  }
+
+  .home-credit-refactor .home-credit-gallery--metrics .home-credit-media img {
+    width: 100%;
+  }
+
+  .home-credit-refactor .home-credit-insight-grid article {
+    min-height: 0;
+  }
+
+  .home-credit-refactor .home-credit-insight-grid h3 {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-credit-refactor .home-credit-hero {
+    padding-top: 2.5rem;
+  }
+
+  .home-credit-refactor .home-credit-hero-grid {
+    gap: 2.5rem;
+  }
+
+  .home-credit-refactor .home-credit-hero-figure {
+    padding: 0.75rem;
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav a,
+  .home-credit-refactor .home-credit-chapter-nav a + a,
+  .home-credit-refactor .home-credit-chapter-nav a:nth-child(4),
+  .home-credit-refactor .home-credit-chapter-nav a:nth-child(5) {
+    min-height: 5.7rem;
+    border-top: 1px solid var(--hc-line);
+    border-left: 0;
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav a:first-child {
+    border-top: 0;
+  }
+
+  .home-credit-refactor .home-credit-metric-grid,
+  .home-credit-refactor .home-credit-impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-credit-refactor .home-credit-metric-grid > div,
+  .home-credit-refactor .home-credit-impact-grid > div,
+  .home-credit-refactor .home-credit-metric-grid > div:nth-child(3),
+  .home-credit-refactor .home-credit-impact-grid > div:nth-child(3) {
+    min-height: 7.5rem;
+    border-top: 1px solid var(--hc-line);
+    border-left: 0;
+  }
+
+  .home-credit-refactor .home-credit-metric-grid > div:first-child,
+  .home-credit-refactor .home-credit-impact-grid > div:first-child {
+    border-top: 0;
+  }
+
+  .home-credit-refactor .home-credit-details summary {
+    padding-right: 2.5rem;
+    font-size: 0.78rem;
+  }
+
+  .home-credit-refactor .home-credit-table-figure img {
+    width: 620px;
+  }
+
+  .home-credit-refactor .case-next a {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Evita que títulos longos do próximo estudo ampliem a viewport em telas estreitas. */
+.home-credit-refactor .case-next a,
+.home-credit-refactor .case-next span,
+.home-credit-refactor .case-next strong,
+.home-credit-refactor .case-next i {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
