@@ -1,0 +1,172 @@
+/* Ajustes específicos de Churn sobre o padrão editorial compartilhado. */
+.churn-refactor {
+  --project-accent: #b43c32;
+}
+
+.churn-refactor .churn-chapter-header {
+  grid-template-columns: 1fr !important;
+}
+
+.churn-refactor .churn-result-gallery {
+  width: min(100%, var(--project-wide-media-width));
+  margin: clamp(1.1rem, 2.2vw, 1.65rem) auto 0;
+  gap: clamp(0.7rem, 1.5vw, 1.15rem);
+}
+
+.churn-refactor .churn-result-gallery--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.churn-refactor .churn-result-gallery--four {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.churn-refactor .churn-result-gallery :is(.churn-result, .churn-media) {
+  width: 100%;
+  margin: 0;
+}
+
+.churn-refactor .churn-dictionary,
+.churn-refactor .churn-method-list,
+.churn-refactor .churn-question-list {
+  width: min(100%, var(--project-media-width));
+  margin-inline: auto;
+}
+
+.churn-refactor .churn-analysis-list,
+.churn-refactor .churn-story-list {
+  display: block;
+}
+
+.churn-refactor .churn-analysis,
+.churn-refactor .churn-story-block {
+  background: #fff;
+}
+
+/* A Parte 1 começa logo após a visão geral, sem um vazio editorial. */
+.churn-refactor .churn-overview {
+  padding-bottom: 1.25rem;
+}
+
+.churn-refactor #contexto {
+  padding-top: 0.5rem;
+}
+
+.churn-refactor #contexto .churn-chapter-header {
+  padding-top: 0;
+}
+
+/* O dicionário faz parte da leitura principal e permanece sempre visível. */
+.churn-refactor .churn-variable-section {
+  width: min(100%, var(--project-media-width));
+  margin: 1.35rem auto 0;
+  text-align: left;
+}
+
+.churn-refactor .churn-variable-title {
+  margin: 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 0;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.churn-refactor .churn-dictionary {
+  margin-top: 0;
+}
+
+.churn-refactor .churn-method-list {
+  list-style: disc;
+}
+
+/* Aproxima a síntese dos quatro blocos de resultado. */
+.churn-refactor #conclusoes .churn-chapter-header {
+  margin-bottom: 1.25rem;
+}
+
+.churn-refactor #conclusoes .churn-insight-grid {
+  margin-top: 0;
+}
+
+/* Fora da EDA, os textos ficam ancorados à esquerda como nas páginas do Wix. */
+.churn-refactor .churn-chapter:not(#eda) :is(
+  .churn-variable-section,
+  .churn-dictionary,
+  .churn-method-list,
+  .churn-question-list
+) {
+  margin-right: auto;
+  margin-left: 0;
+  text-align: left;
+}
+
+.churn-refactor #eda :is(.churn-chapter-header, .churn-analysis) {
+  align-items: center;
+  width: min(100%, var(--project-wide-media-width));
+  text-align: center;
+}
+
+.churn-refactor #eda :is(.churn-chapter-header, .churn-analysis) > :is(
+  .churn-chapter-number,
+  .churn-step,
+  h2,
+  h3,
+  p,
+  div
+) {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+@media (min-width: 901px) {
+  /* Marca a troca de partes e elimina o vazio excessivo entre os capítulos. */
+  .churn-refactor .case-section.churn-chapter {
+    padding-bottom: 1.5rem;
+  }
+
+  .churn-refactor .case-section.churn-chapter + .case-section.churn-chapter {
+    position: relative;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--project-line);
+  }
+
+  .churn-refactor .case-section.churn-chapter + .case-section.churn-chapter::before {
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    width: 3rem;
+    height: 3px;
+    background: var(--project-accent);
+    content: "";
+    transform: translateX(-50%);
+  }
+
+  .churn-refactor .churn-chapter > :is(.churn-story-flow, .churn-analysis-list) > :last-child {
+    padding-bottom: 1.5rem;
+  }
+
+  .churn-refactor .churn-chapter + .churn-chapter .churn-chapter-header {
+    padding-top: 1.5rem;
+  }
+
+  /* Os insights após os gráficos ganham largura e evitam palavras órfãs. */
+  .churn-refactor #eda .churn-analysis > figure ~ p {
+    width: min(100%, var(--project-media-width));
+    max-width: var(--project-media-width);
+    text-wrap: pretty;
+  }
+}
+
+@media (max-width: 900px) {
+  .churn-refactor :is(.churn-result-gallery--three, .churn-result-gallery--four) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .churn-refactor :is(.churn-result-gallery--three, .churn-result-gallery--four) {
+    grid-template-columns: 1fr;
+  }
+}

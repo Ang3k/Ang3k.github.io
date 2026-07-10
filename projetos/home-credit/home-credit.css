@@ -964,3 +964,314 @@
   max-width: 100%;
   overflow-wrap: anywhere;
 }
+
+/* Padronização final baseada no estudo Data Analysis on IMDb. */
+.home-credit-refactor {
+  --project-accent: var(--hc-accent);
+}
+
+.home-credit-refactor .home-credit-chapter-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.home-credit-refactor .home-credit-chapter-header > div {
+  max-width: 760px;
+}
+
+.home-credit-refactor .home-credit-question-list,
+.home-credit-refactor .home-credit-dictionary {
+  width: min(100%, 920px);
+}
+
+.home-credit-refactor .home-credit-analysis-list {
+  display: block;
+}
+
+.home-credit-refactor .home-credit-analysis {
+  padding-block: clamp(3.5rem, 8vw, 7rem);
+  border-top: 1px solid var(--hc-line);
+  background: #fff;
+}
+
+.home-credit-refactor .home-credit-gallery--two,
+.home-credit-refactor .home-credit-gallery--metrics,
+.home-credit-refactor .home-credit-code-gallery {
+  width: min(100%, 1040px);
+  margin-inline: auto;
+}
+
+.home-credit-refactor .home-credit-insight-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 760px) {
+  .home-credit-refactor .home-credit-insight-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Ritmo compacto final: título, texto, mídia e continuação sem vazios excessivos. */
+.home-credit-refactor .home-credit-chapter,
+.home-credit-refactor .home-credit-chapter:nth-of-type(even) {
+  padding-block: clamp(2.75rem, 5vw, 4.75rem);
+  border-top: 0;
+  background: #fff;
+}
+
+.home-credit-refactor .home-credit-chapter-header {
+  align-items: center;
+  width: min(100%, var(--project-wide-media-width));
+  margin: 0 auto clamp(1.6rem, 3vw, 2.5rem);
+  text-align: center;
+}
+
+.home-credit-refactor .home-credit-chapter-header > div {
+  max-width: 900px;
+}
+
+.home-credit-refactor .home-credit-chapter-header h2 {
+  max-width: 920px;
+  font-size: clamp(2.35rem, 5vw, 4.6rem);
+  line-height: 1.04;
+}
+
+.home-credit-refactor .home-credit-chapter-header div > p {
+  max-width: var(--project-text-width);
+  margin: 0.8rem auto 0;
+  line-height: 1.65;
+}
+
+.home-credit-refactor :is(
+  .home-credit-story,
+  .home-credit-analysis,
+  .home-credit-process,
+  .home-credit-results
+) {
+  width: min(100%, var(--project-wide-media-width));
+  margin-inline: auto;
+  padding-block: clamp(1.65rem, 3vw, 2.8rem);
+  border: 0;
+  background: #fff;
+  text-align: center;
+}
+
+.home-credit-refactor :is(
+  .home-credit-story + .home-credit-story,
+  .home-credit-analysis + .home-credit-analysis,
+  .home-credit-process + .home-credit-process,
+  .home-credit-results + .home-credit-results
+) {
+  margin-top: 0;
+  padding-top: clamp(1.65rem, 3vw, 2.8rem);
+  border-top: 0;
+}
+
+.home-credit-refactor :is(
+  .home-credit-story,
+  .home-credit-analysis,
+  .home-credit-process,
+  .home-credit-results
+) h3 {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: clamp(1.85rem, 3.2vw, 2.85rem);
+  line-height: 1.1;
+}
+
+.home-credit-refactor :is(
+  .home-credit-story,
+  .home-credit-analysis,
+  .home-credit-process,
+  .home-credit-results
+) > p:not(.home-credit-block-label):not(.home-credit-note) {
+  max-width: var(--project-text-width);
+  margin: 0.7rem auto 0;
+  line-height: 1.7;
+}
+
+.home-credit-refactor .home-credit-media {
+  margin: clamp(1.1rem, 2.2vw, 1.65rem) auto 0;
+}
+
+.home-credit-refactor .home-credit-media img {
+  width: 100%;
+  max-height: none;
+}
+
+.home-credit-refactor :is(
+  .home-credit-gallery--two,
+  .home-credit-gallery--metrics,
+  .home-credit-code-gallery
+) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.7rem, 1.5vw, 1.15rem);
+  margin: clamp(1.1rem, 2.2vw, 1.65rem) auto 0;
+}
+
+.home-credit-refactor :is(
+  .home-credit-gallery--two,
+  .home-credit-gallery--metrics,
+  .home-credit-code-gallery
+) .home-credit-media {
+  width: 100%;
+  margin: 0;
+}
+
+.home-credit-refactor .home-credit-takeaways {
+  width: min(100%, var(--project-wide-media-width));
+  margin: clamp(1.8rem, 3.5vw, 3rem) auto 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* Perguntas, dicionário e nota seguem a mesma leitura centralizada. */
+.home-credit-refactor .home-credit-question-list {
+  margin: 1.35rem auto 0;
+}
+
+.home-credit-refactor .home-credit-question-list li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.4rem 1.5rem;
+  text-align: center;
+}
+
+.home-credit-refactor .home-credit-question-list li::before {
+  position: static;
+  flex: 0 0 auto;
+  margin-right: 0.7rem;
+}
+
+.home-credit-refactor .home-credit-dictionary-section {
+  width: min(100%, var(--project-media-width));
+  margin: 1.35rem auto 0;
+  text-align: center;
+}
+
+.home-credit-refactor .home-credit-dictionary-title {
+  margin: 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--hc-line);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+.home-credit-refactor .home-credit-dictionary {
+  padding-bottom: 0;
+  text-align: center;
+}
+
+.home-credit-refactor .home-credit-dictionary h4,
+.home-credit-refactor .home-credit-dictionary dt,
+.home-credit-refactor .home-credit-dictionary dd {
+  text-align: center;
+}
+
+/* Gráficos e capturas ficam limpos, sem moldura escura. */
+.home-credit-refactor :is(
+  .home-credit-media,
+  .home-credit-code-figure,
+  .home-credit-table-figure
+) img {
+  border: 0;
+}
+
+.home-credit-refactor .home-credit-note {
+  width: min(100%, var(--project-text-width));
+  margin: 1.4rem auto 0;
+  border-left: 0;
+  padding: 1.1rem 1.25rem;
+  text-align: center;
+}
+
+@media (max-width: 680px) {
+  .home-credit-refactor .home-credit-chapter,
+  .home-credit-refactor .home-credit-chapter:nth-of-type(even) {
+    padding-block: 2.35rem;
+  }
+
+  .home-credit-refactor :is(
+    .home-credit-gallery--two,
+    .home-credit-gallery--metrics,
+    .home-credit-code-gallery
+  ) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estrutura editorial do Wix: os capítulos narrativos ocupam uma coluna fixa
+ * alinhada à esquerda. Somente a exploração visual mantém títulos e comentários
+ * centralizados. */
+.home-credit-refactor .home-credit-chapter:not(#exploracao) .home-credit-chapter-header {
+  align-items: flex-start;
+  width: min(100%, var(--project-editorial-width));
+  text-align: left;
+}
+
+.home-credit-refactor .home-credit-chapter:not(#exploracao) .home-credit-chapter-header :is(h2, p) {
+  margin-right: 0;
+  margin-left: 0;
+  text-align: left;
+}
+
+.home-credit-refactor .home-credit-chapter:not(#exploracao) :is(
+  .home-credit-story,
+  .home-credit-process,
+  .home-credit-results
+) {
+  width: min(100%, var(--project-editorial-width));
+  text-align: left;
+}
+
+.home-credit-refactor .home-credit-chapter:not(#exploracao) :is(
+  .home-credit-story,
+  .home-credit-process,
+  .home-credit-results
+) > :is(.home-credit-block-label, h3, p) {
+  margin-right: 0;
+  margin-left: 0;
+  text-align: left;
+}
+
+.home-credit-refactor .home-credit-chapter:not(#exploracao) :is(
+  .home-credit-question-list,
+  .home-credit-dictionary-section,
+  .home-credit-dictionary,
+  .home-credit-note
+) {
+  margin-right: auto;
+  margin-left: 0;
+  text-align: left;
+}
+
+.home-credit-refactor .home-credit-chapter:not(#exploracao) .home-credit-question-list li {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.home-credit-refactor .home-credit-chapter:not(#exploracao) .home-credit-dictionary :is(h4, dt, dd),
+.home-credit-refactor .home-credit-chapter:not(#exploracao) .home-credit-dictionary-title {
+  text-align: left;
+}
+
+.home-credit-refactor #exploracao :is(
+  .home-credit-chapter-header,
+  .home-credit-analysis
+) {
+  align-items: center;
+  width: min(100%, var(--project-wide-media-width));
+  text-align: center;
+}
+
+.home-credit-refactor #exploracao :is(
+  .home-credit-chapter-header,
+  .home-credit-analysis
+) > :is(.home-credit-block-label, h2, h3, p, div) {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}

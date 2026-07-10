@@ -1,0 +1,624 @@
+/*
+ * Padrão editorial compartilhado dos estudos de caso.
+ * Carregar depois de case-study.css e antes do CSS específico do projeto.
+ */
+
+:root {
+  --project-accent: #b43c32;
+  --project-ink: #151515;
+  --project-muted: #66635f;
+  --project-line: #d8d4cc;
+  --project-surface: #fff;
+  --project-text-width: 780px;
+  --project-editorial-width: 880px;
+  --project-media-width: 940px;
+  --project-wide-media-width: 1120px;
+}
+
+.portfolio-case-study {
+  overflow-x: clip;
+  background: var(--project-surface);
+  color: var(--project-ink);
+}
+
+.portfolio-case-study :is(main, section, article, figure, details) {
+  min-width: 0;
+}
+
+.portfolio-case-study img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Visão geral */
+.portfolio-case-study :is(.imdb-overview, .churn-overview, .home-credit-overview) {
+  background: #fff;
+}
+
+.portfolio-case-study :is(.imdb-overview-copy, .churn-overview-copy, .home-credit-overview-copy) {
+  max-width: var(--project-text-width);
+}
+
+/* Capítulos modernos */
+.portfolio-case-study :is(.case-section.imdb-chapter, .case-section.churn-chapter, .home-credit-chapter),
+.portfolio-case-study :is(.case-section.imdb-chapter, .case-section.churn-chapter, .home-credit-chapter)
+  + :is(.case-section.imdb-chapter, .case-section.churn-chapter, .home-credit-chapter) {
+  padding: clamp(2.75rem, 5vw, 4.75rem) 0;
+  border: 0;
+  background: #fff;
+}
+
+.portfolio-case-study :is(.imdb-chapter-header, .churn-chapter-header, .home-credit-chapter-header),
+.portfolio-case-study .case-section :is(.imdb-chapter-header, .churn-chapter-header) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: min(100%, var(--project-editorial-width));
+  margin: 0 auto clamp(1.6rem, 3vw, 2.5rem);
+  padding: clamp(1.4rem, 3vw, 2.4rem) 0;
+  border: 0;
+  gap: 0;
+  text-align: left;
+}
+
+.portfolio-case-study :is(.imdb-chapter-header, .churn-chapter-header, .home-credit-chapter-header) > div {
+  width: 100%;
+  max-width: 900px;
+}
+
+.portfolio-case-study .case-section :is(.imdb-chapter-number, .churn-chapter-number),
+.portfolio-case-study :is(.imdb-chapter-number, .churn-chapter-number, .home-credit-chapter-header > p) {
+  margin: 0 0 0.45rem;
+  color: var(--project-accent);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.3;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.portfolio-case-study :is(.imdb-chapter-number, .churn-chapter-number) span {
+  display: inline;
+  margin: 0 0 0 0.3rem;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+
+.portfolio-case-study .case-section :is(.imdb-chapter-header, .churn-chapter-header) h2,
+.portfolio-case-study :is(.imdb-chapter-header, .churn-chapter-header, .home-credit-chapter-header) h2 {
+  max-width: 920px;
+  margin: 0;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(2.35rem, 5vw, 4.6rem);
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  line-height: 1.04;
+  text-align: left;
+}
+
+.portfolio-case-study .case-section :is(.imdb-chapter-header, .churn-chapter-header) p,
+.portfolio-case-study :is(.imdb-chapter-header, .churn-chapter-header, .home-credit-chapter-header) h2 + p,
+.portfolio-case-study .home-credit-chapter-header div > p {
+  max-width: var(--project-text-width);
+  margin: 0.8rem 0 0;
+  color: var(--project-muted);
+  line-height: 1.65;
+  text-align: left;
+}
+
+/* Fluxos e blocos narrativos */
+.portfolio-case-study :is(.imdb-story-flow, .imdb-analysis-list, .churn-story-flow, .churn-analysis-list) {
+  width: min(100%, var(--project-editorial-width));
+  margin-inline: auto;
+}
+
+.portfolio-case-study :is(
+  .imdb-story-block,
+  .imdb-analysis,
+  .churn-story-block,
+  .churn-analysis,
+  .home-credit-story,
+  .home-credit-analysis,
+  .home-credit-process,
+  .home-credit-results
+) {
+  width: min(100%, var(--project-editorial-width));
+  margin-inline: auto;
+  padding: clamp(1.65rem, 3vw, 2.8rem) 0;
+  border: 0;
+  background: #fff;
+  text-align: left;
+}
+
+.portfolio-case-study :is(
+  .home-credit-story + .home-credit-story,
+  .home-credit-analysis + .home-credit-analysis,
+  .home-credit-process + .home-credit-process,
+  .home-credit-results + .home-credit-results
+) {
+  margin-top: 0;
+  padding-top: clamp(1.65rem, 3vw, 2.8rem);
+  border-top: 0;
+}
+
+.portfolio-case-study .case-section :is(.imdb-step, .churn-step),
+.portfolio-case-study :is(.imdb-step, .churn-step, .home-credit-block-label) {
+  margin: 0 0 0.45rem;
+  color: var(--project-accent);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  line-height: 1.4;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.portfolio-case-study .case-section :is(
+  .imdb-story-block h3,
+  .imdb-analysis h3,
+  .churn-story-block h3,
+  .churn-analysis h3,
+  .imdb-conclusion h3,
+  .churn-conclusion h3
+),
+.portfolio-case-study :is(
+  .home-credit-story,
+  .home-credit-analysis,
+  .home-credit-process,
+  .home-credit-results
+) > h3 {
+  max-width: 900px;
+  margin: 0;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(1.85rem, 3.2vw, 2.85rem);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.portfolio-case-study .case-section :is(
+  .imdb-story-block,
+  .imdb-analysis,
+  .churn-story-block,
+  .churn-analysis,
+  .imdb-conclusion,
+  .churn-conclusion
+) > p:not(.imdb-step):not(.churn-step),
+.portfolio-case-study :is(
+  .home-credit-story,
+  .home-credit-analysis,
+  .home-credit-process,
+  .home-credit-results
+) > p:not(.home-credit-block-label):not(.home-credit-note) {
+  max-width: var(--project-text-width);
+  margin: 0.7rem 0 0;
+  line-height: 1.7;
+  text-align: left;
+}
+
+/* No Wix, a exceção editorial são as análises exploratórias: título, comentário e
+ * visualização formam um bloco centralizado. Os demais capítulos permanecem
+ * ancorados à esquerda dentro de uma coluna central no canvas. */
+.portfolio-case-study :is(#parte-2, #eda, #exploracao)
+  :is(.imdb-chapter-header, .churn-chapter-header, .home-credit-chapter-header),
+.portfolio-case-study :is(#parte-2, #eda, #exploracao)
+  :is(.imdb-analysis, .churn-analysis, .home-credit-analysis) {
+  align-items: center;
+  width: min(100%, var(--project-wide-media-width));
+  text-align: center;
+}
+
+.portfolio-case-study :is(#parte-2, #eda, #exploracao)
+  :is(.imdb-analysis-list, .churn-analysis-list) {
+  width: min(100%, var(--project-wide-media-width));
+}
+
+.portfolio-case-study :is(#parte-2, #eda, #exploracao)
+  :is(.imdb-chapter-number, .churn-chapter-number, .home-credit-block-label),
+.portfolio-case-study :is(#parte-2, #eda, #exploracao)
+  :is(.imdb-chapter-header, .churn-chapter-header, .home-credit-chapter-header) :is(h2, p),
+.portfolio-case-study :is(#parte-2, #eda, #exploracao)
+  :is(.imdb-analysis, .churn-analysis, .home-credit-analysis) > :is(.imdb-step, .churn-step, .home-credit-block-label, h3, p) {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+/* Mídia */
+.portfolio-case-study :is(.imdb-media, .churn-media, .home-credit-media) {
+  width: min(100%, var(--project-media-width));
+  margin: clamp(1.1rem, 2.2vw, 1.65rem) auto 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.portfolio-case-study :is(.imdb-media, .churn-media, .home-credit-media) img {
+  width: 100%;
+  max-height: none;
+}
+
+.portfolio-case-study :is(.imdb-media, .churn-media, .home-credit-media) figcaption {
+  margin-top: 0.5rem;
+  color: var(--project-muted);
+  font-size: 0.76rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.portfolio-case-study :is(
+  .imdb-media--wide,
+  .project-media-wide,
+  .churn-media--wide,
+  .home-credit-media--wide,
+  .home-credit-media--composite
+) {
+  width: min(100%, var(--project-wide-media-width));
+}
+
+/* Galerias */
+.portfolio-case-study :is(
+  .churn-result-gallery,
+  .home-credit-gallery,
+  .home-credit-code-gallery,
+  .imdb-result-gallery
+) {
+  display: grid;
+  width: min(100%, var(--project-wide-media-width));
+  margin: clamp(1.1rem, 2.2vw, 1.65rem) auto 0;
+  gap: clamp(0.7rem, 1.5vw, 1.15rem);
+  align-items: start;
+}
+
+.portfolio-case-study :is(.churn-result-gallery, .home-credit-gallery, .imdb-result-gallery) > figure,
+.portfolio-case-study .imdb-result-gallery .imdb-media {
+  width: 100%;
+  margin: 0;
+}
+
+.portfolio-case-study .churn-result-gallery--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.portfolio-case-study :is(
+  .churn-result-gallery--two,
+  .churn-result-gallery--four,
+  .home-credit-gallery--two,
+  .home-credit-gallery--metrics,
+  .home-credit-code-gallery,
+  .imdb-result-gallery
+) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Resultado e consulta SQL formam um par visual no IMDb. */
+.portfolio-case-study .imdb-analysis {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(0.8rem, 1.8vw, 1.4rem);
+  align-items: start;
+}
+
+.portfolio-case-study .imdb-analysis > :is(.imdb-step, h3, p, .imdb-result-gallery) {
+  grid-column: 1 / -1;
+}
+
+.portfolio-case-study .imdb-analysis > :is(.imdb-media, .imdb-query) {
+  width: 100%;
+  margin-top: clamp(1.1rem, 2.2vw, 1.65rem);
+}
+
+/* Detalhes expansíveis */
+.portfolio-case-study :is(.imdb-query, .imdb-disclosure, .churn-disclosure, .home-credit-details) {
+  border: 0;
+  background: transparent;
+}
+
+.portfolio-case-study :is(.imdb-query, .imdb-disclosure, .churn-disclosure, .home-credit-details) summary {
+  position: relative;
+  min-height: 0;
+  padding: 0 1.5rem 0.55rem 0;
+  border-bottom: 1px solid var(--project-line);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  list-style: none;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.portfolio-case-study :is(.imdb-query, .imdb-disclosure, .churn-disclosure, .home-credit-details) summary::-webkit-details-marker {
+  display: none;
+}
+
+.portfolio-case-study :is(.imdb-query, .imdb-disclosure, .churn-disclosure, .home-credit-details) summary::after {
+  position: absolute;
+  top: 0;
+  right: 0.2rem;
+  color: var(--project-accent);
+  content: "+";
+}
+
+.portfolio-case-study :is(.imdb-query, .imdb-disclosure, .churn-disclosure, .home-credit-details)[open] summary::after {
+  content: "−";
+}
+
+.portfolio-case-study :is(.imdb-query, .imdb-disclosure, .churn-disclosure, .home-credit-details) summary:focus-visible {
+  outline: 2px solid var(--project-accent);
+  outline-offset: 4px;
+}
+
+.portfolio-case-study .imdb-query figure {
+  margin: 0.7rem 0 0;
+}
+
+.portfolio-case-study .imdb-query img {
+  width: 100%;
+  height: auto;
+}
+
+/* Sínteses */
+.portfolio-case-study :is(.imdb-insight-grid, .churn-insight-grid, .home-credit-insight-grid) article {
+  min-height: 0;
+}
+
+/* Navegação editorial entre estudos de caso. */
+body.portfolio-case-study .case-next {
+  padding: clamp(2rem, 4vw, 3.75rem) 0;
+  border-top: 1px solid var(--project-line);
+  background: #f2f0eb;
+  color: var(--project-ink);
+}
+
+body.portfolio-case-study .case-next a {
+  display: grid;
+  grid-template-areas:
+    "label action"
+    "title action";
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.65rem clamp(1.5rem, 4vw, 4rem);
+  width: min(var(--project-wide-media-width), calc(100% - 3rem));
+  margin-inline: auto;
+  padding: clamp(2rem, 4.5vw, 3.75rem);
+  border: 1px solid #c9c5bc;
+  background: #fff;
+  color: var(--project-ink);
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+body.portfolio-case-study .case-next span {
+  grid-area: label;
+  margin: 0;
+  color: var(--project-accent);
+  font-family: var(--font-sans, Arial, sans-serif);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+body.portfolio-case-study .case-next strong {
+  grid-area: title;
+  max-width: 880px;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(2.35rem, 5vw, 4.8rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+body.portfolio-case-study .case-next i {
+  display: grid;
+  grid-area: action;
+  place-items: center;
+  width: clamp(4.5rem, 7vw, 6rem);
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-family: Arial, sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-style: normal;
+  line-height: 1;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+body.portfolio-case-study .case-next a:hover,
+body.portfolio-case-study .case-next a:focus-visible {
+  border-color: var(--project-ink);
+  background: var(--project-ink);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+body.portfolio-case-study .case-next a:hover span,
+body.portfolio-case-study .case-next a:focus-visible span {
+  color: #d8d4cc;
+}
+
+body.portfolio-case-study .case-next a:hover i,
+body.portfolio-case-study .case-next a:focus-visible i {
+  border-color: var(--project-accent);
+  background: var(--project-accent);
+  color: #fff;
+  transform: translateX(0.3rem);
+}
+
+body.portfolio-case-study .case-next a:focus-visible {
+  outline: 3px solid var(--project-accent);
+  outline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.portfolio-case-study .case-next a,
+  body.portfolio-case-study .case-next i {
+    transition: none;
+  }
+}
+
+/* QuintoAndar ainda utiliza a marcação original do estudo. */
+.quinto-andar-refactor .case-cover {
+  height: clamp(190px, 34vw, 480px);
+  max-height: 480px;
+}
+
+.quinto-andar-refactor .case-cover img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+.quinto-andar-refactor .case-layout {
+  padding-top: 0;
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.quinto-andar-refactor .case-content {
+  width: min(100%, var(--project-wide-media-width));
+  max-width: none;
+}
+
+.quinto-andar-refactor .case-section,
+.quinto-andar-refactor .case-section + .case-section {
+  margin-top: 0;
+  padding: clamp(2.5rem, 5vw, 4.25rem) 0;
+  border: 0;
+  text-align: center;
+}
+
+.quinto-andar-refactor .case-section > :is(.case-part, h2, h3, h4, p, ul, ol) {
+  max-width: var(--project-text-width);
+  margin-inline: auto;
+}
+
+.quinto-andar-refactor .case-section > h2 {
+  margin-top: 0.35rem;
+  font-size: clamp(2.35rem, 5vw, 4.6rem);
+  line-height: 1.04;
+}
+
+.quinto-andar-refactor .case-section > h2::after {
+  display: none;
+}
+
+.quinto-andar-refactor .case-section > h3 {
+  margin-top: clamp(1.9rem, 4vw, 3.25rem);
+  font-size: clamp(1.85rem, 3.2vw, 2.85rem);
+  line-height: 1.1;
+}
+
+.quinto-andar-refactor .case-section > h3 + p,
+.quinto-andar-refactor .case-section > p + p {
+  margin-top: 0.7rem;
+}
+
+.quinto-andar-refactor .case-section > p {
+  line-height: 1.7;
+}
+
+.quinto-andar-refactor .case-section > :is(ul, ol) {
+  text-align: left;
+}
+
+.quinto-andar-refactor :is(.case-figure, .plot-grid, .figure-grid) {
+  width: min(100%, var(--project-wide-media-width));
+  margin: clamp(1.1rem, 2.2vw, 1.65rem) auto 0;
+}
+
+.quinto-andar-refactor :is(.plot-grid, .figure-grid) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.7rem, 1.5vw, 1.15rem);
+}
+
+.quinto-andar-refactor .plot-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.quinto-andar-refactor :is(.case-figure, .plot-grid figure, .figure-grid figure) img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
+.quinto-andar-refactor .case-figure:has(+ .case-figure),
+.quinto-andar-refactor .case-figure + .case-figure {
+  display: inline-block;
+  width: calc(50% - 1rem);
+  margin-right: 0.35rem;
+  margin-left: 0.35rem;
+  vertical-align: top;
+}
+
+@media (max-width: 900px) {
+  .portfolio-case-study :is(.churn-result-gallery--three, .churn-result-gallery--four) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  body.portfolio-case-study .case-next a {
+    grid-template-areas:
+      "label label"
+      "title action";
+    width: min(100% - 2rem, var(--project-wide-media-width));
+    padding: 1.5rem;
+  }
+
+  body.portfolio-case-study .case-next strong {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  body.portfolio-case-study .case-next i {
+    width: 3.75rem;
+  }
+
+  .portfolio-case-study :is(.case-section.imdb-chapter, .case-section.churn-chapter, .home-credit-chapter),
+  .quinto-andar-refactor .case-section,
+  .quinto-andar-refactor .case-section + .case-section {
+    padding-block: 2.35rem;
+  }
+
+  .portfolio-case-study .imdb-analysis,
+  .portfolio-case-study :is(
+    .churn-result-gallery--two,
+    .churn-result-gallery--three,
+    .churn-result-gallery--four,
+    .home-credit-gallery--two,
+    .home-credit-gallery--metrics,
+    .home-credit-code-gallery,
+    .imdb-result-gallery
+  ),
+  .quinto-andar-refactor :is(.plot-grid, .plot-grid--three, .figure-grid) {
+    grid-template-columns: 1fr;
+  }
+
+  .quinto-andar-refactor .case-figure:has(+ .case-figure),
+  .quinto-andar-refactor .case-figure + .case-figure {
+    display: block;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
