@@ -1275,3 +1275,203 @@
   margin-left: auto;
   text-align: center;
 }
+
+@media (min-width: 901px) {
+  /* Marca a troca de partes e elimina o vazio excessivo entre os capítulos. */
+  .home-credit-refactor .home-credit-chapter {
+    padding-bottom: 1.5rem;
+  }
+
+  .home-credit-refactor .home-credit-chapter + .home-credit-chapter {
+    position: relative;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hc-line);
+  }
+
+  .home-credit-refactor .home-credit-chapter + .home-credit-chapter::before {
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    width: 3rem;
+    height: 3px;
+    background: var(--hc-accent);
+    content: "";
+    transform: translateX(-50%);
+  }
+
+  .home-credit-refactor .home-credit-chapter > .container > :last-child {
+    padding-bottom: 1.5rem;
+  }
+
+  .home-credit-refactor .home-credit-chapter + .home-credit-chapter .home-credit-chapter-header {
+    padding-top: 1.5rem;
+  }
+
+  /* Os insights curtos usam toda a largura editorial para absorver a sobra na linha anterior. */
+  .home-credit-refactor #exploracao .home-credit-analysis > figure ~ p {
+    width: min(100%, var(--project-wide-media-width));
+    max-width: var(--project-wide-media-width);
+    text-wrap: wrap;
+  }
+}
+
+/* Abertura alinhada ao estudo de churn: capa visual, título sobreposto e sumário compacto. */
+.home-credit-refactor .home-credit-cover-hero {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: clamp(430px, 50vw, 670px);
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: #31070c;
+  isolation: isolate;
+}
+
+.home-credit-refactor .home-credit-cover-hero > img {
+  position: absolute;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.48) contrast(1.08) saturate(0.72);
+}
+
+.home-credit-refactor .home-credit-hero-shade {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.28));
+}
+
+.home-credit-refactor .home-credit-cover-hero .home-credit-hero-copy {
+  width: min(760px, calc(100% - 3rem));
+  padding: clamp(1.5rem, 4vw, 2.6rem);
+  background: rgba(8, 8, 7, 0.88);
+  color: #fff;
+  text-align: center;
+}
+
+.home-credit-refactor .home-credit-cover-hero .home-credit-hero-copy h1 {
+  width: auto;
+  max-width: none;
+  margin: 0.8rem auto 0.9rem;
+  color: #fff;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(2.35rem, 5vw, 4.8rem);
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+  overflow-wrap: normal;
+  text-shadow: none;
+}
+
+.home-credit-refactor .home-credit-overview {
+  padding: clamp(5rem, 9vw, 8rem) 0 1.25rem;
+}
+
+.home-credit-refactor .home-credit-chapter-nav {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: clamp(1rem, 3vw, 2rem);
+  border-color: var(--hc-ink);
+}
+
+.home-credit-refactor .home-credit-chapter-nav a {
+  align-items: center;
+  min-height: 5rem;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0.7rem;
+  padding: 1rem clamp(0.75rem, 1.8vw, 1.25rem);
+  font-family: var(--font-sans, Arial, sans-serif);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+.home-credit-refactor .home-credit-chapter-nav span {
+  color: var(--hc-accent);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 1.35rem;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+.home-credit-refactor #contexto {
+  padding-top: 0.5rem;
+}
+
+.home-credit-refactor #contexto .home-credit-chapter-header {
+  padding-top: 0;
+}
+
+@media (max-width: 900px) {
+  .home-credit-refactor .home-credit-chapter-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav a:nth-child(odd) {
+    border-left: 0;
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav a:nth-child(n + 3) {
+    border-top: 1px solid var(--hc-line);
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav a:nth-child(even) {
+    border-left: 1px solid var(--hc-line);
+  }
+}
+
+@media (max-width: 700px) {
+  .home-credit-refactor .home-credit-cover-hero {
+    height: clamp(340px, 96vw, 470px);
+  }
+
+  .home-credit-refactor .home-credit-cover-hero .home-credit-hero-copy {
+    width: min(88%, 520px);
+    padding: 1.35rem 1rem;
+  }
+
+  .home-credit-refactor .home-credit-cover-hero .home-credit-hero-copy h1 {
+    font-size: clamp(2rem, 10vw, 3.35rem);
+  }
+
+  .home-credit-refactor .home-credit-overview {
+    padding-top: 4.25rem;
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav a,
+  .home-credit-refactor .home-credit-chapter-nav a:nth-child(odd),
+  .home-credit-refactor .home-credit-chapter-nav a:nth-child(even) {
+    border-left: 0;
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav a + a {
+    border-top: 1px solid var(--hc-line);
+  }
+
+  .home-credit-refactor .home-credit-chapter-nav a:first-child {
+    border-top: 0;
+  }
+}
+
+@media (min-width: 761px) {
+  /* Em grades ímpares, o último cartão ocupa meia linha e fica centralizado. */
+  .home-credit-refactor .home-credit-question-list > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 50%;
+    border-right: 1px solid var(--hc-line);
+    border-left: 1px solid var(--hc-line);
+  }
+}

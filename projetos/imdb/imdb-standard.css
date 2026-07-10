@@ -1,0 +1,115 @@
+/* Ajustes específicos do IMDb sobre o padrão editorial compartilhado. */
+.imdb-refactor {
+  --project-accent: #866900;
+}
+
+/* A capa segue a mesma composição aprovada em Churn e Home Credit. */
+.imdb-refactor .wix-imdb-hero > img {
+  z-index: -2;
+  filter: brightness(0.58) contrast(1.08) saturate(0.9);
+}
+
+.imdb-refactor .imdb-hero-shade {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.24));
+}
+
+.imdb-refactor .imdb-hero-copy {
+  width: min(760px, calc(100% - 3rem));
+  padding: clamp(1.5rem, 4vw, 2.6rem);
+}
+
+.imdb-refactor .wix-imdb-hero .imdb-hero-copy h1 {
+  margin: 0.8rem auto 0.9rem;
+}
+
+/* O sumário se aproxima da primeira parte, sem o vazio editorial anterior. */
+.imdb-refactor .imdb-overview {
+  padding-bottom: 1.25rem;
+}
+
+.imdb-refactor .imdb-chapter-nav a {
+  gap: 0.7rem;
+  padding: 1rem clamp(0.75rem, 1.8vw, 1.25rem);
+  font-size: 0.7rem;
+}
+
+.imdb-refactor .imdb-chapter-nav span {
+  font-size: 1.35rem;
+}
+
+.imdb-refactor #parte-1 {
+  padding-top: 0.5rem;
+}
+
+.imdb-refactor #parte-1 .imdb-chapter-header {
+  padding-top: 0;
+}
+
+/* Sem o bloco de dashboards, a conclusão fecha o relatório com um intervalo proporcional. */
+.imdb-refactor #parte-3 .imdb-conclusion {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+@media (min-width: 901px) {
+  /* Marca as trocas de parte e reduz o espaço acumulado nos dois lados. */
+  .imdb-refactor .case-section.imdb-chapter {
+    padding-bottom: 1.5rem;
+  }
+
+  .imdb-refactor .case-section.imdb-chapter + .case-section.imdb-chapter {
+    position: relative;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--project-line);
+  }
+
+  .imdb-refactor .case-section.imdb-chapter + .case-section.imdb-chapter::before {
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    width: 3rem;
+    height: 3px;
+    background: var(--imdb-yellow);
+    content: "";
+    transform: translateX(-50%);
+  }
+
+  .imdb-refactor .imdb-chapter > :is(.imdb-story-flow, .imdb-analysis-list) > :last-child {
+    padding-bottom: 1.5rem;
+  }
+
+  .imdb-refactor .imdb-chapter + .imdb-chapter .imdb-chapter-header {
+    padding-top: 1.5rem;
+  }
+
+  /* Os comentários das análises usam a largura disponível e absorvem sobras curtas. */
+  .imdb-refactor #parte-2 .imdb-analysis > p {
+    width: min(100%, var(--project-wide-media-width));
+    max-width: var(--project-wide-media-width);
+    text-wrap: wrap;
+  }
+}
+
+@media (min-width: 821px) {
+  /* A quinta tabela do dicionário fica centralizada em vez de deixar uma célula vazia. */
+  .imdb-refactor .imdb-dictionary > section:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 1.25rem);
+  }
+}
+
+@media (min-width: 701px) {
+  /* A quinta métrica ocupa meia linha centralizada, com bordas simétricas. */
+  .imdb-refactor .imdb-scale-grid > div:last-child:nth-child(odd),
+  .imdb-refactor .imdb-insight-grid > article:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 50%;
+    border-right: 1px solid var(--imdb-line);
+    border-left: 1px solid var(--imdb-line);
+  }
+}

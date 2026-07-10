@@ -15,6 +15,7 @@
       property="og:description"
       content="Extração, transformação e análise de mais de 158 milhões de linhas com Python, MySQL e Power BI."
     >
+    <meta property="og:image" content="../../assets/projects/imdb/imagem_2024-04-05_225210528_edited_edited_edited.jpg">
     <title>Data Analysis on IMDB | Angel Mansilla</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,9 +24,11 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap"
       rel="stylesheet"
     >
-  <link rel="stylesheet" href="../../styles.css">
-  <link rel="stylesheet" href="../../case-study.css">
-  <link rel="stylesheet" href="../../portfolio-case-standard.css">
+    <link rel="preload" href="../../assets/projects/imdb/imagem_2024-04-05_225210528_edited_edited_edited.jpg" as="image" type="image/jpeg">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../case-study.css">
+    <link rel="stylesheet" href="../../portfolio-case-standard.css">
+    <link rel="stylesheet" href="./imdb-standard.css">
   </head>
   <body class="case-page portfolio-case-study imdb-case wix-imdb-case imdb-refactor" id="top">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -49,9 +52,9 @@
           fetchpriority="high"
           decoding="async"
         >
+        <div class="imdb-hero-shade" aria-hidden="true"></div>
         <div class="imdb-hero-copy">
           <h1 id="titulo-projeto">Data Analysis on IMDB</h1>
-          <span>Python · MySQL · Power BI</span>
         </div>
       </section>
 
@@ -60,7 +63,7 @@
           <nav class="imdb-chapter-nav" aria-label="Partes do estudo de caso">
             <a href="#parte-1"><span>01</span> Entendendo e Coletando os Dados</a>
             <a href="#parte-2"><span>02</span> Analisando com MySQL e PowerBI</a>
-            <a href="#parte-3"><span>03</span> Relatório Final e Interatividade</a>
+            <a href="#parte-3"><span>03</span> Relatório Final</a>
           </nav>
         </section>
 
@@ -316,7 +319,7 @@
                 Uma query muito interessante, que traz uma visão sobre como o tempo afetou a duração dos filmes, e com isso a sua duração, descobrimos que em 2008, a duração média de um "filme nota 10" era de 78 minutos, já atualmente em 2024 é de 102 minutos e 24 segundos.
               </p>
               <p>
-                Queries como a anterior são melhor apresentadas com a interatividade fornecida pelo próprio Power BI, por isso, na Parte 3 desse projeto disponibilizo links para teste de tais features.
+                A visualização anterior foi construída no Power BI para tornar mais clara a comparação entre duração, avaliação e mudanças ao longo do tempo.
               </p>
               <figure class="imdb-media imdb-result">
                 <img src="../../assets/projects/imdb/wix-part2-05-output.png" width="1260" height="708" alt="Gráfico relacionando duração dos filmes, ano e avaliação média" loading="lazy" decoding="async">
@@ -474,9 +477,9 @@
           <header class="imdb-chapter-header">
             <p class="imdb-chapter-number">PARTE <span>3</span></p>
             <div>
-              <h2 id="titulo-parte-3">Relatório Final e Interatividade</h2>
+              <h2 id="titulo-parte-3">Relatório Final</h2>
               <p>
-                Na sessão final desse projeto, se encontram por escrito os principais pontos observados a partir dos insights obtidos através do conteúdo da Parte 2, além disso, estão presentes os dashboards criados no Power BI, para que seja testada sua interatividade.
+                Na seção final deste projeto, encontram-se os principais pontos observados a partir dos insights obtidos na Parte 2, organizados por tema para facilitar a leitura das conclusões.
               </p>
             </div>
           </header>
@@ -521,16 +524,8 @@
               </section>
             </section>
 
-            <section class="imdb-story-block">
-              <h3>2 - Dashboards Interativos</h3>
-              <p>
-                Nessa etapa, Júlia optou por criar dois Dashboards Interativos como uma estratégia eficaz para comunicar e permitir que os resultados de sua pesquisa sejam levantados de uma maneira acessível, simplificada e envolvente, para que possam ser utilizados de maneira eficaz pela MoviesNow.
-              </p>
-              <p>É recomendável mudar o Zoom de 100% para "Ajustar à Página"</p>
-            </section>
-
             <section class="imdb-story-block imdb-conclusion">
-              <h3>3 - Conclusão</h3>
+              <h3>2 - Conclusão</h3>
               <p>
                 Com isso, conclui-se esse projeto análise de dados, em que os dados foram extraídos, analisados, e receberam visualizações, essa situação simulada com a personagem Júlia e a empresa MoviesNow foi útil para gerar contexto de negócio ao meu trabalho, muito aprendizado foi colocado nesse projeto e mais ainda foi obtido com ele, obrigado pela atenção!
               </p>

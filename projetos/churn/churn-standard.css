@@ -151,11 +151,11 @@
     padding-top: 1.5rem;
   }
 
-  /* Os insights após os gráficos ganham largura e evitam palavras órfãs. */
+  /* Os insights curtos usam toda a largura editorial para absorver a sobra na linha anterior. */
   .churn-refactor #eda .churn-analysis > figure ~ p {
-    width: min(100%, var(--project-media-width));
-    max-width: var(--project-media-width);
-    text-wrap: pretty;
+    width: min(100%, var(--project-wide-media-width));
+    max-width: var(--project-wide-media-width);
+    text-wrap: wrap;
   }
 }
 
