@@ -10,6 +10,8 @@
   }
 
   var overlay = document.getElementById("intro-overlay");
+  var device = overlay ? overlay.querySelector(".intro-device") : null;
+  var chart = document.getElementById("intro-chart");
   var world = document.getElementById("intro-world");
   var pointsGroup = document.getElementById("intro-points");
   var metric = document.getElementById("intro-metric");
@@ -20,7 +22,7 @@
   var nameEl = document.getElementById("intro-name");
   var headerName = document.querySelector(".site-name");
 
-  if (!overlay || !world || !pointsGroup || !lineReveal || !nameEl || !headerName) {
+  if (!overlay || !device || !chart || !world || !pointsGroup || !lineReveal || !nameEl || !headerName) {
     root.classList.remove("intro-pending");
     return;
   }
@@ -53,7 +55,10 @@
 
   var done = false;
   var timers = [];
+  var activeFrame = null;
   var outlierDot = null;
+  var initialViewBox = [0, 0, 1000, 620];
+  var zoomViewBox = [376.21, 76.32, 526.32, 326.32];
 
   function wait(ms) {
     return new Promise(function (resolve) {
@@ -67,6 +72,9 @@
     }
     done = true;
     timers.forEach(clearTimeout);
+    if (activeFrame) {
+      cancelAnimationFrame(activeFrame);
+    }
     document.removeEventListener("keydown", onKeydown);
     headerName.style.visibility = "";
     overlay.remove();
@@ -83,12 +91,12 @@
   function buildPoints() {
     /* Varredura da esquerda para a direita: o atraso de cada ponto é
        proporcional à sua posição X. Onde há aglomerado, vários surgem
-       quase juntos; onde há vazio no eixo, uma pausa — como uma linha de
+       quase juntos; onde há vazio no eixo, uma pausa, como uma linha de
        scan avançando pelos dados. */
     var xs = POINTS.map(function (pair) { return pair[0]; });
     var minX = Math.min.apply(null, xs);
     var maxX = Math.max.apply(null, xs);
-    var sweep = 1350;
+    var sweep = 1900;
 
     POINTS.forEach(function (pair) {
       var dot = document.createElementNS(SVG_NS, "circle");
@@ -108,7 +116,7 @@
     halo.setAttribute("cx", OUTLIER.x);
     halo.setAttribute("cy", OUTLIER.y);
     halo.setAttribute("r", 15);
-    halo.style.animationDelay = "1450ms";
+    halo.style.animationDelay = "80ms";
     pointsGroup.appendChild(halo);
 
     outlierDot = document.createElementNS(SVG_NS, "circle");
@@ -116,7 +124,7 @@
     outlierDot.setAttribute("cx", OUTLIER.x);
     outlierDot.setAttribute("cy", OUTLIER.y);
     outlierDot.setAttribute("r", 7.5);
-    outlierDot.style.animationDelay = "1450ms";
+    outlierDot.style.animationDelay = "0ms";
     pointsGroup.appendChild(outlierDot);
   }
 
@@ -148,7 +156,95 @@
     placeFixedElement(nameEl, left, top);
   }
 
-  function flipToHeader() {
+  function prepareScreenZoom() {
+    var zoom = getPageZoom();
+    var overlayRect = overlay.getBoundingClientRect();
+    var deviceRect = device.getBoundingClientRect();
+    var chartRect = chart.getBoundingClientRect();
+
+    if (!overlayRect.width || !overlayRect.height || !chartRect.width || !chartRect.height) {
+      return;
+    }
+
+    var chromeX = deviceRect.width - chartRect.width;
+    var chromeTop = chartRect.top - deviceRect.top;
+    var chromeBottom = deviceRect.bottom - chartRect.bottom;
+    var targetDeviceWidth = overlayRect.width + chromeX;
+    var targetDeviceHeight = overlayRect.height + chromeTop + chromeBottom;
+
+    var finalChartRect = {
+      left: -targetDeviceWidth / 2 + chromeX / 2,
+      top: -targetDeviceHeight / 2 + chromeTop,
+      width: targetDeviceWidth - chromeX,
+      height: targetDeviceHeight - chromeTop - chromeBottom
+    };
+
+    var targetCenterX = overlayRect.left + overlayRect.width / 2 -
+      (finalChartRect.left + finalChartRect.width / 2);
+    var targetCenterY = overlayRect.top + overlayRect.height / 2 -
+      (finalChartRect.top + finalChartRect.height / 2);
+
+    device.style.setProperty("--intro-device-left", (targetCenterX - overlayRect.left) / zoom + "px");
+    device.style.setProperty("--intro-device-top", (targetCenterY - overlayRect.top) / zoom + "px");
+    device.style.setProperty("--intro-device-width", targetDeviceWidth / zoom + "px");
+    device.style.setProperty("--intro-device-height", targetDeviceHeight / zoom + "px");
+  }
+
+  function easeInOutSine(t) {
+    return -(Math.cos(Math.PI * t) - 1) / 2;
+  }
+
+  function animateViewBox(from, to, duration) {
+    return new Promise(function (resolve) {
+      var started = null;
+
+      function tick(now) {
+        if (done) {
+          resolve();
+          return;
+        }
+
+        if (started === null) {
+          started = now;
+        }
+
+        var progress = Math.min(1, (now - started) / duration);
+        var eased = easeInOutSine(progress);
+        var fromCenterX = from[0] + from[2] / 2;
+        var fromCenterY = from[1] + from[3] / 2;
+        var toCenterX = to[0] + to[2] / 2;
+        var toCenterY = to[1] + to[3] / 2;
+        var width = from[2] * Math.pow(to[2] / from[2], eased);
+        var height = from[3] * Math.pow(to[3] / from[3], eased);
+        var centerX = fromCenterX + (toCenterX - fromCenterX) * eased;
+        var centerY = fromCenterY + (toCenterY - fromCenterY) * eased;
+        var current = [
+          centerX - width / 2,
+          centerY - height / 2,
+          width,
+          height
+        ];
+
+        chart.setAttribute("viewBox", current.map(function (value) {
+          return value.toFixed(3);
+        }).join(" "));
+
+        if (progress < 1) {
+          activeFrame = requestAnimationFrame(tick);
+        } else {
+          activeFrame = null;
+          resolve();
+        }
+      }
+
+      activeFrame = requestAnimationFrame(tick);
+    });
+  }
+
+  async function flipToHeader() {
+    overlay.classList.add("is-flip");
+    await wait(260);
+
     var first = nameEl.getBoundingClientRect();
     var startFontSize = parseFloat(getComputedStyle(nameEl).fontSize);
     var targetFontSize = parseFloat(getComputedStyle(headerName).fontSize);
@@ -166,8 +262,7 @@
     nameEl.getBoundingClientRect();
     nameEl.style.transition = "transform 1150ms cubic-bezier(0.22, 1, 0.36, 1)";
     nameEl.style.transform = "none";
-    overlay.classList.add("is-flip");
-    return wait(1200);
+    await wait(1200);
   }
 
   async function run() {
@@ -186,24 +281,32 @@
       wait(900)
     ]);
 
-    await wait(350);
+    chart.setAttribute("viewBox", initialViewBox.join(" "));
 
-    pointsGroup.classList.add("intro-points-on");
-    await wait(2100);
-
-    lineReveal.classList.add("is-on");
-    await wait(1450);
-
-    metric.classList.add("is-on");
-    await wait(450);
-
-    overlay.classList.add("is-zoom");
-    world.classList.add("is-zoomed");
     await wait(850);
 
+    pointsGroup.classList.add("intro-points-on");
+    await wait(650);
+
+    metric.classList.add("is-on");
+    await wait(140);
+
+    prepareScreenZoom();
+    overlay.classList.add("is-zoom");
+    world.classList.add("is-zoomed");
+    timers.push(setTimeout(function () {
+      lineReveal.classList.add("is-on");
+    }, 560));
+    await wait(3150);
+    await wait(420);
+
+    pointsGroup.classList.add("intro-outlier-on");
     residual.classList.add("is-on");
     ring.classList.add("is-on");
-    await wait(950);
+    await wait(420);
+
+    await animateViewBox(initialViewBox, zoomViewBox, 1900);
+    await wait(380);
 
     placeNameBesideOutlier();
     nameEl.classList.add("is-visible");

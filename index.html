@@ -44,66 +44,82 @@
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
     <div class="intro-overlay" id="intro-overlay">
-      <svg
-        class="intro-chart"
-        viewBox="0 0 1000 620"
-        preserveAspectRatio="xMidYMid meet"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <defs>
-          <clipPath id="intro-line-clip">
-            <rect class="intro-line-reveal" id="intro-line-reveal" x="70" y="0" width="0" height="620" />
-          </clipPath>
-        </defs>
-        <g class="intro-world" id="intro-world">
-          <g class="intro-frame">
-            <path
-              class="intro-grid"
-              d="M244 60 V560 M418 60 V560 M592 60 V560 M766 60 V560 M940 60 V560 M70 60 H940 M70 160 H940 M70 260 H940 M70 360 H940 M70 460 H940"
-            />
-            <path class="intro-axes" d="M70 60 V560 H940" />
-            <g class="intro-ticks">
-              <text x="70" y="584" text-anchor="middle">0</text>
-              <text x="244" y="584" text-anchor="middle">20</text>
-              <text x="418" y="584" text-anchor="middle">40</text>
-              <text x="592" y="584" text-anchor="middle">60</text>
-              <text x="766" y="584" text-anchor="middle">80</text>
-              <text x="940" y="584" text-anchor="middle">100</text>
-              <text x="56" y="564" text-anchor="end">0</text>
-              <text x="56" y="464" text-anchor="end">20</text>
-              <text x="56" y="364" text-anchor="end">40</text>
-              <text x="56" y="264" text-anchor="end">60</text>
-              <text x="56" y="164" text-anchor="end">80</text>
-              <text x="56" y="64" text-anchor="end">100</text>
-            </g>
-            <text class="intro-axis-label" x="505" y="608" text-anchor="middle">
-              Experiência
-            </text>
-            <text
-              class="intro-axis-label"
-              x="20"
-              y="310"
-              text-anchor="middle"
-              transform="rotate(-90 20 310)"
+      <div class="intro-device" aria-hidden="true">
+        <div class="intro-device-lid">
+          <div class="intro-window-bar">
+            <span class="window-dot"></span>
+            <span class="window-dot"></span>
+            <span class="window-dot"></span>
+            <strong>analysis_notebook.ipynb</strong>
+            <small>Python · matplotlib</small>
+          </div>
+          <div class="intro-screen">
+            <svg
+              class="intro-chart"
+              id="intro-chart"
+              viewBox="0 0 1000 620"
+              preserveAspectRatio="xMidYMid meet"
+              focusable="false"
             >
-              Performance
-            </text>
-          </g>
-          <text class="intro-caption intro-metric" id="intro-metric" x="940" y="42" text-anchor="end">
-            R² = 0,97
-          </text>
-          <path
-            class="intro-line"
-            id="intro-line"
-            clip-path="url(#intro-line-clip)"
-            d="M75 514 Q507.5 469.5 940 153"
-          />
-          <g id="intro-points"></g>
-          <path class="intro-residual" id="intro-residual" d="M592 166 V362" />
-          <circle class="intro-ring" id="intro-ring" cx="592" cy="150" r="20" />
-        </g>
-      </svg>
+              <defs>
+                <clipPath id="intro-line-clip">
+                  <rect class="intro-line-reveal" id="intro-line-reveal" x="70" y="0" width="0" height="620" />
+                </clipPath>
+              </defs>
+              <g class="intro-world" id="intro-world">
+                <g class="intro-frame">
+                  <path
+                    class="intro-grid"
+                    d="M244 60 V560 M418 60 V560 M592 60 V560 M766 60 V560 M940 60 V560 M70 60 H940 M70 160 H940 M70 260 H940 M70 360 H940 M70 460 H940"
+                  />
+                  <path class="intro-axes" d="M70 60 V560 H940" />
+                  <g class="intro-ticks">
+                    <text x="70" y="584" text-anchor="middle">0</text>
+                    <text x="244" y="584" text-anchor="middle">20</text>
+                    <text x="418" y="584" text-anchor="middle">40</text>
+                    <text x="592" y="584" text-anchor="middle">60</text>
+                    <text x="766" y="584" text-anchor="middle">80</text>
+                    <text x="940" y="584" text-anchor="middle">100</text>
+                    <text x="56" y="564" text-anchor="end">0</text>
+                    <text x="56" y="464" text-anchor="end">20</text>
+                    <text x="56" y="364" text-anchor="end">40</text>
+                    <text x="56" y="264" text-anchor="end">60</text>
+                    <text x="56" y="164" text-anchor="end">80</text>
+                    <text x="56" y="64" text-anchor="end">100</text>
+                  </g>
+                  <text class="intro-axis-label" x="505" y="608" text-anchor="middle">
+                    Experiência
+                  </text>
+                  <text
+                    class="intro-axis-label"
+                    x="20"
+                    y="310"
+                    text-anchor="middle"
+                    transform="rotate(-90 20 310)"
+                  >
+                    Performance
+                  </text>
+                </g>
+                <text class="intro-caption intro-metric" id="intro-metric" x="940" y="42" text-anchor="end">
+                  R² = 0,97
+                </text>
+                <path
+                  class="intro-line"
+                  id="intro-line"
+                  clip-path="url(#intro-line-clip)"
+                  d="M75 514 Q507.5 469.5 940 153"
+                />
+                <g id="intro-points"></g>
+                <path class="intro-residual" id="intro-residual" d="M592 166 V362" />
+                <circle class="intro-ring" id="intro-ring" cx="592" cy="150" r="20" />
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="intro-device-base">
+          <span></span>
+        </div>
+      </div>
       <button class="intro-skip" id="intro-skip" type="button">
         Pular introdução <span aria-hidden="true">→</span>
       </button>
@@ -164,6 +180,14 @@
             <a class="button button-dark" href="#projetos">Explorar projetos</a>
             <a
               class="text-link"
+              href="./assets/angel-mansilla-curriculo.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Ver currículo <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              class="text-link"
               href="https://www.linkedin.com/in/angel-mansilla-895001268/"
               target="_blank"
               rel="noreferrer"
@@ -221,7 +245,7 @@
                   <span>01</span>
                   <span>Saúde pública · Ensemble</span>
                 </div>
-                <h3>Dengue Sense Classifier</h3>
+                <h3>Classificador Epidemiológico de Arboviroses</h3>
                 <p>
                   Pipeline temporal para classificação de arboviroses com 107
                   features, combinando MLP, XGBoost e LightGBM em uma aplicação
@@ -242,7 +266,7 @@
                   href="https://github.com/Ang3k/Dengue-Ensembler-Classifier"
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="Ver repositório do Dengue Sense Classifier no GitHub"
+                  aria-label="Ver repositório do Classificador Epidemiológico de Arboviroses no GitHub"
                 >
                   Ver repositório <span aria-hidden="true">↗</span>
                 </a>
@@ -265,7 +289,7 @@
                   <span>02</span>
                   <span>Detecção de anomalias</span>
                 </div>
-                <h3>CPU Temperature Anomaly Detector</h3>
+                <h3>Detector de Anomalias com Sensores do PC</h3>
                 <p>
                   Aplicativo desktop que aprende o comportamento térmico da
                   máquina, monitora sete sensores e classifica anomalias em
@@ -281,44 +305,7 @@
                   href="https://github.com/Ang3k/CPU-Temperature-Anomaly-Detector"
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="Ver repositório do detector de anomalias de temperatura no GitHub"
-                >
-                  Ver repositório <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-visual cluster-visual" aria-hidden="true">
-                <span class="word word-one">dados</span>
-                <span class="word word-two">cluster</span>
-                <span class="word word-three">texto</span>
-                <span class="word word-four">reddit</span>
-                <span class="word word-five">pca</span>
-                <span class="word word-six">insight</span>
-              </div>
-              <div class="project-copy">
-                <div class="project-meta">
-                  <span>03</span>
-                  <span>NLP · Aprendizado não supervisionado</span>
-                </div>
-                <h3>Clusterizador de textos</h3>
-                <p>
-                  Aplicação interativa para agrupar posts do Reddit, explicar
-                  cada cluster e visualizar o processo em duas e três dimensões.
-                </p>
-                <ul class="tag-list" aria-label="Tecnologias">
-                  <li>TF-IDF</li>
-                  <li>PCA</li>
-                  <li>K-Means</li>
-                  <li>Streamlit</li>
-                </ul>
-                <a
-                  class="project-link"
-                  href="https://github.com/Ang3k/Algoritmo-Clusterizador-de-Texto-Streamlit"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Ver repositório do clusterizador de textos no GitHub"
+                  aria-label="Ver repositório do Detector de Anomalias com Sensores do PC no GitHub"
                 >
                   Ver repositório <span aria-hidden="true">↗</span>
                 </a>
@@ -336,10 +323,10 @@
               </div>
               <div class="project-copy">
                 <div class="project-meta">
-                  <span>04</span>
+                  <span>03</span>
                   <span>Serviços financeiros</span>
                 </div>
-                <h3>Previsão de churn bancário</h3>
+                <h3>Previsão de Churn de Clientes Bancários</h3>
                 <p>
                   Análise do comportamento de clientes e comparação entre
                   Decision Tree, Random Forest e XGBoost para antecipar
@@ -357,7 +344,46 @@
                 <a
                   class="project-link"
                   href="./projetos/churn/index.html"
-                  aria-label="Ler o estudo de caso sobre churn bancário"
+                  aria-label="Ler o estudo de caso sobre Previsão de Churn de Clientes Bancários"
+                >
+                  Ler estudo de caso <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-visual churn-visual home-credit-visual" aria-hidden="true">
+                <span class="visual-kicker">CRÉDITO · LIGHTGBM</span>
+                <img
+                  src="./assets/projects/home-credit/imagem_2025-03-12_012533243.png"
+                  alt=""
+                  loading="lazy"
+                >
+              </div>
+              <div class="project-copy">
+                <div class="project-meta">
+                  <span>04</span>
+                  <span>Risco de crédito · CRISP-DM</span>
+                </div>
+                <h3>Previsão de Risco de Crédito no Home Credit Group</h3>
+                <p>
+                  Estudo de risco de atraso em pagamentos, com análise
+                  exploratória, tratamento de desbalanceamento e modelagem com
+                  LightGBM.
+                </p>
+                <ul class="tag-list" aria-label="Tecnologias">
+                  <li>LightGBM</li>
+                  <li>Pandas</li>
+                  <li>Scikit-learn</li>
+                </ul>
+                <div class="project-result">
+                  <span>AUC reportada</span>
+                  <strong>0,764</strong>
+                </div>
+                <a
+                  class="project-link"
+                  href="./projetos/home-credit/index.html"
+                  aria-label="Ler o estudo de caso sobre Previsão de Risco de Crédito no Home Credit Group"
                 >
                   Ler estudo de caso <span aria-hidden="true">→</span>
                 </a>
@@ -377,18 +403,9 @@
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <span>Sanções e roteamento BGP</span>
+                  <span>Impacto de Sanções no Roteamento BGP Global</span>
                   <small>Redes · Python</small>
                   <i aria-hidden="true">↗</i>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="./projetos/home-credit/index.html"
-                >
-                  <span>Risco de crédito com Home Credit</span>
-                  <small>LightGBM · CRISP-DM</small>
-                  <i aria-hidden="true">→</i>
                 </a>
               </li>
               <li>
@@ -406,19 +423,8 @@
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <span>Previsão de preços de carros usados</span>
+                  <span>Modelo de Precificação de Carros Usados</span>
                   <small>Extra Trees · Regressão</small>
-                  <i aria-hidden="true">↗</i>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/Ang3k/Analytica-Desafio"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <span>ForecastFC</span>
-                  <small>Futebol · Machine Learning</small>
                   <i aria-hidden="true">↗</i>
                 </a>
               </li>
@@ -428,18 +434,20 @@
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <span>Escalonador Round Robin</span>
+                  <span>Simulação de Escalonador de Round-Robin Circular</span>
                   <small>Sistemas operacionais · C</small>
                   <i aria-hidden="true">↗</i>
                 </a>
               </li>
               <li>
                 <a
-                  href="./projetos/quinto-andar/index.html"
+                  href="https://github.com/Ang3k/Algoritmo-Clusterizador-de-Texto-Streamlit"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  <span>Dados imobiliários do QuintoAndar</span>
-                  <small>Web scraping · SQL</small>
-                  <i aria-hidden="true">→</i>
+                  <span>Clusterizador de textos</span>
+                  <small>NLP · Streamlit</small>
+                  <i aria-hidden="true">↗</i>
                 </a>
               </li>
             </ul>
@@ -534,6 +542,13 @@
               rel="noreferrer"
             >
               LinkedIn <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href="./assets/angel-mansilla-curriculo.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Currículo <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>

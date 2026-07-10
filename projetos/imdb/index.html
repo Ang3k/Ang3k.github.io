@@ -7,420 +7,626 @@
       name="description"
       content="Estudo de caso de Angel Mansilla sobre análise da indústria cinematográfica com dados do IMDb e TMDB."
     >
-    <meta name="theme-color" content="#f4f3ef">
+    <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:title" content="Análise da indústria cinematográfica | Angel Mansilla">
+    <meta property="og:title" content="Data Analysis on IMDb | Angel Mansilla">
     <meta
       property="og:description"
       content="Extração, transformação e análise de mais de 158 milhões de linhas com Python, MySQL e Power BI."
     >
-    <title>Análise da indústria cinematográfica | Angel Mansilla</title>
+    <title>Data Analysis on IMDb | Angel Mansilla</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap"
       rel="stylesheet"
     >
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../../case-study.css">
   </head>
-  <body class="case-page" id="top">
+  <body class="case-page imdb-case wix-imdb-case imdb-refactor" id="top">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-    <header class="case-topbar">
-      <div class="container">
-        <a class="case-brand" href="../../index.html">Angel Mansilla</a>
-        <nav class="case-nav" aria-label="Navegação do estudo de caso">
-          <a href="../../index.html#sobre">Sobre</a>
-          <a href="../../index.html#projetos">Projetos</a>
-          <a href="../../index.html#contato">Contato</a>
-          <a
-            href="https://github.com/Ang3k/Analise-SQL-da-Industria-Cinematografica-com-IMDb-e-TMDB"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Repositório ↗
-          </a>
-        </nav>
-      </div>
+    <header class="wix-project-header">
+      <a class="wix-project-name" href="../../index.html">Angel Mansilla</a>
+      <nav class="wix-project-nav" aria-label="Navegação principal">
+        <a href="../../index.html#sobre">Sobre</a>
+        <a href="../../index.html#contato">Contato</a>
+        <a href="../../index.html#projetos">Portfólio</a>
+      </nav>
     </header>
 
     <main id="conteudo">
-      <section class="case-hero">
-        <div class="container">
-          <p class="case-breadcrumb">
-            <a href="../../index.html#projetos">Projetos</a>
-            <span aria-hidden="true">/</span>
-            <span>Data Analysis</span>
-          </p>
-          <div class="case-hero-grid">
-            <div>
-              <p class="case-kicker">Python · MySQL · Power BI</p>
-              <h1>Análise da indústria <em>cinematográfica</em></h1>
-            </div>
-            <p class="case-lead">
-              Meu primeiro projeto de Data Analysis: extrair, transformar e
-              analisar datasets extensos do IMDb e do TMDB para revelar
-              tendências da indústria.
-            </p>
-          </div>
-          <dl class="case-hero-stats">
-            <div>
-              <dt>Volume analisado</dt>
-              <dd>158.366.934 linhas</dd>
-            </div>
-            <div>
-              <dt>Arquivos de tabelas</dt>
-              <dd>12,73 GB</dd>
-            </div>
-            <div>
-              <dt>Cobertura</dt>
-              <dd>1894 a 2024 · 240+ países</dd>
-            </div>
-          </dl>
+      <section class="wix-imdb-hero" aria-labelledby="titulo-projeto">
+        <img
+          src="../../assets/projects/imdb/imagem_2024-04-05_225210528_edited_edited_edited.jpg"
+          alt="Logotipo IMDb em preto sobre fundo amarelo"
+          width="1000"
+          height="1000"
+          fetchpriority="high"
+          decoding="async"
+        >
+        <div class="imdb-hero-copy">
+          <p>Estudo de caso · Análise de dados</p>
+          <h1 id="titulo-projeto">Data Analysis on IMDb</h1>
+          <span>Python · MySQL · Power BI</span>
         </div>
       </section>
 
-      <figure class="case-cover case-cover-contained">
-        <img
-          src="../../wix-images-to-use/imagem_2024-04-05_225210528_edited_edited_edited.jpg"
-          alt="Logotipo IMDb em preto sobre fundo amarelo"
-        >
-      </figure>
-
-      <div class="case-layout container">
-        <aside class="case-toc" aria-label="Índice do estudo de caso">
-          <p>Neste estudo</p>
-          <ol>
-            <li><a href="#objetivo">Objetivo</a></li>
-            <li><a href="#dados">Entendendo os dados</a></li>
-            <li><a href="#transformacao">Transformação e carga</a></li>
-            <li><a href="#analise">Análise com SQL</a></li>
-            <li><a href="#relatorio">Relatório final</a></li>
-          </ol>
-        </aside>
-
-        <article class="case-content">
-          <section class="case-section" id="objetivo">
-            <p class="case-part">Visão geral</p>
-            <h2>Objetivo e ferramentas</h2>
-            <p class="case-intro">
-              Como meu primeiro projeto em Data Analysis, o objetivo primário foi
-              colocar em prática minhas habilidades de extrair e transformar
-              dados através de uma análise exploratória nos datasets do IMDb,
-              que são extensos em conteúdo.
-            </p>
+      <article class="imdb-case-content">
+        <section class="imdb-overview" id="visao-geral" aria-labelledby="titulo-visao-geral">
+          <div class="imdb-overview-copy">
+            <p class="imdb-eyebrow">Visão geral</p>
+            <h2 id="titulo-visao-geral">Da extração dos dados aos insights da indústria</h2>
             <p>
-              Nesse projeto utilizei a linguagem Python e sua biblioteca Pandas,
-              o sistema relacional MySQL e a ferramenta de visualização Power BI.
+              Este foi meu primeiro projeto completo de análise de dados. O objetivo foi praticar a
+              extração, a transformação e a exploração de uma base extensa do IMDb, conectando
+              o tratamento dos dados a perguntas de negócio e visualizações no Power BI.
             </p>
-            <ul class="tool-list" aria-label="Ferramentas do projeto">
-              <li>Python</li>
-              <li>Pandas</li>
-              <li>MySQL</li>
-              <li>Power BI</li>
-              <li>IMDb</li>
-              <li>TMDB</li>
-            </ul>
-          </section>
+          </div>
 
-          <section class="case-section" id="dados">
-            <p class="case-part">Parte 1</p>
-            <h2>Entendendo e coletando os dados</h2>
-
-            <h3>1. Introdução</h3>
-            <p>
-              Júlia é uma entusiasta no setor de cinema e decide se aventurar
-              investindo em uma startup, a MoviesNow. Porém, percebe que a
-              empresa não está bem organizada e, mesmo preparando seu primeiro
-              projeto, não conhece os padrões de mercado desse setor do
-              entretenimento.
-            </p>
-            <p>
-              Em busca de ajudar a MoviesNow a aprimorar sua estratégia e
-              direcionamento, Júlia decide usar suas habilidades em Data Analysis,
-              visando não apenas coletar dados, mas transformá-los em informações
-              valiosas e acionáveis. Para isso, parte em busca de um dataset.
-            </p>
-
-            <h3>2. Conjunto de dados</h3>
-            <p>
-              Júlia busca um dataset robusto e informativo, o que a leva ao IMDb,
-              que possui uma fonte extensa e atualizada com detalhes sobre o
-              nascimento de artistas, obras cinematográficas, avaliações, anos
-              de produção e muitos outros dados.
-            </p>
-
-            <h3>3. Dicionário de dados</h3>
-            <details class="data-details">
-              <summary>title.akas.tsv.gz</summary>
-              <dl>
-                <dt>titleId</dt><dd>Identificador único do título.</dd>
-                <dt>ordering</dt><dd>Número único da linha para um titleId.</dd>
-                <dt>title</dt><dd>Título localizado.</dd>
-                <dt>region</dt><dd>Região desta versão do título.</dd>
-                <dt>language</dt><dd>Idioma do título.</dd>
-                <dt>types</dt><dd>Atributos enumerados para o título alternativo.</dd>
-                <dt>isOriginalTitle</dt><dd>Indica se é o título original.</dd>
-              </dl>
-            </details>
-            <details class="data-details">
-              <summary>title.basics.tsv.gz</summary>
-              <dl>
-                <dt>tconst</dt><dd>Identificador único do título.</dd>
-                <dt>titleType</dt><dd>Formato do título: filme, série, curta e outros.</dd>
-                <dt>primaryTitle</dt><dd>Título mais popular.</dd>
-                <dt>originalTitle</dt><dd>Título no idioma original.</dd>
-                <dt>isAdult</dt><dd>Indica conteúdo adulto.</dd>
-                <dt>startYear</dt><dd>Ano de lançamento ou início da série.</dd>
-                <dt>endYear</dt><dd>Ano de término da série.</dd>
-                <dt>runtimeMinutes</dt><dd>Duração principal em minutos.</dd>
-                <dt>genres</dt><dd>Até três gêneros associados ao título.</dd>
-              </dl>
-            </details>
-            <details class="data-details">
-              <summary>Demais tabelas utilizadas</summary>
-              <dl>
-                <dt>title.principals</dt><dd>Pessoas, categorias de trabalho, funções e personagens creditados.</dd>
-                <dt>title.ratings</dt><dd>Avaliação média ponderada e número de votos do título.</dd>
-                <dt>name.basics</dt><dd>Nomes, nascimento, falecimento, profissões e títulos conhecidos.</dd>
-              </dl>
-            </details>
-          </section>
-
-          <section class="case-section" id="transformacao">
-            <p class="case-part">Parte 1 · Continuação</p>
-            <h2>Transformando e carregando os dados</h2>
-            <p>
-              O primeiro desafio foi converter arquivos no formato TSV do IMDb
-              para CSV, compatível com o MySQL Workbench 8.0. Por causa do tamanho
-              dos arquivos, conversores online não conseguiam realizar a
-              transformação.
-            </p>
-            <p>
-              Para contornar isso, Júlia utilizou um script em Python. O código
-              identificava os padrões do TSV, substituía tabulações por vírgulas
-              e realizava as demais formatações necessárias para que os dados
-              fossem interpretados corretamente pelo MySQL.
-            </p>
-            <p>
-              Após a conversão, a tentativa inicial de usar o Table Import Wizard
-              apresentou problemas de performance. A solução foi utilizar
-              <code>LOAD DATA LOCAL INFILE</code>, concluindo a carga da base.
-            </p>
-            <div class="metric-grid">
-              <div><span>Linhas</span><strong>158M+</strong></div>
-              <div><span>Colunas em 5 tabelas</span><strong>32</strong></div>
-              <div><span>Tamanho</span><strong>12,73 GB</strong></div>
+          <dl class="imdb-project-facts" aria-label="Resumo do projeto">
+            <div>
+              <dt>Escala analisada</dt>
+              <dd>158.366.934 linhas</dd>
             </div>
-            <div class="case-note">
+            <div>
+              <dt>Período dos dados</dt>
+              <dd>1894–2024</dd>
+            </div>
+            <div>
+              <dt>Base principal</dt>
+              <dd>5 tabelas do IMDb</dd>
+            </div>
+            <div>
+              <dt>Ferramentas</dt>
+              <dd>Python, Pandas, MySQL e Power BI</dd>
+            </div>
+          </dl>
+
+          <nav class="imdb-chapter-nav" aria-label="Partes do estudo de caso">
+            <a href="#parte-1"><span>01</span> Dados e preparação</a>
+            <a href="#parte-2"><span>02</span> Análises e visualizações</a>
+            <a href="#parte-3"><span>03</span> Síntese dos insights</a>
+          </nav>
+        </section>
+
+        <section class="case-section imdb-chapter" id="parte-1" aria-labelledby="titulo-parte-1">
+          <header class="imdb-chapter-header">
+            <p class="imdb-chapter-number">Parte <span>01</span></p>
+            <div>
+              <h2 id="titulo-parte-1">Entendendo e preparando os dados</h2>
               <p>
-                Os dados abrangiam o período de 1894 a 2024 e mais de 240 países.
-                A extensão histórica e geográfica foi uma das características
-                mais interessantes do projeto.
+                A primeira etapa apresenta o contexto, a estrutura da base e as decisões usadas
+                para tornar os arquivos do IMDb adequados à análise em MySQL.
               </p>
             </div>
-          </section>
+          </header>
 
-          <section class="case-section" id="analise">
-            <p class="case-part">Parte 2</p>
-            <h2>Analisando com MySQL e Power BI</h2>
-            <p class="case-intro">
-              Nesta seção estão as queries mais interessantes desenvolvidas ao
-              longo do projeto, acompanhadas de comentários, contexto e
-              visualizações para melhorar o storytelling.
-            </p>
-
-            <h3>1. Os 25 melhores filmes no IMDb</h3>
-            <p>
-              A query traz os 25 filmes com melhor avaliação. Ela é duplamente
-              filtrada por <code>averageRating</code> para manter a relevância,
-              mas ordenada principalmente por <code>numVotes</code> na subquery.
-            </p>
-
-            <h3>2. Gêneros promissores para 2024+</h3>
-            <p>
-              A consulta conta os gêneros esperados para filmes, séries e curtas
-              com lançamento de 2024 em diante, ajudando a compreender tendências
-              futuras do mercado.
-            </p>
-
-            <h3>3. Faixa etária entre atores</h3>
-            <p>
-              Como o dataset não fornecia a idade diretamente, utilizei
-              <code>COALESCE</code> para calculá-la, considerando que vários
-              valores de <code>deathYear</code> eram nulos. Essa foi também a
-              primeira query do projeto.
-            </p>
-
-            <h3>4. Curtas e longas ao longo dos anos</h3>
-            <p>
-              A extensão do dataset permitiu comparar curtas e longas-metragens
-              desde 1874 até o presente, mostrando como produções menores se
-              tornaram mais comuns com a democratização dos equipamentos e da
-              distribuição.
-            </p>
-
-            <h3>5. Tendências temporais: duração e crítica</h3>
-            <p>
-              A consulta analisa como o tempo afetou a duração dos filmes e suas
-              avaliações. Em 2008, a duração média de um “filme nota 10” era de
-              78 minutos; em 2024, era de 102 minutos e 24 segundos.
-            </p>
-
-            <h3>6. Regiões por contagem de adaptações</h3>
-            <p>
-              Uma das queries mais simples, contando títulos adaptados para
-              diferentes regiões. O Brasil aparece no top 13, com 126.385
-              conteúdos adaptados.
-            </p>
-            <figure class="case-figure">
-              <img
-                src="../../wix-images-to-use/imagem_2024-04-16_190942606.png"
-                alt="Mapa mundial com a distribuição de títulos adaptados por região"
-                loading="lazy"
-              >
-              <figcaption>Distribuição geográfica das adaptações.</figcaption>
-            </figure>
-
-            <h3>7. Homens e mulheres no entretenimento</h3>
-            <p>
-              A query traz à tona a discussão sobre gênero no mercado de
-              trabalho. Uma pena o dataset não incluir salários, que permitiriam
-              uma análise ainda mais interessante.
-            </p>
-            <figure class="case-figure">
-              <img
-                src="../../wix-images-to-use/imagem_2024-04-16_193154433.png"
-                alt="Comparação da quantidade de créditos de atores e atrizes ao longo do período selecionado"
-                loading="lazy"
-              >
-              <figcaption>Quantidade de créditos por profissão.</figcaption>
-            </figure>
-
-            <h3>8. Profissionais mais prolíficos</h3>
-            <p>
-              A consulta traz as pessoas mais creditadas no IMDb, isto é, os
-              profissionais que aparecem com mais frequência nos créditos. Foi
-              também uma das queries mais pesadas em termos de desempenho.
-            </p>
-
-            <h3>9. Seriados mais antigos ainda em andamento</h3>
-            <p>
-              A query lista as séries mais antigas que continuam recebendo
-              atualizações. Surpreendentemente, Os Simpsons aparecem apenas na
-              nona posição.
-            </p>
-
-            <h3>10. Lucros da indústria por ano</h3>
-            <p>
-              A partir daqui, uma tabela adicional do TMDB adiciona custos e
-              lucros. A consulta acompanha o lucro geral entre 1913 e 2024 e
-              evidencia o impacto da pandemia de COVID-19 entre 2019 e 2021.
-            </p>
-
-            <h3>11. Ganhos brutos por empresa</h3>
-            <p>
-              A query apresenta, por ano, as somas cumulativas de ganhos e custos
-              de empresas. <code>SUBSTRING_INDEX</code> seleciona apenas a empresa
-              principal entre as várias companhias creditadas em uma produção.
-            </p>
-            <figure class="case-figure">
-              <img
-                src="../../wix-images-to-use/imagem_2024-04-19_173603275 (1).png"
-                alt="Visualização de orçamento, receita e lucro de empresas ao longo dos anos"
-                loading="lazy"
-              >
-              <figcaption>Visualização interativa dos resultados por empresa.</figcaption>
-            </figure>
-
-            <h3>12. Lucros por região do mundo</h3>
-            <p>
-              A função <code>SUM</code> com a cláusula
-              <code>OVER</code> calcula a soma acumulada dos lucros para cada
-              país, permitindo observar a concentração geográfica da indústria.
-            </p>
-
-            <h3>13. Lucro por gênero de filmes</h3>
-            <p>
-              A consulta relaciona lucros e avaliações. Eles não andam sempre de
-              mãos dadas: documentários, por exemplo, possuem algumas das melhores
-              avaliações e também alguns dos piores lucros.
-            </p>
-          </section>
-
-          <section class="case-section" id="relatorio">
-            <p class="case-part">Parte 3</p>
-            <h2>Relatório final e interatividade</h2>
-            <p class="case-intro">
-              Na etapa final, reuni por escrito os principais pontos observados e
-              construí dashboards no Power BI para comunicar os resultados de
-              maneira acessível, simplificada e envolvente.
-            </p>
-
-            <h3>Perfil dos membros da indústria</h3>
-            <ul>
-              <li>Grande parte dos atores e atrizes vivos é adulta; atores mirins representam uma parcela muito pequena.</li>
-              <li>A discrepância entre homens e mulheres ainda é grande, embora menor que antigamente, quando chegou a aproximadamente 2 para 1.</li>
-              <li>Entre os nomes mais creditados aparecem Reg Watson, Ernesto Alonso e a família Kapoor, com Ekta e Shobha entre as principais posições.</li>
-            </ul>
-
-            <h3>Economia da indústria</h3>
-            <ul>
-              <li>A indústria apresentava crescimento constante nos lucros, mas sofreu queda brusca com a pandemia e ainda não havia se recuperado no período analisado.</li>
-              <li>Os Estados Unidos superam os lucros de diversas outras regiões.</li>
-              <li>Ação, Comédia e Aventura são muito lucrativos, mas possuem avaliações menores; Animação e Drama aparecem como alternativas de equilíbrio.</li>
-            </ul>
-
-            <h3>Previsões para 2024 em diante</h3>
-            <ul>
-              <li>Drama, Comédia, Documentário e Ação eram os gêneros mais esperados.</li>
-              <li>Talk Shows, Game Shows e noticiários apareciam entre os menos frequentes.</li>
-              <li>Produções menores se tornaram mais comuns após os anos 2000, com internet, câmeras e acessórios mais acessíveis.</li>
-              <li>A duração mais comum dos filmes aumentou, mas a duração associada às melhores avaliações não seguiu exatamente o mesmo padrão.</li>
-            </ul>
-
-            <h3>Miscelâneas</h3>
-            <ul>
-              <li>Europa, Índia e Japão aparecem como grandes focos de adaptações; o Brasil ocupa a 13ª posição.</li>
-              <li>Entre os filmes mais bem avaliados estão Um Sonho de Liberdade, O Poderoso Chefão e Batman: O Cavaleiro das Trevas.</li>
-            </ul>
-
-            <div class="case-quote">
+          <div class="imdb-story-flow">
+            <section class="imdb-story-block">
+              <p class="imdb-step">01 · Contexto</p>
+              <h3>Uma empresa fictícia para orientar as perguntas</h3>
               <p>
-                A situação simulada com Júlia e a MoviesNow foi útil para gerar
-                contexto de negócio ao trabalho. Muito aprendizado foi colocado
-                neste projeto, e mais ainda foi obtido com ele.
+                Para dar contexto de negócio ao estudo, criei a MoviesNow e a personagem Júlia.
+                A empresa precisava compreender melhor os padrões do setor cinematográfico antes
+                de definir sua estratégia. Esse cenário guiou a busca por uma fonte de dados ampla
+                e a formulação das análises.
+              </p>
+            </section>
+
+            <section class="imdb-story-block">
+              <p class="imdb-step">02 · Fonte</p>
+              <h3>Conjunto de dados do IMDb</h3>
+              <p>
+                A base pública do IMDb reúne informações sobre títulos, profissionais, avaliações,
+                anos de produção, gêneros e regiões. Para este projeto, foram selecionados cinco
+                arquivos relacionados entre si.
+              </p>
+              <figure class="imdb-media imdb-media--wide">
+                <img
+                  src="../../assets/projects/imdb/wix-part1-02-conjunto-dados.png"
+                  width="1688"
+                  height="736"
+                  alt="Lista de arquivos de dados disponíveis para download no IMDb"
+                  loading="lazy"
+                  decoding="async"
+                >
+                <figcaption>Arquivos disponibilizados pelo IMDb para uso não comercial.</figcaption>
+              </figure>
+
+              <details class="imdb-disclosure">
+                <summary>Consultar o dicionário das cinco tabelas</summary>
+                <div class="imdb-dictionary">
+                  <section>
+                    <h4>title.akas.tsv.gz</h4>
+                    <ul>
+                      <li><strong>titleId:</strong> identificador único do título.</li>
+                      <li><strong>ordering:</strong> ordem da linha dentro de um mesmo título.</li>
+                      <li><strong>title:</strong> título localizado.</li>
+                      <li><strong>region:</strong> região desta versão do título.</li>
+                      <li><strong>language:</strong> idioma do título.</li>
+                      <li><strong>types e attributes:</strong> atributos complementares da versão.</li>
+                      <li><strong>isOriginalTitle:</strong> indica se este é o título original.</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>title.basics.tsv.gz</h4>
+                    <ul>
+                      <li><strong>tconst:</strong> identificador único do título.</li>
+                      <li><strong>titleType:</strong> tipo ou formato do título.</li>
+                      <li><strong>primaryTitle e originalTitle:</strong> títulos principal e original.</li>
+                      <li><strong>isAdult:</strong> indica conteúdo adulto.</li>
+                      <li><strong>startYear e endYear:</strong> anos de início e encerramento.</li>
+                      <li><strong>runtimeMinutes:</strong> duração em minutos.</li>
+                      <li><strong>genres:</strong> até três gêneros associados.</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>title.principals.tsv.gz</h4>
+                    <ul>
+                      <li><strong>tconst e nconst:</strong> identificadores do título e da pessoa.</li>
+                      <li><strong>ordering:</strong> ordem da pessoa nos créditos.</li>
+                      <li><strong>category e job:</strong> categoria e função exercida.</li>
+                      <li><strong>characters:</strong> personagens interpretados, quando aplicável.</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>title.ratings.tsv.gz</h4>
+                    <ul>
+                      <li><strong>tconst:</strong> identificador único do título.</li>
+                      <li><strong>averageRating:</strong> média ponderada das avaliações.</li>
+                      <li><strong>numVotes:</strong> número de votos recebidos.</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>name.basics.tsv.gz</h4>
+                    <ul>
+                      <li><strong>nconst:</strong> identificador único da pessoa.</li>
+                      <li><strong>primaryName:</strong> nome usado nos créditos.</li>
+                      <li><strong>birthYear e deathYear:</strong> anos de nascimento e falecimento.</li>
+                      <li><strong>primaryProfession:</strong> principais profissões.</li>
+                      <li><strong>knownForTitles:</strong> títulos pelos quais a pessoa é conhecida.</li>
+                    </ul>
+                  </section>
+                </div>
+              </details>
+            </section>
+
+            <section class="imdb-story-block">
+              <p class="imdb-step">03 · Modelagem</p>
+              <h3>Relacionamento entre as entidades</h3>
+              <p>
+                O diagrama organiza as chaves usadas para conectar títulos, profissionais,
+                avaliações e versões regionais. Essa etapa foi essencial para planejar os joins
+                e evitar relações ambíguas durante as consultas.
+              </p>
+              <figure class="imdb-media imdb-media--diagram">
+                <img
+                  src="../../assets/projects/imdb/wix-part1-04-diagrama.png"
+                  width="4316"
+                  height="2792"
+                  alt="Diagrama de relacionamento entre as cinco tabelas usadas no projeto IMDb"
+                  loading="lazy"
+                  decoding="async"
+                >
+                <figcaption>Diagrama de relacionamento das entidades analisadas.</figcaption>
+              </figure>
+            </section>
+
+            <section class="imdb-story-block">
+              <p class="imdb-step">04 · Preparação</p>
+              <h3>Conversão dos arquivos e carga no MySQL</h3>
+              <p>
+                Como os arquivos TSV eram grandes demais para conversores on-line, usei Python
+                para padronizar os delimitadores e gerar arquivos CSV. Depois, substituí o Table
+                Import Wizard pelo comando <code>LOAD DATA LOCAL INFILE</code>, que ofereceu uma
+                carga mais adequada ao volume da base.
+              </p>
+              <figure class="imdb-media imdb-media--code">
+                <img
+                  src="../../assets/projects/imdb/wix-part1-05-python-conversao.png"
+                  width="2465"
+                  height="1006"
+                  alt="Script Python usado para converter arquivos TSV em CSV"
+                  loading="lazy"
+                  decoding="async"
+                >
+                <figcaption>Script de conversão e padronização dos arquivos.</figcaption>
+              </figure>
+              <figure class="imdb-media imdb-media--code">
+                <img
+                  src="../../assets/projects/imdb/wix-part1-05-load-data.png"
+                  width="1727"
+                  height="676"
+                  alt="Comando LOAD DATA LOCAL INFILE usado para carregar os dados no MySQL"
+                  loading="lazy"
+                  decoding="async"
+                >
+                <figcaption>Carga em lote dos dados no MySQL.</figcaption>
+              </figure>
+            </section>
+
+            <section class="imdb-story-block">
+              <p class="imdb-step">05 · Escala</p>
+              <h3>O tamanho da base preparada</h3>
+              <p>
+                Ao final da preparação, o conjunto reunia dados históricos de produções e
+                profissionais de mais de 240 países. Os números abaixo descrevem o recorte usado
+                neste estudo.
+              </p>
+              <dl class="imdb-scale-grid">
+                <div><dt>Linhas</dt><dd>158.366.934</dd></div>
+                <div><dt>Arquivos</dt><dd>12,73 GB</dd></div>
+                <div><dt>Colunas</dt><dd>32 em 5 tabelas</dd></div>
+                <div><dt>Cobertura</dt><dd>Mais de 240 países</dd></div>
+              </dl>
+              <p class="imdb-source-note">
+                Fonte: <a href="https://developer.imdb.com/non-commercial-datasets/" target="_blank" rel="noreferrer">IMDb Non-Commercial Datasets</a>.
+              </p>
+            </section>
+          </div>
+        </section>
+
+        <section class="case-section imdb-chapter" id="parte-2" aria-labelledby="titulo-parte-2">
+          <header class="imdb-chapter-header">
+            <p class="imdb-chapter-number">Parte <span>02</span></p>
+            <div>
+              <h2 id="titulo-parte-2">Análises com MySQL e Power BI</h2>
+              <p>
+                Cada bloco parte de uma pergunta, contextualiza a consulta e apresenta primeiro o
+                resultado visual. O SQL correspondente permanece logo abaixo para quem quiser
+                aprofundar a leitura técnica.
               </p>
             </div>
+          </header>
 
-            <p class="case-source">
-              Texto migrado e reorganizado a partir do
-              <a
-                href="https://angejesufern.wixsite.com/angel-mansilla/imdb"
-                target="_blank"
-                rel="noreferrer"
-              >estudo original no Wix</a>.
-              Consultas e materiais no
-              <a
-                href="https://github.com/Ang3k/Analise-SQL-da-Industria-Cinematografica-com-IMDb-e-TMDB"
-                target="_blank"
-                rel="noreferrer"
-              >GitHub</a>.
+          <div class="imdb-analysis-list">
+            <article class="imdb-analysis" id="analise-01">
+              <p class="imdb-step">Análise 01</p>
+              <h3>Os 25 filmes mais bem avaliados no IMDb</h3>
+              <p>
+                A seleção combina a nota média com o volume de votos para reduzir o peso de
+                avaliações pouco representativas. A ordenação prioriza títulos com maior evidência
+                de consenso entre os usuários.
+              </p>
+              <figure class="imdb-media imdb-result">
+                <img src="../../assets/projects/imdb/wix-part2-01-output.png" width="1388" height="770" alt="Gráfico dos 25 filmes mais bem avaliados no IMDb, comparando nota e quantidade de votos" loading="lazy" decoding="async">
+                <figcaption>Nota média e quantidade de avaliações dos 25 títulos selecionados.</figcaption>
+              </figure>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-01-query.png" width="1340" height="1034" alt="Consulta SQL usada para selecionar os 25 filmes mais bem avaliados" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+
+            <article class="imdb-analysis" id="analise-02">
+              <p class="imdb-step">Análise 02</p>
+              <h3>Gêneros mais presentes nos lançamentos de 2024 em diante</h3>
+              <p>
+                A consulta conta os gêneros associados a filmes, séries e curtas com lançamento
+                previsto a partir de 2024, criando um retrato das categorias mais recorrentes nesse
+                recorte da base.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--medium">
+                <img src="../../assets/projects/imdb/wix-part2-02-output.png" width="1092" height="610" alt="Gráfico de gêneros mais presentes nos lançamentos de 2024 em diante" loading="lazy" decoding="async">
+                <figcaption>Distribuição dos gêneros no recorte de lançamentos futuros.</figcaption>
+              </figure>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-02-query.png" width="1164" height="721" alt="Consulta SQL usada para contar gêneros em lançamentos de 2024 em diante" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+
+            <article class="imdb-analysis" id="analise-03">
+              <p class="imdb-step">Análise 03</p>
+              <h3>Faixa etária entre profissionais de atuação</h3>
+              <p>
+                Como a base não trazia a idade pronta, ela foi estimada a partir dos anos de
+                nascimento e falecimento. A função <code>COALESCE</code> permitiu tratar registros
+                sem ano de falecimento e manter o cálculo consistente.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--medium">
+                <img src="../../assets/projects/imdb/wix-part2-03-output.png" width="808" height="589" alt="Gráfico da distribuição de profissionais de atuação por faixa etária" loading="lazy" decoding="async">
+                <figcaption>Distribuição por faixa etária no recorte analisado.</figcaption>
+              </figure>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-03-query.png" width="1481" height="1214" alt="Consulta SQL usada para calcular as faixas etárias" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+
+            <article class="imdb-analysis" id="analise-04">
+              <p class="imdb-step">Análise 04</p>
+              <h3>Curtas e longas-metragens ao longo do tempo</h3>
+              <p>
+                A comparação acompanha a produção de curtas e longas ao longo da série
+                histórica. A extensão temporal da base permite observar como a quantidade relativa
+                de cada formato mudou entre diferentes períodos.
+              </p>
+              <figure class="imdb-media imdb-result">
+                <img src="../../assets/projects/imdb/wix-part2-04-output.png" width="1276" height="715" alt="Gráfico comparando a quantidade de curtas e longas-metragens ao longo dos anos" loading="lazy" decoding="async">
+                <figcaption>Evolução da produção de curtas e longas-metragens.</figcaption>
+              </figure>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-04-query.png" width="1428" height="900" alt="Consulta SQL usada para comparar curtas e longas-metragens" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+
+            <article class="imdb-analysis" id="analise-05">
+              <p class="imdb-step">Análise 05</p>
+              <h3>Duração dos filmes e recepção da crítica</h3>
+              <p>
+                A análise relaciona duração, ano e nota média. No recorte observado, a duração
+                média dos filmes com nota 10 passou de 78 minutos em 2008 para aproximadamente 102
+                minutos em 2024.
+              </p>
+              <figure class="imdb-media imdb-result">
+                <img src="../../assets/projects/imdb/wix-part2-05-output.png" width="1260" height="708" alt="Gráfico relacionando duração dos filmes, ano e avaliação média" loading="lazy" decoding="async">
+                <figcaption>Relação temporal entre duração e avaliação.</figcaption>
+              </figure>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-05-query.png" width="1111" height="945" alt="Consulta SQL usada para relacionar duração e avaliação ao longo do tempo" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+
+            <article class="imdb-analysis" id="analise-06">
+              <p class="imdb-step">Análise 06</p>
+              <h3>Regiões por quantidade de adaptações</h3>
+              <p>
+                A contagem usa as versões regionais dos títulos para mapear onde o conteúdo foi
+                adaptado. Nesse recorte, o Brasil aparece na 13ª posição, com 126.385 registros.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--map">
+                <img src="../../assets/projects/imdb/wix-part2-06-output.png" width="2376" height="1330" alt="Mapa mundial com a quantidade de adaptações de títulos por região" loading="lazy" decoding="async">
+                <figcaption>Distribuição geográfica das adaptações registradas.</figcaption>
+              </figure>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-06-query.png" width="840" height="676" alt="Consulta SQL usada para contar adaptações por região" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+
+            <article class="imdb-analysis" id="analise-07">
+              <p class="imdb-step">Análise 07</p>
+              <h3>Representação de homens e mulheres na atuação</h3>
+              <p>
+                A consulta compara a presença de atores e atrizes ao longo do tempo. O conjunto não
+                possui dados salariais, portanto a leitura se limita à representação nos créditos
+                cadastrados no IMDb.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--map">
+                <img src="../../assets/projects/imdb/wix-part2-07-output.png" width="2546" height="1424" alt="Gráfico comparando a presença de homens e mulheres nos créditos de atuação" loading="lazy" decoding="async">
+                <figcaption>Comparação da representação nos créditos analisados.</figcaption>
+              </figure>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-07-query.png" width="883" height="945" alt="Consulta SQL usada para comparar a representação de homens e mulheres" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+
+            <article class="imdb-analysis" id="analise-08">
+              <p class="imdb-step">Análise 08</p>
+              <h3>Profissionais mais prolíficos da indústria</h3>
+              <p>
+                Esta foi uma das consultas mais exigentes em processamento. Ela conta a recorrência
+                dos nomes nos créditos e destaca os profissionais com maior volume de aparições no
+                recorte estudado.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--medium">
+                <img src="../../assets/projects/imdb/wix-part2-08-output.png" width="1395" height="686" alt="Nuvem de palavras com os profissionais mais recorrentes nos créditos da base" loading="lazy" decoding="async">
+                <figcaption>Profissionais com maior quantidade de créditos registrados.</figcaption>
+              </figure>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-08-query.png" width="1393" height="811" alt="Consulta SQL usada para identificar os profissionais mais prolíficos" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+
+            <article class="imdb-analysis" id="analise-09">
+              <p class="imdb-step">Análise 09</p>
+              <h3>Séries mais antigas ainda em andamento</h3>
+              <p>
+                O filtro identifica séries sem ano de encerramento e as ordena pelo início da
+                produção. O resultado mostra títulos longevos que continuavam recebendo atualizações
+                na data de coleta da base.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--compact">
+                <img src="../../assets/projects/imdb/wix-part2-09-output.png" width="453" height="416" alt="Tabela das séries mais antigas que ainda estavam em andamento" loading="lazy" decoding="async">
+                <figcaption>Séries mais antigas sem ano de encerramento registrado.</figcaption>
+              </figure>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-09-query.png" width="1182" height="721" alt="Consulta SQL usada para listar séries antigas ainda em andamento" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+
+            <aside class="imdb-data-note">
+              <p class="imdb-step">Ampliação da base</p>
+              <p>
+                As quatro análises seguintes incorporam dados do TMDB sobre orçamento e receita.
+                Para preservar o escopo, foram mantidos apenas os filmes com identificador
+                correspondente no IMDb.
+              </p>
+            </aside>
+
+            <article class="imdb-analysis" id="analise-10">
+              <p class="imdb-step">Análise 10</p>
+              <h3>Lucro da indústria cinematográfica por ano</h3>
+              <p>
+                A série histórica agrega o lucro dos filmes entre 1913 e 2024. O gráfico evidencia
+                uma forte queda no período de 2019 a 2021, coincidente com o impacto da pandemia de
+                COVID-19 sobre o setor.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--medium">
+                <img src="../../assets/projects/imdb/wix-part2-10-output.png" width="1055" height="683" alt="Gráfico do lucro agregado da indústria cinematográfica por ano" loading="lazy" decoding="async">
+                <figcaption>Evolução anual do lucro agregado no recorte analisado.</figcaption>
+              </figure>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-10-query.png" width="1006" height="855" alt="Consulta SQL usada para calcular o lucro da indústria por ano" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+
+            <article class="imdb-analysis" id="analise-11">
+              <p class="imdb-step">Análise 11</p>
+              <h3>Orçamento, receita e lucro por empresa</h3>
+              <p>
+                A consulta agrega os valores por ano e usa a empresa principal de cada produção.
+                As duas visualizações mostram o resultado geral e o comportamento de uma empresa
+                selecionada no painel interativo.
+              </p>
+              <div class="imdb-result-gallery" aria-label="Visualizações de resultados por empresa">
+                <figure class="imdb-media imdb-result">
+                  <img src="../../assets/projects/imdb/wix-part2-11-output-b.png" width="5048" height="2848" alt="Gráfico geral de orçamento, receita e lucro por empresa e ano" loading="lazy" decoding="async">
+                  <figcaption>Visão geral das empresas ao longo do tempo.</figcaption>
+                </figure>
+                <figure class="imdb-media imdb-result">
+                  <img src="../../assets/projects/imdb/wix-part2-11-output-a.png" width="5424" height="3056" alt="Gráfico filtrado de orçamento, receita e lucro de uma empresa selecionada" loading="lazy" decoding="async">
+                  <figcaption>Exemplo de leitura com uma empresa selecionada.</figcaption>
+                </figure>
+              </div>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-11-query.png" width="2026" height="1303" alt="Consulta SQL usada para agregar orçamento, receita e lucro por empresa" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+
+            <article class="imdb-analysis" id="analise-12">
+              <p class="imdb-step">Análise 12</p>
+              <h3>Lucro da indústria por região</h3>
+              <p>
+                A consulta agrega os lucros por país e usa uma soma acumulada para comparar a
+                participação regional no recorte. A visualização facilita a identificação de
+                concentrações geográficas.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--map">
+                <img src="../../assets/projects/imdb/wix-part2-12-output.png" width="2706" height="1512" alt="Mapa mundial do lucro da indústria cinematográfica por região" loading="lazy" decoding="async">
+                <figcaption>Distribuição regional do lucro no recorte analisado.</figcaption>
+              </figure>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-12-query.png" width="1939" height="900" alt="Consulta SQL usada para calcular o lucro por região" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+
+            <article class="imdb-analysis" id="analise-13">
+              <p class="imdb-step">Análise 13</p>
+              <h3>Lucro e avaliação por gênero</h3>
+              <p>
+                A última análise compara retorno financeiro e avaliação média. Documentários,
+                por exemplo, aparecem com notas altas e lucros menores, enquanto outros gêneros
+                seguem uma relação diferente entre recepção e resultado financeiro.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--medium">
+                <img src="../../assets/projects/imdb/wix-part2-13-output.png" width="1018" height="709" alt="Gráfico comparando lucro e avaliação média por gênero cinematográfico" loading="lazy" decoding="async">
+                <figcaption>Comparação entre lucro e avaliação por gênero.</figcaption>
+              </figure>
+              <details class="imdb-query">
+                <summary>Ver consulta SQL</summary>
+                <figure>
+                  <img src="../../assets/projects/imdb/wix-part2-13-query.png" width="1235" height="990" alt="Consulta SQL usada para comparar lucro e avaliação por gênero" loading="lazy" decoding="async">
+                </figure>
+              </details>
+            </article>
+          </div>
+        </section>
+
+        <section class="case-section imdb-chapter" id="parte-3" aria-labelledby="titulo-parte-3">
+          <header class="imdb-chapter-header">
+            <p class="imdb-chapter-number">Parte <span>03</span></p>
+            <div>
+              <h2 id="titulo-parte-3">Síntese dos principais insights</h2>
+              <p>
+                A etapa final reorganiza as observações da análise em quatro temas, preservando o
+                contexto e as limitações do conjunto de dados.
+              </p>
+            </div>
+          </header>
+
+          <div class="imdb-insight-grid">
+            <article>
+              <p class="imdb-step">01</p>
+              <h3>Profissionais da indústria</h3>
+              <p>
+                A maior parte dos profissionais de atuação vivos no recorte é adulta, enquanto
+                atores mirins representam uma parcela pequena. A diferença entre homens e mulheres
+                nos créditos diminuiu em relação a décadas anteriores, mas ainda permanece visível.
+              </p>
+            </article>
+            <article>
+              <p class="imdb-step">02</p>
+              <h3>Economia do setor</h3>
+              <p>
+                A série analisada mostra crescimento de longo prazo e uma queda acentuada durante a
+                pandemia. Os maiores resultados financeiros se concentram no hemisfério norte, com
+                destaque para os Estados Unidos.
+              </p>
+            </article>
+            <article>
+              <p class="imdb-step">03</p>
+              <h3>Gêneros e lançamentos</h3>
+              <p>
+                Ação, comédia e aventura aparecem entre os gêneros mais lucrativos do recorte,
+                enquanto documentário, história e mistério obtêm avaliações mais altas em alguns
+                casos. Para 2024 em diante, drama, comédia, documentário e ação eram os gêneros mais
+                recorrentes na base.
+              </p>
+            </article>
+            <article>
+              <p class="imdb-step">04</p>
+              <h3>Escala e distribuição</h3>
+              <p>
+                A Europa, a Índia e o Japão concentram muitos registros de adaptações. Entre os
+                títulos com maior consenso entre nota e quantidade de votos estão Um Sonho de
+                Liberdade, O Poderoso Chefão e Batman: O Cavaleiro das Trevas.
+              </p>
+            </article>
+          </div>
+
+          <div class="imdb-conclusion">
+            <p class="imdb-step">Conclusão</p>
+            <h3>Um primeiro ciclo completo de análise</h3>
+            <p>
+              O projeto percorreu o fluxo completo: escolha da fonte, preparação de arquivos de
+              grande volume, modelagem relacional, consultas SQL, visualização e comunicação dos
+              resultados. A narrativa da MoviesNow ajudou a conectar o trabalho técnico a perguntas
+              de negócio e consolidou os aprendizados obtidos ao longo do estudo.
             </p>
-          </section>
-        </article>
-      </div>
-
-      <section class="case-next">
-        <a class="container" href="../quinto-andar/index.html">
-          <span>Próximo estudo</span>
-          <strong>Web scraping e dados do QuintoAndar</strong>
-          <i aria-hidden="true">→</i>
-        </a>
-      </section>
+            <a href="https://github.com/Ang3k/Analise-SQL-da-Industria-Cinematografica-com-IMDb-e-TMDB" target="_blank" rel="noreferrer">
+              Ver repositório no GitHub <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
+      </article>
     </main>
 
     <footer class="case-footer">

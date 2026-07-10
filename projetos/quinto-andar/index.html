@@ -7,7 +7,7 @@
       name="description"
       content="Estudo de caso de Angel Mansilla sobre web scraping e análise de dados imobiliários do QuintoAndar."
     >
-    <meta name="theme-color" content="#f4f3ef">
+    <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Web scraping e dados do QuintoAndar | Angel Mansilla">
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../../case-study.css">
   </head>
-  <body class="case-page" id="top">
+  <body class="case-page quinto-andar-case" id="top">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
     <header class="case-topbar">
@@ -58,25 +58,24 @@
           <div class="case-hero-grid">
             <div>
               <p class="case-kicker">Selenium · BeautifulSoup · MySQL · Power BI</p>
-              <h1>Dados imobiliários do <em>QuintoAndar</em></h1>
+              <h1>WebScraping and Analysing Data on <em>QuintoAndar</em></h1>
             </div>
             <p class="case-lead">
-              Construção de um conjunto de dados original por meio de web
-              scraping, seguido de limpeza, modelagem relacional e análise do
-              mercado imobiliário.
+              Estudo de caso sobre coleta, organização e análise de dados
+              imobiliários.
             </p>
           </div>
           <dl class="case-hero-stats">
             <div>
-              <dt>Imóveis coletados</dt>
-              <dd>8.250 registros informados</dd>
+              <dt>Linhas</dt>
+              <dd>8.250 imóveis</dd>
             </div>
             <div>
-              <dt>Estrutura</dt>
-              <dd>16 colunas · 4 tabelas</dd>
+              <dt>Colunas</dt>
+              <dd>16 entre 4 tabelas</dd>
             </div>
             <div>
-              <dt>Período</dt>
+              <dt>Coleta</dt>
               <dd>2023 a 2024</dd>
             </div>
           </dl>
@@ -85,330 +84,617 @@
 
       <figure class="case-cover">
         <img
-          src="../../wix-images-to-use/QuintoAndar-lanca-modelo-de-assessoria-para-multiplos-imoveis_edited_edited_edited.jpg"
+          src="../../assets/projects/quinto-andar/QuintoAndar-lanca-modelo-de-assessoria-para-multiplos-imoveis_edited_edited_edited.jpg"
           alt="Marca QuintoAndar sobre fundo azul"
         >
       </figure>
 
       <div class="case-layout container">
-        <aside class="case-toc" aria-label="Índice do estudo de caso">
-          <p>Neste estudo</p>
-          <ol>
-            <li><a href="#objetivo">Objetivo</a></li>
-            <li><a href="#coleta">Web scraping</a></li>
-            <li><a href="#dados">Dados e modelagem</a></li>
-            <li><a href="#analise">Análise com SQL</a></li>
-            <li><a href="#reflexoes">Dashboard e reflexões</a></li>
-          </ol>
-        </aside>
-
         <article class="case-content">
           <section class="case-section" id="objetivo">
             <p class="case-part">Visão geral</p>
-            <h2>Objetivo e ferramentas</h2>
-            <p class="case-intro">
-              Neste projeto, objetivei desenvolver um conjunto de dados único,
+            <h2>Objetivo</h2>
+            <p>
+              Nesse projeto, objetivei desenvolver um conjunto de dados único,
               para trabalhar com algo mais original e treinar minhas capacidades
-              com APIs e web scraping.
+              com API´s e WebScraping, fiz isso extraindo informações
+              imobiliárias da empresa "QuintoAndar" em seu site, posteriormente
+              realizando análises nos mesmos.
             </p>
+
+            <h3>Ferramentas Utilizadas</h3>
             <p>
-              Fiz isso extraindo informações imobiliárias da empresa
-              QuintoAndar em seu site e, posteriormente, realizando análises nos
-              dados coletados.
+              Nesse projeto utilizei da linguagem Python, e suas bibliotecas
+              Pandas, Selenium e BS4, para o data mining e criação de datasets,
+              além do MySQL para análises e o Power BI para as visualizações dos
+              insights.
             </p>
-            <p>
-              Utilizei Python e as bibliotecas Pandas, Selenium e BeautifulSoup
-              para o data mining e a criação dos datasets, além de MySQL para as
-              análises e Power BI para a visualização dos insights.
-            </p>
-            <ul class="tool-list" aria-label="Ferramentas do projeto">
-              <li>Python</li>
-              <li>Pandas</li>
-              <li>Selenium</li>
-              <li>BeautifulSoup</li>
-              <li>MySQL</li>
-              <li>Power BI</li>
-            </ul>
+            <div class="wix-tool-grid" aria-label="Ferramentas utilizadas no projeto">
+              <figure>
+                <img
+                  src="../../assets/projects/quinto-andar/ferramenta-mysql.png"
+                  alt="Logo do MySQL"
+                  loading="lazy"
+                >
+              </figure>
+              <figure>
+                <img
+                  src="../../assets/projects/quinto-andar/ferramenta-power-bi.png"
+                  alt="Logo do Power BI"
+                  loading="lazy"
+                >
+              </figure>
+              <figure>
+                <img
+                  src="../../assets/projects/quinto-andar/ferramenta-beautifulsoup.png"
+                  alt="Logo do Beautiful Soup"
+                  loading="lazy"
+                >
+              </figure>
+              <figure>
+                <img
+                  src="../../assets/projects/quinto-andar/ferramenta-python.png"
+                  alt="Logo do Python"
+                  loading="lazy"
+                >
+              </figure>
+              <figure>
+                <img
+                  src="../../assets/projects/quinto-andar/ferramenta-pandas.png"
+                  alt="Logo do Pandas"
+                  loading="lazy"
+                >
+              </figure>
+              <figure>
+                <img
+                  src="../../assets/projects/quinto-andar/ferramenta-selenium.png"
+                  alt="Logo do Selenium"
+                  loading="lazy"
+                >
+              </figure>
+            </div>
           </section>
 
           <section class="case-section" id="coleta">
-            <p class="case-part">Parte 1</p>
-            <h2>Web scraping e limpeza em Python</h2>
+            <p class="case-part">PARTE 1</p>
+            <h2>Web Scraping e Data Cleaning em Python</h2>
 
-            <h3>1. Contexto de negócio</h3>
+            <h3>1 - Contexto de Negócio</h3>
             <p>
               Roberto, um corretor de imóveis, decide se mudar para o Rio de
-              Janeiro em busca de melhores oportunidades de trabalho. Porém,
-              percebe que as características, valores e itens dos imóveis são
-              diferentes daqueles com os quais está acostumado, reduzindo a
-              efetividade de seu serviço.
+              Janeiro em busca de melhores oportunidades de trabalho, porém, ele
+              percebe que as características, valores e itens que os imóveis
+              possuem são diferentes dos que ele está acostumado, gerando
+              problemas na efetividade de seu serviço.
             </p>
             <p>
-              Ele encontra uma possível solução ao decidir realizar uma análise
-              de dados no site do QuintoAndar, uma das principais plataformas de
-              venda e aluguel de imóveis, que reúne informações detalhadas sobre
-              valores, interiores e outros atributos.
+              Então, ele encontrou uma possível solução para seu problema,
+              Roberto decidiu realizar uma análise de dados no site da empresa
+              "QuintoAndar", uma das principais plataformas de venda e aluguel
+              de imóveis, que possui informações detalhadas sobre valores,
+              interiores dos imóveis, além de outras coisas.
             </p>
 
-            <h3>2. Extração de dados</h3>
+            <h3>2 - Extração de Dados</h3>
             <p>
-              Primeiramente, busquei uma API para realizar a coleta. Entretanto,
-              a maioria dos sites semelhantes ao QuintoAndar não possuía uma API
-              ou limitava demais as consultas gratuitas. Por isso, optei por
-              realizar web scraping com Python, usando BeautifulSoup4 e Selenium.
-            </p>
-            <p>
-              Mesmo que inicialmente o projeto tenha sido pensado para utilizar
-              apenas BeautifulSoup, fez-se necessário usar Selenium devido à
-              dinamicidade do site e ao conteúdo carregado com JavaScript.
+              Primeiramente, busquei uma API para realizar a coleta dos dados,
+              entretanto, encontrei que a maioria dos sites semelhantes ao
+              QuintoAndar, ou não possuem uma API, ou as que possuem não permitem
+              muitas consultas para usuários gratuitos, por isso, optei por
+              realizar Web Scraping com Python, usando das bibliotecas
+              BeautifulSoup4 e Selenium para isso.
             </p>
             <figure class="case-figure">
               <img
-                src="../../wix-images-to-use/codetoimg-snippet (28).png"
-                alt="Trecho de código Python com as bibliotecas usadas no web scraping"
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (28).png"
+                alt="Importações Python utilizadas para a coleta de dados"
                 loading="lazy"
               >
-              <figcaption>Preparação do ambiente de coleta.</figcaption>
+              <figcaption>Importações utilizadas no projeto.</figcaption>
             </figure>
-
-            <h3>3. Web scraping em Python</h3>
             <p>
-              O processo para extrair o conteúdo era simples, mas complexo em
-              execução. Existiam links escondidos nas imagens que redirecionavam
-              para páginas com os dados completos dos imóveis.
-            </p>
-            <p>
-              Programei o Selenium para atravessar o site e clicar em “Ver mais”
-              por uma quantidade opcional de vezes. Depois, o HTML completo era
-              entregue ao BeautifulSoup. Uma função chamada
-              <code>extrair_links</code> identificava os links escondidos com
-              base em um padrão encontrado durante a exploração.
-            </p>
-            <p>
-              Esses links continham preço, quantidade de quartos, IPTU e várias
-              outras informações. Criei cerca de onze funções para extrair e
-              limpar os conteúdos. Por exemplo, remover “R$” dos preços e
-              transformar a identificação do imóvel em uma chave numérica.
-            </p>
-            <p>
-              As informações foram agrupadas em quatro datasets de categorias
-              semelhantes, posteriormente concatenados com os demais arquivos de
-              estados do Sudeste.
-            </p>
-          </section>
-
-          <section class="case-section" id="dados">
-            <p class="case-part">Parte 1 · Continuação</p>
-            <h2>Carregamento e estrutura dos dados</h2>
-            <p>
-              Com o web scraping concluído, os dados foram colocados em arquivos
-              CSV e carregados no MySQL. As quatro tabelas foram criadas conforme
-              as especificações do dicionário e preenchidas com
-              <code>LOAD DATA LOCAL INFILE</code>.
+              Mesmo que inicialmente esse projeto tenha sido visado para utilizar
+              apenas o BS4, fez-se necessário a utilização do Selenium, visto a
+              dinamicidade do site, graças a utilização de JavaScript, que o BS4
+              não consegue lidar muito bem. Na imagem acima, constam todas as
+              importações feitas desse projeto.
             </p>
 
-            <h3>Dicionário de dados</h3>
-            <details class="data-details">
-              <summary>Tabela 1: Descrição do imóvel</summary>
-              <dl>
-                <dt>ID</dt><dd>Identificador único do imóvel.</dd>
-                <dt>Tipo</dt><dd>Tipo de imóvel.</dd>
-                <dt>Descrição</dt><dd>Descrição detalhada.</dd>
-                <dt>Bairro</dt><dd>Bairro onde está localizado.</dd>
-                <dt>Logradouro</dt><dd>Endereço completo.</dd>
-                <dt>Publicação(Dias)</dt><dd>Dias desde a publicação do anúncio.</dd>
-              </dl>
-            </details>
-            <details class="data-details">
-              <summary>Tabela 2: Custos</summary>
-              <dl>
-                <dt>ID</dt><dd>Identificador único do imóvel.</dd>
-                <dt>Preço</dt><dd>Preço de venda.</dd>
-                <dt>Condomínio</dt><dd>Valor do condomínio.</dd>
-                <dt>IPTU</dt><dd>Valor mensal do IPTU.</dd>
-              </dl>
-            </details>
-            <details class="data-details">
-              <summary>Tabela 3: Especificações internas</summary>
-              <dl>
-                <dt>Quartos</dt><dd>Número de quartos.</dd>
-                <dt>Área</dt><dd>Área total em metros quadrados.</dd>
-                <dt>Proximidade com metrô</dt><dd>Indica se existe metrô próximo.</dd>
-                <dt>Vagas</dt><dd>Vagas de estacionamento.</dd>
-                <dt>Banheiros</dt><dd>Número de banheiros.</dd>
-                <dt>Andares</dt><dd>Faixa de andares em que se localiza.</dd>
-                <dt>Mobiliagem</dt><dd>Indica se é mobiliado.</dd>
-              </dl>
-            </details>
-            <details class="data-details">
-              <summary>Tabela 4: Expansão dos itens</summary>
-              <dl>
-                <dt>ID</dt><dd>Identificador único do imóvel.</dd>
-                <dt>Item</dt><dd>Item presente no imóvel, extraído da descrição.</dd>
-              </dl>
-            </details>
-
+            <h3>3 - WebScraping em Python</h3>
+            <p>
+              O processo para extrair o conteúdo do site era simples, mas
+              complexo, existiam links escondidos nas imagens que redirecionavam
+              para outro site com conteúdo completo do imóvel, para isso,
+              programei o Selenium para atravessar o site e clicar no "Ver mais",
+              por uma quantidade opcional de vezes, e então, que extraísse todo o
+              HTML do site, onde estão todos os links, para que tal conteúdo fosse
+              utilizado pelo BeautifulSoup4.
+            </p>
             <figure class="case-figure">
               <img
-                src="../../wix-images-to-use/Untitled (2).png"
-                alt="Diagrama de relacionamento entre as tabelas de imóveis, custos, especificações e itens"
+                src="../../assets/projects/quinto-andar/webscraping-fluxo-links.png"
+                alt="Fluxo de navegação usado para obter links de imóveis"
+                loading="lazy"
+              >
+              <figcaption>Etapa de obtenção dos links de imóveis.</figcaption>
+            </figure>
+            <p>
+              Com todo o HTML recebido, ele foi passado como parâmetro para a
+              função extrair_links, que copiava todos links escondidos nas
+              imagens, baseado em um padrão que identifiquei, e então, adicionava
+              todos esses links através de uma list comprehension, e retornasse
+              ao usuário essa mesma lista de links.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (30).png"
+                alt="Código da função extrair_links em Python"
+                loading="lazy"
+              >
+              <figcaption>Função para localizar os links de cada imóvel.</figcaption>
+            </figure>
+            <p>
+              Nesses links, estão contidas diversas informações sobre o imóvel,
+              como preço, número de quartos, IPTU, dentre outros, e com a lista de
+              links pronta, eu criei diversas funções para extrair e limpar esses
+              conteúdos, exemplo: remover R$ dos preços, mas por serem muitas,
+              cerca de onze no total, apenas irei relatar a primeira delas, que
+              extrai a identificação dos imóveis, que servirá de primary_key
+              futuramente.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (33).png"
+                alt="Código Python para extrair a identificação dos imóveis"
+                loading="lazy"
+              >
+              <figcaption>Extração da identificação do imóvel.</figcaption>
+            </figure>
+            <p>
+              Essa função possui duas funções, a primeira sendo localizar o
+              elemento ID em um link fornecido, garantindo que mesmo que não seja
+              encontrado, o ID receba a string: "Not Informed", evitando
+              truncamentos, já a segunda é limpar as ID´s encontradas de sua parte
+              de texto "Imóvel", permitindo que tornem-se inteiros, isso foi feito
+              com o uso da função replace do Python, após isso, todos os elementos
+              são adicionados na última posição da lista_id.
+            </p>
+            <p>
+              Com isso, as principais informações foram extraídas dos sites e
+              colocadas em listas, que foram agrupadas em 4 datasets de categorias
+              semelhantes, que serão concatenados com outros 8 datasets com as
+              mesmas colunas, mas com linhas que referenciam a outros estados do
+              sudeste, mais informações sobre o escopo dos dados futuramente.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (39).png"
+                alt="Código Python para organizar os datasets extraídos"
+                loading="lazy"
+              >
+              <figcaption>Organização final dos datasets de coleta.</figcaption>
+            </figure>
+            <p>
+              Repetindo uma última vez, informações completas sobre o
+              funcionamento desse código, de sua lógica, limpeza e funções está
+              disponível em um notebook Jupyter em meu GITHUB, presente no
+              cabeçalho desta página ao lado do LinkedIn.
+            </p>
+
+            <h3>4 - Carregamento dos Dados</h3>
+            <p>
+              Com o WebScraping concluído, os dados foram colocados em arquivos
+              CSV, e estão prontos para serem carregados à database do MySQL,
+              logicamente tive de criar as quatro tables antes, todas criadas nas
+              especificações dadas no Dicionário de Dados, e então utilizei o LOAD
+              DATA LOCAL INFILE para adicionar os arquivos nessas tables, tal como
+              aprendi no último projeto.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (37).png"
+                alt="Código SQL para carregar arquivos CSV no MySQL"
+                loading="lazy"
+              >
+              <figcaption>Carregamento dos arquivos CSV no MySQL.</figcaption>
+            </figure>
+
+            <h3>5 - Dicionário de Dados</h3>
+            <div class="wix-dictionary">
+              <h4>Tabela 1: Descrição do Imóvel</h4>
+              <ul>
+                <li>ID: Identificador único do imóvel (inteiro).</li>
+                <li>Tipo: Tipo de imóvel (string).</li>
+                <li>Descrição: Descrição detalhada do imóvel (string).</li>
+                <li>Bairro: Bairro onde o imóvel está localizado (string).</li>
+                <li>Logradouro: Endereço completo do imóvel (string).</li>
+                <li>Publicação(Dias): Número de dias desde a publicação do anúncio (inteiro).</li>
+              </ul>
+
+              <h4>Tabela 2: Informações de Custos do Imóvel</h4>
+              <ul>
+                <li>ID: Identificador único do imóvel (inteiro).</li>
+                <li>Preço: Preço do imóvel (float).</li>
+                <li>Condomínio: Valor do condomínio associado ao imóvel (float).</li>
+                <li>IPTU: Valor do Imposto Predial e Territorial Urbano (IPTU) mensal (float).</li>
+              </ul>
+
+              <h4>Tabela 3: Especificações Internas do Imóvel</h4>
+              <ul>
+                <li>ID: Identificador único do imóvel (inteiro).</li>
+                <li>Quartos: Número de quartos no imóvel (inteiro).</li>
+                <li>Área: Área total do imóvel em metros quadrados (float).</li>
+                <li>Proximidade com Metrô: Indica se o imóvel está próximo de um metrô (string).</li>
+                <li>Vagas: Número de vagas de estacionamento disponíveis (inteiro).</li>
+                <li>Banheiros: Número de banheiros no imóvel (inteiro).</li>
+                <li>Andares: Indica entre quais andares se localiza o imóvel (string).</li>
+                <li>Mobiliagem: Indicação se o imóvel é mobiliado.(string)</li>
+              </ul>
+
+              <h4>Tabela 4: Expansão dos Itens do Imóvel</h4>
+              <ul>
+                <li>ID: Identificador único do imóvel (inteiro).</li>
+                <li>Item: Itens presentes no imóvel, explosão da "Descrição" (string).</li>
+              </ul>
+            </div>
+
+            <h3>6 - Diagrama de Relacionamento de Entidades</h3>
+            <p>
+              Após a carga, as tabelas foram organizadas para relacionar imóveis,
+              custos, especificações e itens. O diagrama abaixo mostra como essas
+              informações se conectam antes das consultas analíticas.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/Untitled (2).png"
+                alt="Diagrama de relacionamento das tabelas de imóveis, custos, especificações e itens"
                 loading="lazy"
               >
               <figcaption>Diagrama de relacionamento de entidades.</figcaption>
             </figure>
 
-            <h3>Escopo da coleta</h3>
+            <h3>7 - Escopo de Dados e Informações Adicionais</h3>
             <p>
-              Eu adoraria ter um conjunto maior, com informações de todo o Brasil
-              e mais imóveis, mas, por limitações do site e de desempenho no
-              computador, essa foi a maior quantidade que consegui extrair.
-              Ainda assim, o material foi suficiente para gerar bons insights
-              sobre a região.
+              Finalmente, com todos os dados carregados no MySQL, a análise pode
+              começar, e nessa seção final da Parte 1, irei demarcar alguns pontos
+              interessantes sobre o escopo dos dados, eu adoraria ter um conjunto
+              maior com informações sobre todo o Brasil e mais imóveis, mas por
+              conta de limitações do site sobre as regiões e também desempenho no
+              PC, essa foi quantidade maior que consegui extrair, ainda assim, de
+              certo conseguirei extrair bons insights sobre a região!
             </p>
-            <div class="metric-grid">
-              <div><span>Linhas informadas</span><strong>8.250</strong></div>
-              <div><span>Colunas</span><strong>16</strong></div>
-              <div><span>Período</span><strong>2023 a 2024</strong></div>
+            <div class="wix-info-grid">
+              <div>
+                <span>Linhas</span>
+                <strong>8250 linhas de imóveis, sendo 2950 para cada estado</strong>
+              </div>
+              <div>
+                <span>Período de Coleta</span>
+                <strong>Dados abrangendo do ano de 2023-2024</strong>
+              </div>
+              <div>
+                <span>Colunas</span>
+                <strong>16 colunas distintas entre as 4 tables</strong>
+              </div>
+              <div>
+                <span>Agradecimento</span>
+                <strong>Usuários do Reddit BrDev, Dados Brasil e Stack, muito obrigado!</strong>
+              </div>
+              <div>
+                <span>Região de Coleta</span>
+                <strong>Capitais dos estados do sudeste brasileiro</strong>
+              </div>
             </div>
-            <div class="case-note">
-              <p>
-                O texto original também registra “2.950 imóveis para cada
-                estado”, valor que não fecha com o total de 8.250. Mantive o
-                número geral informado no projeto, mas essa contagem precisa ser
-                conferida na base antes de uma afirmação definitiva.
-              </p>
-            </div>
-            <p>
-              Agradeço aos usuários do Reddit BrDev, Dados Brasil e Stack, que
-              contribuíram com comentários ao longo do desenvolvimento.
-            </p>
+            <p class="wix-centered-link">Para mais informações: Clique Aqui</p>
           </section>
 
           <section class="case-section" id="analise">
-            <p class="case-part">Parte 2</p>
-            <h2>Analisando com MySQL e Power BI</h2>
+            <p class="case-part">PARTE 2</p>
+            <h2>Analisando com MySQL e PowerBI</h2>
             <p class="case-intro">
-              A seguir estão as queries mais interessantes do projeto,
-              acompanhadas de contexto e visualizações criadas para tornar os
-              resultados mais claros.
+              Nessa seção do projeto, encontram-se as principais, e mais
+              interessantes queries que foram desenvolvidas ao longo desse
+              projeto, junto à elas estão alguns comentários que ajudam a trazer
+              contexto, curiosidades, e melhoram o storytelling num geral, além
+              de visualizações feitas em Power BI, na intenção de explicitar o
+              conteúdo fornecido pelos códigos.
             </p>
 
-            <h3>1. Média de preço por tipo de imóvel</h3>
+            <h3>1 - Média de Preço por Tipo de Imóvel</h3>
             <p>
-              A query mostra a variação de preço por tipo de imóvel, organizada
-              em ordem decrescente e agrupada por capital. Belo Horizonte lidera
-              nos preços de casas e apartamentos. Studios são a opção mais barata;
-              apenas em São Paulo apresentam custo semelhante ao de apartamentos.
+              Essa query oferece uma visão da variação de preço de acordo com o
+              tipo de imóvel em venda. Os preços são organizados em ordem
+              decrescente e agrupados por capitais, revelando insights sobre as
+              tendências de mercado em diferentes regiões.
             </p>
-
-            <h3>2. Quantidade de imóveis por tipo</h3>
-            <p>
-              Rio de Janeiro e Belo Horizonte possuem 95,8% de seus imóveis
-              classificados como casas ou apartamentos. Em São Paulo, 8% dos
-              imóveis à venda são studios, fazendo da cidade a líder nessa
-              categoria.
-            </p>
-
-            <h3>3. Preço e mobília</h3>
-            <p>
-              A consulta demonstra como a presença de mobília afeta tipos de
-              imóveis de maneiras diferentes. Casas sem mobília custam 2,26% a
-              menos; apartamentos, 7,44%; e studios, 17,85%.
-            </p>
-
-            <h3>4. Preço e data de publicação</h3>
-            <p>
-              Embora o gráfico seja crescente, isso não implica aumento dos
-              preços ao longo do tempo. Indica que anúncios antigos tendem a
-              receber reduções: em média, os imóveis custam cerca de 40,8% menos
-              após um ano de publicação.
-            </p>
-
-            <h3>5. Principais logradouros por capital</h3>
-            <p>
-              A query mostra os dez logradouros com maior quantidade de imóveis
-              em diferentes capitais, ajudando a evidenciar pontos de
-              oportunidade.
-            </p>
-
-            <h3>6. Padrão de publicação ao longo da semana</h3>
-            <p>
-              Existe aparentemente um padrão: nos finais de semana, as pessoas
-              costumam publicar mais imóveis. Quarta e quinta-feira são os dias
-              de menor movimento.
-            </p>
-
-            <h3>7. Custo por metro quadrado</h3>
-            <p>
-              São Paulo é a capital com maior custo por metro quadrado, com
-              destaque para Jardins. Rio de Janeiro e Belo Horizonte disputam a
-              segunda posição, com bairros como Humaitá e Glória entre os mais
-              caros.
-            </p>
-
-            <h3>8. Itens mais e menos comuns</h3>
-            <p>
-              Para casas e apartamentos, box, área de serviço e armários na
-              cozinha aparecem como itens quase indispensáveis. Em studios, área
-              de serviço é menos comum. Salão de jogos, academia e sauna estão
-              entre os itens mais raros.
-            </p>
-
             <figure class="case-figure">
               <img
-                src="../../wix-images-to-use/codetoimg-snippet (41).png"
-                alt="Trecho de consulta SQL do estudo imobiliário"
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (41).png"
+                alt="Query SQL de média de preço por tipo de imóvel"
                 loading="lazy"
               >
-              <figcaption>Exemplo de consulta utilizada na etapa analítica.</figcaption>
+              <figcaption>Consulta de média de preço por tipo de imóvel.</figcaption>
             </figure>
+            <p>Belo Horizonte lidera em preços para Casas e Apartamentos.</p>
+            <p>Studios são a opção mais barata para Imóveis.</p>
+            <p>Unicamente em São Paulo, Studios possuem custo similar ao de Apartamentos.</p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/media-preco-por-tipo.png"
+                alt="Visualização da média de preço por tipo de imóvel e capital"
+                loading="lazy"
+              >
+              <figcaption>Média de preço por tipo de imóvel.</figcaption>
+            </figure>
+
+            <h3>2 - Distribuição da Quantidade de Imóveis por Tipo</h3>
+            <p>
+              Essa query mostra a diferença entre a quantidade de imóveis sendo
+              vendidos por cada tipo de imóvel, foi uma surpresa pra mim descobrir
+              que o tipo "Studio" existia, isso pois num geral ele pouco/nunca
+              aparecia antes do Web Scraping. Nela, temos uma visão sobre quais
+              tipos de imóveis são mais comuns de serem anunciados para venda por
+              cada Capital.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (42).png"
+                alt="Query SQL de distribuição da quantidade de imóveis por tipo"
+                loading="lazy"
+              >
+              <figcaption>Consulta de distribuição por tipo de imóvel.</figcaption>
+            </figure>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/distribuicao-imoveis-por-tipo.png"
+                alt="Visualização da distribuição de imóveis por tipo e capital"
+                loading="lazy"
+              >
+              <figcaption>Quantidade de imóveis por tipo.</figcaption>
+            </figure>
+            <p>Rio de Janeiro e Belo Horizonte possuem 95,8% dos imóveis como Casas e Apartamentos.</p>
+            <p>Em São Paulo 8% dos imóveis à venda são Studios, sendo o líder nesse Tipo de Imóvel.</p>
+
+            <h3>3 - Variação de Preço do Tipo de Imóvel em Relação à Mobília</h3>
+            <p>
+              Nessa query, demonstro a diferença de preços entre os diferentes
+              tipos de imóveis, com base na presença ou ausência de mobília. É
+              interessante perceber que alguns tipos de imóveis são mais
+              influenciados por esse fator do que outros.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (43).png"
+                alt="Query SQL de preço de imóveis em relação à mobília"
+                loading="lazy"
+              >
+              <figcaption>Consulta sobre preço e mobília.</figcaption>
+            </figure>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/preco-mobilia.png"
+                alt="Visualização da variação de preço de acordo com a mobília"
+                loading="lazy"
+              >
+              <figcaption>Variação de preço em relação à mobília.</figcaption>
+            </figure>
+            <p>Casas são as menos afetadas pela falta de mobília, custando 2.26% à menos.</p>
+            <p>Apartamentos são moderamente afetados, custando 7.44% à menos.</p>
+            <p>Studios são os mais afetados pela falta de mobília, custando 17,85% à menos.</p>
+
+            <h3>4 - Média de Preços em relação à Data de Publicação</h3>
+            <p>
+              Uma query interessante que demonstra como os preços variam com base
+              no tempo de publicação dos anúncios. É interessante observar que,
+              embora o gráfico seja crescente, isso não implica necessariamente em
+              aumento dos preços com o tempo. Na verdade, indica que as pessoas
+              tendem a reduzir os preços à medida que o tempo desde a publicação
+              aumenta.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (44).png"
+                alt="Query SQL de média de preço em relação à data de publicação"
+                loading="lazy"
+              >
+              <figcaption>Consulta sobre preço e data de publicação.</figcaption>
+            </figure>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/preco-por-publicacao.png"
+                alt="Visualização do preço médio conforme o tempo de publicação"
+                loading="lazy"
+              >
+              <figcaption>Preço médio conforme o tempo de publicação.</figcaption>
+            </figure>
+            <p>Todos os preços apresentam quedas após certo tempo de publicação.</p>
+            <p>Em média, imóveis custam cerca de de 40.8% à menos após 1 ano de publicação.</p>
+
+            <h3>5 - Principais Logradouros por Capital com Base na Quantidade de Imóveis</h3>
+            <p>
+              Essa query mostra os 10 logradouros mais importantes em diferentes
+              capitais, ajudando a evidenciar os principais pontos de oportunidade
+              em cada uma delas.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (46).png"
+                alt="Query SQL dos principais logradouros por capital"
+                loading="lazy"
+              >
+              <figcaption>Consulta dos logradouros por capital.</figcaption>
+            </figure>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/logradouros-por-capital.png"
+                alt="Visualização dos principais logradouros por capital"
+                loading="lazy"
+              >
+              <figcaption>Principais logradouros por capital.</figcaption>
+            </figure>
+
+            <h3>6 - Padrão de Publicação de Imóveis ao Longo da Semana</h3>
+            <p>
+              Esta query, relativamente simples, conta a quantidade de imóveis
+              publicados em cada dia da semana. Para isso, subtrai do dia atual a
+              quantidade de dias desde a criação do anúncio, extraindo o dia da
+              semana com a função date_format("%W").
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (47).png"
+                alt="Query SQL do padrão semanal de publicação de imóveis"
+                loading="lazy"
+              >
+              <figcaption>Consulta de publicação por dia da semana.</figcaption>
+            </figure>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/publicacao-semanal.png"
+                alt="Visualização do padrão de publicação de imóveis durante a semana"
+                loading="lazy"
+              >
+              <figcaption>Padrão semanal de publicação de imóveis.</figcaption>
+            </figure>
+            <p>Existe, aparentemente, um padrão no dia da publicação de anúncios.</p>
+            <p>Num geral, nos finais de semana as pessoas costumas publicar mais imóveis.</p>
+            <p>No meio da semana, quarta e quinta feira, são os dias de menor movimento.</p>
+
+            <h3>7 - Proporção de Custo x Metro Quadrado entre os Bairros</h3>
+            <p>
+              Nesta query, podemos observar o padrão de localização dos imóveis de
+              maior custo por metro quadrado, identificando os 10 bairros com maior
+              proporção em cada capital. Utilizei a window function row_number()
+              ordenada pela proporção decrescente para obter essa classificação.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (48).png"
+                alt="Query SQL de custo por metro quadrado entre bairros"
+                loading="lazy"
+              >
+              <figcaption>Consulta de custo por metro quadrado.</figcaption>
+            </figure>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/custo-metro-quadrado.png"
+                alt="Visualização da proporção de custo por metro quadrado entre bairros"
+                loading="lazy"
+              >
+              <figcaption>Custo por metro quadrado entre bairros.</figcaption>
+            </figure>
+            <p>
+              São Paulo é a capital com maior custo por m², com destaque para
+              Jardins, que localizado no núcleo financeiro de São Paulo, tendo
+              preços por m² altíssimos.
+            </p>
+            <p>
+              Rio de Janeiro e Belo Horizonte disputam, mas o RJ se mantém como
+              segundo posto com bairros como Humaitá, que fica ao lado do
+              Corcovado, e Glória que fica ao lado do Santos Dumont.
+            </p>
+
+            <h3>8 - Identificação dos Itens Mais e Menos Comuns por Região</h3>
+            <p>
+              Nesta query, contamos os itens mais e menos comuns, identificando os
+              10 itens mais frequentes e os 10 itens menos frequentes para cada
+              tipo de imóvel. Isso nos permite entender os padrões que podem ser
+              observados em diferentes tipos de imóveis.
+            </p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/codetoimg-snippet (49).png"
+                alt="Query SQL dos itens mais e menos comuns por região"
+                loading="lazy"
+              >
+              <figcaption>Consulta dos itens mais e menos comuns.</figcaption>
+            </figure>
+            <figure class="case-figure">
+              <img
+                src="../../assets/projects/quinto-andar/itens-comuns-regiao.png"
+                alt="Visualização dos itens mais e menos comuns por região"
+                loading="lazy"
+              >
+              <figcaption>Itens mais e menos comuns por região.</figcaption>
+            </figure>
+            <p>
+              Para Casas e Apartamentos, "Box, Área de Serviço, e Armários na
+              Cozinha" são itens indispensáveis, para Studios, "Área de Serviço"
+              não é tão comum.
+            </p>
+            <p>Entre os itens mais incomuns, temos "Salão de Jogos, Academia, Sauna".</p>
           </section>
 
           <section class="case-section" id="reflexoes">
-            <p class="case-part">Parte 3</p>
-            <h2>Dashboard e conclusão</h2>
-            <p>
-              Para tornar a visualização mais intuitiva, construí um dashboard
-              em que o usuário pode selecionar as capitais que deseja comparar e
-              acessar informações como média de preço por tipo ou flutuação de
-              preços com o tempo de publicação.
+            <p class="case-part">PARTE 3</p>
+            <h2>Dashboard e Conclusão do Projeto</h2>
+            <p class="case-intro">
+              Nessa seção do projeto, apresento o dashboard interativo
+              desenvolvido, destacando os gráficos mais interessantes e
+              relevantes. Além disso, compartilho alguns pensamentos sobre as
+              dificuldades enfrentadas, o que foi aprendido e outros comentários
+              gerais, algo que também pretendo fazer nos futuros projetos.
             </p>
 
-            <h3>Otimização do código e escolha da página</h3>
+            <h3>1 - Dashboard Interativo</h3>
             <p>
-              Meu código de web scraping não era muito otimizado, pois as
-              operações demoravam bastante. A página do QuintoAndar, embora
-              excelente em conteúdo, carregava todos os imóveis no mesmo lugar,
-              tornando o processo lento e consumindo muita memória RAM.
+              Visando tornar a visualização das informações mais intuitiva, nesse
+              dashboard o usuário pode selecionar as capitais que deseja comparar,
+              e terá acesso à um leque de informações importantes, como a média de
+              preço por tipo de imóvel, ou como o preço costuma flutuar baseado no
+              tempo de publicação.
             </p>
-
-            <h3>Planejamento das informações</h3>
-            <p>
-              Pensei que seria capaz de extrair mais insights com os dados
-              obtidos. No projeto anterior, consegui gerar quinze análises de
-              qualidade satisfatória; neste, foram oito. Isso se deve tanto à
-              minha experiência inicial quanto à quantidade e variedade dos
-              dados coletados.
-            </p>
-
-            <h3>Melhoria nas técnicas</h3>
-            <p>
-              Nos primeiros projetos, utilizei principalmente tecnologias do
-              campo da análise de dados, como SQL e Power BI. A partir daqui,
-              passei a buscar análises mais profundas com Machine Learning em
-              Python, tornando os estudos mais detalhados e estimulantes.
-            </p>
-
-            <div class="case-quote">
+            <p>É recomendável mudar o Zoom de 100% para "Ajustar à Página".</p>
+            <div class="wix-dashboard-placeholder">
               <p>
-                Sendo minha primeira experiência prática com web scraping,
-                localizei as principais características de cada anúncio, consegui
-                extraí-las e analisá-las com bom grau de clareza e profundidade.
+                O dashboard interativo fazia parte do estudo original em Power BI.
+                Esta versão estática preserva a descrição e evita exibir uma
+                imagem que não representa o dashboard.
               </p>
             </div>
 
+            <h3>2 - Reflexões e Conclusão</h3>
+            <p>
+              Sendo a minha primeira experiência prática com WebScraping, creio
+              que fiz um bom trabalho, localizei as principais características de
+              cada anúncio e consegui as extrair e analisar, com um bom grau de
+              clareza e profundidade, porém, existem alguns pontos que devem ser
+              lembrados e melhorados no futuro, seguem aqui algumas reflexões
+              sobre o presente e o futuros dos meus estudos e projetos:
+            </p>
+
+            <h4>Otimização do Código e Escolha da Página</h4>
+            <p>
+              Meu código para WebScraping não é muito otimizado, digo isso, pois
+              as operações demoravam muito para serem realizadas. Preciso escolher
+              melhor no futuro a página para realizar o WebScraping. A página do
+              QuintoAndar, ainda que ótima em conteúdo, carregava todos os imóveis
+              na mesma página, o que tornava tudo um tanto mais lento, graças ao
+              alto consumo de memória RAM.
+            </p>
+
+            <h4>Planejamento das Informações à Serem Extraídas</h4>
+            <p>
+              Devo admitir que pensei que seria capaz de extrair mais insights com
+              os dados que obtive. No projeto anterior, consegui gerar 15 insights
+              de qualidade satisfatória, mas neste apenas consegui realizar 8. Isso
+              se deve tanto à minha inexperiência com técnicas que agreguem valor
+              aos dados quanto à falta de dados para trabalhar. No entanto, já
+              estou trabalhando para melhorar ambos os pontos.
+            </p>
+
+            <h4>Melhoria nas Técnicas para Análise e Ciência de Dados</h4>
+            <p>
+              Nos dois projetos que realizei, utilizei principalmente tecnologias
+              do campo da análise de dados, como SQL e Power BI. No entanto, em
+              breve, pretendo realizar análises mais profundas, utilizando algumas
+              técnicas de Machine Learning que estou aprendendo com Python.
+              Acredito que isso tornará as análises mais envolventes, detalhadas e
+              estimulantes.
+            </p>
+
             <p class="case-source">
-              Texto migrado e reorganizado a partir do
+              Texto, ordem e imagens reconstruídos a partir do
               <a
                 href="https://angejesufern.wixsite.com/angel-mansilla/c%C3%B3pia-imdb"
                 target="_blank"
@@ -424,7 +710,7 @@
       <section class="case-next">
         <a class="container" href="../churn/index.html">
           <span>Voltar ao primeiro estudo</span>
-          <strong>Previsão de churn bancário</strong>
+          <strong>Previsão de Churn de Clientes Bancários</strong>
           <i aria-hidden="true">→</i>
         </a>
       </section>

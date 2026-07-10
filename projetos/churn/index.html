@@ -7,647 +7,662 @@
       name="description"
       content="Estudo de caso de Angel Mansilla sobre análise e previsão de churn de clientes de cartão de crédito."
     >
-    <meta name="theme-color" content="#f4f3ef">
+    <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="pt_BR">
-    <meta property="og:title" content="Previsão de churn bancário | Angel Mansilla">
+    <meta property="og:title" content="Previsão de Churn de Clientes Bancários | Angel Mansilla">
     <meta
       property="og:description"
       content="Análise exploratória, tratamento de dados e comparação de modelos para prever cancelamentos de cartões."
     >
-    <title>Previsão de churn bancário | Angel Mansilla</title>
+    <title>Previsão de Churn de Clientes Bancários | Angel Mansilla</title>
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap"
       rel="stylesheet"
     >
+    <link rel="preload" href="../../assets/projects/churn/churn-card-hero.webp" as="image" type="image/webp">
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../../case-study.css">
   </head>
-  <body class="case-page" id="top">
+  <body class="case-page churn-case wix-churn-case churn-refactor" id="top">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-    <header class="case-topbar">
-      <div class="container">
-        <a class="case-brand" href="../../index.html">Angel Mansilla</a>
-        <nav class="case-nav" aria-label="Navegação do estudo de caso">
-          <a href="../../index.html#sobre">Sobre</a>
-          <a href="../../index.html#projetos">Projetos</a>
-          <a href="../../index.html#contato">Contato</a>
-          <a
-            href="https://github.com/Ang3k/Exploracao-Preditiva-de-Dados-para-Churn-de-Clientes-Bancarios-com-Machine-Learning"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Repositório ↗
-          </a>
-        </nav>
-      </div>
+    <header class="wix-project-header">
+      <a class="wix-project-name" href="../../index.html">Angel Mansilla</a>
+      <nav class="wix-project-nav" aria-label="Navegação principal">
+        <a href="../../index.html#sobre">Sobre</a>
+        <a href="../../index.html#contato">Contato</a>
+        <a href="../../index.html#projetos">Portfólio</a>
+      </nav>
     </header>
 
     <main id="conteudo">
-      <section class="case-hero">
-        <div class="container">
-          <p class="case-breadcrumb">
-            <a href="../../index.html#projetos">Projetos</a>
-            <span aria-hidden="true">/</span>
-            <span>Machine Learning</span>
-          </p>
-          <div class="case-hero-grid">
-            <div>
-              <p class="case-kicker">Classificação · Serviços financeiros</p>
-              <h1>Previsão de <em>churn</em> bancário</h1>
-            </div>
-            <p class="case-lead">
-              Prever a probabilidade de cancelamento de cartões de crédito e
-              identificar padrões comportamentais e financeiros entre os
-              clientes de uma instituição bancária.
+      <section class="wix-churn-hero churn-hero" aria-labelledby="titulo-projeto">
+        <img
+          src="../../assets/projects/churn/churn-card-hero.webp"
+          alt="Ilustração abstrata de um cartão de crédito"
+          width="1600"
+          height="1600"
+          fetchpriority="high"
+          decoding="async"
+        >
+        <div class="wix-churn-hero-shade" aria-hidden="true"></div>
+        <div class="churn-hero-copy">
+          <p>Estudo de caso · Classificação supervisionada</p>
+          <h1 id="titulo-projeto">Previsão de Churn de Clientes Bancários</h1>
+          <span>Python · Scikit-learn · XGBoost</span>
+        </div>
+      </section>
+
+      <article class="churn-case-content">
+        <section class="churn-overview" id="visao-geral" aria-labelledby="titulo-visao-geral">
+          <div class="churn-overview-copy">
+            <p class="churn-eyebrow">Visão geral</p>
+            <h2>Entender o comportamento antes do cancelamento</h2>
+            <p id="titulo-visao-geral">
+              Este estudo simula o trabalho de uma equipe bancária que precisa identificar clientes
+              com maior risco de cancelar o cartão. A análise combina exploração do perfil dos
+              clientes, preparação dos dados e comparação de três modelos supervisionados.
             </p>
           </div>
-          <dl class="case-hero-stats">
+
+          <dl class="churn-project-facts" aria-label="Resumo do projeto">
             <div>
-              <dt>Conjunto de dados</dt>
+              <dt>Base analisada</dt>
               <dd>11.573 registros</dd>
             </div>
             <div>
               <dt>Modelos finais</dt>
-              <dd>Decision Tree · Random Forest · XGBoost</dd>
+              <dd>Decision Tree, Random Forest e XGBoost</dd>
             </div>
             <div>
-              <dt>Melhor acurácia reportada</dt>
-              <dd>97,43% · XGBoost</dd>
+              <dt>Acurácia descrita</dt>
+              <dd>94,33% a 97,43%</dd>
+            </div>
+            <div>
+              <dt>Stack</dt>
+              <dd>Python, Pandas, NumPy, Matplotlib e Scikit-learn</dd>
             </div>
           </dl>
-        </div>
-      </section>
 
-      <div class="case-cover project-visual churn-visual" aria-hidden="true">
-        <span class="visual-kicker">MACHINE LEARNING · CHURN</span>
-        <div class="credit-card-art">
-          <div class="card-stripe"></div>
-          <div class="card-dashes"><i></i><i></i><i></i><i></i></div>
-          <div class="card-rings"><i></i><i></i></div>
-        </div>
-      </div>
+          <nav class="churn-chapter-nav" aria-label="Partes do estudo de caso">
+            <a href="#contexto"><span>01</span> Contexto e perguntas</a>
+            <a href="#eda"><span>02</span> Exploração dos dados</a>
+            <a href="#tratamento"><span>03</span> Preparação da base</a>
+            <a href="#modelagem"><span>04</span> Modelagem e avaliação</a>
+            <a href="#conclusoes"><span>05</span> Síntese dos resultados</a>
+          </nav>
 
-      <div class="case-layout container">
-        <aside class="case-toc" aria-label="Índice do estudo de caso">
-          <p>Neste estudo</p>
-          <ol>
-            <li><a href="#visao-geral">Visão geral</a></li>
-            <li><a href="#contexto">Contexto e dados</a></li>
-            <li><a href="#eda">Análise exploratória</a></li>
-            <li><a href="#tratamento">Tratamento dos dados</a></li>
-            <li><a href="#modelagem">Machine Learning</a></li>
-            <li><a href="#conclusoes">Insights e conclusões</a></li>
-          </ol>
-        </aside>
+          <p class="churn-metric-note">
+            As porcentagens apresentadas são as acurácias descritas no projeto original. Elas
+            servem como referência deste estudo e não substituem uma avaliação de risco em
+            produção.
+          </p>
+        </section>
 
-        <article class="case-content">
-          <section class="case-section" id="visao-geral">
-            <p class="case-part">Visão geral</p>
-            <h2>O projeto</h2>
-            <p class="case-intro">
-              Este projeto tem como objetivo prever a probabilidade de
-              cancelamento de cartões de crédito (churn) e identificar padrões
-              comportamentais e financeiros entre os clientes de uma instituição
-              bancária.
-            </p>
-            <p>
-              O conjunto de dados contém 11.573 registros, abrangendo variáveis
-              como limite de crédito, renda, número de transações e nível de
-              educação dos clientes. A análise busca responder questões cruciais,
-              como quais perfis apresentam maior risco de cancelamento e se
-              características como gênero e salário influenciam a retenção.
-            </p>
+        <section class="case-section churn-chapter" id="contexto" aria-labelledby="titulo-contexto">
+          <header class="churn-chapter-header">
+            <p class="churn-chapter-number">Parte <span>01</span></p>
+            <div>
+              <h2 id="titulo-contexto">Contexto e perguntas de negócio</h2>
+              <p>
+                Antes de treinar qualquer modelo, o problema precisa ser traduzido em perguntas
+                observáveis. Esta parte apresenta o recorte dos dados, a estrutura das variáveis e
+                os critérios usados para orientar a análise.
+              </p>
+            </div>
+          </header>
 
-            <h3>Métodos aplicados</h3>
-            <p>
-              Realizo uma limpeza rigorosa dos dados, tratando valores faltantes
-              e outliers e aplicando codificação para variáveis categóricas.
-              Foram desenvolvidos três modelos de Machine Learning supervisionados:
-              DecisionTreeClassifier, RandomForestClassifier e XGBoost, todos com
-              uma precisão superior a 90% em todos os casos.
-            </p>
-            <p>
-              Além disso, uma análise aprofundada das importâncias das features
-              foi conduzida para identificar os principais fatores que influenciam
-              o churn, orientando decisões estratégicas.
-            </p>
+          <div class="churn-story-flow">
+            <section class="churn-story-block">
+              <p class="churn-step">01 · Cenário</p>
+              <h3>Uma pergunta simples: quem pode cancelar?</h3>
+              <p>
+                Um gerente de banco percebeu que o número de cancelamentos estava crescendo e queria
+                agir antes da decisão do cliente. O objetivo do estudo foi explorar os padrões do
+                conjunto e criar um classificador capaz de indicar se um cliente permaneceria ou
+                cancelaria o cartão.
+              </p>
+              <p>
+                A personagem Angel representa a pessoa responsável por transformar o dataset em
+                informações acionáveis. A narrativa não representa um sistema bancário real: ela
+                organiza o fluxo técnico em torno de uma pergunta de negócio.
+              </p>
+            </section>
 
-            <h3>Ferramentas utilizadas</h3>
-            <p>
-              Nesse projeto utilizei a linguagem Python e suas bibliotecas
-              Pandas, Matplotlib e NumPy para a análise e limpeza de dados;
-              posteriormente, a biblioteca Scikit-learn para a criação dos
-              modelos e Joblib para o dumping dos modelos.
-            </p>
-            <ul class="tool-list" aria-label="Ferramentas do projeto">
-              <li>Python</li>
-              <li>Pandas</li>
-              <li>NumPy</li>
-              <li>Matplotlib</li>
-              <li>Scikit-learn</li>
-              <li>XGBoost</li>
-              <li>Joblib</li>
-            </ul>
-          </section>
+            <section class="churn-story-block">
+              <p class="churn-step">02 · Perguntas</p>
+              <h3>O que a análise precisa responder?</h3>
+              <p>
+                As perguntas abaixo orientaram a exploração e ajudaram a conectar os gráficos aos
+                comportamentos que o banco gostaria de compreender.
+              </p>
+              <ul class="churn-question-list">
+                <li>Qual é o perfil dos clientes com maior risco de cancelar?</li>
+                <li>Como gênero, renda e educação aparecem nos padrões de cancelamento?</li>
+                <li>Clientes que usam mais o cartão recebem limites diferentes?</li>
+                <li>Quais comportamentos são comuns entre clientes que cancelam?</li>
+                <li>Qual modelo ultrapassa a acurácia mínima de 85% definida no projeto?</li>
+                <li>Quais atributos aparecem com maior importância nos modelos?</li>
+              </ul>
+            </section>
 
-          <section class="case-section" id="contexto">
-            <p class="case-part">Parte 1</p>
-            <h2>Introdução ao conjunto de dados</h2>
+            <section class="churn-story-block">
+              <p class="churn-step">03 · Estrutura</p>
+              <h3>O dicionário de dados em uma leitura curta</h3>
+              <p>
+                A base combina atributos demográficos, relacionamento com o banco, características
+                do cartão e medidas de uso. O rótulo <code>Attrition_Flag</code> representa o evento
+                de churn usado na classificação.
+              </p>
+              <details class="churn-disclosure">
+                <summary>Ver variáveis utilizadas</summary>
+                <div class="churn-dictionary">
+                  <section>
+                    <h4>Perfil do cliente</h4>
+                    <ul>
+                      <li><strong>CLIENTNUM:</strong> identificador do cliente.</li>
+                      <li><strong>Customer_Age:</strong> idade em anos.</li>
+                      <li><strong>Gender:</strong> gênero informado.</li>
+                      <li><strong>Dependent_count:</strong> número de dependentes.</li>
+                      <li><strong>Education_Level:</strong> escolaridade.</li>
+                      <li><strong>Marital_Status:</strong> estado civil.</li>
+                      <li><strong>Income_Category:</strong> categoria de renda anual.</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>Relacionamento e produto</h4>
+                    <ul>
+                      <li><strong>Card_Category:</strong> Blue, Silver, Gold ou Platinum.</li>
+                      <li><strong>Months_on_book:</strong> meses de relacionamento.</li>
+                      <li><strong>Months_Inactive_12_mon:</strong> meses inativos no último ano.</li>
+                      <li><strong>Contacts_Count_12_mon:</strong> contatos no último ano.</li>
+                      <li><strong>Total_Relationship_Count:</strong> produtos mantidos pelo cliente.</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>Crédito e transações</h4>
+                    <ul>
+                      <li><strong>Credit_Limit:</strong> limite de crédito.</li>
+                      <li><strong>Total_Revolving_Bal:</strong> saldo rotativo.</li>
+                      <li><strong>Avg_Open_To_Buy:</strong> média de crédito disponível.</li>
+                      <li><strong>Total_Trans_Amt:</strong> valor total das transações.</li>
+                      <li><strong>Total_Trans_Ct:</strong> quantidade de transações.</li>
+                      <li><strong>Avg_Utilization_Ratio:</strong> taxa média de utilização.</li>
+                    </ul>
+                  </section>
+                  <section>
+                    <h4>Variações e rótulo</h4>
+                    <ul>
+                      <li><strong>Total_Amt_Chng_Q4_Q1:</strong> mudança no valor das transações.</li>
+                      <li><strong>Total_Ct_Chng_Q4_Q1:</strong> mudança no número de transações.</li>
+                      <li><strong>Attrition_Flag:</strong> indicador de atividade ou cancelamento.</li>
+                    </ul>
+                  </section>
+                </div>
+              </details>
+            </section>
 
-            <h3>1. Contexto de negócio</h3>
-            <p>
-              Um gerente do banco está preocupado com o número crescente de
-              clientes que estão deixando os serviços de cartão de crédito. Eles
-              apreciariam muito se fosse possível prever quais clientes irão
-              cancelar o serviço, para que possam agir de forma proativa,
-              oferecendo um atendimento melhor e revertendo a decisão dos
-              clientes.
-            </p>
-            <p>
-              Então, o gerente encontrou uma possível solução para o seu problema
-              ao contratar Angel, um cientista de dados, para extrair insights a
-              partir de um dataset por meio de análise exploratória de dados. Além
-              disso, solicitou que Angel construísse um modelo de Machine Learning
-              capaz de prever, com base nos dados, se um cliente cancelaria ou
-              não o cartão de crédito, e que entregasse também a precisão desse
-              modelo.
-            </p>
+            <section class="churn-story-block">
+              <p class="churn-step">04 · Método</p>
+              <h3>Um fluxo inspirado no CRISP e no ciclo de ML</h3>
+              <p>
+                O projeto segue uma ordem progressiva: entender o problema, conhecer os dados,
+                explorar relações, preparar as variáveis, selecionar modelos, ajustar parâmetros,
+                apresentar a solução e manter o sistema. A implementação original foi desenvolvida
+                em notebook e está disponível no repositório do projeto.
+              </p>
+              <ol class="churn-method-list">
+                <li>Olhar para a visão geral.</li>
+                <li>Obter e conhecer os dados.</li>
+                <li>Explorar e visualizar padrões.</li>
+                <li>Preparar o dataset para ML.</li>
+                <li>Selecionar e treinar modelos.</li>
+                <li>Ajustar os hiperparâmetros.</li>
+                <li>Apresentar a solução.</li>
+                <li>Monitorar e manter o sistema.</li>
+              </ol>
+            </section>
+          </div>
+        </section>
 
-            <h3>2. Dicionário de dados</h3>
-            <details class="data-details">
-              <summary>Abrir o dicionário das principais variáveis</summary>
-              <dl>
-                <dt>CLIENTNUM</dt><dd>Número único de identificação do cliente que possui a conta.</dd>
-                <dt>Attrition_Flag</dt><dd>Variável de evento interno que indica a atividade do cliente.</dd>
-                <dt>Customer_Age</dt><dd>Idade do cliente em anos.</dd>
-                <dt>Gender</dt><dd>Gênero do cliente.</dd>
-                <dt>Dependent_count</dt><dd>Número de dependentes.</dd>
-                <dt>Education_Level</dt><dd>Grau de escolaridade do titular da conta.</dd>
-                <dt>Marital_Status</dt><dd>Estado civil.</dd>
-                <dt>Income_Category</dt><dd>Categoria de renda anual do titular da conta.</dd>
-                <dt>Card_Category</dt><dd>Tipo de cartão: Blue, Silver, Gold ou Platinum.</dd>
-                <dt>Months_on_book</dt><dd>Período de relacionamento com o banco, em meses.</dd>
-                <dt>Months_Inactive_12_mon</dt><dd>Número de meses inativos nos últimos 12 meses.</dd>
-                <dt>Contacts_Count_12_mon</dt><dd>Número de contatos nos últimos 12 meses.</dd>
-                <dt>Credit_Limit</dt><dd>Limite de crédito no cartão.</dd>
-                <dt>Total_Revolving_Bal</dt><dd>Saldo rotativo total no cartão.</dd>
-                <dt>Avg_Open_To_Buy</dt><dd>Linha de crédito disponível, em média nos últimos 12 meses.</dd>
-                <dt>Total_Trans_Amt</dt><dd>Valor total das transações nos últimos 12 meses.</dd>
-                <dt>Total_Trans_Ct</dt><dd>Número total de transações nos últimos 12 meses.</dd>
-                <dt>Avg_Utilization_Ratio</dt><dd>Taxa média de utilização do cartão.</dd>
-                <dt>Total_Relationship_Count</dt><dd>Total de produtos mantidos pelo cliente.</dd>
+        <section class="case-section churn-chapter" id="eda" aria-labelledby="titulo-eda">
+          <header class="churn-chapter-header">
+            <p class="churn-chapter-number">Parte <span>02</span></p>
+            <div>
+              <h2 id="titulo-eda">Exploração dos dados e comportamento</h2>
+              <p>
+                A EDA transforma colunas em perguntas visuais: quem está na base, como o crédito se
+                relaciona ao perfil e quais sinais de uso aparecem antes do churn.
+              </p>
+            </div>
+          </header>
+
+          <div class="churn-analysis-list">
+            <article class="churn-analysis">
+              <p class="churn-step">Análise 01</p>
+              <h3>Conhecendo o perfil da base</h3>
+              <p>
+                As primeiras distribuições ajudam a estabelecer uma linha de base para idade,
+                limite de crédito e tempo de relacionamento. A maior parte dos registros se concentra
+                em adultos e em clientes com histórico intermediário de relacionamento.
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--three">
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/Customer_Age_distribution.png" width="5900" height="3901" alt="Distribuição da idade dos clientes por gênero" loading="lazy" decoding="async">
+                  <figcaption>Idade dos clientes.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/Credit_Limit_distribution.png" width="5901" height="3901" alt="Distribuição do limite de crédito dos clientes por gênero" loading="lazy" decoding="async">
+                  <figcaption>Limite de crédito.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/Months_on_book_distribution.png" width="5902" height="3901" alt="Distribuição do tempo de relacionamento dos clientes com o banco" loading="lazy" decoding="async">
+                  <figcaption>Meses de relacionamento.</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="churn-analysis">
+              <p class="churn-step">Análise 02</p>
+              <h3>Limite de crédito e perfil do cliente</h3>
+              <p>
+                A comparação por idade e gênero mostra limites de crédito diferentes entre os
+                grupos. O gráfico também ajuda a observar como a diferença de limite muda ao longo
+                das faixas etárias, sem transformar essa associação em causalidade.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <img src="../../assets/projects/churn/Credit_Limit_plot.png" width="3533" height="2740" alt="Relação entre idade, gênero, limite de crédito e churn" loading="lazy" decoding="async">
+                <figcaption>Limite de crédito por idade, gênero e situação de churn.</figcaption>
+              </figure>
+            </article>
+
+            <article class="churn-analysis">
+              <p class="churn-step">Análise 03</p>
+              <h3>Correções que merecem atenção</h3>
+              <p>
+                A matriz indica relações fortes entre idade e meses como cliente (0,79), valor e
+                quantidade de transações (0,81), e limite de crédito e crédito disponível. Ela
+                também sinaliza relações negativas entre utilização média e crédito disponível.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <img src="../../assets/projects/churn/correlation-matrix-wix.png" width="1883" height="1410" alt="Matriz de correlação das variáveis numéricas do conjunto de churn" loading="lazy" decoding="async">
+                <figcaption>Correlações entre variáveis numéricas.</figcaption>
+              </figure>
+            </article>
+
+            <article class="churn-analysis">
+              <p class="churn-step">Análise 04</p>
+              <h3>Onde a proporção de churn muda?</h3>
+              <p>
+                Entre as variáveis categóricas, o projeto observou diferenças por estado civil,
+                categoria de renda e escolaridade. Clientes com renda e escolaridade mais altas
+                apresentaram maior proporção de cancelamento nesse recorte.
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--three">
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/Marital_Status_pie_plot.png" width="3000" height="3000" alt="Distribuição de estado civil entre clientes com e sem churn" loading="lazy" decoding="async">
+                  <figcaption>Estado civil e churn.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/Income_Category_pie_plot.png" width="3000" height="3000" alt="Distribuição de categoria de renda entre clientes com e sem churn" loading="lazy" decoding="async">
+                  <figcaption>Categoria de renda e churn.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/Education_Level_pie_plot.png" width="3000" height="3000" alt="Distribuição de escolaridade entre clientes com e sem churn" loading="lazy" decoding="async">
+                  <figcaption>Escolaridade e churn.</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="churn-analysis">
+              <p class="churn-step">Análise 05</p>
+              <h3>Uso do cartão como sinal comportamental</h3>
+              <p>
+                O valor total e a quantidade de transações crescem até faixas etárias intermediárias
+                e depois diminuem. O projeto também encontrou maior uso médio entre mulheres,
+                enquanto o limite de crédito permaneceu diferente entre os grupos.
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--three">
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/Total_Trans_Amt_plot.png" width="3495" height="2740" alt="Relação entre idade, gênero e valor total de transações" loading="lazy" decoding="async">
+                  <figcaption>Valor das transações.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/Total_Trans_Ct_plot.png" width="3417" height="2740" alt="Relação entre idade, gênero e quantidade de transações" loading="lazy" decoding="async">
+                  <figcaption>Quantidade de transações.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/Avg_Utilization_Ratio_plot.png" width="3437" height="2741" alt="Relação entre idade, gênero e taxa média de utilização" loading="lazy" decoding="async">
+                  <figcaption>Taxa média de utilização.</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="churn-analysis">
+              <p class="churn-step">Análise 06</p>
+              <h3>Distribuição estatística do churn</h3>
+              <p>
+                Os boxplots permitem comparar a dispersão de meses de relacionamento, transações
+                e limite de crédito entre clientes ativos e clientes que cancelaram. Eles ajudam a
+                visualizar diferenças de comportamento sem reduzir toda a leitura a uma média.
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--four">
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/boxplot_Months_on_book.png" width="1919" height="1584" alt="Boxplot dos meses de relacionamento por situação de churn" loading="lazy" decoding="async">
+                  <figcaption>Meses de relacionamento.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/boxplot_Total_Trans_Ct.png" width="1919" height="1584" alt="Boxplot da quantidade de transações por situação de churn" loading="lazy" decoding="async">
+                  <figcaption>Quantidade de transações.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/boxplot_Total_Trans_Amt.png" width="1919" height="1584" alt="Boxplot do valor de transações por situação de churn" loading="lazy" decoding="async">
+                  <figcaption>Valor das transações.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/boxplot_Credit_Limit.png" width="1920" height="1584" alt="Boxplot do limite de crédito por situação de churn" loading="lazy" decoding="async">
+                  <figcaption>Limite de crédito.</figcaption>
+                </figure>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="case-section churn-chapter" id="tratamento" aria-labelledby="titulo-tratamento">
+          <header class="churn-chapter-header">
+            <p class="churn-chapter-number">Parte <span>03</span></p>
+            <div>
+              <h2 id="titulo-tratamento">Preparação do conjunto de dados</h2>
+              <p>
+                A preparação transforma valores inconsistentes em atributos que os modelos podem
+                utilizar. Cada decisão precisa ser explicada porque altera o conjunto que chegará ao
+                treinamento.
+              </p>
+            </div>
+          </header>
+
+          <div class="churn-story-flow">
+            <section class="churn-story-block">
+              <p class="churn-step">01 · Ordem de trabalho</p>
+              <h3>Limpar antes de modelar</h3>
+              <p>
+                O fluxo seguido foi: remover colunas sem utilidade, identificar valores ausentes,
+                tratar outliers, criar variáveis indicadoras e codificar as categorias ordinais. A
+                ordem reduz o risco de levar inconsistências para a etapa de Machine Learning.
+              </p>
+            </section>
+
+            <section class="churn-story-block">
+              <p class="churn-step">02 · Valores ausentes</p>
+              <h3>Transformar “Unknown” em um valor tratável</h3>
+              <p>
+                Os registros não usavam apenas <code>np.nan</code>; algumas ausências apareciam como
+                “Unknown”. O projeto converteu esses marcadores, mediu a porcentagem por coluna e
+                optou por imputar sem descartar linhas, ordenando antes por <code>Credit_Limit</code>.
+              </p>
+              <figure class="churn-media churn-result churn-result--medium">
+                <img src="../../assets/projects/churn/missing-values-output.png" width="1712" height="1362" alt="Gráfico com a porcentagem de valores faltantes por variável" loading="lazy" decoding="async">
+                <figcaption>Porcentagem de valores faltantes identificados.</figcaption>
+              </figure>
+              <details class="churn-details">
+                <summary>Ver código de identificação e imputação</summary>
+                <div class="churn-code-gallery">
+                  <figure>
+                    <img src="../../assets/projects/churn/codetoimg-snippet (75).png" width="2396" height="1588" alt="Código para identificar valores nulos no conjunto de dados" loading="lazy" decoding="async">
+                    <figcaption>Identificação de valores faltantes.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="../../assets/projects/churn/codetoimg-snippet (76).png" width="2159" height="782" alt="Código para ordenar e imputar os dados" loading="lazy" decoding="async">
+                    <figcaption>Imputação e ordenação dos registros.</figcaption>
+                  </figure>
+                </div>
+              </details>
+            </section>
+
+            <section class="churn-story-block">
+              <p class="churn-step">03 · Outliers e categorias</p>
+              <h3>Reduzir ruído sem apagar o contexto</h3>
+              <p>
+                O tratamento de outliers usou limites inspirados no método de Tukey. Para as
+                categorias, gênero e estado civil foram transformados em variáveis indicadoras,
+                enquanto categorias com ordem implícita receberam codificação ordinal.
+              </p>
+              <details class="churn-details">
+                <summary>Ver trechos de tratamento</summary>
+                <div class="churn-code-gallery">
+                  <figure>
+                    <img src="../../assets/projects/churn/codetoimg-snippet (77).png" width="2739" height="1118" alt="Código para identificar e remover outliers pelo método de Tukey" loading="lazy" decoding="async">
+                    <figcaption>Tratamento de outliers.</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="../../assets/projects/churn/codetoimg-snippet (78).png" width="2951" height="1588" alt="Código para codificar variáveis categóricas" loading="lazy" decoding="async">
+                    <figcaption>Codificação de variáveis categóricas.</figcaption>
+                  </figure>
+                </div>
+              </details>
+            </section>
+          </div>
+        </section>
+
+        <section class="case-section churn-chapter" id="modelagem" aria-labelledby="titulo-modelagem">
+          <header class="churn-chapter-header">
+            <p class="churn-chapter-number">Parte <span>04</span></p>
+            <div>
+              <h2 id="titulo-modelagem">Modelagem, interpretação e avaliação</h2>
+              <p>
+                A última etapa compara modelos, mostra o efeito do ajuste de hiperparâmetros e
+                aproxima desempenho de interpretabilidade. O resultado visual vem antes dos
+                detalhes de implementação.
+              </p>
+            </div>
+          </header>
+
+          <div class="churn-analysis-list">
+            <article class="churn-analysis">
+              <p class="churn-step">Modelo 01</p>
+              <h3>Uma primeira comparação de algoritmos</h3>
+              <p>
+                A comparação inicial incluiu modelos lineares, máquinas de vetor, árvores e
+                boosting. Mesmo com hiperparâmetros padrão, o XGBoost, o Random Forest e a Decision
+                Tree ficaram entre os modelos com melhor acurácia média.
+              </p>
+              <figure class="churn-media churn-result churn-result--compact">
+                <img src="../../assets/projects/churn/obrabo.png" width="642" height="272" alt="Tabela com a acurácia média dos modelos testados inicialmente" loading="lazy" decoding="async">
+                <figcaption>Comparação inicial de acurácia média.</figcaption>
+              </figure>
+            </article>
+
+            <article class="churn-analysis">
+              <p class="churn-step">Modelo 02</p>
+              <h3>Ajustar uma árvore para entender o ganho</h3>
+              <p>
+                O projeto usou GridSearch e validação cruzada de 10 iterações para procurar uma
+                combinação melhor de hiperparâmetros na Decision Tree. O modelo passou de 93,06%
+                para 94,33% de acurácia no resultado descrito.
+              </p>
+              <figure class="churn-media churn-result churn-result--medium">
+                <img src="../../assets/projects/churn/codetoimg-snippet (81).png" width="2212" height="446" alt="Resultado da validação da Decision Tree após o ajuste de hiperparâmetros" loading="lazy" decoding="async">
+                <figcaption>Resultado da validação depois do refinamento.</figcaption>
+              </figure>
+              <details class="churn-details">
+                <summary>Ver código da busca de hiperparâmetros</summary>
+                <figure>
+                  <img src="../../assets/projects/churn/codetoimg-snippet (80).png" width="2819" height="1991" alt="Código de GridSearch para refinamento da Decision Tree" loading="lazy" decoding="async">
+                  <figcaption>Busca dos melhores parâmetros para a Decision Tree.</figcaption>
+                </figure>
+              </details>
+            </article>
+
+            <article class="churn-analysis">
+              <p class="churn-step">Modelo 03</p>
+              <h3>Comparar previsões com os valores reais</h3>
+              <p>
+                Depois do ajuste, as previsões dos três modelos foram reunidas com os rótulos reais
+                do conjunto de teste. A tabela permite enxergar rapidamente onde os modelos
+                concordam e onde divergem.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <img src="../../assets/projects/churn/Captura de tela 2024-10-19 191356.png" width="937" height="372" alt="Tabela comparando os valores reais e as previsões dos três modelos" loading="lazy" decoding="async">
+                <figcaption>Valores reais comparados às previsões do DTC, RFC e XGB.</figcaption>
+              </figure>
+              <p class="churn-caution">
+                Nesta amostra, os modelos divergiram em poucos registros. Isso é uma leitura local
+                do conjunto de teste e não deve ser interpretado como garantia de desempenho em
+                novos períodos ou clientes.
+              </p>
+            </article>
+
+            <article class="churn-analysis">
+              <p class="churn-step">Modelo 04</p>
+              <h3>Quais atributos pesam nas decisões?</h3>
+              <p>
+                A importância das features oferece uma forma de interpretar os modelos baseados em
+                árvores. <code>Average Open To Buy</code>, meses de inatividade, saldo rotativo e
+                renda aparecem entre os atributos mais relevantes no gráfico da Decision Tree.
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--three">
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/Decision Tree_feature_importances.png" width="3200" height="2400" alt="Importância das features para a Decision Tree" loading="lazy" decoding="async">
+                  <figcaption>Decision Tree.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/Random Forest_feature_importances.png" width="3200" height="2400" alt="Importância das features para o Random Forest" loading="lazy" decoding="async">
+                  <figcaption>Random Forest.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/XGBoost_feature_importances.png" width="3200" height="2400" alt="Importância das features para o XGBoost" loading="lazy" decoding="async">
+                  <figcaption>XGBoost.</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="churn-analysis">
+              <p class="churn-step">Modelo 05</p>
+              <h3>Erros de classificação em uma matriz</h3>
+              <p>
+                A matriz de confusão separa verdadeiros positivos, falsos positivos, verdadeiros
+                negativos e falsos negativos. Ela complementa a acurácia porque mostra que tipos de
+                erro cada modelo comete.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <img src="../../assets/projects/churn/matriz_confusao_Random Forest.png" width="4500" height="1500" alt="Matrizes de confusão do XGBoost, Decision Tree e Random Forest" loading="lazy" decoding="async">
+                <figcaption>Comparção consolidada das matrizes de confusão.</figcaption>
+              </figure>
+              <p class="churn-caution">
+                A matriz permite discutir custos de falsos positivos e falsos negativos, mas não
+                sustenta sozinha uma estimativa financeira. Esse impacto depende de dados de negócio
+                que não estão presentes neste estudo.
+              </p>
+            </article>
+
+            <article class="churn-analysis">
+              <p class="churn-step">Modelo 06</p>
+              <h3>Interpretabilidade visual</h3>
+              <p>
+                A Decision Tree atende melhor ao requisito de interpretabilidade por apresentar regras
+                de decisão em uma única estrutura. Random Forest e XGBoost tendem a ser mais
+                complexos porque combinam múltiplas árvores.
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--three">
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/decision-tree-wix.png" width="4000" height="3000" alt="Visualização da Decision Tree" loading="lazy" decoding="async">
+                  <figcaption>Decision Tree.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/random-forest-wix.png" width="2400" height="1800" alt="Visualização de uma árvore do Random Forest" loading="lazy" decoding="async">
+                  <figcaption>Random Forest.</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <img src="../../assets/projects/churn/xgboost-wix.jpg" width="1920" height="1440" alt="Visualização do XGBoost" loading="lazy" decoding="async">
+                  <figcaption>XGBoost.</figcaption>
+                </figure>
+              </div>
+              <dl class="churn-metric-grid" aria-label="Acurácia final dos modelos">
+                <div><dt>Decision Tree</dt><dd>94,33%</dd></div>
+                <div><dt>Random Forest</dt><dd>96,15%</dd></div>
+                <div><dt>XGBoost</dt><dd>97,43%</dd></div>
               </dl>
-            </details>
+            </article>
+          </div>
+        </section>
 
-            <h3>3. Metodologia do projeto</h3>
-            <p>
-              Neste projeto, optei por adotar uma metodologia de resolução de
-              problemas de dados apresentada em um dos livros mais renomados
-              sobre Machine Learning, o “Hands-On Machine Learning with
-              Scikit-Learn &amp; TensorFlow”, de Aurélien Géron.
-            </p>
-            <ol>
-              <li>Olhe para a visão geral.</li>
-              <li>Obtenha os dados.</li>
-              <li>Descubra e visualize os dados para obter insights.</li>
-              <li>Prepare os dados para algoritmos de Machine Learning.</li>
-              <li>Selecione um modelo e treine-o.</li>
-              <li>Ajuste seu modelo.</li>
-              <li>Apresente sua solução.</li>
-              <li>Lance, monitore e mantenha seu sistema.</li>
-            </ol>
-
-            <h3>4. Requisitos de solução</h3>
-            <p>
-              Durante a conversa com o gerente, Angel perguntou quais eram as
-              principais informações que ele gostaria de obter. Em resposta, o
-              gerente definiu um conjunto de perguntas estratégicas relacionadas
-              ao negócio:
-            </p>
-            <ul class="question-list">
-              <li>Qual é o perfil dos clientes com maior risco de cancelar o cartão?</li>
-              <li>Como o gênero afeta sua condição financeira e as taxas de cancelamento?</li>
-              <li>O nível de educação influencia a probabilidade de cancelamento?</li>
-              <li>Clientes que usam mais o cartão recebem limites maiores ou menores?</li>
-              <li>Clientes com salários altos estão mais propensos ao cancelamento?</li>
-              <li>Quais comportamentos são comuns entre os clientes que cancelam?</li>
-            </ul>
-            <p>
-              Além dessas perguntas, o gerente solicitou um modelo com acurácia
-              superior a 85%. Ele enfatizou a importância de escolher um modelo
-              facilmente interpretável, permitindo ao banco compreender melhor
-              o funcionamento do algoritmo e ter maior controle sobre suas
-              decisões.
-            </p>
-            <div class="case-note">
+        <section class="case-section churn-chapter" id="conclusoes" aria-labelledby="titulo-conclusoes">
+          <header class="churn-chapter-header">
+            <p class="churn-chapter-number">Parte <span>05</span></p>
+            <div>
+              <h2 id="titulo-conclusoes">Síntese dos resultados</h2>
               <p>
-                No Wix, este projeto foi tratado com uma visão de storytelling.
-                Para quem prefere algo mais direto e detalhado, o notebook
-                completo permanece disponível no GitHub.
+                A conclusão retoma as perguntas do início e separa os achados exploratórios dos
+                resultados dos modelos.
               </p>
             </div>
-          </section>
+          </header>
 
-          <section class="case-section" id="eda">
-            <p class="case-part">Parte 2</p>
-            <h2>Análise exploratória de dados</h2>
-            <p class="case-intro">
-              Nesta seção, realizamos uma análise exploratória focada em
-              variáveis relacionadas ao comportamento dos clientes. As
-              visualizações permitem explorar padrões e correlações e compreender
-              melhor as dinâmicas de crédito e churn.
-            </p>
-
-            <h3>1. Distribuição de variáveis</h3>
-            <p>
-              O código funciona criando três subplots que servem como template
-              para dois tipos de gráficos sobrepostos, um KDE plot e um histplot,
-              ambos com matiz definida para o gênero do usuário e uma paleta
-              customizada.
-            </p>
-            <ul>
-              <li><strong>Idade:</strong> a média dos clientes varia entre 30 e 60 anos.</li>
-              <li><strong>Limite de crédito:</strong> em média, fica entre 2.000 e 10.000 dólares; há um número significativo de mulheres na faixa de 2.000 a 5.000.</li>
-              <li><strong>Tempo como usuários:</strong> há um aumento notável em clientes com 37 meses de relacionamento.</li>
-            </ul>
-            <figure class="case-figure">
-              <img
-                src="../../wix-images-to-use/output.png"
-                alt="Distribuições do limite de crédito, idade e tempo como cliente, segmentadas por gênero"
-                loading="lazy"
-              >
-              <figcaption>Distribuições utilizadas para compreender o perfil inicial da base.</figcaption>
-            </figure>
-
-            <h3>2. Variáveis e limite de crédito</h3>
-            <p>
-              O código executa o agrupamento das variáveis categóricas em relação
-              à média do limite de crédito, incorporando também a variável de
-              churn para facilitar a análise.
-            </p>
-            <ul>
-              <li>À medida que o número de dependentes aumenta, o limite tende a crescer.</li>
-              <li>Clientes sem vínculos de relacionamento geralmente apresentam limites mais elevados.</li>
-              <li>O limite aumenta quase linearmente com o salário.</li>
-              <li>Não há relação aparente entre educação e limite de crédito.</li>
-              <li>Quanto menor a quantidade de produtos vinculados, maior tende a ser o limite.</li>
-              <li>Homens possuem limites significativamente maiores em comparação às mulheres.</li>
-            </ul>
-            <div class="figure-grid">
-              <figure>
-                <img
-                  src="../../wix-images-to-use/Income Level_credit_limit.png"
-                  alt="Média de limite de crédito por nível de renda"
-                  loading="lazy"
-                >
-                <figcaption>Renda e limite de crédito.</figcaption>
-              </figure>
-              <figure>
-                <img
-                  src="../../wix-images-to-use/Gender_credit_limit.png"
-                  alt="Média de limite de crédito por gênero"
-                  loading="lazy"
-                >
-                <figcaption>Gênero e limite de crédito.</figcaption>
-              </figure>
-            </div>
-
-            <h3>3. Correlações entre variáveis numéricas</h3>
-            <p>
-              A matriz foi gerada com <code>pandas.corr()</code> e visualizada
-              em um heatmap. Entre os relacionamentos observados:
-            </p>
-            <ul>
-              <li>Months As Customer versus Age: correlação forte de 0,79.</li>
-              <li>Credit Limit versus Average Open To Buy: correlação positiva de 0,62.</li>
-              <li>Total Transactions Amount versus Count: correlação alta de 0,81.</li>
-              <li>Average Utilization Ratio versus Credit Limit: correlação negativa de −0,48.</li>
-              <li>Average Open To Buy versus Utilization: correlação negativa de −0,54.</li>
-            </ul>
-
-            <h3>4. Categorias e probabilidade de churn</h3>
-            <p>
-              A maioria dos clientes se divide entre solteiros e casados, com
-              uma pequena porcentagem de divorciados. De modo geral, ser casado
-              reduz a probabilidade de churn. Clientes com salários e níveis de
-              educação mais altos apresentam maior propensão ao cancelamento.
-            </p>
-            <div class="figure-grid">
-              <figure>
-                <img
-                  src="../../wix-images-to-use/Marital_Status_pie_plot.png"
-                  alt="Distribuição de estado civil e churn"
-                  loading="lazy"
-                >
-                <figcaption>Estado civil.</figcaption>
-              </figure>
-              <figure>
-                <img
-                  src="../../wix-images-to-use/Income_Category_pie_plot.png"
-                  alt="Distribuição de renda e churn"
-                  loading="lazy"
-                >
-                <figcaption>Categoria de renda.</figcaption>
-              </figure>
-            </div>
-
-            <h3>5. Perfil do cliente e variáveis financeiras</h3>
-            <p>
-              Depois dos 30 anos, observa-se que as mulheres possuem limite de
-              crédito menor que o dos homens. Em contrapartida, fazem maior uso
-              do cartão. O valor médio das transações cresce até os 50 anos,
-              quando começa a declinar.
-            </p>
-            <p>
-              A utilização do cartão é estável entre as faixas etárias, com
-              homens alcançando o nível das mulheres por volta dos 60 anos. O
-              número de transações se mantém constante até os 65 anos e começa,
-              então, a apresentar queda gradual.
-            </p>
-            <figure class="case-figure">
-              <img
-                src="../../wix-images-to-use/Credit_Limit_plot.png"
-                alt="Relação entre idade, gênero, limite de crédito e churn"
-                loading="lazy"
-              >
-              <figcaption>Perfil do cliente relacionado às variáveis financeiras.</figcaption>
-            </figure>
-
-            <h3>6. Tipo de cartão e educação</h3>
-            <p>
-              A esmagadora maioria dos clientes possui cartão Blue. Os níveis
-              educacionais não apresentam influência significativa na
-              distribuição dos cartões Blue, Silver e Gold. No Platinum, existe
-              um aumento considerável na proporção de membros com doutorado e
-              pós-doutorado.
-            </p>
-
-            <h3>7. Distribuição estatística e churn</h3>
-            <p>
-              A fidelidade ao banco varia entre 20 e 55 meses, tanto entre
-              cancelados quanto ativos. Clientes que cancelaram fazem
-              consideravelmente menos transações e realizam transações de menor
-              valor médio. Apesar dessas diferenças, os limites de crédito são
-              semelhantes.
-            </p>
-            <div class="figure-grid">
-              <figure>
-                <img
-                  src="../../wix-images-to-use/boxplot_Total_Trans_Ct.png"
-                  alt="Boxplot do número total de transações por situação de churn"
-                  loading="lazy"
-                >
-                <figcaption>Número total de transações.</figcaption>
-              </figure>
-              <figure>
-                <img
-                  src="../../wix-images-to-use/boxplot_Total_Trans_Amt.png"
-                  alt="Boxplot do valor total de transações por situação de churn"
-                  loading="lazy"
-                >
-                <figcaption>Valor total das transações.</figcaption>
-              </figure>
-            </div>
-          </section>
-
-          <section class="case-section" id="tratamento">
-            <p class="case-part">Parte 3</p>
-            <h2>Tratamento do conjunto de dados</h2>
-
-            <h3>1. Estratégias e procedimentos</h3>
-            <p>
-              Tal como se faz uma limpeza em um quarto ou em uma sala, para
-              realizar a limpeza em um conjunto de dados é necessário ter um
-              procedimento: você não pode começar passando a vassoura e depois
-              jogar a água.
-            </p>
-            <p>
-              Por isso, neste e em outros projetos, costumeiramente sigo a
-              seguinte ordem: eliminação de colunas inúteis, identificação e
-              remoção de valores nulos, identificação e remoção de outliers,
-              criação de variáveis do tipo dummy e encoding. Isso garante um
-              dataset limpo e pronto para funcionar em um modelo de ML.
-            </p>
-
-            <h3>2. Valores nulos</h3>
-            <p>
-              Conforme eu trabalhava com o dataset, percebi que não existiam
-              valores <code>np.nan</code>, porque eles se apresentavam de outra
-              forma, como “Unknown”. Criei uma função para convertê-los em
-              <code>np.nan</code>, facilitando o trabalho, além de funções para
-              somar e visualizar a porcentagem de valores faltantes por coluna.
-            </p>
-            <p>
-              Como existiam poucas linhas faltantes e o dataset não era grande,
-              não desejei eliminar essas linhas. Escolhi preencher com o elemento
-              da célula seguinte e, para aumentar a chance de proximidade,
-              ordenei antes pelo limite de crédito.
-            </p>
-
-            <h3>3. Outliers</h3>
-            <p>
-              Para identificar e remover outliers, utilizei o método de John
-              Tukey, o mesmo empregado na criação de boxplots. Uma função retorna
-              o dataframe filtrado entre limites inferior e superior definidos
-              pelos quartis de cada coluna.
-            </p>
-
-            <h3>4. Variáveis categóricas</h3>
-            <p>
-              Como havia poucas linhas, tentei usar <code>pd.get_dummies</code>
-              o mínimo possível. Apenas gênero e estado civil viraram dummies,
-              criando três novas colunas com <code>drop_first=True</code>.
-            </p>
-            <p>
-              Para variáveis com ordem implícita, em que se espera, por exemplo,
-              que um cartão Platinum seja mais relevante que um Gold, estabeleci
-              essa ordem em listas e utilizei ferramentas do
-              <code>sklearn.preprocessing</code> para atribuir valores numéricos.
-            </p>
-          </section>
-
-          <section class="case-section" id="modelagem">
-            <p class="case-part">Parte 4</p>
-            <h2>Previsões com Machine Learning</h2>
-
-            <h3>1. Seleção inicial de modelos</h3>
-            <p>
-              Separei as variáveis em features e target, apliquei um
-              StandardScaler e escolhi alguns dos principais modelos clássicos
-              para testar sua performance. Após validação cruzada, todos
-              apresentaram acurácia acima de 87%.
-            </p>
-            <figure class="case-figure">
-              <img
-                src="../../wix-images-to-use/obrabo.png"
-                alt="Comparação da acurácia média de sete modelos de classificação"
-                loading="lazy"
-              >
-              <figcaption>Comparação inicial dos modelos antes da etapa de tuning.</figcaption>
-            </figure>
-
-            <h3>2. Refinando a Decision Tree</h3>
-            <p>
-              No site original, mostrei apenas a tunagem de um dos modelos, já
-              que o processo dos três era parecido. Utilizei GridSearch para
-              selecionar um dicionário de parâmetros e performar validação
-              cruzada com dez iterações. Cerca de 50 mil árvores foram treinadas
-              e avaliadas para encontrar os melhores parâmetros.
-            </p>
-            <div class="case-quote">
+          <div class="churn-insight-grid">
+            <article>
+              <p class="churn-step">01</p>
+              <h3>Perfil de maior risco</h3>
               <p>
-                Nossa árvore de decisão saiu de 93,06% de acurácia para 94,33%.
-                Pode parecer um salto pequeno, mas, quando se trata de negócios,
-                pode representar milhares ou milhões de dólares conforme o
-                tamanho da operação.
+                No recorte estudado, clientes mais velhos, com menos transações e uso menos ativo
+                do cartão aparecem associados a maior risco de cancelamento.
               </p>
-            </div>
+            </article>
+            <article>
+              <p class="churn-step">02</p>
+              <h3>Diferenças de uso</h3>
+              <p>
+                Mulheres apresentaram limites menores em parte das comparações, mas maior frequência
+                de uso. Isso indica padrões diferentes de relacionamento com o cartão, não uma regra
+                causal sobre o churn.
+              </p>
+            </article>
+            <article>
+              <p class="churn-step">03</p>
+              <h3>Educação e renda</h3>
+              <p>
+                O estudo encontrou maior proporção de cancelamento em categorias de renda e
+                escolaridade mais altas. Essa observação depende do recorte e das codificações da
+                base original.
+              </p>
+            </article>
+            <article>
+              <p class="churn-step">04</p>
+              <h3>Modelo escolhido</h3>
+              <p>
+                Os três modelos ultrapassaram a acurácia mínima de 85% descrita no projeto. A
+                Decision Tree preserva maior interpretabilidade, enquanto o XGBoost apresentou a
+                maior acurácia final registrada.
+              </p>
+            </article>
+          </div>
 
-            <h3>3. Comparação entre previsões</h3>
+          <div class="churn-conclusion">
+            <p class="churn-step">Conclusão</p>
+            <h3>Um ciclo completo de classificação</h3>
             <p>
-              As previsões foram realizadas em um conjunto de teste que os
-              modelos ainda não tinham visto. Os resultados foram organizados em
-              um dataframe para comparar Decision Tree, Random Forest e XGBoost
-              com os valores reais.
+              O projeto percorre o caminho entre pergunta de negócio, exploração, preparação,
+              modelagem e interpretação. O próximo passo para um sistema real seria validar o
+              comportamento em dados temporais, acompanhar mudanças de perfil e escolher métricas
+              alinhadas ao custo de cada tipo de erro.
             </p>
-
-            <h3>4. Importância das features</h3>
-            <p>
-              Com <code>feature_importances_</code>, foi possível determinar o
-              grau de importância de cada coluna. Average Open To Buy e Income
-              Level aparecem repetidamente no topo. Education, Dependents e
-              Gender ficam com frequência na base, indicando pouca relevância
-              para a previsão do churn.
-            </p>
-            <div class="figure-grid">
-              <figure>
-                <img
-                  src="../../wix-images-to-use/Decision Tree_feature_importances.png"
-                  alt="Importância das features para a árvore de decisão"
-                  loading="lazy"
-                >
-                <figcaption>Decision Tree.</figcaption>
-              </figure>
-              <figure>
-                <img
-                  src="../../wix-images-to-use/XGBoost_feature_importances.png"
-                  alt="Importância das features para o XGBoost"
-                  loading="lazy"
-                >
-                <figcaption>XGBoost.</figcaption>
-              </figure>
-            </div>
-
-            <h3>5. Matrizes de confusão</h3>
-            <p>
-              As matrizes mostram resultados semelhantes e coerentes com as
-              acurácias: a Decision Tree possui mais falsos positivos e negativos,
-              enquanto o XGBoost apresenta a menor quantidade. Mesmo com poucos
-              pontos percentuais de vantagem, o XGBoost evita falsos positivos e
-              negativos até 2,5 vezes melhor que os outros modelos.
-            </p>
-            <div class="figure-grid">
-              <figure>
-                <img
-                  src="../../wix-images-to-use/matriz_confusao_Decision Tree.png"
-                  alt="Matriz de confusão da árvore de decisão"
-                  loading="lazy"
-                >
-                <figcaption>Decision Tree.</figcaption>
-              </figure>
-              <figure>
-                <img
-                  src="../../wix-images-to-use/matriz_confusao_XGBoost.png"
-                  alt="Matriz de confusão do XGBoost"
-                  loading="lazy"
-                >
-                <figcaption>XGBoost.</figcaption>
-              </figure>
-            </div>
-
-            <div class="metric-grid" aria-label="Acurácia final dos modelos">
-              <div><span>Decision Tree</span><strong>94,33%</strong></div>
-              <div><span>Random Forest</span><strong>96,15%</strong></div>
-              <div><span>XGBoost</span><strong>97,43%</strong></div>
-            </div>
-          </section>
-
-          <section class="case-section" id="conclusoes">
-            <p class="case-part">Conclusão</p>
-            <h2>Insights e respostas do estudo</h2>
-            <p class="case-intro">
-              Após uma análise detalhada, reunimos uma ampla gama de insights
-              suficientes para responder de maneira fundamentada às questões
-              levantadas no início do projeto.
-            </p>
-
-            <div class="answer-list">
-              <article>
-                <h4>Qual é o perfil de maior risco?</h4>
-                <p>Clientes mais velhos, que realizam menos transações e têm limites semelhantes aos clientes ativos, apresentam maior risco de cancelamento.</p>
-              </article>
-              <article>
-                <h4>Como o gênero afeta o comportamento?</h4>
-                <p>Mulheres costumam ter limites menores, mas utilizam seus cartões com mais frequência, resultando em padrões de uso diferentes.</p>
-              </article>
-              <article>
-                <h4>A educação influencia?</h4>
-                <p>Pessoas com níveis de educação mais altos mostraram maior probabilidade de cancelamento na base analisada.</p>
-              </article>
-              <article>
-                <h4>Uso e limite de crédito</h4>
-                <p>Clientes que realizam mais transações frequentemente recebem limites maiores, pois o valor total de transações se relaciona ao limite.</p>
-              </article>
-              <article>
-                <h4>Salários altos e churn</h4>
-                <p>Clientes com salários mais altos mostram, nessa análise, uma tendência maior ao cancelamento.</p>
-              </article>
-              <article>
-                <h4>Comportamentos comuns</h4>
-                <p>Clientes que cancelam tendem a fazer menos transações e apresentam uso menos ativo do cartão.</p>
-              </article>
-            </div>
-
-            <p>
-              Também cumprimos os requisitos para os modelos de Machine Learning,
-              desenvolvendo três alternativas com acurácia superior a 85%. Cada
-              uma possui análise de importância das features, permitindo
-              identificar os principais fatores que influenciam suas previsões.
-            </p>
-            <p>
-              A DecisionTreeClassifier atende ainda ao requisito de alta
-              interpretabilidade: sua estrutura simples permite regras de decisão
-              claras e visualização direta, diferentemente de Random Forest e
-              XGBoost, que combinam múltiplas árvores.
-            </p>
-
-            <p class="case-source">
-              Texto migrado e reorganizado a partir do
-              <a
-                href="https://angejesufern.wixsite.com/angel-mansilla/churn-project"
-                target="_blank"
-                rel="noreferrer"
-              >estudo original no Wix</a>.
+            <p class="churn-source-note">
               Código e notebook no
-              <a
-                href="https://github.com/Ang3k/Exploracao-Preditiva-de-Dados-para-Churn-de-Clientes-Bancarios-com-Machine-Learning"
-                target="_blank"
-                rel="noreferrer"
-              >GitHub</a>.
+              <a href="https://github.com/Ang3k/Exploracao-Preditiva-de-Dados-para-Churn-de-Clientes-Bancarios-com-Machine-Learning" target="_blank" rel="noreferrer">GitHub</a>.
+              A versão original do estudo está disponível no
+              <a href="https://angejesufern.wixsite.com/angel-mansilla/churn-project" target="_blank" rel="noreferrer">Wix</a>.
             </p>
-          </section>
-        </article>
-      </div>
+          </div>
+        </section>
+      </article>
 
       <section class="case-next">
         <a class="container" href="../home-credit/index.html">
           <span>Próximo estudo</span>
-          <strong>Risco de crédito com Home Credit</strong>
+          <strong>Previsão de Risco de Crédito no Home Credit Group</strong>
           <i aria-hidden="true">→</i>
         </a>
       </section>
