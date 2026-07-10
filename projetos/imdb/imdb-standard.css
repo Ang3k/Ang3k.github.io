@@ -54,6 +54,35 @@
   padding-top: clamp(2rem, 4vw, 3rem);
 }
 
+/* Na Parte 2, cada consulta e seu resultado formam um único par sem molduras. */
+.portfolio-case-study.imdb-refactor #parte-2 .imdb-analysis {
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  grid-auto-flow: dense;
+  align-items: center;
+  column-gap: clamp(2rem, 3.5vw, 3.25rem);
+}
+
+.portfolio-case-study.imdb-refactor #parte-2 .imdb-analysis > .imdb-query {
+  grid-column: 1;
+  order: 1;
+}
+
+.portfolio-case-study.imdb-refactor #parte-2 .imdb-analysis > .imdb-result {
+  grid-column: 2;
+  order: 2;
+}
+
+.portfolio-case-study.imdb-refactor #parte-2 :is(.imdb-query, .imdb-query figure, .imdb-result) {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+/* Os subtítulos do relatório acompanham a coluna de texto das listas. */
+.portfolio-case-study.imdb-refactor #parte-3 .imdb-story-block > section > h4 {
+  margin-left: 1.3rem;
+}
+
 @media (min-width: 901px) {
   /* Marca as trocas de parte e reduz o espaço acumulado nos dois lados. */
   .imdb-refactor .case-section.imdb-chapter {
@@ -88,8 +117,8 @@
 
   /* Os comentários das análises usam a largura disponível e absorvem sobras curtas. */
   .imdb-refactor #parte-2 .imdb-analysis > p {
-    width: min(100%, var(--project-wide-media-width));
-    max-width: var(--project-wide-media-width);
+    width: 100%;
+    max-width: none;
     text-wrap: wrap;
   }
 }
@@ -112,5 +141,15 @@
     width: 50%;
     border-right: 1px solid var(--imdb-line);
     border-left: 1px solid var(--imdb-line);
+  }
+}
+
+@media (max-width: 680px) {
+  .portfolio-case-study.imdb-refactor #parte-2 .imdb-analysis {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-case-study.imdb-refactor #parte-2 .imdb-analysis > :is(.imdb-query, .imdb-result) {
+    grid-column: 1;
   }
 }

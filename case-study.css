@@ -1732,6 +1732,9 @@
 
 .imdb-refactor #parte-2 {
   display: block;
+  width: min(1280px, calc(100vw - 3rem));
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .imdb-refactor .case-section.imdb-chapter + .case-section.imdb-chapter {
@@ -2043,12 +2046,34 @@
 
 .imdb-analysis {
   counter-increment: analysis;
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  column-gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: center;
+}
+
+.imdb-analysis > :not(.imdb-result, .imdb-query, .imdb-result-gallery) {
+  grid-column: 1 / -1;
+}
+
+.imdb-analysis > .imdb-result,
+.imdb-analysis > .imdb-query {
+  width: 100%;
+  margin-top: clamp(2.25rem, 5vw, 4rem);
+}
+
+.imdb-analysis > .imdb-query {
+  grid-column: 1;
+}
+
+.imdb-analysis > .imdb-result {
+  grid-column: 2;
 }
 
 .imdb-result {
-  padding: clamp(0.5rem, 1.5vw, 1rem);
-  border: 1px solid #e0ddd5;
-  background: #fff;
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 .imdb-result figcaption {
@@ -2056,9 +2081,16 @@
 }
 
 .imdb-query figure {
-  width: min(100%, 760px);
+  width: 100%;
   margin: 0 auto;
-  padding: 0.75rem 0 2rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.imdb-analysis > .imdb-query {
+  border: 0;
+  background: transparent;
 }
 
 .imdb-query img {
@@ -2070,6 +2102,7 @@
 }
 
 .imdb-result-gallery {
+  grid-column: 1 / -1;
   display: grid;
   gap: clamp(2rem, 5vw, 4rem);
   margin-top: clamp(2.25rem, 5vw, 4rem);
@@ -2236,11 +2269,25 @@
     padding: 4.25rem 0;
   }
 
+  .imdb-analysis {
+    grid-template-columns: 1fr;
+  }
+
+  .imdb-analysis > :not(.imdb-result, .imdb-query, .imdb-result-gallery),
+  .imdb-analysis > .imdb-result,
+  .imdb-analysis > .imdb-query {
+    grid-column: 1;
+  }
+
   .imdb-media,
   .imdb-disclosure,
   .imdb-query,
   .imdb-data-note {
     width: 100%;
+  }
+
+  .imdb-refactor #parte-2 {
+    width: calc(100vw - 2rem);
   }
 
   .imdb-result {
