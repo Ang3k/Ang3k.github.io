@@ -9,9 +9,9 @@
   --hc-ink: #151515;
   --hc-muted: #66635f;
   --hc-line: #d8d4cc;
-  --hc-panel: #f6f4ef;
+  --hc-panel: #ffffff;
   --hc-dark: #171717;
-  background: var(--paper, #fff);
+  background: #ffffff;
   color: var(--ink, #111);
 }
 
@@ -37,9 +37,7 @@
   padding-top: clamp(3rem, 7vw, 6.5rem);
   padding-bottom: clamp(3.5rem, 8vw, 7rem);
   border-bottom: 1px solid var(--hc-line);
-  background:
-    linear-gradient(135deg, rgba(180, 60, 50, 0.055), transparent 42%),
-    var(--paper-bright, #fff);
+  background: #ffffff;
 }
 
 .home-credit-refactor .home-credit-hero .case-breadcrumb {
@@ -84,7 +82,7 @@
   padding: clamp(1rem, 2vw, 1.5rem);
   border: 1px solid var(--hc-line);
   background: #fff;
-  box-shadow: 0 1.25rem 3rem rgba(30, 24, 20, 0.08);
+  box-shadow: none;
 }
 
 .home-credit-refactor .home-credit-hero-figure img {
@@ -98,13 +96,18 @@
   line-height: 1.55;
 }
 
+.home-credit-refactor main,
+.home-credit-refactor .home-credit-content {
+  background: #ffffff;
+}
+
 .home-credit-refactor .home-credit-content {
   overflow: clip;
 }
 
 .home-credit-refactor .home-credit-overview {
   padding: clamp(4.5rem, 9vw, 8rem) 0 clamp(4rem, 8vw, 7rem);
-  background: var(--paper-bright, #fff);
+  background: #ffffff;
 }
 
 .home-credit-refactor .home-credit-overview-grid {
@@ -215,7 +218,7 @@
 .home-credit-refactor .home-credit-chapter-nav a:hover,
 .home-credit-refactor .home-credit-chapter-nav a:focus-visible {
   background: var(--hc-accent);
-  color: #fff;
+  color: #ffffff;
   outline: none;
 }
 
@@ -228,7 +231,7 @@
 
 .home-credit-refactor .home-credit-chapter-nav a:hover span,
 .home-credit-refactor .home-credit-chapter-nav a:focus-visible span {
-  color: #fff;
+  color: #ffffff;
 }
 
 .home-credit-refactor .home-credit-disclaimer {
@@ -250,15 +253,14 @@
 }
 
 .home-credit-refactor .home-credit-chapter-header {
-  display: grid;
-  grid-template-columns: minmax(95px, 0.25fr) minmax(0, 1fr);
-  gap: clamp(1.5rem, 5vw, 5rem);
-  align-items: start;
-  margin-bottom: clamp(4.5rem, 9vw, 8rem);
+  display: block;
+  width: min(100%, 1040px);
+  margin: 0 auto clamp(4.5rem, 9vw, 8rem);
 }
 
 .home-credit-refactor .home-credit-chapter-header > p {
-  padding-top: 0.65rem;
+  padding-top: 0;
+  margin-bottom: 1rem;
 }
 
 .home-credit-refactor .home-credit-chapter-header h2 {
@@ -377,6 +379,15 @@
   width: min(100%, 720px);
 }
 
+.home-credit-refactor .home-credit-media--composite {
+  width: min(100%, 1020px);
+}
+
+.home-credit-refactor .home-credit-media--composite img {
+  width: 100%;
+  max-height: none;
+}
+
 .home-credit-refactor .home-credit-media--compact {
   width: min(100%, 680px);
   margin-top: 0;
@@ -399,7 +410,7 @@
   margin-top: 2.2rem;
   border-top: 1px solid var(--hc-line);
   border-bottom: 1px solid var(--hc-line);
-  background: rgba(255, 255, 255, 0.54);
+  background: #ffffff;
 }
 
 .home-credit-refactor .home-credit-details summary {
@@ -527,12 +538,14 @@
   width: min(100%, 1040px);
   margin: clamp(6rem, 12vw, 11rem) auto 0;
   padding: clamp(2rem, 5vw, 4rem);
-  background: var(--hc-dark);
-  color: #f5f3ee;
+  border-top: 1px solid var(--hc-line);
+  border-bottom: 1px solid var(--hc-line);
+  background: #ffffff;
+  color: var(--hc-ink);
 }
 
 .home-credit-refactor .home-credit-takeaways h3 {
-  color: #fff;
+  color: var(--hc-ink);
 }
 
 .home-credit-refactor .home-credit-takeaways ul {
@@ -541,20 +554,20 @@
   gap: 0;
   margin: 2.5rem 0 0;
   padding: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  border-top: 1px solid var(--hc-line);
   list-style: none;
 }
 
 .home-credit-refactor .home-credit-takeaways li {
   padding: 1.25rem 1.25rem 1.25rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-  color: #d6d2ca;
+  border-bottom: 1px solid var(--hc-line);
+  color: var(--hc-muted);
   line-height: 1.65;
 }
 
 .home-credit-refactor .home-credit-takeaways li:nth-child(odd) {
   padding-right: 1.75rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.22);
+  border-right: 1px solid var(--hc-line);
 }
 
 .home-credit-refactor .home-credit-takeaways li:nth-child(even) {
@@ -627,12 +640,15 @@
 }
 
 .home-credit-refactor .home-credit-impact-grid > div:last-child {
-  background: var(--hc-accent);
+  background: #ffffff;
 }
 
-.home-credit-refactor .home-credit-impact-grid > div:last-child span,
+.home-credit-refactor .home-credit-impact-grid > div:last-child span {
+  color: var(--hc-muted);
+}
+
 .home-credit-refactor .home-credit-impact-grid > div:last-child strong {
-  color: #fff;
+  color: var(--hc-accent);
 }
 
 .home-credit-refactor .home-credit-table-figure {
@@ -650,14 +666,17 @@
   margin: 2.5rem 0 0;
   padding: 1.3rem 1.5rem;
   border-left: 3px solid var(--hc-accent);
-  background: var(--hc-accent-soft);
-  color: #4b3734;
+  border-top: 1px solid var(--hc-line);
+  border-right: 1px solid var(--hc-line);
+  border-bottom: 1px solid var(--hc-line);
+  background: #ffffff;
+  color: var(--hc-ink);
   font-size: 0.88rem;
   line-height: 1.7;
 }
 
 .home-credit-refactor .home-credit-chapter--summary {
-  background: var(--paper-bright, #fff);
+  background: #ffffff;
 }
 
 .home-credit-refactor .home-credit-insight-grid {
@@ -719,6 +738,22 @@
 
 .home-credit-refactor .case-next strong {
   max-width: 860px;
+}
+
+.home-credit-refactor .case-next {
+  border-top: 1px solid var(--hc-ink);
+  background: #ffffff;
+  color: var(--hc-ink);
+}
+
+.home-credit-refactor .case-next span {
+  color: var(--hc-muted);
+}
+
+.home-credit-refactor .case-footer {
+  border-top: 1px solid var(--hc-line);
+  background: #ffffff;
+  color: #343434;
 }
 
 .home-credit-refactor .case-footer a {
@@ -820,8 +855,7 @@
   }
 
   .home-credit-refactor .home-credit-chapter-header {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    margin-bottom: clamp(3.5rem, 8vw, 6rem);
   }
 
   .home-credit-refactor .home-credit-chapter-header h2 {
