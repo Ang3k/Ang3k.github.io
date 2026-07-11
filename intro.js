@@ -9,8 +9,8 @@
     return;
   }
 
-  /* Toda a timeline roda 1,5× mais rápido sem alterar a ordem dos atos. */
-  var TIME_SCALE = 2 / 3;
+  /* Ritmo levemente desacelerado, preservando a sobreposição dos atos. */
+  var TIME_SCALE = 0.8;
 
   var overlay = document.getElementById("intro-overlay");
   var device = overlay ? overlay.querySelector(".intro-device") : null;
@@ -58,10 +58,8 @@
 
   var done = false;
   var timers = [];
-  var activeFrame = null;
   var outlierDot = null;
   var initialViewBox = [0, 0, 1000, 620];
-  var zoomViewBox = [376.21, 76.32, 526.32, 326.32];
 
   function wait(ms) {
     return new Promise(function (resolve) {
@@ -75,9 +73,6 @@
     }
     done = true;
     timers.forEach(clearTimeout);
-    if (activeFrame) {
-      cancelAnimationFrame(activeFrame);
-    }
     document.removeEventListener("keydown", onKeydown);
     headerName.style.visibility = "";
     overlay.remove();
@@ -159,90 +154,34 @@
     placeFixedElement(nameEl, left, top);
   }
 
-  function prepareScreenZoom() {
+  function prepareCameraZoom() {
     var zoom = getPageZoom();
     var overlayRect = overlay.getBoundingClientRect();
     var deviceRect = device.getBoundingClientRect();
     var chartRect = chart.getBoundingClientRect();
 
-    if (!overlayRect.width || !overlayRect.height || !chartRect.width || !chartRect.height) {
+    if (!overlayRect.width || !overlayRect.height || !deviceRect.width || !chartRect.width) {
       return;
     }
 
-    var chromeX = deviceRect.width - chartRect.width;
-    var chromeTop = chartRect.top - deviceRect.top;
-    var chromeBottom = deviceRect.bottom - chartRect.bottom;
-    var targetDeviceWidth = overlayRect.width + chromeX;
-    var targetDeviceHeight = overlayRect.height + chromeTop + chromeBottom;
-
-    var finalChartRect = {
-      left: -targetDeviceWidth / 2 + chromeX / 2,
-      top: -targetDeviceHeight / 2 + chromeTop,
-      width: targetDeviceWidth - chromeX,
-      height: targetDeviceHeight - chromeTop - chromeBottom
-    };
-
+    /* Primeiro movimento: a câmera atravessa a moldura e centraliza a tela
+       inteira. O scale uniforme preserva o notebook; o SVG ainda não muda. */
+    var targetScale = Math.max(
+      overlayRect.width / chartRect.width,
+      overlayRect.height / chartRect.height
+    ) * 1.04;
+    var deviceCenterX = deviceRect.left + deviceRect.width / 2;
+    var deviceCenterY = deviceRect.top + deviceRect.height / 2;
+    var chartCenterX = chartRect.left + chartRect.width / 2;
+    var chartCenterY = chartRect.top + chartRect.height / 2;
     var targetCenterX = overlayRect.left + overlayRect.width / 2 -
-      (finalChartRect.left + finalChartRect.width / 2);
+      (chartCenterX - deviceCenterX) * targetScale;
     var targetCenterY = overlayRect.top + overlayRect.height / 2 -
-      (finalChartRect.top + finalChartRect.height / 2);
+      (chartCenterY - deviceCenterY) * targetScale;
 
-    device.style.setProperty("--intro-device-left", (targetCenterX - overlayRect.left) / zoom + "px");
-    device.style.setProperty("--intro-device-top", (targetCenterY - overlayRect.top) / zoom + "px");
-    device.style.setProperty("--intro-device-width", targetDeviceWidth / zoom + "px");
-    device.style.setProperty("--intro-device-height", targetDeviceHeight / zoom + "px");
-  }
-
-  function easeInOutSine(t) {
-    return -(Math.cos(Math.PI * t) - 1) / 2;
-  }
-
-  function animateViewBox(from, to, duration) {
-    duration *= TIME_SCALE;
-    return new Promise(function (resolve) {
-      var started = null;
-
-      function tick(now) {
-        if (done) {
-          resolve();
-          return;
-        }
-
-        if (started === null) {
-          started = now;
-        }
-
-        var progress = Math.min(1, (now - started) / duration);
-        var eased = easeInOutSine(progress);
-        var fromCenterX = from[0] + from[2] / 2;
-        var fromCenterY = from[1] + from[3] / 2;
-        var toCenterX = to[0] + to[2] / 2;
-        var toCenterY = to[1] + to[3] / 2;
-        var width = from[2] * Math.pow(to[2] / from[2], eased);
-        var height = from[3] * Math.pow(to[3] / from[3], eased);
-        var centerX = fromCenterX + (toCenterX - fromCenterX) * eased;
-        var centerY = fromCenterY + (toCenterY - fromCenterY) * eased;
-        var current = [
-          centerX - width / 2,
-          centerY - height / 2,
-          width,
-          height
-        ];
-
-        chart.setAttribute("viewBox", current.map(function (value) {
-          return value.toFixed(3);
-        }).join(" "));
-
-        if (progress < 1) {
-          activeFrame = requestAnimationFrame(tick);
-        } else {
-          activeFrame = null;
-          resolve();
-        }
-      }
-
-      activeFrame = requestAnimationFrame(tick);
-    });
+    device.style.setProperty("--intro-camera-left", (targetCenterX - overlayRect.left) / zoom + "px");
+    device.style.setProperty("--intro-camera-top", (targetCenterY - overlayRect.top) / zoom + "px");
+    device.style.setProperty("--intro-camera-scale", targetScale);
   }
 
   async function flipToHeader() {
@@ -264,7 +203,7 @@
       "translate(" + (first.left - last.left) / zoom + "px, " +
       (first.top - last.top) / zoom + "px) scale(" + scale + ")";
     nameEl.getBoundingClientRect();
-    nameEl.style.transition = "transform 767ms cubic-bezier(0.22, 1, 0.36, 1)";
+    nameEl.style.transition = "transform 920ms cubic-bezier(0.22, 1, 0.36, 1)";
     nameEl.style.transform = "none";
     await wait(1200);
   }
@@ -287,30 +226,28 @@
 
     chart.setAttribute("viewBox", initialViewBox.join(" "));
 
-    await wait(850);
-
-    pointsGroup.classList.add("intro-points-on");
+    /* A timeline se sobrepõe: dados, curva e aproximação da câmera
+       acontecem no mesmo movimento, sem quadros de espera entre os atos. */
     await wait(650);
 
-    metric.classList.add("is-on");
-    await wait(140);
+    pointsGroup.classList.add("intro-points-on");
+    await wait(300);
 
-    prepareScreenZoom();
-    overlay.classList.add("is-zoom");
-    world.classList.add("is-zoomed");
+    prepareCameraZoom();
+    device.classList.add("is-camera-zoom");
     timers.push(setTimeout(function () {
       lineReveal.classList.add("is-on");
-    }, Math.round(560 * TIME_SCALE)));
-    await wait(3150);
-    await wait(420);
+    }, Math.round(360 * TIME_SCALE)));
+    timers.push(setTimeout(function () {
+      metric.classList.add("is-on");
+    }, Math.round(1050 * TIME_SCALE)));
+    await wait(1900);
 
     pointsGroup.classList.add("intro-outlier-on");
     residual.classList.add("is-on");
     ring.classList.add("is-on");
-    await wait(420);
-
-    await animateViewBox(initialViewBox, zoomViewBox, 1900);
-    await wait(380);
+    world.classList.add("is-zoomed");
+    await wait(1900);
 
     placeNameBesideOutlier();
     nameEl.classList.add("is-visible");

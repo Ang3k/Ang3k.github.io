@@ -1215,16 +1215,11 @@ html.intro-pending .intro-overlay {
   display: block;
   overflow: hidden;
   background: var(--paper);
-  perspective: 1400px;
   transition: opacity 320ms ease;
 }
 
 html.intro-pending .intro-overlay.is-leaving {
   opacity: 0;
-}
-
-html.intro-pending .intro-overlay.is-zoom {
-  perspective: none;
 }
 
 html.intro-pending .intro-name {
@@ -1235,15 +1230,14 @@ html.intro-pending .intro-name {
   display: block;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-size: clamp(1.55rem, 5.4vw, 2.75rem);
   font-weight: 300;
   letter-spacing: -0.055em;
   line-height: 0.95;
   white-space: nowrap;
   opacity: 0;
   transform-origin: 0 0;
-  transition: opacity 333ms ease;
-  will-change: transform;
+  transition: opacity 400ms ease;
 }
 
 html.intro-pending .intro-name.is-visible {
@@ -1255,29 +1249,32 @@ html.intro-pending .intro-name.is-visible {
   top: 50%;
   left: 50%;
   display: grid;
-  grid-template-rows: minmax(0, 1fr) 54px;
-  width: min(1040px, calc(100vw - 160px));
-  height: min(660px, calc(100vh - 170px));
+  grid-template-rows: minmax(0, 1fr) 86px;
+  width: min(1040px, calc(100vw - 160px), calc(157.576vh - 267.88px));
+  height: auto;
+  aspect-ratio: 1040 / 660;
   opacity: 0;
-  transform: translate(-50%, -50%) translateY(18px) rotateX(3deg);
+  transform: translate(-50%, -50%);
   transform-origin: center;
   transition:
-    left 2000ms cubic-bezier(0.32, 0, 0.18, 1),
-    top 2000ms cubic-bezier(0.32, 0, 0.18, 1),
-    width 2000ms cubic-bezier(0.32, 0, 0.18, 1),
-    height 2000ms cubic-bezier(0.32, 0, 0.18, 1),
-    grid-template-rows 1267ms cubic-bezier(0.45, 0, 0.1, 1),
-    transform 2000ms cubic-bezier(0.32, 0, 0.18, 1),
+    left 1520ms cubic-bezier(0.45, 0, 0.1, 1),
+    top 1520ms cubic-bezier(0.45, 0, 0.1, 1),
+    transform 1520ms cubic-bezier(0.45, 0, 0.1, 1),
     opacity 347ms ease;
-  animation: intro-device-in 480ms cubic-bezier(0.22, 1, 0.36, 1) 80ms forwards;
-  will-change: width, height;
+  animation: intro-device-in 576ms cubic-bezier(0.22, 1, 0.36, 1) 96ms forwards;
+  will-change: opacity;
 }
 
 @keyframes intro-device-in {
   to {
     opacity: 1;
-    transform: translate(-50%, -50%) translateY(0) rotateX(0deg);
   }
+}
+
+.intro-device.is-camera-zoom {
+  top: var(--intro-camera-top, 50%);
+  left: var(--intro-camera-left, 50%);
+  transform: translate(-50%, -50%) scale(var(--intro-camera-scale, 1.75));
 }
 
 .intro-device-lid {
@@ -1287,14 +1284,15 @@ html.intro-pending .intro-name.is-visible {
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  border: 1px solid rgba(17, 17, 17, 0.3);
+  border: 2px solid rgba(17, 17, 17, 0.48);
   border-radius: 28px 28px 16px 16px;
   background: linear-gradient(145deg, #292b2f 0%, #111214 46%, #08090a 100%);
   box-shadow:
-    0 38px 90px rgba(17, 17, 17, 0.21),
-    0 12px 28px rgba(17, 17, 17, 0.13),
+    0 42px 96px rgba(17, 17, 17, 0.24),
+    0 14px 32px rgba(17, 17, 17, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.09),
-    inset 0 0 0 5px rgba(255, 255, 255, 0.015);
+    inset 0 0 0 6px rgba(255, 255, 255, 0.025),
+    inset 0 -9px 14px rgba(0, 0, 0, 0.34);
   transition:
     border-color 1000ms ease,
     border-radius 1267ms cubic-bezier(0.45, 0, 0.1, 1),
@@ -1381,10 +1379,16 @@ html.intro-pending .intro-name.is-visible {
 .intro-screen {
   position: relative;
   min-height: 0;
-  height: 100%;
+  height: auto;
+  margin: 0 9px 10px;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px 2px 10px 10px;
   background: var(--paper);
-  box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.58),
+    0 5px 12px rgba(0, 0, 0, 0.38),
+    inset 0 0 0 1px rgba(17, 17, 17, 0.12);
 }
 
 .intro-screen::after {
@@ -1399,7 +1403,8 @@ html.intro-pending .intro-name.is-visible {
 
 .intro-device-base {
   position: relative;
-  height: 54px;
+  z-index: 2;
+  height: 86px;
   transform-origin: top center;
   transition:
     opacity 733ms ease 147ms,
@@ -1408,66 +1413,81 @@ html.intro-pending .intro-name.is-visible {
 
 .intro-device-base::before {
   position: absolute;
-  top: 0;
+  top: -2px;
   left: 50%;
-  width: 108%;
-  height: 22px;
-  border-radius: 0 0 28px 28px;
-  background: linear-gradient(180deg, #f0f0ed 0%, #c9caca 42%, #9b9d9e 100%);
+  width: 110%;
+  height: 52px;
+  border-radius: 3px 3px 24px 24px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.5), transparent 9% 91%, rgba(255, 255, 255, 0.28)),
+    linear-gradient(180deg, #eef0ef 0%, #d2d4d3 38%, #a9abaa 76%, #8b8d8d 100%);
+  clip-path: polygon(4% 0, 96% 0, 100% 76%, 98% 100%, 2% 100%, 0 76%);
   box-shadow:
-    0 18px 38px rgba(17, 17, 17, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 -1px 0 rgba(17, 17, 17, 0.16);
+    0 22px 40px rgba(17, 17, 17, 0.22),
+    inset 0 2px 0 rgba(255, 255, 255, 0.88),
+    inset 0 -4px 7px rgba(17, 17, 17, 0.22);
   content: "";
   transform: translateX(-50%);
 }
 
-.intro-device-base span {
+.intro-device-hinge {
   position: absolute;
-  top: 2px;
+  z-index: 3;
+  top: -4px;
+  left: 50%;
+  width: 32%;
+  height: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0 0 8px 8px;
+  background: linear-gradient(180deg, #3d3f41, #111214 72%);
+  box-shadow: 0 2px 4px rgba(17, 17, 17, 0.34);
+  transform: translateX(-50%);
+}
+
+.intro-device-keyboard {
+  position: absolute;
+  z-index: 3;
+  top: 8px;
+  left: 50%;
+  width: 58%;
+  height: 19px;
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 12px, rgba(250, 250, 248, 0.72) 12px 14px),
+    repeating-linear-gradient(180deg, #787b7c 0 3px, #b9bbba 3px 5px);
+  box-shadow:
+    0 0 0 1px rgba(17, 17, 17, 0.2),
+    inset 0 1px 2px rgba(17, 17, 17, 0.28);
+  opacity: 0.56;
+  transform: translateX(-50%) perspective(90px) rotateX(9deg);
+}
+
+.intro-device-trackpad {
+  position: absolute;
+  z-index: 3;
+  top: 31px;
   left: 50%;
   width: 17%;
-  height: 7px;
-  border-radius: 0 0 999px 999px;
-  background: linear-gradient(180deg, rgba(17, 17, 17, 0.3), rgba(17, 17, 17, 0.12));
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+  height: 14px;
+  border: 1px solid rgba(17, 17, 17, 0.22);
+  border-radius: 3px 3px 7px 7px;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.48);
   transform: translateX(-50%);
 }
 
 .intro-device-base::after {
   position: absolute;
-  top: 22px;
+  top: 51px;
   left: 50%;
-  width: 82%;
-  height: 3px;
+  width: 86%;
+  height: 5px;
   border-radius: 50%;
-  background: rgba(17, 17, 17, 0.14);
-  box-shadow: 0 9px 18px rgba(17, 17, 17, 0.14);
+  background: rgba(17, 17, 17, 0.18);
+  box-shadow: 0 13px 22px rgba(17, 17, 17, 0.17);
   content: "";
-  filter: blur(1px);
+  filter: blur(1.5px);
   transform: translateX(-50%);
-}
-
-.intro-overlay.is-zoom .intro-device {
-  top: var(--intro-device-top, 50%);
-  left: var(--intro-device-left, 50%);
-  width: var(--intro-device-width, max(150vw, 1400px));
-  height: var(--intro-device-height, max(95vw, 890px));
-  animation: none;
-  opacity: 1;
-  transform: translate(-50%, -50%) rotateX(0deg);
-}
-
-.intro-overlay.is-zoom .intro-device-lid {
-  border-color: transparent;
-  border-radius: 0;
-  background: var(--paper);
-  box-shadow: none;
-}
-
-.intro-overlay.is-zoom .intro-device-lid::before,
-.intro-overlay.is-zoom .intro-screen::after {
-  opacity: 0;
 }
 
 .intro-chart {
@@ -1490,6 +1510,11 @@ html.intro-pending .intro-name.is-visible {
 
 .intro-world {
   transform-origin: 0 0;
+  transition: transform 1520ms cubic-bezier(0.45, 0, 0.1, 1);
+}
+
+.intro-world.is-zoomed {
+  transform: translate(-714.8px, -145px) scale(1.9);
 }
 
 .intro-frame {
@@ -1548,10 +1573,6 @@ html.intro-pending .intro-name.is-visible {
   opacity: 1;
 }
 
-.intro-overlay.is-zoom .intro-caption {
-  opacity: 0;
-}
-
 .intro-line {
   fill: none;
   stroke: var(--ink);
@@ -1565,7 +1586,7 @@ html.intro-pending .intro-name.is-visible {
    o tracejado em espaço de tela e a curva vazaria em janelas largas. */
 .intro-line-reveal {
   width: 0;
-  transition: width 933ms cubic-bezier(0.65, 0, 0.35, 1);
+  transition: width 1120ms cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .intro-line-reveal.is-on {
@@ -1593,15 +1614,15 @@ html.intro-pending .intro-name.is-visible {
 }
 
 .intro-points-on .intro-point:not(.intro-point-outlier) {
-  animation: intro-point-in 280ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
+  animation: intro-point-in 336ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
 }
 
 .intro-outlier-on .intro-point-outlier {
-  animation: intro-point-in 280ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
+  animation: intro-point-in 336ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
 }
 
 .intro-outlier-on .intro-halo {
-  animation: intro-halo-in 467ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
+  animation: intro-halo-in 560ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
 }
 
 @keyframes intro-halo-in {
@@ -1635,7 +1656,7 @@ html.intro-pending .intro-name.is-visible {
   stroke-dasharray: 5 7;
   vector-effect: non-scaling-stroke;
   opacity: 0;
-  transition: opacity 333ms ease 167ms;
+  transition: opacity 400ms ease 200ms;
 }
 
 .intro-residual.is-on {
@@ -1654,8 +1675,8 @@ html.intro-pending .intro-name.is-visible {
 
 .intro-ring.is-on {
   animation:
-    intro-ring-in 333ms ease-out forwards,
-    intro-ring-pulse 1200ms ease-in-out 333ms infinite;
+    intro-ring-in 400ms ease-out forwards,
+    intro-ring-pulse 1440ms ease-in-out 400ms infinite;
 }
 
 @keyframes intro-ring-in {
@@ -1704,15 +1725,20 @@ html.intro-pending .intro-name.is-visible {
 
 @media (max-width: 700px) {
   .intro-device {
-    grid-template-rows: minmax(0, 1fr) 42px;
-    width: min(1040px, calc(100vw - 32px));
-    height: min(560px, calc(100vh - 96px));
-    height: min(560px, calc(100svh - 96px));
+    grid-template-rows: minmax(0, 1fr) 57px;
+    width: min(1040px, calc(100vw - 32px), calc(157.576vh - 151.27px));
+    width: min(1040px, calc(100vw - 32px), calc(157.576svh - 151.27px));
+    height: auto;
   }
 
   .intro-device-lid {
     grid-template-rows: 36px minmax(0, 1fr);
     border-radius: 20px 20px 12px 12px;
+  }
+
+  .intro-screen {
+    margin: 0 6px 7px;
+    border-radius: 1px 1px 7px 7px;
   }
 
   .intro-device-lid::before {
@@ -1736,17 +1762,35 @@ html.intro-pending .intro-name.is-visible {
   }
 
   .intro-device-base {
-    height: 42px;
+    height: 57px;
   }
 
   .intro-device-base::before {
-    width: 104%;
-    height: 17px;
-    border-radius: 0 0 20px 20px;
+    width: 106%;
+    height: 35px;
+    border-radius: 2px 2px 16px 16px;
   }
 
   .intro-device-base::after {
-    top: 17px;
+    top: 34px;
+  }
+
+  .intro-device-hinge {
+    height: 5px;
+  }
+
+  .intro-device-keyboard {
+    top: 5px;
+    width: 56%;
+    height: 12px;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 8px, rgba(250, 250, 248, 0.72) 8px 9px),
+      repeating-linear-gradient(180deg, #787b7c 0 2px, #b9bbba 2px 3px);
+  }
+
+  .intro-device-trackpad {
+    top: 20px;
+    height: 9px;
   }
 }
 
