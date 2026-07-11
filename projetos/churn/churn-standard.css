@@ -26,6 +26,11 @@
   margin: 0;
 }
 
+/* Os gráficos regenerados podem ter proporções diferentes das imagens antigas. */
+.churn-refactor .churn-media img {
+  height: auto;
+}
+
 .churn-refactor .churn-dictionary,
 .churn-refactor .churn-method-list,
 .churn-refactor .churn-question-list {

@@ -509,8 +509,7 @@
   grid-row: span 2;
 }
 
-.churn-case .case-figure:has(img[src*="codetoimg-snippet"]),
-.quinto-andar-case .case-figure:has(img[src*="codetoimg-snippet"]) {
+.churn-case .case-figure:has(img[src*="codetoimg-snippet"]) {
   max-width: 680px;
 }
 

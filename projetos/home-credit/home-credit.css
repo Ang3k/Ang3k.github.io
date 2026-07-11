@@ -362,6 +362,7 @@
 .home-credit-refactor .home-credit-code-figure img,
 .home-credit-refactor .home-credit-table-figure img {
   width: auto;
+  height: auto;
   margin-inline: auto;
   border: 1px solid var(--hc-line);
   background: #fff;
@@ -1097,6 +1098,7 @@
 
 .home-credit-refactor .home-credit-media img {
   width: 100%;
+  height: auto;
   max-height: none;
 }
 

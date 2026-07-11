@@ -499,102 +499,6 @@ body.portfolio-case-study .case-next a:focus-visible {
   }
 }
 
-/* QuintoAndar ainda utiliza a marcação original do estudo. */
-.quinto-andar-refactor .case-cover {
-  height: clamp(190px, 34vw, 480px);
-  max-height: 480px;
-}
-
-.quinto-andar-refactor .case-cover img {
-  width: 100%;
-  height: 100%;
-  max-height: none;
-  object-fit: cover;
-  object-position: center;
-}
-
-.quinto-andar-refactor .case-layout {
-  padding-top: 0;
-  padding-bottom: clamp(3rem, 6vw, 5rem);
-}
-
-.quinto-andar-refactor .case-content {
-  width: min(100%, var(--project-wide-media-width));
-  max-width: none;
-}
-
-.quinto-andar-refactor .case-section,
-.quinto-andar-refactor .case-section + .case-section {
-  margin-top: 0;
-  padding: clamp(2.5rem, 5vw, 4.25rem) 0;
-  border: 0;
-  text-align: center;
-}
-
-.quinto-andar-refactor .case-section > :is(.case-part, h2, h3, h4, p, ul, ol) {
-  max-width: var(--project-text-width);
-  margin-inline: auto;
-}
-
-.quinto-andar-refactor .case-section > h2 {
-  margin-top: 0.35rem;
-  font-size: clamp(2.35rem, 5vw, 4.6rem);
-  line-height: 1.04;
-}
-
-.quinto-andar-refactor .case-section > h2::after {
-  display: none;
-}
-
-.quinto-andar-refactor .case-section > h3 {
-  margin-top: clamp(1.9rem, 4vw, 3.25rem);
-  font-size: clamp(1.85rem, 3.2vw, 2.85rem);
-  line-height: 1.1;
-}
-
-.quinto-andar-refactor .case-section > h3 + p,
-.quinto-andar-refactor .case-section > p + p {
-  margin-top: 0.7rem;
-}
-
-.quinto-andar-refactor .case-section > p {
-  line-height: 1.7;
-}
-
-.quinto-andar-refactor .case-section > :is(ul, ol) {
-  text-align: left;
-}
-
-.quinto-andar-refactor :is(.case-figure, .plot-grid, .figure-grid) {
-  width: min(100%, var(--project-wide-media-width));
-  margin: clamp(1.1rem, 2.2vw, 1.65rem) auto 0;
-}
-
-.quinto-andar-refactor :is(.plot-grid, .figure-grid) {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(0.7rem, 1.5vw, 1.15rem);
-}
-
-.quinto-andar-refactor .plot-grid--three {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.quinto-andar-refactor :is(.case-figure, .plot-grid figure, .figure-grid figure) img {
-  width: 100%;
-  height: auto;
-  max-height: none;
-  object-fit: contain;
-}
-
-.quinto-andar-refactor .case-figure:has(+ .case-figure),
-.quinto-andar-refactor .case-figure + .case-figure {
-  display: inline-block;
-  width: calc(50% - 1rem);
-  margin-right: 0.35rem;
-  margin-left: 0.35rem;
-  vertical-align: top;
-}
-
 @media (max-width: 900px) {
   .portfolio-case-study :is(.churn-result-gallery--three, .churn-result-gallery--four) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -618,9 +522,7 @@ body.portfolio-case-study .case-next a:focus-visible {
     width: 3.75rem;
   }
 
-  .portfolio-case-study :is(.case-section.imdb-chapter, .case-section.churn-chapter, .home-credit-chapter),
-  .quinto-andar-refactor .case-section,
-  .quinto-andar-refactor .case-section + .case-section {
+  .portfolio-case-study :is(.case-section.imdb-chapter, .case-section.churn-chapter, .home-credit-chapter) {
     padding-block: 2.35rem;
   }
 
@@ -633,16 +535,8 @@ body.portfolio-case-study .case-next a:focus-visible {
     .home-credit-gallery--metrics,
     .home-credit-code-gallery,
     .imdb-result-gallery
-  ),
-  .quinto-andar-refactor :is(.plot-grid, .plot-grid--three, .figure-grid) {
+  ) {
     grid-template-columns: 1fr;
   }
 
-  .quinto-andar-refactor .case-figure:has(+ .case-figure),
-  .quinto-andar-refactor .case-figure + .case-figure {
-    display: block;
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-  }
 }
