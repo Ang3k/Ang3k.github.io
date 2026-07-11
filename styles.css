@@ -1254,14 +1254,14 @@ html.intro-pending .intro-name.is-visible {
   height: auto;
   aspect-ratio: 1040 / 660;
   opacity: 0;
-  transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(1);
+  /* Mantém o SVG em renderização vetorial durante o zoom da câmera. */
+  transform: translate(-50%, -50%) scale(1);
   transform-origin: center;
   transition:
     transform 1520ms cubic-bezier(0.45, 0, 0.1, 1),
     opacity 347ms ease;
   animation: intro-device-in 576ms cubic-bezier(0.22, 1, 0.36, 1) 96ms forwards;
-  backface-visibility: hidden;
-  will-change: transform, opacity;
+  will-change: opacity;
 }
 
 @keyframes intro-device-in {
@@ -1273,7 +1273,7 @@ html.intro-pending .intro-name.is-visible {
 .intro-device.is-camera-zoom {
   transform:
     translate(-50%, -50%)
-    translate3d(var(--intro-camera-x, 0), var(--intro-camera-y, 0), 0)
+    translate(var(--intro-camera-x, 0), var(--intro-camera-y, 0))
     scale(var(--intro-camera-scale, 1.75));
 }
 
@@ -1511,12 +1511,10 @@ html.intro-pending .intro-name.is-visible {
 .intro-world {
   transform-origin: 0 0;
   transition: transform 1520ms cubic-bezier(0.45, 0, 0.1, 1);
-  backface-visibility: hidden;
-  will-change: transform;
 }
 
 .intro-world.is-zoomed {
-  transform: translate3d(-714.8px, -145px, 0) scale(1.9);
+  transform: translate(-714.8px, -145px) scale(1.9);
 }
 
 .intro-frame {
@@ -1596,17 +1594,16 @@ html.intro-pending .intro-name.is-visible {
 }
 
 .intro-point {
-  fill: var(--ink-soft);
-  stroke: rgba(17, 17, 17, 0.16);
-  stroke-width: 0.35;
+  fill: #111111;
+  stroke: none;
   opacity: 0;
   shape-rendering: geometricPrecision;
   vector-effect: non-scaling-stroke;
 }
 
 .intro-point-outlier {
-  fill: var(--red);
-  stroke: rgba(229, 66, 66, 0.18);
+  fill: #e54242;
+  stroke: none;
 }
 
 .intro-halo {
