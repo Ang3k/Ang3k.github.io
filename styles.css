@@ -1254,15 +1254,14 @@ html.intro-pending .intro-name.is-visible {
   height: auto;
   aspect-ratio: 1040 / 660;
   opacity: 0;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(1);
   transform-origin: center;
   transition:
-    left 1520ms cubic-bezier(0.45, 0, 0.1, 1),
-    top 1520ms cubic-bezier(0.45, 0, 0.1, 1),
     transform 1520ms cubic-bezier(0.45, 0, 0.1, 1),
     opacity 347ms ease;
   animation: intro-device-in 576ms cubic-bezier(0.22, 1, 0.36, 1) 96ms forwards;
-  will-change: opacity;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 @keyframes intro-device-in {
@@ -1272,9 +1271,10 @@ html.intro-pending .intro-name.is-visible {
 }
 
 .intro-device.is-camera-zoom {
-  top: var(--intro-camera-top, 50%);
-  left: var(--intro-camera-left, 50%);
-  transform: translate(-50%, -50%) scale(var(--intro-camera-scale, 1.75));
+  transform:
+    translate(-50%, -50%)
+    translate3d(var(--intro-camera-x, 0), var(--intro-camera-y, 0), 0)
+    scale(var(--intro-camera-scale, 1.75));
 }
 
 .intro-device-lid {
@@ -1511,10 +1511,12 @@ html.intro-pending .intro-name.is-visible {
 .intro-world {
   transform-origin: 0 0;
   transition: transform 1520ms cubic-bezier(0.45, 0, 0.1, 1);
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .intro-world.is-zoomed {
-  transform: translate(-714.8px, -145px) scale(1.9);
+  transform: translate3d(-714.8px, -145px, 0) scale(1.9);
 }
 
 .intro-frame {

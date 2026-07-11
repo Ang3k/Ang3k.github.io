@@ -179,8 +179,8 @@
     var targetCenterY = overlayRect.top + overlayRect.height / 2 -
       (chartCenterY - deviceCenterY) * targetScale;
 
-    device.style.setProperty("--intro-camera-left", (targetCenterX - overlayRect.left) / zoom + "px");
-    device.style.setProperty("--intro-camera-top", (targetCenterY - overlayRect.top) / zoom + "px");
+    device.style.setProperty("--intro-camera-x", (targetCenterX - deviceCenterX) / zoom + "px");
+    device.style.setProperty("--intro-camera-y", (targetCenterY - deviceCenterY) / zoom + "px");
     device.style.setProperty("--intro-camera-scale", targetScale);
   }
 
