@@ -9,6 +9,9 @@
     return;
   }
 
+  /* Toda a timeline roda 1,5× mais rápido sem alterar a ordem dos atos. */
+  var TIME_SCALE = 2 / 3;
+
   var overlay = document.getElementById("intro-overlay");
   var device = overlay ? overlay.querySelector(".intro-device") : null;
   var chart = document.getElementById("intro-chart");
@@ -62,7 +65,7 @@
 
   function wait(ms) {
     return new Promise(function (resolve) {
-      timers.push(setTimeout(resolve, ms));
+      timers.push(setTimeout(resolve, Math.round(ms * TIME_SCALE)));
     });
   }
 
@@ -96,7 +99,7 @@
     var xs = POINTS.map(function (pair) { return pair[0]; });
     var minX = Math.min.apply(null, xs);
     var maxX = Math.max.apply(null, xs);
-    var sweep = 1900;
+    var sweep = 1900 * TIME_SCALE;
 
     POINTS.forEach(function (pair) {
       var dot = document.createElementNS(SVG_NS, "circle");
@@ -116,7 +119,7 @@
     halo.setAttribute("cx", OUTLIER.x);
     halo.setAttribute("cy", OUTLIER.y);
     halo.setAttribute("r", 15);
-    halo.style.animationDelay = "80ms";
+    halo.style.animationDelay = Math.round(80 * TIME_SCALE) + "ms";
     pointsGroup.appendChild(halo);
 
     outlierDot = document.createElementNS(SVG_NS, "circle");
@@ -195,6 +198,7 @@
   }
 
   function animateViewBox(from, to, duration) {
+    duration *= TIME_SCALE;
     return new Promise(function (resolve) {
       var started = null;
 
@@ -260,7 +264,7 @@
       "translate(" + (first.left - last.left) / zoom + "px, " +
       (first.top - last.top) / zoom + "px) scale(" + scale + ")";
     nameEl.getBoundingClientRect();
-    nameEl.style.transition = "transform 1150ms cubic-bezier(0.22, 1, 0.36, 1)";
+    nameEl.style.transition = "transform 767ms cubic-bezier(0.22, 1, 0.36, 1)";
     nameEl.style.transform = "none";
     await wait(1200);
   }
@@ -296,7 +300,7 @@
     world.classList.add("is-zoomed");
     timers.push(setTimeout(function () {
       lineReveal.classList.add("is-on");
-    }, 560));
+    }, Math.round(560 * TIME_SCALE)));
     await wait(3150);
     await wait(420);
 

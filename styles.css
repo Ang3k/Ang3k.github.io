@@ -1216,7 +1216,7 @@ html.intro-pending .intro-overlay {
   overflow: hidden;
   background: var(--paper);
   perspective: 1400px;
-  transition: opacity 480ms ease;
+  transition: opacity 320ms ease;
 }
 
 html.intro-pending .intro-overlay.is-leaving {
@@ -1242,7 +1242,7 @@ html.intro-pending .intro-name {
   white-space: nowrap;
   opacity: 0;
   transform-origin: 0 0;
-  transition: opacity 500ms ease;
+  transition: opacity 333ms ease;
   will-change: transform;
 }
 
@@ -1262,14 +1262,14 @@ html.intro-pending .intro-name.is-visible {
   transform: translate(-50%, -50%) translateY(18px) rotateX(3deg);
   transform-origin: center;
   transition:
-    left 3000ms cubic-bezier(0.32, 0, 0.18, 1),
-    top 3000ms cubic-bezier(0.32, 0, 0.18, 1),
-    width 3000ms cubic-bezier(0.32, 0, 0.18, 1),
-    height 3000ms cubic-bezier(0.32, 0, 0.18, 1),
-    grid-template-rows 1900ms cubic-bezier(0.45, 0, 0.1, 1),
-    transform 3000ms cubic-bezier(0.32, 0, 0.18, 1),
-    opacity 520ms ease;
-  animation: intro-device-in 720ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+    left 2000ms cubic-bezier(0.32, 0, 0.18, 1),
+    top 2000ms cubic-bezier(0.32, 0, 0.18, 1),
+    width 2000ms cubic-bezier(0.32, 0, 0.18, 1),
+    height 2000ms cubic-bezier(0.32, 0, 0.18, 1),
+    grid-template-rows 1267ms cubic-bezier(0.45, 0, 0.1, 1),
+    transform 2000ms cubic-bezier(0.32, 0, 0.18, 1),
+    opacity 347ms ease;
+  animation: intro-device-in 480ms cubic-bezier(0.22, 1, 0.36, 1) 80ms forwards;
   will-change: width, height;
 }
 
@@ -1281,23 +1281,44 @@ html.intro-pending .intro-name.is-visible {
 }
 
 .intro-device-lid {
+  position: relative;
   display: grid;
   grid-template-rows: 42px minmax(0, 1fr);
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  border: 1px solid rgba(17, 17, 17, 0.18);
-  border-radius: 30px 30px 18px 18px;
-  background: #111214;
+  border: 1px solid rgba(17, 17, 17, 0.3);
+  border-radius: 28px 28px 16px 16px;
+  background: linear-gradient(145deg, #292b2f 0%, #111214 46%, #08090a 100%);
   box-shadow:
-    0 34px 80px rgba(17, 17, 17, 0.18),
-    0 10px 22px rgba(17, 17, 17, 0.1);
+    0 38px 90px rgba(17, 17, 17, 0.21),
+    0 12px 28px rgba(17, 17, 17, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 0 0 0 5px rgba(255, 255, 255, 0.015);
   transition:
-    border-color 1500ms ease,
-    border-radius 1900ms cubic-bezier(0.45, 0, 0.1, 1),
-    background-color 1500ms ease,
-    grid-template-rows 1900ms cubic-bezier(0.45, 0, 0.1, 1),
-    box-shadow 1500ms ease;
+    border-color 1000ms ease,
+    border-radius 1267ms cubic-bezier(0.45, 0, 0.1, 1),
+    background 1000ms ease,
+    grid-template-rows 1267ms cubic-bezier(0.45, 0, 0.1, 1),
+    box-shadow 1000ms ease;
+}
+
+.intro-device-lid::before {
+  position: absolute;
+  z-index: 3;
+  top: 7px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #51545b;
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.3),
+    inset 0 0 2px rgba(125, 139, 248, 0.6);
+  content: "";
+  opacity: 0.9;
+  transform: translateX(-50%);
+  transition: opacity 300ms ease;
 }
 
 .intro-window-bar {
@@ -1309,12 +1330,13 @@ html.intro-pending .intro-name.is-visible {
   min-height: 0;
   overflow: hidden;
   padding: 0 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: #18191b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, #202125, #161719);
   color: #f7f6f1;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.28);
   transition:
-    opacity 1200ms ease 260ms,
-    transform 1400ms cubic-bezier(0.45, 0, 0.1, 1) 180ms;
+    opacity 800ms ease 173ms,
+    transform 933ms cubic-bezier(0.45, 0, 0.1, 1) 120ms;
 }
 
 .window-dot {
@@ -1362,6 +1384,17 @@ html.intro-pending .intro-name.is-visible {
   height: 100%;
   overflow: hidden;
   background: var(--paper);
+  box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.12);
+}
+
+.intro-screen::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(118deg, transparent 0 68%, rgba(255, 255, 255, 0.22) 79%, transparent 91%);
+  content: "";
+  opacity: 0.22;
+  pointer-events: none;
+  transition: opacity 300ms ease;
 }
 
 .intro-device-base {
@@ -1369,8 +1402,8 @@ html.intro-pending .intro-name.is-visible {
   height: 54px;
   transform-origin: top center;
   transition:
-    opacity 1100ms ease 220ms,
-    transform 1400ms cubic-bezier(0.45, 0, 0.1, 1) 160ms;
+    opacity 733ms ease 147ms,
+    transform 933ms cubic-bezier(0.45, 0, 0.1, 1) 107ms;
 }
 
 .intro-device-base::before {
@@ -1380,8 +1413,11 @@ html.intro-pending .intro-name.is-visible {
   width: 108%;
   height: 22px;
   border-radius: 0 0 28px 28px;
-  background: linear-gradient(180deg, #dededb, #9d9f9f);
-  box-shadow: 0 18px 38px rgba(17, 17, 17, 0.16);
+  background: linear-gradient(180deg, #f0f0ed 0%, #c9caca 42%, #9b9d9e 100%);
+  box-shadow:
+    0 18px 38px rgba(17, 17, 17, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(17, 17, 17, 0.16);
   content: "";
   transform: translateX(-50%);
 }
@@ -1393,7 +1429,22 @@ html.intro-pending .intro-name.is-visible {
   width: 17%;
   height: 7px;
   border-radius: 0 0 999px 999px;
-  background: rgba(17, 17, 17, 0.22);
+  background: linear-gradient(180deg, rgba(17, 17, 17, 0.3), rgba(17, 17, 17, 0.12));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+  transform: translateX(-50%);
+}
+
+.intro-device-base::after {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  width: 82%;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(17, 17, 17, 0.14);
+  box-shadow: 0 9px 18px rgba(17, 17, 17, 0.14);
+  content: "";
+  filter: blur(1px);
   transform: translateX(-50%);
 }
 
@@ -1414,18 +1465,23 @@ html.intro-pending .intro-name.is-visible {
   box-shadow: none;
 }
 
+.intro-overlay.is-zoom .intro-device-lid::before,
+.intro-overlay.is-zoom .intro-screen::after {
+  opacity: 0;
+}
+
 .intro-chart {
   display: block;
   width: 100%;
   height: 100%;
   shape-rendering: geometricPrecision;
   text-rendering: geometricPrecision;
-  transition: opacity 700ms ease;
+  transition: opacity 467ms ease;
 }
 
 .intro-overlay.is-flip .intro-device {
   opacity: 0;
-  transition: opacity 220ms ease;
+  transition: opacity 147ms ease;
 }
 
 .intro-overlay.is-flip .intro-skip {
@@ -1438,7 +1494,7 @@ html.intro-pending .intro-name.is-visible {
 
 .intro-frame {
   opacity: 0;
-  animation: intro-fade-in 700ms ease 150ms forwards;
+  animation: intro-fade-in 467ms ease 100ms forwards;
 }
 
 @keyframes intro-fade-in {
@@ -1485,7 +1541,7 @@ html.intro-pending .intro-name.is-visible {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   opacity: 0;
-  transition: opacity 600ms ease;
+  transition: opacity 400ms ease;
 }
 
 .intro-caption.is-on {
@@ -1509,7 +1565,7 @@ html.intro-pending .intro-name.is-visible {
    o tracejado em espaço de tela e a curva vazaria em janelas largas. */
 .intro-line-reveal {
   width: 0;
-  transition: width 1400ms cubic-bezier(0.65, 0, 0.35, 1);
+  transition: width 933ms cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .intro-line-reveal.is-on {
@@ -1537,15 +1593,15 @@ html.intro-pending .intro-name.is-visible {
 }
 
 .intro-points-on .intro-point:not(.intro-point-outlier) {
-  animation: intro-point-in 420ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
+  animation: intro-point-in 280ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
 }
 
 .intro-outlier-on .intro-point-outlier {
-  animation: intro-point-in 420ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
+  animation: intro-point-in 280ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
 }
 
 .intro-outlier-on .intro-halo {
-  animation: intro-halo-in 700ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
+  animation: intro-halo-in 467ms cubic-bezier(0.34, 1.4, 0.5, 1) forwards;
 }
 
 @keyframes intro-halo-in {
@@ -1579,7 +1635,7 @@ html.intro-pending .intro-name.is-visible {
   stroke-dasharray: 5 7;
   vector-effect: non-scaling-stroke;
   opacity: 0;
-  transition: opacity 500ms ease 250ms;
+  transition: opacity 333ms ease 167ms;
 }
 
 .intro-residual.is-on {
@@ -1598,8 +1654,8 @@ html.intro-pending .intro-name.is-visible {
 
 .intro-ring.is-on {
   animation:
-    intro-ring-in 500ms ease-out forwards,
-    intro-ring-pulse 1800ms ease-in-out 500ms infinite;
+    intro-ring-in 333ms ease-out forwards,
+    intro-ring-pulse 1200ms ease-in-out 333ms infinite;
 }
 
 @keyframes intro-ring-in {
@@ -1644,6 +1700,54 @@ html.intro-pending .intro-name.is-visible {
 
 .intro-skip:hover {
   color: var(--ink);
+}
+
+@media (max-width: 700px) {
+  .intro-device {
+    grid-template-rows: minmax(0, 1fr) 42px;
+    width: min(1040px, calc(100vw - 32px));
+    height: min(560px, calc(100vh - 96px));
+    height: min(560px, calc(100svh - 96px));
+  }
+
+  .intro-device-lid {
+    grid-template-rows: 36px minmax(0, 1fr);
+    border-radius: 20px 20px 12px 12px;
+  }
+
+  .intro-device-lid::before {
+    top: 5px;
+    width: 4px;
+    height: 4px;
+  }
+
+  .intro-window-bar {
+    height: 36px;
+    padding-inline: 0.65rem;
+  }
+
+  .intro-window-bar small {
+    display: none;
+  }
+
+  .window-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  .intro-device-base {
+    height: 42px;
+  }
+
+  .intro-device-base::before {
+    width: 104%;
+    height: 17px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .intro-device-base::after {
+    top: 17px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
