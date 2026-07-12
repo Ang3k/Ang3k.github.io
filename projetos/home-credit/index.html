@@ -78,13 +78,16 @@
             <p>Uma instituição financeira bancária chamada Home Credit Group está tendo problemas em identificar quando os clientes terão problemas em realizar o pagamento dos créditos solicitados, e como estão passando por problemas financeiros, querem garantir que só irão fornecer crédito àqueles clientes que puderem pagar, evitando prejuízos.</p>
 
             <figure class="home-credit-media home-credit-media--wide">
-              <img
-                src="../../assets/projects/home-credit/better images/06_evolucao_temporal_do_valor_dos_emprestimos.png"
-                width="2943"
-                height="1464"
-                alt="Linha do tempo dos empréstimos monetários comparando clientes pontuais e clientes com atraso"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/better images/06_evolucao_temporal_do_valor_dos_emprestimos-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/better images/06_evolucao_temporal_do_valor_dos_emprestimos.png"
+                  width="2943"
+                  height="1464"
+                  alt="Linha do tempo dos empréstimos monetários comparando clientes pontuais e clientes com atraso"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Diante disso, buscaram o auxílio de um cientista de dados, na intenção que o profissional tanto desenvolve-se um modelo de Machine Learning, que pudesse prever a probabilidade de um cliente ter problemas, baseado em dados dos próprios clientes, como seu gênero, número de parentes, salário e pertences Além, que ele performasse uma análise nos dados, e extrai deles insights interessantes sobre o perfil deles, padrões de comportamento e outros.</p>
@@ -196,49 +199,61 @@
             <p>É um senso comum que <strong>pessoas mais velhas tendem a ser mais responsáveis</strong>, porém é necessário conferir essa informação, para isso, criei um código que exibe um <strong>histograma</strong> que faz a contagem de quantas pessoas em diferentes idades <strong>atrasam, ou não, o pagamento</strong>.</p>
 
             <figure class="home-credit-media home-credit-media--wide">
-              <img
-                src="../../assets/projects/home-credit/better images/01_distribuicao_de_idade_por_status_de_pagamento.png"
-                width="2926"
-                height="1065"
-                alt="Histogramas de idade para clientes pontuais e clientes com atraso"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/better images/01_distribuicao_de_idade_por_status_de_pagamento-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/better images/01_distribuicao_de_idade_por_status_de_pagamento.png"
+                  width="2926"
+                  height="1065"
+                  alt="Histogramas de idade para clientes pontuais e clientes com atraso"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Temos uma clara tendência para confiar no senso comum nesse caso, dentre os clientes que não costumam atrasar, <strong>a idade parece bem distribuída</strong>, isso é visível pois os valores que estão acima da média marcados em preto estão centralizados no gráfico. No entanto, no gráfico dos clientes que atrasam, <strong>é possível observar uma clara queda conforme a idade aumenta</strong>, isso pode indicar que <strong>clientes mais velhos são mais confiáveis para obter crédito.</strong> Vamos agora conferir fatores financeiros, pra depois ver como se relacionam com a idade.</p>
 
             <figure class="home-credit-media home-credit-media--wide">
-              <img
-                src="../../assets/projects/home-credit/better images/08_outliers_das_variaveis_financeiras.png"
-                width="5970"
-                height="2451"
-                alt="Boxplots das variáveis financeiras de clientes pontuais e clientes com atraso"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/better images/08_outliers_das_variaveis_financeiras-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/better images/08_outliers_das_variaveis_financeiras.png"
+                  width="5970"
+                  height="2451"
+                  alt="Boxplots das variáveis financeiras de clientes pontuais e clientes com atraso"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Nesses gráficos, a <strong>linha preta representa clientes que não atrasam</strong>, e a <strong>linha cinza clientes que atrasam</strong> o pagamento, cada <strong>círculo representa um cliente</strong> e os círculos fora do intervalo interquartil estão ocos e pretos. De cara é possível perceber algumas coisas interessantes, num geral, os <strong>clientes que atrasam solicitam mais crédito que os outros</strong> também <strong>possuem bens mais caros à pagar</strong>, oque faz sentido, ambos possuem os <strong>preços dos bens equivalentes no intervalo</strong>, mas existem mais membros que atrasam fora do IQR, o mesmo pode ser dito sobre o salário do cliente, e isso <strong>ficará mais evidente no próximo gráfico</strong>, junto às idades.</p>
 
             <figure class="home-credit-media home-credit-media--wide">
-              <img
-                src="../../assets/projects/home-credit/better images/02_fatores_financeiros_por_idade_e_status.png"
-                width="3960"
-                height="2420"
-                alt="Crédito, renda, anuidade e preço dos bens por idade e tipo de cliente"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/better images/02_fatores_financeiros_por_idade_e_status-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/better images/02_fatores_financeiros_por_idade_e_status.png"
+                  width="3960"
+                  height="2420"
+                  alt="Crédito, renda, anuidade e preço dos bens por idade e tipo de cliente"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Comparando essas linhas podemos identificar um problema, ainda que o <strong>salário seja bem parecido</strong>, como vimos anteriormente, os <strong>clientes que atrasam costumam solicitar mais dinheiro</strong>, a linha cinza acima da preta, e <strong>também costumam solicitar esses empréstimos para bens mais caros</strong>, esse problema costuma <strong>atingir seu pico na idade dos 50 anos</strong>, mas vale lembrar que os <strong>mais jovens costumam solicitar menos dinheiro e atrasam mais</strong>, como vimos no começo, então os mais velhos costumam dever mais dinheiro, <strong>mas são menos clientes.</strong></p>
 
             <figure class="home-credit-media home-credit-media--wide">
-              <img
-                src="../../assets/projects/home-credit/better images/07_relacao_entre_valor_dos_bens_e_credito_solicitado.png"
-                width="3159"
-                height="1172"
-                alt="Relação entre preço dos bens e crédito solicitado por clientes pontuais e atrasantes"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/better images/07_relacao_entre_valor_dos_bens_e_credito_solicitado-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/better images/07_relacao_entre_valor_dos_bens_e_credito_solicitado.png"
+                  width="3159"
+                  height="1172"
+                  alt="Relação entre preço dos bens e crédito solicitado por clientes pontuais e atrasantes"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Com isso fica evidente a discrepância entre os clientes que atrasam e os pontuais, nesse gráfico a cor cinza representa os valores dos bens à serem pagos pelos clientes, e o preto o valor do crédito que foi solicitado, podemos observar que os <strong>clientes que possuem atrasos solicitam mais crédito que os clientes pontuais solicitam</strong>, em média <strong>$11379</strong> a mais de crédito, oque é um <strong>indicativo forte de um dos problemas pode ser a solicitação excessiva de crédito.</strong></p>
@@ -260,49 +275,61 @@
             <p>Em princípio, vamos entender <strong>quem são os nossos clientes</strong>, anteriormente entendemos melhor sobre como a idade dos clientes afeta suas decisões, agora vamos observar diferentes <strong>aspectos de trabalho e educação</strong>, para isso vamos usar esse gráfico de barras horizontal:</p>
 
             <figure class="home-credit-media home-credit-media--composite">
-              <img
-                src="../../assets/projects/home-credit/better images/04_perfil_profissional_e_educacional_dos_clientes.png"
-                width="5951"
-                height="2415"
-                alt="Barras horizontais comparando escolaridade e ocupação de clientes pontuais e atrasantes"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/better images/04_perfil_profissional_e_educacional_dos_clientes-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/better images/04_perfil_profissional_e_educacional_dos_clientes.png"
+                  width="5951"
+                  height="2415"
+                  alt="Barras horizontais comparando escolaridade e ocupação de clientes pontuais e atrasantes"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Rapidamente podemos notar um padrão nos clientes, a grande maioria <strong>não possui educação superior</strong>, e percebemos uma maior taxa de pontualidade quando os clientes possuem esse nível, além disso, <strong>clientes com cargos mais elevados também aparentam ser mais pontuais</strong>, isso é visível no gráfico dos "Tipos de Ocupação", cargos de alto nível como "Core Staff" ou "High Skill Tech Staff" são mais característicos de clientes pontuais. Isso indica que clientes de camadas mais altas na sociedade, <strong>com maior renda, atrasam menos</strong>, vamos conferir isso:</p>
 
             <figure class="home-credit-media home-credit-media--composite">
-              <img
-                src="../../assets/projects/home-credit/better images/03_relacao_entre_credito_solicitado_e_salario.png"
-                width="3570"
-                height="1515"
-                alt="Gráfico de dispersão entre renda anual e valor de crédito para clientes pontuais e atrasantes"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/better images/03_relacao_entre_credito_solicitado_e_salario-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/better images/03_relacao_entre_credito_solicitado_e_salario.png"
+                  width="3570"
+                  height="1515"
+                  alt="Gráfico de dispersão entre renda anual e valor de crédito para clientes pontuais e atrasantes"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Nesse gráfico, <strong>cada ponto representa um cliente do banco</strong>, e não é tão óbvio o insight desse gráfico, ao menos não quanto pode ter parecido ser, mas ainda é visível que <strong>clientes pontuais solicitam relativamente valores semelhantes de crédito</strong> comparativamente aos que atrasam, mas possuem mais integrantes de alta renda, indicando que <strong>salário é pode ser um fator de importância para a previsão dos atraso dos clientes.</strong> Vamos agora brevemente analisar para quais tipos de produtos esses créditos solicitados tem sido direcionados.</p>
 
             <figure class="home-credit-media home-credit-media--composite">
-              <img
-                src="../../assets/projects/home-credit/better images/09_credito_medio_e_quantidade_por_categoria_de_produto.png"
-                width="3960"
-                height="2420"
-                alt="Relação entre valor de crédito e quantidade de produtos por categoria"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/better images/09_credito_medio_e_quantidade_por_categoria_de_produto-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/better images/09_credito_medio_e_quantidade_por_categoria_de_produto.png"
+                  width="3960"
+                  height="2420"
+                  alt="Relação entre valor de crédito e quantidade de produtos por categoria"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Esse gráfico é útil para <strong>confirmarmos algumas informações passadas</strong>, a maioria dos clientes realmente <strong>não realiza compras de grande magnitude</strong>, sendo a maioria das compras para eletrônicos, e a minoria para turismo e medicina, reforçando a ideia de uma <strong>base de clientes de baixa/média renda</strong>, raramente bens caros são disponibilizados para obter crédito. Vamos conferir agora se existe algo a ser extraído dos <strong>aspectos familiares dos clientes.</strong></p>
 
             <figure class="home-credit-media home-credit-media--composite">
-              <img
-                src="../../assets/projects/home-credit/better images/05_perfil_social_e_familiar_dos_clientes.png"
-                width="5956"
-                height="2487"
-                alt="Barras horizontais com o perfil social e familiar de clientes pontuais e atrasantes"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/better images/05_perfil_social_e_familiar_dos_clientes-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/better images/05_perfil_social_e_familiar_dos_clientes.png"
+                  width="5956"
+                  height="2487"
+                  alt="Barras horizontais com o perfil social e familiar de clientes pontuais e atrasantes"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Nesse gráfico podemos perceber que <strong>há poucas diferenças entre os clientes pontuais e os que atrasam</strong>, num geral a <strong>base de clientes possui o mesmo padrão nos quatro gráficos</strong>. Com isso, percebemos que a grande maioria dos clientes se encontram <strong>solteiros</strong>, moram com <strong>poucas pessoas em casa</strong>, e <strong>geralmente não possuem filhos</strong>, existe um pequeno aumento na taxa de atraso para clientes com mais filhos, mas <strong>é uma porcentagem pequena</strong>.</p>
@@ -348,13 +375,16 @@
             <p>Neste primeiro código, realizei a remoção de algumas colunas que considerei irrelevantes para o processo de modelagem, para reduzir a dimensionalidade do conjunto de dados e evitar redundâncias, combinei determinadas colunas ao calcular a média entre elas, reduzindo o número total de variáveis sem perder informações significativas. trabalhando com um conjunto de dados mais enxuto e otimizado, o que pode contribuir para um melhor desempenho.</p>
 
             <figure class="home-credit-media home-credit-media--wide">
-              <img
-                src="../../assets/projects/home-credit/wix-part3-cleaning-columns-hq.png"
-                width="753"
-                height="187"
-                alt="Código Python de remoção e agregação de colunas"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/wix-part3-cleaning-columns-hq-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/wix-part3-cleaning-columns-hq.png"
+                  width="753"
+                  height="187"
+                  alt="Código Python de remoção e agregação de colunas"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Em seguida criei duas funções para localizar valores faltantes no dataset, uma delas retorna uma Series ranqueando as colunas que possuem mais valores faltantes, e a outra cria dois gráficos, uma para os valores faltantes de colunas numéricas e outras de colunas de objetos, separei eliminando as colunas que possuem mais de 60% dos valores em falta e escolhi preencher o restante com estratégias diferentes, que serão explicadas melhor logo em seguida.</p>
@@ -372,25 +402,31 @@
             <p>Considerei que preencher colunas com mais de 60% de valores ausentes poderia resultar em inconsistências ou perda de qualidade nos dados, optei por removê-las completamente. Para as demais colunas, adotei uma abordagem de imputação estratégica: nas variáveis numéricas, substituí os valores ausentes pela média da respectiva coluna, já nas variáveis de objetos preenchi com a moda das strings das colunas, segue o código utilizado nesse processo:</p>
 
             <figure class="home-credit-media home-credit-media--medium">
-              <img
-                src="../../assets/projects/home-credit/wix-part3-imputation-numeric-hq.png"
-                width="485"
-                height="321"
-                alt="Código Python para identificar e imputar valores ausentes"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/wix-part3-imputation-numeric-hq-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/wix-part3-imputation-numeric-hq.png"
+                  width="485"
+                  height="321"
+                  alt="Código Python para identificar e imputar valores ausentes"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Em seguida realizei a remoção de outliers, utilizando uma função que filtra outliers, e aplicando ela sobre algumas colunas específicas que possuem potenciais outliers, depois realizei a codificação das variáveis de tipo objeto, pois os modelos apenas aceitam números, as colunas que possuem apenas dois tipos de string foram transformadas em zeros e uns, e uma outra coluna de grau escolar foi transformada pelo OrdinalEncoder, com um grau de importância.</p>
 
             <figure class="home-credit-media home-credit-media--medium">
-              <img
-                src="../../assets/projects/home-credit/wix-part3-imputation-categorical-hq.png"
-                width="485"
-                height="321"
-                alt="Código Python para remoção de outliers e codificação de variáveis categóricas"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/wix-part3-imputation-categorical-hq-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/wix-part3-imputation-categorical-hq.png"
+                  width="485"
+                  height="321"
+                  alt="Código Python para remoção de outliers e codificação de variáveis categóricas"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
           </article>
 
@@ -399,25 +435,31 @@
             <p>Comecei fazendo o pré-processamento dos dados, para isso selecionei quais seriam as variáveis que o modelo iria ser treinado, e qual ele iria se basear para realizar a previsão, depois apliquei uma técnica de undersampling chamada de NearMiss, dito que existiam menos pessoas atrasando que pessoas pagando em tempo correto, isso ajuda a balancear e evita que o modelo compreenda mal as informações, enfim a padronização dos dados usando o Standard Scaler.</p>
 
             <figure class="home-credit-media home-credit-media--wide">
-              <img
-                src="../../assets/projects/home-credit/wix-part3-cleaning-code-hq.png"
-                width="600"
-                height="225"
-                alt="Código Python de separação dos dados, aplicação de NearMiss e padronização"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/wix-part3-cleaning-code-hq-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/wix-part3-cleaning-code-hq.png"
+                  width="600"
+                  height="225"
+                  alt="Código Python de separação dos dados, aplicação de NearMiss e padronização"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Em seguida, defini os hiperparâmetros do LightGBM, utilizando o método DART para melhorar a regularização e evitar overfitting. Também ajustei a taxa de aprendizado, o número de folhas e a fração de features usadas em cada iteração. Para lidar com o desbalanceamento das classes, apliquei o parâmetro scale_pos_weight, dando mais peso à classe minoritária. Após isso, realizei uma validação cruzada estratificada com 5 folds, garantindo que a proporção das classes fosse mantida em cada divisão dos dados. Durante o treinamento, o modelo foi ajustado por até 600 iterações, sempre monitorando a métrica AUC para avaliar seu desempenho. Por fim, identifiquei o número ótimo de iterações observando em qual ponto a AUC atingiu seu valor máximo, garantindo que o modelo tivesse o melhor desempenho possível.</p>
 
             <figure class="home-credit-media home-credit-media--wide">
-              <img
-                src="../../assets/projects/home-credit/wix-part3-preprocessing-code-hq.png"
-                width="600"
-                height="199"
-                alt="Código Python de configuração e validação cruzada do LightGBM com DART"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/wix-part3-preprocessing-code-hq-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/home-credit/wix-part3-preprocessing-code-hq.png"
+                  width="600"
+                  height="199"
+                  alt="Código Python de configuração e validação cruzada do LightGBM com DART"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
           </article>
 
@@ -427,13 +469,16 @@
 
             <div class="home-credit-gallery home-credit-gallery--two">
               <figure class="home-credit-media">
-                <img
-                  src="../../assets/projects/home-credit/wix-part3-lightgbm-code-hq.png"
-                  width="556"
-                  height="281"
-                  alt="Código Python para previsão, cálculo das métricas e construção da curva ROC"
-                  loading="lazy"
-                  decoding="async">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../assets/projects/home-credit/wix-part3-lightgbm-code-hq-mobile.webp" type="image/webp">
+                  <img
+                    src="../../assets/projects/home-credit/wix-part3-lightgbm-code-hq.png"
+                    width="556"
+                    height="281"
+                    alt="Código Python para previsão, cálculo das métricas e construção da curva ROC"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
               </figure>
 
               <figure class="home-credit-media">

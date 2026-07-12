@@ -80,12 +80,13 @@
 
 /* Assim como em Home Credit e Churn, este bloco contém somente a navegação. */
 .dengue-overview {
-  padding: clamp(1.5rem, 3vw, 2.5rem) 0 1.25rem;
+  padding: clamp(5rem, 9vw, 8rem) 0 1.25rem;
 }
 
 .dengue-chapter-nav {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin-top: clamp(1rem, 3vw, 2rem);
   border-top: 1px solid var(--project-ink);
   border-bottom: 1px solid var(--project-ink);
 }
@@ -239,6 +240,162 @@
 
 .dengue-method-list li::marker {
   color: var(--project-accent);
+}
+
+.dengue-model-figure img {
+  border: 1px solid var(--project-line);
+  background: #f5f9f8;
+}
+
+.dengue-metric-grid {
+  display: grid;
+  width: min(100%, var(--project-wide-media-width));
+  margin-top: var(--project-media-space);
+  gap: 1px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--project-line);
+  background: var(--project-line);
+}
+
+.dengue-refactor .dengue-metric-card {
+  min-width: 0;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  background: #fff;
+}
+
+.dengue-refactor .dengue-metric-card strong {
+  display: block;
+  color: var(--dengue-deep);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(2.35rem, 4vw, 3.7rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.dengue-refactor .dengue-metric-card h4 {
+  margin: 0.8rem 0 0;
+  color: var(--project-ink);
+  font-family: var(--font-sans, Arial, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.dengue-refactor .dengue-metric-card p {
+  margin: 0.7rem 0 0;
+  color: var(--project-muted);
+  font-family: var(--font-sans, Arial, sans-serif);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.dengue-evaluation-figure img {
+  border: 0;
+  background: #fff;
+}
+
+.dengue-graph-link {
+  display: block;
+}
+
+.dengue-graph-link:focus-visible {
+  outline: 3px solid var(--project-accent);
+  outline-offset: 5px;
+}
+
+.dengue-evaluation-gallery,
+.dengue-app-gallery {
+  display: grid;
+  width: min(100%, var(--project-wide-media-width));
+  margin: var(--project-media-space) auto 0;
+  gap: clamp(0.8rem, 1.7vw, 1.2rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.dengue-evaluation-gallery .home-credit-media,
+.dengue-app-gallery .home-credit-media {
+  width: 100%;
+  margin: 0;
+}
+
+.dengue-confusion-figure {
+  width: min(100%, var(--project-wide-media-width));
+  margin: var(--project-media-space) auto 0;
+}
+
+.dengue-confusion-grid {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dengue-confusion-cell {
+  display: flex;
+  min-height: 13rem;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid var(--project-line);
+}
+
+.dengue-confusion-cell span,
+.dengue-confusion-cell small {
+  font-family: var(--font-sans, Arial, sans-serif);
+  line-height: 1.5;
+}
+
+.dengue-confusion-cell span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dengue-confusion-cell strong {
+  margin-top: 0.65rem;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(2.5rem, 5vw, 4.4rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.dengue-confusion-cell small {
+  margin-top: 0.8rem;
+  font-size: 0.82rem;
+}
+
+.dengue-confusion-cell.is-correct {
+  border-color: #5ba9a3;
+  background: #cbe5e2;
+  color: #063d39;
+}
+
+.dengue-confusion-cell.is-correct--strong {
+  border-color: var(--dengue-deep);
+  background: var(--dengue-deep);
+  color: #fff;
+}
+
+.dengue-confusion-cell.is-error {
+  background: #edf5f4;
+  color: #263332;
+}
+
+.dengue-confusion-cell.is-error--light {
+  background: #f7faf9;
+}
+
+.dengue-confusion-figure figcaption {
+  margin-top: 0.65rem;
+  color: var(--project-muted);
+  font-family: var(--font-sans, Arial, sans-serif);
+  font-size: 0.76rem;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .dengue-analysis-list {
@@ -441,6 +598,17 @@
     grid-column: 1;
     width: 100%;
   }
+
+  .dengue-metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .dengue-model-figure img {
+    aspect-ratio: 9 / 16;
+    object-fit: contain;
+  }
 }
 
 @media (max-width: 700px) {
@@ -461,6 +629,10 @@
     font-size: clamp(2rem, 10vw, 3.35rem);
   }
 
+  .dengue-overview {
+    padding-top: 4.25rem;
+  }
+
   .dengue-case-content {
     width: min(100% - 2rem, 680px);
   }
@@ -474,5 +646,16 @@
     padding-right: 0;
     padding-left: 0;
     border-left: 0;
+  }
+
+  .dengue-metric-grid,
+  .dengue-confusion-grid,
+  .dengue-evaluation-gallery,
+  .dengue-app-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .dengue-confusion-cell {
+    min-height: 0;
   }
 }

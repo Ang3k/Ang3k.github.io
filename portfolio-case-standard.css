@@ -36,6 +36,12 @@
   object-fit: contain;
 }
 
+/* O wrapper só troca o arquivo em telas pequenas e não cria uma nova caixa de
+ * layout. Assim, o desktop preserva exatamente a composição existente. */
+.mobile-picture {
+  display: contents;
+}
+
 /* Evita palavras órfãs nas últimas linhas sem introduzir quebras fixas. */
 .portfolio-case-study :is(p, li, dd, figcaption) {
   text-wrap: pretty;

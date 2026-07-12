@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1600" viewBox="0 0 900 1600">
+  <title>Fluxo vertical das 107 features para MLP, XGBoost e LightGBM</title>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0L12 6L0 12Z" fill="#087f78"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="9" stdDeviation="15" flood-color="#163d3a" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="1600" fill="#f5f9f8"/>
+  <text x="450" y="78" fill="#111a1a" font-family="Arial, sans-serif" font-size="49" font-weight="700" text-anchor="middle">Três modelos para observar</text>
+  <text x="450" y="134" fill="#111a1a" font-family="Arial, sans-serif" font-size="49" font-weight="700" text-anchor="middle">as mesmas informações</text>
+  <text x="450" y="190" fill="#5f6a69" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">Arquiteturas diferentes aprendem padrões</text>
+  <text x="450" y="226" fill="#5f6a69" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">com o mesmo conjunto de entradas</text>
+
+  <rect x="90" y="280" width="720" height="150" rx="22" fill="#087f78"/>
+  <text x="450" y="334" fill="#ffffff" font-family="Arial, sans-serif" font-size="40" font-weight="700" text-anchor="middle">107 FEATURES</text>
+  <text x="450" y="380" fill="#ffffff" font-family="Arial, sans-serif" font-size="27" text-anchor="middle">sintomas · tempo · perfil demográfico</text>
+  <text x="450" y="413" fill="#ffffff" font-family="Arial, sans-serif" font-size="27" text-anchor="middle">localização · contexto local</text>
+
+  <path d="M450 430V485" fill="none" stroke="#087f78" stroke-width="6" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="90" y="505" width="720" height="250" rx="22" fill="#ffffff" stroke="#ccd8d6" stroke-width="2"/>
+    <rect x="90" y="815" width="720" height="250" rx="22" fill="#ffffff" stroke="#ccd8d6" stroke-width="2"/>
+    <rect x="90" y="1125" width="720" height="250" rx="22" fill="#ffffff" stroke="#ccd8d6" stroke-width="2"/>
+  </g>
+
+  <circle cx="170" cy="570" r="38" fill="#edf5f4"/>
+  <text x="170" y="581" fill="#075e59" font-family="Arial, sans-serif" font-size="31" font-weight="700" text-anchor="middle">01</text>
+  <text x="450" y="580" fill="#111a1a" font-family="Arial, sans-serif" font-size="43" font-weight="700" text-anchor="middle">MLP TABULAR</text>
+  <text x="450" y="645" fill="#3e4948" font-family="Arial, sans-serif" font-size="31" text-anchor="middle">Embeddings para categorias e camadas</text>
+  <text x="450" y="689" fill="#3e4948" font-family="Arial, sans-serif" font-size="31" text-anchor="middle">densas para relações não lineares</text>
+
+  <path d="M450 755V795" fill="none" stroke="#087f78" stroke-width="6" marker-end="url(#arrow)"/>
+
+  <circle cx="170" cy="880" r="38" fill="#edf5f4"/>
+  <text x="170" y="891" fill="#075e59" font-family="Arial, sans-serif" font-size="31" font-weight="700" text-anchor="middle">02</text>
+  <text x="450" y="890" fill="#111a1a" font-family="Arial, sans-serif" font-size="43" font-weight="700" text-anchor="middle">XGBOOST</text>
+  <text x="450" y="955" fill="#3e4948" font-family="Arial, sans-serif" font-size="31" text-anchor="middle">Árvores em sequência corrigem erros</text>
+  <text x="450" y="999" fill="#3e4948" font-family="Arial, sans-serif" font-size="31" text-anchor="middle">e capturam interações complexas</text>
+
+  <path d="M450 1065V1105" fill="none" stroke="#087f78" stroke-width="6" marker-end="url(#arrow)"/>
+
+  <circle cx="170" cy="1190" r="38" fill="#edf5f4"/>
+  <text x="170" y="1201" fill="#075e59" font-family="Arial, sans-serif" font-size="31" font-weight="700" text-anchor="middle">03</text>
+  <text x="450" y="1200" fill="#111a1a" font-family="Arial, sans-serif" font-size="43" font-weight="700" text-anchor="middle">LIGHTGBM</text>
+  <text x="450" y="1265" fill="#3e4948" font-family="Arial, sans-serif" font-size="31" text-anchor="middle">Gradient boosting eficiente para</text>
+  <text x="450" y="1309" fill="#3e4948" font-family="Arial, sans-serif" font-size="31" text-anchor="middle">milhões de registros e muitas features</text>
+
+  <path d="M450 1375V1430" fill="none" stroke="#087f78" stroke-width="6" marker-end="url(#arrow)"/>
+  <rect x="165" y="1450" width="570" height="82" rx="41" fill="#111a1a"/>
+  <text x="450" y="1502" fill="#ffffff" font-family="Arial, sans-serif" font-size="31" font-weight="700" text-anchor="middle">TRÊS SCORES COMPLEMENTARES</text>
+</svg>

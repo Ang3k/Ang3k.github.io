@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Estudo de caso de um pipeline temporal com dados do SINAN para apoiar a classificação epidemiológica de arboviroses.">
+  <meta name="description" content="Estudo de caso de um pipeline temporal com dados do SINAN, ensemble, avaliação preditiva e aplicação web para classificação epidemiológica de arboviroses.">
   <meta name="theme-color" content="#ffffff">
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="Classificador Epidemiológico de Arboviroses | Angel Mansilla">
-  <meta property="og:description" content="Preparação, engenharia de atributos e análise exploratória de dados do SINAN para classificação epidemiológica de arboviroses.">
+  <meta property="og:description" content="Preparação, análise exploratória, modelagem, avaliação temporal e aplicação web com dados do SINAN.">
   <meta property="og:image" content="../../assets/projects/dengue/sinan-logo.png">
 
   <title>Classificador Epidemiológico de Arboviroses | Angel Mansilla</title>
@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="../../case-study.css">
   <link rel="stylesheet" href="../../portfolio-case-standard.css">
-  <link rel="stylesheet" href="./dengue-standard.css">
+  <link rel="stylesheet" href="./dengue-standard.css?v=20260712">
 </head>
 
 <body class="case-page portfolio-case-study dengue-case dengue-refactor" id="topo">
@@ -57,6 +57,9 @@
           <a href="#contexto"><span class="dengue-chapter-number">01</span><span class="dengue-chapter-label">Introdução ao Contexto do Projeto</span></a>
           <a href="#tratamento"><span class="dengue-chapter-number">02</span><span class="dengue-chapter-label">Tratamento do Conjunto de Dados</span></a>
           <a href="#eda"><span class="dengue-chapter-number">03</span><span class="dengue-chapter-label">Análise Exploratória de Dados</span></a>
+          <a href="#modelagem"><span class="dengue-chapter-number">04</span><span class="dengue-chapter-label">Modelagem Preditiva com Machine Learning</span></a>
+          <a href="#metricas"><span class="dengue-chapter-number">05</span><span class="dengue-chapter-label">Métricas e Avaliação do Modelo</span></a>
+          <a href="#aplicacao"><span class="dengue-chapter-number">06</span><span class="dengue-chapter-label">Aplicação Web e Disponibilização</span></a>
         </nav>
       </section>
 
@@ -183,13 +186,16 @@
             </ul>
 
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
-              <img
-                src="../../assets/projects/dengue/04-classificacao-casos.png"
-                width="2272"
-                height="1156"
-                alt="Código de padronização dos códigos de classificação do SINAN em casos confirmados e descartados"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/04-classificacao-casos-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/dengue/04-classificacao-casos.png"
+                  width="2272"
+                  height="1156"
+                  alt="Código de padronização dos códigos de classificação do SINAN em casos confirmados e descartados"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
           </article>
 
@@ -205,13 +211,16 @@
             </ul>
 
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
-              <img
-                src="../../assets/projects/dengue/05-tratamento-sintomas.png"
-                width="3424"
-                height="1156"
-                alt="Código que normaliza sintomas, preserva valores desconhecidos e cria contagens e combinações de sinais clínicos"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/05-tratamento-sintomas-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/dengue/05-tratamento-sintomas.png"
+                  width="3424"
+                  height="1156"
+                  alt="Código que normaliza sintomas, preserva valores desconhecidos e cria contagens e combinações de sinais clínicos"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
           </article>
 
@@ -226,13 +235,16 @@
             </ul>
 
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
-              <img
-                src="../../assets/projects/dengue/06-tempo-sazonalidade.png"
-                width="3136"
-                height="1336"
-                alt="Código que cria intervalo até a notificação e codificações cíclicas de mês e semana epidemiológica"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/06-tempo-sazonalidade-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/dengue/06-tempo-sazonalidade.png"
+                  width="3136"
+                  height="1336"
+                  alt="Código que cria intervalo até a notificação e codificações cíclicas de mês e semana epidemiológica"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
           </article>
 
@@ -246,13 +258,16 @@
             <p>Dados de localização foram preservados em: estado, município e região de saúde, isso é útil pois locais diferentes possuem características que podem permitir a proliferação e <span class="keep-tail">contaminação com essas arboviroses mais facilmente.</span></p>
 
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
-              <img
-                src="../../assets/projects/dengue/07-dados-demograficos-localizacao.png"
-                width="3024"
-                height="1156"
-                alt="Código de tratamento de escolaridade, sexo, raça, gravidez, ocupação e variáveis de localização"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/07-dados-demograficos-localizacao-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/dengue/07-dados-demograficos-localizacao.png"
+                  width="3024"
+                  height="1156"
+                  alt="Código de tratamento de escolaridade, sexo, raça, gravidez, ocupação e variáveis de localização"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
           </article>
 
@@ -266,13 +281,16 @@
             <p>A ideia é que os sintomas de uma pessoa podem ganhar significados diferentes dependendo da circulação recente da dengue naquela localidade. Somente semanas anteriores foram consideradas, sem utilizar o resultado do próprio paciente Esse ponto merece uma seção própria porque conecta o tratamento dos dados à lógica epidemiológica do projeto, e foi muito útil para aumentar a capacidade preditiva dos modelos num geral.</p>
 
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
-              <img
-                src="../../assets/projects/dengue/08-contexto-epidemiologico.png"
-                width="3288"
-                height="1428"
-                alt="Código que calcula notificações e casos confirmados nas quatro semanas anteriores por município, gerando densidade e positividade locais"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/08-contexto-epidemiologico-mobile.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/dengue/08-contexto-epidemiologico.png"
+                  width="3288"
+                  height="1428"
+                  alt="Código que calcula notificações e casos confirmados nas quatro semanas anteriores por município, gerando densidade e positividade locais"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
           </article>
         </div>
@@ -338,13 +356,16 @@
               <p>Porém, um sintoma pode aparecer com muita frequência entre os confirmados e, ao mesmo tempo, também estar presente em pessoas que receberam outra classificação. Dessa forma, não basta observar apenas quantas pessoas apresentaram o sintoma; também é necessário <span class="keep-tail">comparar sua frequência entre os dois grupos.</span></p>
 
               <figure class="home-credit-media home-credit-media--wide dengue-media">
-                <img
-                  src="../../assets/projects/dengue/10-sintomas-por-classificacao.png"
-                  width="2180"
-                  height="1278"
-                  alt="Gráfico comparando a frequência de sintomas em casos confirmados e descartados, com febre, cefaleia e mialgia mais frequentes e maior diferença relativa em exantema"
-                  loading="lazy"
-                  decoding="async">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/10-sintomas-por-classificacao-mobile.webp" type="image/webp">
+                  <img
+                    src="../../assets/projects/dengue/10-sintomas-por-classificacao.png"
+                    width="2180"
+                    height="1278"
+                    alt="Gráfico comparando a frequência de sintomas em casos confirmados e descartados, com febre, cefaleia e mialgia mais frequentes e maior diferença relativa em exantema"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
                 <figcaption>Sintomas Mais Frequentes por Classificação</figcaption>
               </figure>
 
@@ -431,13 +452,16 @@
                   <figcaption>Ocupações — Feminino</figcaption>
                 </figure>
                 <figure class="home-credit-media dengue-media">
-                  <img
-                    src="../../assets/projects/dengue/13-ocupacoes-masculino.png"
-                    width="1979"
-                    height="1218"
-                    alt="Gráfico das ocupações com mais casos confirmados entre homens, liderado por estudantes e com presença de pedreiros e trabalhadores agropecuários"
-                    loading="lazy"
-                    decoding="async">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/13-ocupacoes-masculino-mobile.webp" type="image/webp">
+                    <img
+                      src="../../assets/projects/dengue/13-ocupacoes-masculino.png"
+                      width="1979"
+                      height="1218"
+                      alt="Gráfico das ocupações com mais casos confirmados entre homens, liderado por estudantes e com presença de pedreiros e trabalhadores agropecuários"
+                      loading="lazy"
+                      decoding="async">
+                  </picture>
                   <figcaption>Ocupações — Masculino</figcaption>
                 </figure>
               </div>
@@ -484,6 +508,376 @@
               <li>Informações temporais, clínicas, demográficas e territoriais devem ser analisadas simultaneamente durante a construção dos modelos.</li>
             </ul>
             <a href="https://github.com/Ang3k/Dengue-Ensembler-Classifier" target="_blank" rel="noreferrer">Ver repositório do projeto <span aria-hidden="true">↗</span></a>
+          </section>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter dengue-chapter" id="modelagem" aria-labelledby="titulo-modelagem">
+        <div class="container">
+          <header class="home-credit-chapter-header dengue-chapter-header">
+            <p>PARTE 4</p>
+            <div>
+              <h2 id="titulo-modelagem">Modelagem Preditiva com Machine Learning</h2>
+              <p>Com os dados tratados e as principais relações exploradas, a próxima etapa foi transformar todas essas informações em modelos capazes de observar cada notificação de maneira conjunta.</p>
+            </div>
+          </header>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Do dado tratado ao conjunto de treinamento</h3>
+            <p>Na análise exploratória, percebemos que nenhum grupo de informações era suficiente para representar sozinho a classificação de um caso. Os sintomas possuem importância, mas também mudam de significado quando são observados junto à época do ano, ao local da notificação e ao contexto recente do município. Por isso, reuni essas diferentes perspectivas em um mesmo conjunto de 107 features, que se tornou a entrada comum dos modelos de Machine Learning.</p>
+            <p>O treinamento utilizou 2.874.235 registros de 2017 a 2019, e em cada linha o modelo recebia as informações disponíveis sobre a notificação e tentava distinguir os casos confirmados dos descartados. É importante ressaltar que resultados de exames, evolução, encerramento, hospitalização e qualquer outra informação posterior do próprio paciente não fizeram parte das features. Caso esses dados fossem utilizados, o modelo poderia aprender a resposta que deveria prever, criando uma capacidade que não existiria em uma nova triagem.</p>
+            <p>Também mantive o mesmo esquema de features durante todo o pipeline. Isso significa que a ordem, o nome e o tratamento das variáveis usados no treinamento são os mesmos esperados durante uma previsão. Essa decisão parece simples, porém é essencial para impedir que os modelos recebam informações organizadas de uma forma durante o treino e de outra quando forem utilizados.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Por que utilizar três modelos diferentes?</h3>
+            <p>Com o conjunto de treinamento pronto, eu poderia escolher apenas um algoritmo e buscar o melhor resultado possível com ele. No entanto, modelos diferentes podem observar padrões diferentes nas mesmas informações. Para aproveitar essa característica, selecionei uma rede neural MLP e dois modelos de gradient boosting baseados em árvores, o XGBoost e o LightGBM. Os três recebem as mesmas 107 features, mas possuem maneiras distintas de aprender as relações presentes nos dados.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-model-figure">
+              <picture class="mobile-picture">
+                <source media="(max-width: 800px)" srcset="../../assets/projects/dengue/14-modelos-complementares-mobile.svg" type="image/svg+xml">
+                <img
+                  src="../../assets/projects/dengue/14-modelos-complementares.svg"
+                  width="1600"
+                  height="900"
+                  alt="Diagrama em que as 107 features alimentam três modelos complementares: uma MLP tabular com embeddings, o XGBoost e o LightGBM, produzindo três scores individuais"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+              <figcaption>As mesmas features são interpretadas por três arquiteturas diferentes antes da formação do ensemble.</figcaption>
+            </figure>
+
+            <p>Essa diferença é útil porque não existe a expectativa de que os três modelos cometam exatamente os mesmos erros. A MLP pode encontrar interações não lineares entre muitas variáveis ao mesmo tempo, enquanto XGBoost e LightGBM constroem sequências de árvores para dividir os registros conforme os padrões encontrados. Em vez de obrigar uma única arquitetura a representar todo o problema, a intenção foi permitir que cada uma contribuísse com uma leitura própria.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Como a MLP aprende com dados tabulares?</h3>
+            <p>Redes neurais são frequentemente associadas a imagens ou textos, porém também podem ser utilizadas com dados tabulares. Nesse projeto, criei uma MLP preparada para lidar separadamente com informações categóricas e numéricas. Escolaridade, ocupação, estado, município e região de saúde foram transformados em embeddings, representações menores que permitem à rede aprender semelhanças entre categorias durante o próprio treinamento, em vez de tratar cada código apenas como um número comum.</p>
+            <p>As features numéricas passaram por uma normalização, e depois foram unidas aos embeddings antes de entrar nas quatro camadas ocultas da rede, com 1024, 512, 256 e 128 neurônios. Entre essas camadas, utilizei LeakyReLU, Batch Normalization e Dropout. Em conjunto, esses elementos ajudam a rede a aprender relações complexas, manter o treinamento estável e reduzir o risco de memorizar excessivamente os registros usados no treino.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/14a-mlp-tabular-code-mobile.svg?v=20260712c" type="image/svg+xml">
+                <img
+                  src="../../assets/projects/dengue/14a-mlp-tabular-code.svg?v=20260712c"
+                  width="1600"
+                  height="992"
+                  alt="Trecho da classe ArbovirosesMLP que cria embeddings, normaliza variáveis numéricas e monta as camadas 1024, 512, 256 e 128 com LeakyReLU, BatchNorm e Dropout"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>Para treinar a MLP, utilizei o otimizador AdamW e uma função de perda que considera a diferença entre as classes. O aprendizado foi acompanhado no conjunto de validação de 2020, e o treinamento era interrompido quando a rede deixava de melhorar. Com isso, o estado preservado não era simplesmente o da última época, mas aquele que apresentou o melhor comportamento durante a validação.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>XGBoost e LightGBM: duas leituras baseadas em árvores</h3>
+            <p>O XGBoost e o LightGBM pertencem à família do gradient boosting. Diferente de uma única árvore de decisão, esses modelos constroem árvores em sequência, fazendo com que cada nova etapa tente corrigir parte dos erros das anteriores. Essa característica é especialmente útil em dados tabulares, em que sintomas, datas, ocupações e localizações podem formar várias combinações difíceis de representar com regras isoladas.</p>
+            <p>Ainda que os dois utilizem o mesmo princípio, eles não constroem suas árvores exatamente da mesma forma. O XGBoost oferece um processo bastante controlado de regularização e crescimento, enquanto o LightGBM foi desenvolvido para treinar com eficiência em conjuntos extensos. Como o projeto possui milhões de registros e mais de uma centena de features, comparar as duas implementações permitiu observar se essas diferenças também apareciam na classificação dos casos.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/14b-gradient-boosting-code-mobile.svg?v=20260712c" type="image/svg+xml">
+                <img
+                  src="../../assets/projects/dengue/14b-gradient-boosting-code.svg?v=20260712c"
+                  width="1600"
+                  height="912"
+                  alt="Trecho do wrapper que configura LightGBM e XGBoost com objetivos binários e incorpora os parâmetros otimizados"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>Para escolher os hiperparâmetros, utilizei o Optuna sobre amostras estratificadas do treino e da validação. A ferramenta testou diferentes combinações de quantidade e profundidade das árvores, taxa de aprendizado, proporção de linhas e features utilizadas e níveis de regularização. Depois de encontrar a melhor configuração, cada modelo foi treinado novamente com o conjunto completo, sempre usando 2020 para acompanhar o aprendizado e aplicar early stopping quando novas árvores deixavam de trazer melhorias.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>O papel da validação temporal</h3>
+            <p>Durante todo esse processo, o ano de 2020 teve uma função diferente dos anos de treinamento. Os dados de 2017 a 2019 ensinaram os padrões aos modelos, enquanto 2020 foi utilizado para comparar configurações, interromper treinamentos no momento adequado e definir como as previsões seriam combinadas. Dessa maneira, as decisões foram tomadas observando um período posterior ao treino, mas sem utilizar o conjunto reservado para a avaliação final.</p>
+            <p>Essa separação foi importante porque uma divisão aleatória misturaria registros de anos diferentes entre treino e validação. Como a circulação da dengue, o preenchimento das notificações e o próprio contexto epidemiológico mudam com o tempo, isso poderia produzir uma avaliação excessivamente otimista. Ao respeitar a ordem dos anos, o pipeline se aproxima mais da situação real: aprender com o passado para classificar notificações de um período futuro.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-model-figure">
+              <picture class="mobile-picture">
+                <source media="(max-width: 800px)" srcset="../../assets/projects/dengue/15-validacao-e-ensemble-mobile.svg" type="image/svg+xml">
+                <img
+                  src="../../assets/projects/dengue/15-validacao-e-ensemble.svg"
+                  width="1600"
+                  height="900"
+                  alt="Diagrama temporal em que os dados de 2017 a 2019 treinam os modelos, 2020 orienta Optuna, early stopping e pesos, e 2021 permanece isolado até a avaliação final; os três scores são combinados em um ensemble"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+              <figcaption>Treino e validação definem o pipeline; o teste de 2021 só é aberto depois que essas decisões estão congeladas.</figcaption>
+            </figure>
+
+            <p>Somente depois de finalizar os modelos, seus hiperparâmetros, os pesos do ensemble e a regra de classificação, o conjunto de 2021 foi carregado para avaliação. Assim, seus 940.304 registros não participaram de nenhuma escolha anterior. Esse cuidado ajuda a garantir que o resultado final represente uma avaliação realmente fora do tempo utilizado para construir o sistema.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Unindo as previsões em um ensemble</h3>
+            <p>Depois do treinamento, cada modelo passou a produzir seu próprio score para um caso. Em vez de realizar uma votação simples, combinei esses três valores por meio de uma média ponderada. Os pesos foram definidos a partir do recall de cada modelo na validação de 2020 e depois normalizados, fazendo com que os modelos que encontraram mais casos confirmados nesse período tivessem uma participação ligeiramente maior no resultado conjunto.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/15a-ensemble-ponderado-code-mobile.svg?v=20260712c" type="image/svg+xml">
+                <img
+                  src="../../assets/projects/dengue/15a-ensemble-ponderado-code.svg?v=20260712c"
+                  width="1600"
+                  height="752"
+                  alt="Trecho que normaliza os recalls da validação para formar os pesos e combina os scores dos modelos no ensemble"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>O objetivo do ensemble não era esconder os modelos individuais, e sim utilizar suas diferenças. Quando MLP, XGBoost e LightGBM encontram um padrão semelhante, o score conjunto recebe o apoio das três arquiteturas. Quando existe divergência, os pesos permitem equilibrar as previsões de acordo com o comportamento que cada modelo apresentou na validação.</p>
+            <p>Ao final, esse processo entrega um único score de classificação, que ainda precisa ser comparado a um limiar para decidir entre confirmado e descartado. Esse valor não representa uma probabilidade clínica calibrada e não realiza um diagnóstico. A escolha do ponto de operação e o impacto dessa decisão sobre os acertos e erros pertencem à próxima parte, em que serão analisadas as métricas do modelo.</p>
+          </article>
+
+          <section class="dengue-conclusion" aria-labelledby="titulo-conclusoes-modelagem">
+            <h3 id="titulo-conclusoes-modelagem">O que ficou definido antes da avaliação</h3>
+            <p>Com isso, a etapa de modelagem terminou com um pipeline único e reproduzível, em que todos os modelos recebem o mesmo conjunto de informações e nenhuma decisão depende dos registros reservados para o teste final.</p>
+            <p>Em resumo, podemos concluir que:</p>
+            <ul>
+              <li>As 107 features reúnem informações clínicas, temporais, demográficas, territoriais e epidemiológicas em uma mesma entrada.</li>
+              <li>A MLP utiliza embeddings e camadas densas para aprender relações não lineares nos dados tabulares.</li>
+              <li>XGBoost e LightGBM utilizam sequências de árvores e oferecem duas leituras complementares do mesmo problema.</li>
+              <li>O ano de 2020 orienta otimização, early stopping e formação do ensemble, sem participar do treinamento principal.</li>
+              <li>Os pesos do ensemble são definidos na validação e permanecem congelados antes da abertura do teste de 2021.</li>
+              <li>O resultado produzido é um score de classificação, não um diagnóstico ou uma probabilidade clínica.</li>
+            </ul>
+            <p>Na próxima parte, vamos observar como esse ensemble se comportou nos 940.304 registros de 2021 e entender o que Accuracy, Precision, Recall e ROC-AUC dizem sobre a classificação.</p>
+          </section>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter dengue-chapter" id="metricas" aria-labelledby="titulo-metricas">
+        <div class="container">
+          <header class="home-credit-chapter-header dengue-chapter-header">
+            <p>PARTE 5</p>
+            <div>
+              <h2 id="titulo-metricas">Métricas e Avaliação do Modelo</h2>
+              <p>Depois de finalizar o treinamento, definir os pesos do ensemble e congelar o limiar de decisão, abri o conjunto temporal de 2021 para entender como o modelo se comportaria diante de registros que não participaram de nenhuma escolha anterior.</p>
+            </div>
+          </header>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Abrindo o teste final de 2021</h3>
+            <p>A avaliação foi realizada sobre 940.304 notificações, formadas por 484.586 casos descartados e 455.718 casos confirmados, uma distribuição relativamente equilibrada, porém pertencente a um ano posterior ao período de treinamento, o que torna o teste mais próximo da situação em que o sistema precisaria aprender com dados passados e receber novas notificações no futuro.</p>
+            <p>Nesse momento, nenhum hiperparâmetro foi alterado, os modelos não foram treinados novamente e o resultado de 2021 não foi utilizado para escolher o limiar, assim, as métricas não descrevem o melhor ajuste que poderia ser encontrado observando o próprio teste, elas mostram o comportamento do pipeline que já estava definido antes de esses registros serem abertos.</p>
+
+            <div class="dengue-metric-grid" aria-label="Principais métricas do ensemble no teste temporal de 2021">
+              <article class="dengue-metric-card">
+                <strong>72,1%</strong>
+                <h4>Accuracy</h4>
+                <p>Acertou a classificação de 677.991 dos 940.304 registros avaliados.</p>
+              </article>
+              <article class="dengue-metric-card">
+                <strong>66,1%</strong>
+                <h4>Precision</h4>
+                <p>De cada 100 casos marcados como dengue, aproximadamente 66 eram confirmados.</p>
+              </article>
+              <article class="dengue-metric-card">
+                <strong>87,3%</strong>
+                <h4>Recall</h4>
+                <p>Encontrou aproximadamente 87 de cada 100 casos de dengue realmente confirmados.</p>
+              </article>
+              <article class="dengue-metric-card">
+                <strong>82,9%</strong>
+                <h4>ROC-AUC</h4>
+                <p>Mede a capacidade de separar confirmados e descartados ao considerar diferentes limiares.</p>
+              </article>
+            </div>
+
+            <p>A Accuracy mostra que o ensemble acertou pouco mais de sete em cada dez classificações, mas esse valor não deve ser observado sozinho, porque o objetivo do ponto de operação não era distribuir os erros igualmente, e sim reduzir a quantidade de casos confirmados que seriam ignorados, por isso, Precision e Recall precisam ser lidos em conjunto para mostrar qual tipo de erro foi mais aceito pelo sistema.</p>
+            <p>Com Precision de 66,1%, parte das notificações classificadas como dengue ainda corresponde a casos descartados, enquanto o Recall de 87,3% mostra que a maior parte dos casos realmente confirmados foi encontrada, esse equilíbrio faz sentido para uma ferramenta de apoio à triagem, em que deixar um caso verdadeiro passar pode ser mais preocupante do que encaminhar um caso adicional para avaliação, embora essa escolha também aumente a carga produzida pelos falsos positivos.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Por que o limiar de 0,30 muda a leitura do modelo?</h3>
+            <p>O ensemble não entrega diretamente as palavras confirmado ou descartado, ele produz um score contínuo, e o limiar transforma esse valor em uma classificação, portanto, quando o ponto de corte é reduzido, mais registros passam a ser marcados como positivos, o Recall tende a crescer e menos casos confirmados ficam abaixo do corte, porém a Precision e a especificidade podem diminuir, porque também aumentam os casos descartados enviados para o grupo positivo.</p>
+            <p>O limiar de 0,30 foi definido utilizando apenas a validação de 2020 e permaneceu congelado antes do teste final, enquanto os modelos individuais mantiveram seus próprios pontos de comparação, escolhidos no mesmo período, com isso, a avaliação de 2021 não serviu para procurar retrospectivamente o corte que produziria a métrica mais favorável.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-evaluation-figure">
+              <a class="dengue-graph-link" href="../../assets/projects/dengue/20-threshold-analysis.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Abrir gráfico de seleção de limiar em tamanho completo">
+                <img
+                  src="../../assets/projects/dengue/20-threshold-analysis.png?v=20260712"
+                  width="2580"
+                  height="2129"
+                  alt="Curvas de Precision, Recall e F1 em diferentes limiares para MLP, XGBoost, LightGBM e ensemble"
+                  loading="lazy"
+                  decoding="async">
+              </a>
+              <figcaption>Os pontos de operação foram definidos na validação de 2020; toque ou clique no gráfico para ampliá-lo.</figcaption>
+            </figure>
+
+            <p>Podemos observar que existe uma região em que diferentes limiares produzem valores próximos de F1, por isso, o maior valor isolado dessa métrica não precisa ser a única regra de decisão, no ensemble, o ponto de 0,30 mantém um equilíbrio geral competitivo e desloca a classificação para uma sensibilidade maior, uma escolha coerente com o objetivo de encontrar mais casos confirmados antes da etapa de avaliação final.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Lendo os acertos e erros na matriz de confusão</h3>
+            <p>As métricas resumem o comportamento do modelo, mas a matriz de confusão permite enxergar de onde cada percentual surgiu, separando os acertos sobre casos descartados e confirmados dos dois tipos de erro possíveis, assim, em vez de observar apenas a Accuracy, podemos entender quantos registros foram deslocados para cada lado pelo limiar escolhido.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-evaluation-figure">
+              <a class="dengue-graph-link" href="../../assets/projects/dengue/16-confusion-matrices.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Abrir matrizes de confusão em tamanho completo">
+                <img
+                  src="../../assets/projects/dengue/16-confusion-matrices.png?v=20260712"
+                  width="2113"
+                  height="1916"
+                  alt="Matrizes de confusão de MLP, XGBoost, LightGBM e ensemble, comparando as classes reais e previstas"
+                  loading="lazy"
+                  decoding="async">
+              </a>
+              <figcaption>As matrizes mostram os acertos e os dois tipos de erro de cada modelo; toque ou clique para ampliar.</figcaption>
+            </figure>
+
+            <p>A leitura principal está na relação entre a linha dos casos confirmados e a linha dos descartados, porque o quadrante inferior direito mostra os confirmados encontrados, enquanto o superior direito reúne os descartados que também foram enviados para a classe positiva, assim, conseguimos visualizar por que aumentar o Recall também pode aumentar os falsos positivos.</p>
+            <p>Essa troca precisa ser conhecida por quem utiliza o resultado, pois o sistema aceita encaminhar mais registros para o grupo positivo para reduzir a quantidade de casos confirmados abaixo do limiar, um comportamento que pode apoiar uma priorização, mas nunca deve ser interpretado como diagnóstico automático.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>O ensemble foi melhor em todas as métricas?</h3>
+            <p>Comparar os modelos ajuda a mostrar que não existe um único significado para a palavra melhor, porque XGBoost e LightGBM alcançaram Accuracy e Precision ligeiramente maiores em seus próprios pontos de operação, enquanto o ensemble, utilizando o limiar de 0,30, abriu mão de parte dessa precisão para encontrar uma proporção muito maior dos casos confirmados.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-evaluation-figure">
+              <a class="dengue-graph-link" href="../../assets/projects/dengue/17-model-metrics-comparison.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Abrir comparação das métricas em tamanho completo">
+                <img
+                  src="../../assets/projects/dengue/17-model-metrics-comparison.png?v=20260712"
+                  width="2780"
+                  height="1379"
+                  alt="Gráfico de barras comparando Accuracy, Accuracy balanceada, Precision, Recall, F1, ROC-AUC e PR-AUC dos quatro modelos"
+                  loading="lazy"
+                  decoding="async">
+              </a>
+              <figcaption>Cada modelo foi avaliado no ponto definido em 2020; toque ou clique no gráfico para ampliá-lo.</figcaption>
+            </figure>
+
+            <p>O gráfico deixa claro que as arquiteturas permanecem próximas em várias medidas, enquanto as diferenças aumentam nas métricas dependentes do ponto de corte, portanto, o principal papel do ensemble não é vencer todas as colunas isoladamente, e sim combinar leituras diferentes e oferecer o comportamento escolhido para a triagem.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>A capacidade de separar os dois grupos</h3>
+            <p>A ROC-AUC observa o modelo em vários limiares, comparando a taxa de verdadeiros positivos com a taxa de falsos positivos, com isso, ela não descreve apenas a decisão tomada em 0,30, mas a capacidade geral de ordenar os casos confirmados acima dos descartados ao percorrer diferentes pontos de corte.</p>
+
+            <div class="dengue-evaluation-gallery">
+              <figure class="home-credit-media dengue-media dengue-evaluation-figure">
+                <a class="dengue-graph-link" href="../../assets/projects/dengue/18-precision-recall-curves.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Abrir curvas Precision-Recall em tamanho completo">
+                  <img
+                    src="../../assets/projects/dengue/18-precision-recall-curves.png?v=20260712"
+                    width="1780"
+                    height="1380"
+                    alt="Curvas Precision-Recall de MLP, XGBoost, LightGBM e ensemble"
+                    loading="lazy"
+                    decoding="async">
+                </a>
+                <figcaption>Curvas Precision-Recall dos quatro modelos.</figcaption>
+              </figure>
+              <figure class="home-credit-media dengue-media dengue-evaluation-figure">
+                <a class="dengue-graph-link" href="../../assets/projects/dengue/19-roc-curves.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Abrir curvas ROC em tamanho completo">
+                  <img
+                    src="../../assets/projects/dengue/19-roc-curves.png?v=20260712"
+                    width="1780"
+                    height="1380"
+                    alt="Curvas ROC de MLP, XGBoost, LightGBM e ensemble, comparadas à referência aleatória"
+                    loading="lazy"
+                    decoding="async">
+                </a>
+                <figcaption>Curvas ROC dos quatro modelos.</figcaption>
+              </figure>
+            </div>
+
+            <p>As curvas quase sobrepostas mostram que os modelos possuem uma capacidade parecida de separação, e que a diferença mais visível aparece quando os scores são convertidos em classes por um limiar, enquanto a Precision-Recall evidencia a troca entre encontrar mais confirmados e manter maior confiança nas marcações positivas.</p>
+            <p>Também é importante não confundir ROC-AUC com Accuracy ou com probabilidade clínica, a métrica resume a ordenação produzida pelo score em diferentes limiares, sem significar que o mesmo percentual de pacientes será classificado corretamente e sem garantir que o valor produzido esteja calibrado como risco individual.</p>
+          </article>
+
+          <section class="dengue-conclusion" aria-labelledby="titulo-conclusoes-metricas">
+            <h3 id="titulo-conclusoes-metricas">O que as métricas permitem concluir?</h3>
+            <p>O teste temporal mostrou que o ensemble consegue recuperar a maior parte dos casos confirmados e manter uma capacidade consistente de separação, porém esse resultado vem acompanhado de uma quantidade relevante de falsos positivos, portanto, ele faz mais sentido como uma ferramenta de apoio e priorização do que como uma decisão final sobre cada notificação.</p>
+            <p>As métricas também mostram que a escolha do limiar faz parte do comportamento do sistema, um modelo pode ter boa capacidade de ordenação e ainda produzir classificações muito diferentes conforme o ponto de corte, por isso, Accuracy, Precision, Recall, matriz de confusão e ROC-AUC foram analisadas em conjunto, sempre preservando a separação temporal e evitando escolher decisões com base no teste final.</p>
+            <p>Na próxima parte, vamos observar como esse score foi transformado em uma aplicação web, quais informações chegam à API e como o resultado é apresentado sem assumir o papel de um diagnóstico clínico.</p>
+          </section>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter dengue-chapter" id="aplicacao" aria-labelledby="titulo-aplicacao">
+        <div class="container">
+          <header class="home-credit-chapter-header dengue-chapter-header">
+            <p>PARTE 6</p>
+            <div>
+              <h2 id="titulo-aplicacao">Aplicação Web e Disponibilização do Modelo</h2>
+              <p>Depois de treinar e avaliar os modelos, o próximo passo foi transformar o pipeline em uma interface que permitisse preencher uma notificação, enviar seus dados para a API e visualizar o resultado sem precisar executar notebooks ou códigos manualmente.</p>
+            </div>
+          </header>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Da notificação ao score dos modelos</h3>
+            <p>A página de Triagem reúne as informações disponíveis no momento da notificação, como idade, sexo, gestação, raça, escolaridade, ocupação, localização, datas e sintomas, e permite escolher qual arbovirose será avaliada, com isso, a interface organiza os campos que serão enviados ao backend e evita depender de informações posteriores, como exame, evolução ou encerramento do caso.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-app-figure">
+              <img
+                src="../../assets/projects/dengue/21-aplicacao-triagem.png"
+                width="810"
+                height="602"
+                alt="Página de triagem da aplicação, com seleção da doença e campos de idade, sexo, gestação, raça, escolaridade e demais informações da notificação"
+                loading="lazy"
+                decoding="async">
+              <figcaption>A triagem concentra os campos utilizados pelos modelos e os sintomas informados pelo usuário.</figcaption>
+            </figure>
+
+            <p>A interface foi construída com React e TypeScript, enquanto a API em FastAPI recebe os campos, aplica a mesma preparação utilizada durante o treinamento e monta as features esperadas pelos modelos, depois disso, MLP, XGBoost e LightGBM produzem seus scores individuais, que são combinados pelo ensemble antes de a resposta voltar para o navegador.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Apresentando o resultado sem transformá-lo em diagnóstico</h3>
+            <p>Na resposta, os três scores aparecem separadamente, acompanhados pelos pesos utilizados no ensemble, e logo abaixo a aplicação mostra a classificação combinada e o limiar aplicado, essa separação ajuda a enxergar que o resultado final não vem de um único algoritmo e permite observar quando as arquiteturas apresentam valores semelhantes ou diferentes.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-app-figure">
+              <img
+                src="../../assets/projects/dengue/22-aplicacao-simulacao.png"
+                width="738"
+                height="530"
+                alt="Resultado de uma simulação histórica mostrando os scores da MLP, XGBoost e LightGBM, os pesos do ensemble, a classificação combinada e o registro do SINAN"
+                loading="lazy"
+                decoding="async">
+              <figcaption>A simulação usa um registro anonimizado e compara a previsão combinada com a classificação histórica do SINAN.</figcaption>
+            </figure>
+
+            <p>Além da triagem manual, a Home permite sortear um caso anonimizado do teste e comparar a previsão com a classificação registrada na base histórica, o objetivo dessa simulação é demonstrar o pipeline completo, não validar clinicamente uma pessoa, por isso, a aplicação apresenta o resultado como score de classificação e mantém o aviso de que a ferramenta não substitui a avaliação de um profissional de saúde.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Mostrando também o caminho dos dados</h3>
+            <p>Para não limitar a aplicação ao formulário, criei uma página de Pipeline que explica o caminho entre dados do SINAN, preparação, treinamento, avaliação, modelos salvos e API, e uma página de Panorama Epidemiológico que reúne as principais descobertas da análise exploratória, assim, quem acessa o projeto consegue entender tanto o resultado exibido quanto o processo que existe por trás dele.</p>
+
+            <div class="dengue-app-gallery">
+              <figure class="home-credit-media dengue-media dengue-app-figure">
+                <img
+                  src="../../assets/projects/dengue/23-aplicacao-pipeline.png"
+                  width="810"
+                  height="602"
+                  alt="Página da aplicação que apresenta o pipeline desde os dados do SINAN até a predição no site"
+                  loading="lazy"
+                  decoding="async">
+                <figcaption>O pipeline separa experimentação, modelos salvos, API e predição no site.</figcaption>
+              </figure>
+              <figure class="home-credit-media dengue-media dengue-app-figure">
+                <img
+                  src="../../assets/projects/dengue/24-aplicacao-panorama.png"
+                  width="980"
+                  height="734"
+                  alt="Página de panorama epidemiológico com um gráfico mensal dos casos de dengue e textos de interpretação"
+                  loading="lazy"
+                  decoding="async">
+                <figcaption>O panorama transforma os gráficos da análise em uma leitura guiada dentro da aplicação.</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <section class="dengue-conclusion" aria-labelledby="titulo-conclusoes-aplicacao">
+            <h3 id="titulo-conclusoes-aplicacao">O resultado final do projeto</h3>
+            <p>Com a aplicação, o trabalho deixa de ser apenas uma sequência de experimentos e passa a reunir dados, modelos, API e interface em um mesmo fluxo, permitindo testar notificações, acompanhar os scores individuais e entender como a classificação combinada foi formada.</p>
+            <p>Ao mesmo tempo, a maneira como o resultado é apresentado mantém a principal limitação do projeto visível, o sistema oferece apoio à triagem e uma demonstração técnica do uso de Machine Learning sobre dados do SINAN, mas não realiza diagnóstico e não substitui a análise clínica.</p>
           </section>
         </div>
       </section>

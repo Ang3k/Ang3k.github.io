@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <title>Fluxo das 107 features para MLP, XGBoost e LightGBM</title>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0L12 6L0 12Z" fill="#087f78"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#163d3a" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f5f9f8"/>
+  <text x="800" y="78" fill="#111a1a" font-family="Arial, sans-serif" font-size="42" font-weight="600" text-anchor="middle">Três modelos para observar as mesmas informações</text>
+  <text x="800" y="122" fill="#5f6a69" font-family="Arial, sans-serif" font-size="23" text-anchor="middle">As 107 features são entregues a arquiteturas que aprendem padrões de maneiras diferentes</text>
+
+  <rect x="450" y="160" width="700" height="134" rx="18" fill="#087f78"/>
+  <text x="800" y="207" fill="#ffffff" font-family="Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle">107 FEATURES</text>
+  <text x="800" y="254" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" text-anchor="middle">sintomas · tempo · perfil demográfico · localização · contexto local</text>
+
+  <path d="M800 294V330H300V375" fill="none" stroke="#087f78" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M800 294V375" fill="none" stroke="#087f78" stroke-width="5" marker-end="url(#arrow)"/>
+  <path d="M800 330H1300V375" fill="none" stroke="#087f78" stroke-width="5" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="90" y="390" width="420" height="300" rx="20" fill="#ffffff" stroke="#ccd8d6" stroke-width="2"/>
+    <rect x="590" y="390" width="420" height="300" rx="20" fill="#ffffff" stroke="#ccd8d6" stroke-width="2"/>
+    <rect x="1090" y="390" width="420" height="300" rx="20" fill="#ffffff" stroke="#ccd8d6" stroke-width="2"/>
+  </g>
+
+  <circle cx="300" cy="450" r="34" fill="#edf5f4"/>
+  <text x="300" y="460" fill="#075e59" font-family="Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle">01</text>
+  <text x="300" y="520" fill="#111a1a" font-family="Arial, sans-serif" font-size="34" font-weight="700" text-anchor="middle">MLP TABULAR</text>
+  <text x="300" y="566" fill="#3e4948" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">Embeddings para categorias</text>
+  <text x="300" y="602" fill="#3e4948" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">e camadas densas para relações</text>
+  <text x="300" y="638" fill="#3e4948" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">não lineares entre as variáveis</text>
+
+  <circle cx="800" cy="450" r="34" fill="#edf5f4"/>
+  <text x="800" y="460" fill="#075e59" font-family="Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle">02</text>
+  <text x="800" y="520" fill="#111a1a" font-family="Arial, sans-serif" font-size="34" font-weight="700" text-anchor="middle">XGBOOST</text>
+  <text x="800" y="566" fill="#3e4948" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">Árvores construídas em sequência</text>
+  <text x="800" y="602" fill="#3e4948" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">para corrigir erros e capturar</text>
+  <text x="800" y="638" fill="#3e4948" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">interações complexas nos dados</text>
+
+  <circle cx="1300" cy="450" r="34" fill="#edf5f4"/>
+  <text x="1300" y="460" fill="#075e59" font-family="Arial, sans-serif" font-size="28" font-weight="700" text-anchor="middle">03</text>
+  <text x="1300" y="520" fill="#111a1a" font-family="Arial, sans-serif" font-size="34" font-weight="700" text-anchor="middle">LIGHTGBM</text>
+  <text x="1300" y="566" fill="#3e4948" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">Gradient boosting eficiente</text>
+  <text x="1300" y="602" fill="#3e4948" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">para milhões de registros</text>
+  <text x="1300" y="638" fill="#3e4948" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">e muitas combinações de atributos</text>
+
+  <path d="M300 690V754H800" fill="none" stroke="#087f78" stroke-width="5"/>
+  <path d="M800 690V754" fill="none" stroke="#087f78" stroke-width="5"/>
+  <path d="M1300 690V754H800" fill="none" stroke="#087f78" stroke-width="5"/>
+  <path d="M800 754V790" fill="none" stroke="#087f78" stroke-width="5" marker-end="url(#arrow)"/>
+  <rect x="575" y="804" width="450" height="66" rx="33" fill="#111a1a"/>
+  <text x="800" y="846" fill="#ffffff" font-family="Arial, sans-serif" font-size="25" font-weight="700" text-anchor="middle">TRÊS SCORES COMPLEMENTARES</text>
+</svg>

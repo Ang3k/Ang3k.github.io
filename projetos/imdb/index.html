@@ -92,14 +92,17 @@
                 Júlia decide buscar por um dataset robusto e informativo para análise de dados, oque a levou à IMDB, que possui uma fonte de dados extensa e atualizada, que inclui detalhes sobre o nascimento de artistas, suas obras cinematográficas, avaliações de filmes, anos de produção, dentre outros dados.
               </p>
               <figure class="imdb-media imdb-media--wide">
-                <img
-                  src="../../assets/projects/imdb/wix-part1-02-conjunto-dados.png"
-                  width="1688"
-                  height="736"
-                  alt="Lista de arquivos de dados disponíveis para download no IMDb"
-                  loading="lazy"
-                  decoding="async"
-                >
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part1-02-conjunto-dados-mobile.webp" type="image/webp">
+                  <img
+                    src="../../assets/projects/imdb/wix-part1-02-conjunto-dados.png"
+                    width="1688"
+                    height="736"
+                    alt="Lista de arquivos de dados disponíveis para download no IMDb"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </picture>
               </figure>
             </section>
 
@@ -170,14 +173,17 @@
               <h3>4 - Diagrama de Relacionamento de Entidades</h3>
               <p>Com isso, é possível gerar um Diagrama de Relacionamento de Entidades:</p>
               <figure class="imdb-media imdb-media--diagram">
-                <img
-                  src="../../assets/projects/imdb/wix-part1-04-diagrama.png"
-                  width="4316"
-                  height="2792"
-                  alt="Diagrama de relacionamento entre as cinco tabelas usadas no projeto IMDb"
-                  loading="lazy"
-                  decoding="async"
-                >
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part1-04-diagrama-mobile.webp" type="image/webp">
+                  <img
+                    src="../../assets/projects/imdb/wix-part1-04-diagrama.png"
+                    width="4316"
+                    height="2792"
+                    alt="Diagrama de relacionamento entre as cinco tabelas usadas no projeto IMDb"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </picture>
               </figure>
             </section>
 
@@ -190,14 +196,17 @@
                 O script Python identificava os padrões específicos do formato ".tsv" e os transformava em formato ".csv". Isso envolvia substituir as tabulações por vírgulas e realizar outras formatações necessárias para que os dados fossem corretamente interpretados pelo MySQL Workbench. Este método permitiu a conversão eficiente de arquivos de grande porte, tornando-os adequados para importação e análise posterior no MySQL.
               </p>
               <figure class="imdb-media imdb-media--code">
-                <img
-                  src="../../assets/projects/imdb/wix-part1-05-python-conversao.png"
-                  width="2465"
-                  height="1006"
-                  alt="Script Python usado para converter arquivos TSV em CSV"
-                  loading="lazy"
-                  decoding="async"
-                >
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part1-05-python-conversao-mobile.webp" type="image/webp">
+                  <img
+                    src="../../assets/projects/imdb/wix-part1-05-python-conversao.png"
+                    width="2465"
+                    height="1006"
+                    alt="Script Python usado para converter arquivos TSV em CSV"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </picture>
               </figure>
               <p>
                 Após a conversão, os arquivos estavam prontos para serem carregados, Júlia pensou em utilizar a ferramenta Table Import Wizard para realizar a conversão, porém obtendo problemas de performance, optou por um método melhor, com o comando LOAD DATA LOCAL INFILE, concluindo a extração da base de dados.
@@ -252,11 +261,17 @@
                 Essa query traz os 25 filmes com melhor avaliação no IMDB, um detalhe é que ela é duplamente filtrada por averageRating na intenção de trazer mais relevância pra isso, mas mantendo ordenado principalmente por numVotes na subquery.
               </p>
               <figure class="imdb-media imdb-result">
-                <img src="../../assets/projects/imdb/wix-part2-01-output.png" width="1388" height="770" alt="Gráfico dos 25 filmes mais bem avaliados no IMDb, comparando nota e quantidade de votos" loading="lazy" decoding="async">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-01-output-mobile.webp" type="image/webp">
+                  <img src="../../assets/projects/imdb/wix-part2-01-output.png" width="1388" height="770" alt="Gráfico dos 25 filmes mais bem avaliados no IMDb, comparando nota e quantidade de votos" loading="lazy" decoding="async">
+                </picture>
               </figure>
               <div class="imdb-query">
                 <figure>
-                  <img src="../../assets/projects/imdb/wix-part2-01-query.png" width="1340" height="1034" alt="Consulta SQL usada para selecionar os 25 filmes mais bem avaliados" loading="lazy" decoding="async">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-01-query-mobile.webp" type="image/webp">
+                    <img src="../../assets/projects/imdb/wix-part2-01-query.png" width="1340" height="1034" alt="Consulta SQL usada para selecionar os 25 filmes mais bem avaliados" loading="lazy" decoding="async">
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -289,7 +304,10 @@
               </figure>
               <div class="imdb-query">
                 <figure>
-                  <img src="../../assets/projects/imdb/wix-part2-03-query.png" width="1481" height="1214" alt="Consulta SQL usada para calcular as faixas etárias" loading="lazy" decoding="async">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-03-query-mobile.webp" type="image/webp">
+                    <img src="../../assets/projects/imdb/wix-part2-03-query.png" width="1481" height="1214" alt="Consulta SQL usada para calcular as faixas etárias" loading="lazy" decoding="async">
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -304,7 +322,10 @@
               </figure>
               <div class="imdb-query">
                 <figure>
-                  <img src="../../assets/projects/imdb/wix-part2-04-query.png" width="1428" height="900" alt="Consulta SQL usada para comparar curtas e longas-metragens" loading="lazy" decoding="async">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-04-query-mobile.webp" type="image/webp">
+                    <img src="../../assets/projects/imdb/wix-part2-04-query.png" width="1428" height="900" alt="Consulta SQL usada para comparar curtas e longas-metragens" loading="lazy" decoding="async">
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -322,7 +343,10 @@
               </figure>
               <div class="imdb-query">
                 <figure>
-                  <img src="../../assets/projects/imdb/wix-part2-05-query.png" width="1111" height="945" alt="Consulta SQL usada para relacionar duração e avaliação ao longo do tempo" loading="lazy" decoding="async">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-05-query-mobile.webp" type="image/webp">
+                    <img src="../../assets/projects/imdb/wix-part2-05-query.png" width="1111" height="945" alt="Consulta SQL usada para relacionar duração e avaliação ao longo do tempo" loading="lazy" decoding="async">
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -333,7 +357,10 @@
                 Uma das querys mais simples, realizando a contagem de títulos adaptados para diversas regiões do globo, o Brasil se encontra no TOP 13, com 126.385 conteúdos que foram adaptados.
               </p>
               <figure class="imdb-media imdb-result imdb-result--map">
-                <img src="../../assets/projects/imdb/wix-part2-06-output.png" width="2376" height="1330" alt="Mapa mundial com a quantidade de adaptações de títulos por região" loading="lazy" decoding="async">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-06-output-mobile.webp" type="image/webp">
+                  <img src="../../assets/projects/imdb/wix-part2-06-output.png" width="2376" height="1330" alt="Mapa mundial com a quantidade de adaptações de títulos por região" loading="lazy" decoding="async">
+                </picture>
               </figure>
               <div class="imdb-query">
                 <figure>
@@ -348,7 +375,10 @@
                 Essa query traz à tona uma discussão muito importante nos tempos atuais, o conflito de gênero no mercado de trabalho, uma pena esse dataset não incluir salários para uma análise ainda mais interessante.
               </p>
               <figure class="imdb-media imdb-result imdb-result--map">
-                <img src="../../assets/projects/imdb/wix-part2-07-output.png" width="2546" height="1424" alt="Gráfico comparando a presença de homens e mulheres nos créditos de atuação" loading="lazy" decoding="async">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-07-output-mobile.webp" type="image/webp">
+                  <img src="../../assets/projects/imdb/wix-part2-07-output.png" width="2546" height="1424" alt="Gráfico comparando a presença de homens e mulheres nos créditos de atuação" loading="lazy" decoding="async">
+                </picture>
               </figure>
               <div class="imdb-query">
                 <figure>
@@ -363,11 +393,17 @@
                 Essa query traz os nomes mais "creditados" do IMDB, ou seja, as pessoas que mais costumam aparecer nos créditos das produções, também é uma das querys mais pesadas em termos de desempenho.
               </p>
               <figure class="imdb-media imdb-result imdb-result--medium">
-                <img src="../../assets/projects/imdb/wix-part2-08-output.png" width="1395" height="686" alt="Nuvem de palavras com os profissionais mais recorrentes nos créditos da base" loading="lazy" decoding="async">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-08-output-mobile.webp" type="image/webp">
+                  <img src="../../assets/projects/imdb/wix-part2-08-output.png" width="1395" height="686" alt="Nuvem de palavras com os profissionais mais recorrentes nos créditos da base" loading="lazy" decoding="async">
+                </picture>
               </figure>
               <div class="imdb-query">
                 <figure>
-                  <img src="../../assets/projects/imdb/wix-part2-08-query.png" width="1393" height="811" alt="Consulta SQL usada para identificar os profissionais mais prolíficos" loading="lazy" decoding="async">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-08-query-mobile.webp" type="image/webp">
+                    <img src="../../assets/projects/imdb/wix-part2-08-query.png" width="1393" height="811" alt="Consulta SQL usada para identificar os profissionais mais prolíficos" loading="lazy" decoding="async">
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -415,10 +451,16 @@
               </p>
               <div class="imdb-result-gallery" aria-label="Visualizações de resultados por empresa">
                 <figure class="imdb-media imdb-result">
-                  <img src="../../assets/projects/imdb/wix-part2-11-output-b.png" width="5048" height="2848" alt="Gráfico geral de orçamento, receita e lucro por empresa e ano" loading="lazy" decoding="async">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-11-output-b-mobile.webp" type="image/webp">
+                    <img src="../../assets/projects/imdb/wix-part2-11-output-b.png" width="5048" height="2848" alt="Gráfico geral de orçamento, receita e lucro por empresa e ano" loading="lazy" decoding="async">
+                  </picture>
                 </figure>
                 <figure class="imdb-media imdb-result">
-                  <img src="../../assets/projects/imdb/wix-part2-11-output-a.png" width="5424" height="3056" alt="Gráfico filtrado de orçamento, receita e lucro de uma empresa selecionada" loading="lazy" decoding="async">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-11-output-a-mobile.webp" type="image/webp">
+                    <img src="../../assets/projects/imdb/wix-part2-11-output-a.png" width="5424" height="3056" alt="Gráfico filtrado de orçamento, receita e lucro de uma empresa selecionada" loading="lazy" decoding="async">
+                  </picture>
                 </figure>
               </div>
 
@@ -430,11 +472,17 @@
                 Esta query é projetada para a partir de uma tabela chamada. A função SUM é utilizada com a cláusula OVER para calcular a soma acumulada dos lucros para cada país.
               </p>
               <figure class="imdb-media imdb-result imdb-result--map">
-                <img src="../../assets/projects/imdb/wix-part2-12-output.png" width="2706" height="1512" alt="Mapa mundial do lucro da indústria cinematográfica por região" loading="lazy" decoding="async">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-12-output-mobile.webp" type="image/webp">
+                  <img src="../../assets/projects/imdb/wix-part2-12-output.png" width="2706" height="1512" alt="Mapa mundial do lucro da indústria cinematográfica por região" loading="lazy" decoding="async">
+                </picture>
               </figure>
               <div class="imdb-query">
                 <figure>
-                  <img src="../../assets/projects/imdb/wix-part2-12-query.png" width="1939" height="900" alt="Consulta SQL usada para calcular o lucro por região" loading="lazy" decoding="async">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-12-query-mobile.webp" type="image/webp">
+                    <img src="../../assets/projects/imdb/wix-part2-12-query.png" width="1939" height="900" alt="Consulta SQL usada para calcular o lucro por região" loading="lazy" decoding="async">
+                  </picture>
                 </figure>
               </div>
             </article>
@@ -449,7 +497,10 @@
               </figure>
               <div class="imdb-query">
                 <figure>
-                  <img src="../../assets/projects/imdb/wix-part2-13-query.png" width="1235" height="990" alt="Consulta SQL usada para comparar lucro e avaliação por gênero" loading="lazy" decoding="async">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../assets/projects/imdb/wix-part2-13-query-mobile.webp" type="image/webp">
+                    <img src="../../assets/projects/imdb/wix-part2-13-query.png" width="1235" height="990" alt="Consulta SQL usada para comparar lucro e avaliação por gênero" loading="lazy" decoding="async">
+                  </picture>
                 </figure>
               </div>
             </article>
