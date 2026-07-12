@@ -23,7 +23,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?v=20260712-project-summaries-v2">
     <script>
       (function () {
         try {
@@ -224,9 +224,9 @@
               <h2 id="projects-title">Projetos em Destaque</h2>
             </div>
             <p>
-              Uma seleção de trabalhos que representa meu foco atual: modelagem
-              criteriosa, engenharia reproduzível e comunicação clara dos
-              resultados.
+              Uma visão direta do problema, da solução e dos principais resultados
+              de cada trabalho, com os estudos completos disponíveis para quem
+              quiser entender todo o processo.
             </p>
           </header>
 
@@ -251,21 +251,37 @@
                   <span>Saúde pública · Ensemble</span>
                 </div>
                 <h3>Classificador Epidemiológico de Arboviroses</h3>
-                <p>
-                  Pipeline temporal para classificação de arboviroses com 107
-                  features, combinando MLP, XGBoost e LightGBM em uma aplicação
-                  React com API FastAPI.
-                </p>
+                <div class="project-brief">
+                  <span>Projeto em resumo</span>
+                  <p>
+                    Desenvolvi um ensemble para classificar notificações de dengue e chikungunya
+                    com dados públicos do SINAN, reunindo 107 features e as previsões de MLP,
+                    XGBoost e LightGBM. O pipeline processou cerca de 11,4 milhões de registros
+                    brutos e, no teste de dengue com 940.304 notificações de 2021, encontrou 87,3%
+                    dos casos confirmados, depois também transformei o modelo numa aplicação com
+                    React e FastAPI.
+                  </p>
+                </div>
+                <dl class="project-highlights" aria-label="Principais resultados do classificador epidemiológico">
+                  <div>
+                    <dt>Registros brutos</dt>
+                    <dd>11,4 mi</dd>
+                  </div>
+                  <div>
+                    <dt>Teste temporal</dt>
+                    <dd>940.304</dd>
+                  </div>
+                  <div>
+                    <dt>Recall</dt>
+                    <dd>87,3%</dd>
+                  </div>
+                </dl>
                 <ul class="tag-list" aria-label="Tecnologias">
                   <li>Python</li>
                   <li>PyTorch</li>
                   <li>FastAPI</li>
                   <li>React</li>
                 </ul>
-                <div class="project-result">
-                  <span>Recall do ensemble</span>
-                  <strong>87,3%</strong>
-                </div>
                 <a
                   class="project-link"
                   href="./projetos/dengue/index.html"
@@ -293,20 +309,36 @@
                   <span>Risco de crédito · CRISP-DM</span>
                 </div>
                 <h3>Previsão de Risco de Crédito no Home Credit Group</h3>
-                <p>
-                  Estudo de risco de atraso em pagamentos, com análise
-                  exploratória, tratamento de desbalanceamento e modelagem com
-                  LightGBM.
-                </p>
+                <div class="project-brief">
+                  <span>Projeto em resumo</span>
+                  <p>
+                    Desenvolvi um modelo LightGBM para identificar clientes com maior risco de
+                    atraso, tratando o desbalanceamento dos dados e comparando o resultado com o
+                    modelo anterior utilizado como referência. A AUC passou de 0,719 para 0,764 e,
+                    numa simulação com 30.752 previsões, o novo modelo encontrou 218 clientes com
+                    atraso a mais, representando mais de ¥21,88 milhões em perdas potenciais
+                    identificadas.
+                  </p>
+                </div>
+                <dl class="project-highlights" aria-label="Principais resultados da previsão de risco de crédito">
+                  <div>
+                    <dt>AUC alcançada</dt>
+                    <dd>0,764</dd>
+                  </div>
+                  <div>
+                    <dt>Atrasos encontrados</dt>
+                    <dd>+218</dd>
+                  </div>
+                  <div>
+                    <dt>Perdas potenciais</dt>
+                    <dd>¥21,88 mi</dd>
+                  </div>
+                </dl>
                 <ul class="tag-list" aria-label="Tecnologias">
                   <li>LightGBM</li>
                   <li>Pandas</li>
                   <li>Scikit-learn</li>
                 </ul>
-                <div class="project-result">
-                  <span>AUC reportada</span>
-                  <strong>0,764</strong>
-                </div>
                 <a
                   class="project-link"
                   href="./projetos/home-credit/index.html"
@@ -332,20 +364,35 @@
                   <span>Serviços financeiros</span>
                 </div>
                 <h3>Previsão de Churn de Clientes Bancários</h3>
-                <p>
-                  Análise do comportamento de clientes e comparação entre
-                  Decision Tree, Random Forest e XGBoost para antecipar
-                  cancelamentos.
-                </p>
+                <div class="project-brief">
+                  <span>Projeto em resumo</span>
+                  <p>
+                    Analisei o comportamento de 11.573 clientes bancários para entender o que
+                    estava relacionado ao cancelamento do cartão, depois comparei Decision Tree,
+                    Random Forest e XGBoost para antecipar esse churn. O XGBoost apresentou o
+                    melhor resultado, com 97,4% de acurácia, permitindo unir a previsão dos
+                    cancelamentos com a análise das variáveis mais importantes para cada modelo.
+                  </p>
+                </div>
+                <dl class="project-highlights" aria-label="Principais resultados da previsão de churn">
+                  <div>
+                    <dt>Clientes analisados</dt>
+                    <dd>11.573</dd>
+                  </div>
+                  <div>
+                    <dt>Modelos comparados</dt>
+                    <dd>3</dd>
+                  </div>
+                  <div>
+                    <dt>Melhor acurácia</dt>
+                    <dd>97,4%</dd>
+                  </div>
+                </dl>
                 <ul class="tag-list" aria-label="Tecnologias">
                   <li>Scikit-learn</li>
                   <li>XGBoost</li>
                   <li>Pandas</li>
                 </ul>
-                <div class="project-result">
-                  <span>Acurácia reportada · XGBoost</span>
-                  <strong>97,4%</strong>
-                </div>
                 <a
                   class="project-link"
                   href="./projetos/churn/index.html"
@@ -376,20 +423,36 @@
                   <span>Análise de dados · Cinema</span>
                 </div>
                 <h3>Análise da Indústria Cinematográfica</h3>
-                <p>
-                  Estudo com dados do IMDb e TMDB para investigar gêneros,
-                  avaliações, duração, representatividade e desempenho
-                  financeiro da indústria cinematográfica.
-                </p>
+                <div class="project-brief">
+                  <span>Projeto em resumo</span>
+                  <p>
+                    Construí um pipeline com Python e MySQL para converter, armazenar e analisar
+                    158.366.934 registros do IMDb e TMDB, reunidos em aproximadamente 12,73 GB de
+                    dados. A partir dessa estrutura, desenvolvi 13 consultas analíticas e
+                    visualizações em Power BI sobre gêneros, avaliações, representatividade,
+                    regiões e desempenho financeiro, transformando uma base extensa num panorama
+                    da indústria cinematográfica.
+                  </p>
+                </div>
+                <dl class="project-highlights" aria-label="Principais resultados da análise da indústria cinematográfica">
+                  <div>
+                    <dt>Linhas analisadas</dt>
+                    <dd>158,4 mi</dd>
+                  </div>
+                  <div>
+                    <dt>Volume de dados</dt>
+                    <dd>12,73 GB</dd>
+                  </div>
+                  <div>
+                    <dt>Análises em SQL</dt>
+                    <dd>13</dd>
+                  </div>
+                </dl>
                 <ul class="tag-list" aria-label="Tecnologias">
                   <li>Python</li>
                   <li>MySQL</li>
                   <li>Power BI</li>
                 </ul>
-                <div class="project-result">
-                  <span>Volume analisado</span>
-                  <strong>158M+</strong>
-                </div>
                 <a
                   class="project-link"
                   href="./projetos/imdb/index.html"
