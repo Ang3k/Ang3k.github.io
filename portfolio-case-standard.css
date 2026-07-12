@@ -36,6 +36,15 @@
   object-fit: contain;
 }
 
+/* Evita palavras órfãs nas últimas linhas sem introduzir quebras fixas. */
+.portfolio-case-study :is(p, li, dd, figcaption) {
+  text-wrap: pretty;
+}
+
+.portfolio-case-study :is(h1, h2, h3, h4) {
+  text-wrap: balance;
+}
+
 /* Visão geral */
 .portfolio-case-study :is(.imdb-overview, .churn-overview, .home-credit-overview) {
   background: #fff;

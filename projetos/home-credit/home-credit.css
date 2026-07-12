@@ -1354,7 +1354,7 @@
 .home-credit-refactor .home-credit-cover-hero .home-credit-hero-copy {
   width: min(760px, calc(100% - 3rem));
   padding: clamp(1.5rem, 4vw, 2.6rem);
-  background: rgba(8, 8, 7, 0.88);
+  background: transparent;
   color: #fff;
   text-align: center;
 }

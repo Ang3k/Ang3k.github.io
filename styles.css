@@ -429,6 +429,8 @@ a {
   height: 100%;
   min-height: 360px;
   object-fit: cover;
+  transform: scale(1.35);
+  transform-origin: center;
 }
 
 .cpu-gauge {
@@ -559,6 +561,13 @@ a {
   padding: 4.5rem 3rem 2rem;
   background: #9da2a5;
   color: var(--ink);
+}
+
+.dengue-visual,
+.home-credit-visual,
+.churn-visual,
+.imdb-visual {
+  height: 360px;
 }
 
 .home-credit-visual {
@@ -952,6 +961,7 @@ a {
   }
 
   .project-visual {
+    height: auto;
     min-height: 100%;
     border-right: 1px solid var(--light-line);
     border-bottom: 0;

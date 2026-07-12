@@ -982,7 +982,7 @@
 
 /* Os estudos modernizados compartilham a escala natural no desktop. */
 @media (min-width: 901px) {
-  html:has(.wix-churn-case, .wix-imdb-case, .home-credit-case) {
+  html:has(.wix-churn-case, .wix-imdb-case, .home-credit-case, .dengue-case) {
     zoom: 1;
   }
 }
@@ -1579,7 +1579,7 @@
 .imdb-hero-copy {
   width: min(720px, calc(100% - 3rem));
   padding: clamp(1.5rem, 4vw, 2.5rem);
-  background: rgba(8, 8, 7, 0.9);
+  background: transparent;
   color: #fff;
   text-align: center;
 }
@@ -2339,7 +2339,7 @@
 .churn-hero-copy {
   width: min(760px, calc(100% - 3rem));
   padding: clamp(1.5rem, 4vw, 2.6rem);
-  background: rgba(8, 8, 7, 0.88);
+  background: transparent;
   color: #fff;
   text-align: center;
 }

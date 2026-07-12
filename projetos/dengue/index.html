@@ -1,0 +1,508 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Estudo de caso de um pipeline temporal com dados do SINAN para apoiar a classificação epidemiológica de arboviroses.">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Classificador Epidemiológico de Arboviroses | Angel Mansilla">
+  <meta property="og:description" content="Preparação, engenharia de atributos e análise exploratória de dados do SINAN para classificação epidemiológica de arboviroses.">
+  <meta property="og:image" content="../../assets/projects/dengue/sinan-logo.png">
+
+  <title>Classificador Epidemiológico de Arboviroses | Angel Mansilla</title>
+
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="../../assets/projects/dengue/sinan-logo.png" as="image" type="image/png">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../case-study.css">
+  <link rel="stylesheet" href="../../portfolio-case-standard.css">
+  <link rel="stylesheet" href="./dengue-standard.css">
+</head>
+
+<body class="case-page portfolio-case-study dengue-case dengue-refactor" id="topo">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="wix-project-header">
+    <a class="wix-project-name" href="../../index.html">Angel Mansilla</a>
+    <nav class="wix-project-nav" aria-label="Navegação principal">
+      <a href="../../index.html#sobre">Sobre</a>
+      <a href="../../index.html#contato">Contato</a>
+      <a href="../../index.html#projetos">Portfólio</a>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="dengue-cover" aria-labelledby="titulo-projeto">
+      <img
+        src="../../assets/projects/dengue/sinan-logo.png"
+        width="1586"
+        height="992"
+        alt=""
+        fetchpriority="high"
+        decoding="async">
+      <div class="dengue-cover-shade" aria-hidden="true"></div>
+      <div class="dengue-cover-copy">
+        <h1 id="titulo-projeto">Classificador Epidemiológico de Arboviroses</h1>
+      </div>
+    </section>
+
+    <article class="dengue-case-content">
+      <section class="dengue-overview" aria-label="Partes do estudo de caso">
+        <nav class="dengue-chapter-nav" aria-label="Partes do estudo de caso">
+          <a href="#contexto"><span class="dengue-chapter-number">01</span><span class="dengue-chapter-label">Introdução ao Contexto do Projeto</span></a>
+          <a href="#tratamento"><span class="dengue-chapter-number">02</span><span class="dengue-chapter-label">Tratamento do Conjunto de Dados</span></a>
+          <a href="#eda"><span class="dengue-chapter-number">03</span><span class="dengue-chapter-label">Análise Exploratória de Dados</span></a>
+        </nav>
+      </section>
+
+      <section class="home-credit-chapter dengue-chapter" id="contexto" aria-labelledby="titulo-contexto">
+        <div class="container">
+          <header class="home-credit-chapter-header dengue-chapter-header">
+            <p>PARTE 1</p>
+            <div>
+              <h2 id="titulo-contexto">Introdução ao Contexto do Projeto</h2>
+            </div>
+          </header>
+
+          <article class="home-credit-story dengue-story">
+            <h3>Contexto do Projeto</h3>
+            <p>Arboviroses são doenças causadas por vírus transmitidos por artrópodes, principalmente mosquitos e carrapatos, e podem representar riscos graves à saúde. O SINAN reúne milhões de registros históricos sobre dengue, zika e chikungunya, incluindo sintomas, como febre, exantema e dor retro-orbital, e informações epidemiológicas, como cidade, ocupação e escolaridade.</p>
+            <p>Esses dados ajudam a identificar padrões além dos sintomas. Região, escolaridade e gravidez, por exemplo, podem contribuir para a classificação dos casos. Durante o projeto, observou-se maior ocorrência de dengue entre mulheres, um padrão também discutido em notícias e possivelmente relacionado a hábitos cotidianos e vestimentas, embora sua causa não seja conclusiva.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media">
+              <img
+                src="../../assets/projects/dengue/01-pipeline-projeto.png"
+                width="1462"
+                height="602"
+                alt="Fluxo do projeto: dados do SINAN, preparação de atributos, treino entre 2017 e 2019, otimização com Optuna, avaliação temporal em 2021 e disponibilização do modelo por API"
+                loading="lazy"
+                decoding="async">
+            </figure>
+
+            <p>Com isso, nasceu a vontade de criar uma ferramenta de apoio, capaz de observar simultaneamente todas essas informações, e produzir um score de classificação, a intenção nunca foi de criar um diagnóstico automático, e sim algo para ajudar especialistas, ou talvez apoiar em momentos de "pico" dessas doenças e saber melhor quem realizar uma triagem física rapidamente.</p>
+            <p>O pipeline desejado foi extrair os dados do SINAN, realizar os necessários tratamentos nas variáveis, fazer treino, validação e teste num split temporal, utilizando Optuna para trazer os hiperparâmetros mais otimizados, e salvar isso tudo para a aplicação, onde o foco maior é a triagem de pessoas, todas essas etapas serão descritas nas próximas etapas desse relatório.</p>
+          </article>
+
+          <article class="home-credit-story dengue-story">
+            <h3>Dicionário de Dados</h3>
+            <div class="dengue-dictionary" aria-label="Dicionário de dados">
+              <dl>
+                <div><dt><code>final_classification</code>:</dt><dd>classificação final do caso — confirmado ou descartado.</dd></div>
+                <div><dt><code>age_years</code>:</dt><dd>idade do paciente em anos.</dd></div>
+                <div><dt><code>sex</code>:</dt><dd>sexo registrado do paciente.</dd></div>
+                <div><dt><code>race</code>:</dt><dd>raça ou cor registrada.</dd></div>
+                <div><dt><code>education_level</code>:</dt><dd>nível de escolaridade.</dd></div>
+                <div><dt><code>occupation_code</code>:</dt><dd>ocupação do paciente segundo a CBO.</dd></div>
+                <div><dt><code>pregnancy</code>:</dt><dd>indica se a paciente estava gestante.</dd></div>
+                <div><dt><code>residence_state</code>:</dt><dd>estado de residência.</dd></div>
+                <div><dt><code>residence_municipality</code>:</dt><dd>município de residência.</dd></div>
+                <div><dt><code>residence_health_region</code>:</dt><dd>região de saúde da residência.</dd></div>
+                <div><dt><code>fever</code>:</dt><dd>presença de febre.</dd></div>
+                <div><dt><code>myalgia</code>:</dt><dd>presença de dor muscular.</dd></div>
+                <div><dt><code>headache</code>:</dt><dd>presença de dor de cabeça.</dd></div>
+                <div><dt><code>rash</code>:</dt><dd>presença de exantema ou manchas na pele.</dd></div>
+                <div><dt><code>vomiting</code>:</dt><dd>presença de vômito.</dd></div>
+                <div><dt><code>nausea</code>:</dt><dd>presença de náusea.</dd></div>
+                <div><dt><code>back_pain</code>:</dt><dd>presença de dor nas costas.</dd></div>
+                <div><dt><code>conjunctivitis</code>:</dt><dd>presença de conjuntivite.</dd></div>
+                <div><dt><code>arthritis</code>:</dt><dd>presença de artrite.</dd></div>
+                <div><dt><code>joint_pain</code>:</dt><dd>presença de dor nas articulações.</dd></div>
+                <div><dt><code>petechiae</code>:</dt><dd>presença de pequenas manchas hemorrágicas na pele.</dd></div>
+                <div><dt><code>retro_orbital_pain</code>:</dt><dd>presença de dor atrás dos olhos.</dd></div>
+                <div><dt><code>number_of_symptoms</code>:</dt><dd>quantidade de sintomas presentes.</dd></div>
+                <div><dt><code>number_of_reported_symptoms</code>:</dt><dd>quantidade de sintomas que foram informados.</dd></div>
+                <div><dt><code>days_to_notification</code>:</dt><dd>número de dias entre o início dos sintomas e a notificação.</dd></div>
+                <div><dt><code>notification_month</code>:</dt><dd>mês em que o caso foi notificado.</dd></div>
+                <div><dt><code>symptom_epi_week_number</code>:</dt><dd>semana epidemiológica do início dos sintomas.</dd></div>
+                <div><dt><code>symptom_month</code>:</dt><dd>mês em que os sintomas começaram.</dd></div>
+                <div><dt><code>local_density</code>:</dt><dd>volume de notificações no município nas quatro semanas anteriores.</dd></div>
+                <div><dt><code>local_positivity</code>:</dt><dd>proporção recente de casos confirmados no município.</dd></div>
+              </dl>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter dengue-chapter" id="tratamento" aria-labelledby="titulo-tratamento">
+        <div class="container">
+          <header class="home-credit-chapter-header dengue-chapter-header">
+            <p>PARTE 2</p>
+            <div>
+              <h2 id="titulo-tratamento">Tratamento do Conjunto de Dados</h2>
+            </div>
+          </header>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Estado inicial dos dados SINAN</h3>
+            <p>É preciso esclarecer uma coisa importante, existe um termo chamado: "GIGO", que representa a ideia de "lixo entra, lixo sai", isso é interessante para denotar a relevância de um tratamento coerente dos dados vindos do SINAN. Antes do tratamento, os dados possuíam vários problemas, que iriam dificultar tanto uma análise de dados quanto a realização coerente do pipeline de machine learning. Entre esses problemas estavam diversas colunas sem utilidade para predição.</p>
+            <p>Essas colunas poderiam fazer um "vazamento" da classificação ou apenas não ajudar na classificação pelo próprio conceito da coluna. Também havia campos vazios ou marcados como ignorados, além disso, cada ano mostrava um padrão diferente em algumas colunas, e após o ano de 2021, não aparece dados com a classificação de "Descartado para Arbovirose X", por isso apenas até esse ano foi feita a extração de dados e uso para teste.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media">
+              <img
+                src="../../assets/projects/dengue/02-amostra-dados-sinan.png"
+                width="988"
+                height="322"
+                alt="Amostra tabular dos dados brutos do SINAN com datas, semana epidemiológica, município, região, unidade e valores ausentes"
+                loading="lazy"
+                decoding="async">
+            </figure>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Seleção dos anos</h3>
+            <ul class="dengue-method-list">
+              <li>Os anos de 2014 a 2016 tinham sintomas ausentes ou incompletos.</li>
+              <li>Utilizá-los poderia fazer o modelo aprender diferenças de preenchimento, e não diferenças <span class="keep-tail">entre casos confirmados e descartados.</span></li>
+              <li>Por isso, o treinamento foi feito com os dados mais consistentes, de 2017 a 2019.</li>
+              <li>O ano de 2020 foi separado para ajustar as decisões dos modelos.</li>
+              <li>O ano de 2021 foi deixado para a avaliação final.</li>
+            </ul>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <img
+                src="../../assets/projects/dengue/03-divisao-temporal.png"
+                width="2296"
+                height="528"
+                alt="Código que seleciona os anos de 2017 a 2019 para treino, 2020 para validação e 2021 para teste"
+                loading="lazy"
+                decoding="async">
+            </figure>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Classificação dos casos</h3>
+            <ul class="dengue-method-list">
+              <li>Os códigos originais da classificação foram simplificados em dois grupos: confirmado e descartado.</li>
+              <li>Casos sem conclusão ou com classificação inconclusiva não foram usados para ensinar os modelos.</li>
+              <li>Assim, cada registro utilizado tinha uma resposta clara sobre aquilo que o modelo deveria aprender.</li>
+            </ul>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <img
+                src="../../assets/projects/dengue/04-classificacao-casos.png"
+                width="2272"
+                height="1156"
+                alt="Código de padronização dos códigos de classificação do SINAN em casos confirmados e descartados"
+                loading="lazy"
+                decoding="async">
+            </figure>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Sintomas</h3>
+            <ul class="dengue-method-list">
+              <li>Os sintomas foram representados como presentes, ausentes ou não informados.</li>
+              <li>“Não apresentou febre” foi mantido como algo diferente de “não sabemos se apresentou febre”.</li>
+              <li>Além dos sintomas individuais, foi calculada a quantidade de sintomas presentes.</li>
+              <li>Também foi registrada a quantidade de sintomas realmente preenchidos.</li>
+              <li>Foram criadas combinações para representar sintomas que aparecem juntos.</li>
+              <li>Exantema e dor retro-orbital receberam um resumo específico porque apresentaram diferenças relevantes entre confirmados e descartados.</li>
+            </ul>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <img
+                src="../../assets/projects/dengue/05-tratamento-sintomas.png"
+                width="3424"
+                height="1156"
+                alt="Código que normaliza sintomas, preserva valores desconhecidos e cria contagens e combinações de sinais clínicos"
+                loading="lazy"
+                decoding="async">
+            </figure>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Tempo e sazonalidade</h3>
+            <ul class="dengue-method-list">
+              <li>Foi calculado o número de dias entre o início dos sintomas e a notificação.</li>
+              <li>O mês e a semana epidemiológica foram incluídos porque a circulação da dengue muda durante o ano.</li>
+              <li>Essas informações foram transformadas em variáveis cíclicas.</li>
+              <li>Isso foi necessário porque o calendário forma um ciclo: dezembro está próximo de janeiro, mesmo que numericamente 12 pareça distante de 1.</li>
+              <li>A mesma lógica foi aplicada às semanas epidemiológicas.</li>
+            </ul>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <img
+                src="../../assets/projects/dengue/06-tempo-sazonalidade.png"
+                width="3136"
+                height="1336"
+                alt="Código que cria intervalo até a notificação e codificações cíclicas de mês e semana epidemiológica"
+                loading="lazy"
+                decoding="async">
+            </figure>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Informações demográficas e de localização</h3>
+            <p>Características demográficas são um ponto muito importante de tratamento. Para escolaridade foi realizado um agrupamento em níveis semelhantes, e organizados em uma escala crescente, fazendo a variável representar uma progressão desde a escolaridade ausente ou não informada, até níveis mais altos como nível superior, mestrado, doutorado.</p>
+            <ul class="dengue-method-list">
+              <li>Colunas como sexo, raça e gravidez foram transformadas usando um one-hot encoding, isso permite evitar uma noção de progressão irreal</li>
+              <li>Para ocupação como haviam muitas, já que seguiam o CBO, aquelas que tinham baixa quantidade de membros foram agrupadas em "Outros"</li>
+            </ul>
+            <p>Dados de localização foram preservados em: estado, município e região de saúde, isso é útil pois locais diferentes possuem características que podem permitir a proliferação e <span class="keep-tail">contaminação com essas arboviroses mais facilmente.</span></p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <img
+                src="../../assets/projects/dengue/07-dados-demograficos-localizacao.png"
+                width="3024"
+                height="1156"
+                alt="Código de tratamento de escolaridade, sexo, raça, gravidez, ocupação e variáveis de localização"
+                loading="lazy"
+                decoding="async">
+            </figure>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Contexto epidemiológico</h3>
+            <p>Uma das transformações mais interessantes do projeto foi representar oque estava acontecendo no município antes de cada notificação, isso ajuda a entender o "cenário recente" do local em relação circulação recente de arboviroses, para isso foram criadas duas informações principais:</p>
+            <ul class="dengue-method-list">
+              <li>Volume de notificações no município nas quatro semanas anteriores</li>
+              <li>Proporção de casos confirmados nesse mesmo período</li>
+            </ul>
+            <p>A ideia é que os sintomas de uma pessoa podem ganhar significados diferentes dependendo da circulação recente da dengue naquela localidade. Somente semanas anteriores foram consideradas, sem utilizar o resultado do próprio paciente Esse ponto merece uma seção própria porque conecta o tratamento dos dados à lógica epidemiológica do projeto, e foi muito útil para aumentar a capacidade preditiva dos modelos num geral.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <img
+                src="../../assets/projects/dengue/08-contexto-epidemiologico.png"
+                width="3288"
+                height="1428"
+                alt="Código que calcula notificações e casos confirmados nas quatro semanas anteriores por município, gerando densidade e positividade locais"
+                loading="lazy"
+                decoding="async">
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter dengue-chapter" id="eda" aria-labelledby="titulo-eda">
+        <div class="container">
+          <header class="home-credit-chapter-header dengue-chapter-header">
+            <p>PARTE 3</p>
+            <div>
+              <h2 id="titulo-eda">Análise Exploratória de Dados</h2>
+              <p>Nesta seção, será realizada a análise exploratória dos dados utilizados no projeto. Antes de iniciar o treinamento dos modelos, é importante entender como os casos estão distribuídos e quais características parecem diferenciar os casos confirmados dos descartados.</p>
+              <p>A análise será conduzida a partir de algumas perguntas. Primeiro, observaremos um comportamento esperado ou uma hipótese sobre a dengue. Depois, utilizaremos os dados para verificar se essa tendência também aparece nos registros do SINAN. Por fim, relacionaremos as descobertas com as decisões tomadas com os modelos.</p>
+            </div>
+          </header>
+
+          <div class="dengue-analysis-list">
+            <article class="home-credit-analysis dengue-analysis">
+              <p class="home-credit-block-label">Análise · 01</p>
+              <h3>Em quais períodos do ano a dengue aparece com mais frequência? A sazonalidade observada nos dados acompanha o comportamento epidemiológico esperado?</h3>
+              <p>É de conhecimento epidemiológico que a dengue costuma aparecer com maior frequência durante o final do verão e o início do outono. Temperatura, umidade e presença de água parada podem favorecer o desenvolvimento do mosquito, fazendo com que determinados períodos do ano apresentem condições mais favoráveis para a circulação da doença.</p>
+              <p>Porém, ainda é necessário verificar se esse comportamento aparece de maneira clara nos dados utilizados pelo projeto. Caso as notificações realmente apresentem uma concentração em determinados meses, essa informação pode ser útil tanto para compreender o comportamento da dengue quanto para ajudar os modelos a reconhecer o contexto em que cada caso aconteceu.</p>
+
+              <figure class="home-credit-media home-credit-media--wide dengue-media">
+                <img
+                  src="../../assets/projects/dengue/09-casos-por-mes.png"
+                  width="2181"
+                  height="1077"
+                  alt="Gráfico de barras com notificações mensais entre 2017 e 2019: crescimento de janeiro a maio, pico de 620 mil em maio e menor volume entre agosto e novembro"
+                  loading="lazy"
+                  decoding="async">
+                <figcaption>Total de Casos de Dengue por Mês — 2017–2019</figcaption>
+              </figure>
+
+              <p>O gráfico apresenta a quantidade total de notificações registradas em cada mês entre 2017 e 2019. É possível perceber que os casos não estão distribuídos igualmente durante o ano. Existe uma escalada durante o verão, seguida por uma concentração muito maior no início do outono.</p>
+              <div class="dengue-insight-grid">
+                <section class="dengue-insight-card">
+                  <h4>Pico absoluto</h4>
+                  <p>Maio concentra 620 mil casos, o maior volume de todo o período. Abril (578 mil) e Março (396 mil) completam o pico do Outono, que responde por 60% das notificações anuais.</p>
+                  <p>Essa concentração mostra que o período entre março e maio não representa apenas uma pequena variação sazonal. Ele reúne a maior parte das notificações observadas durante os três anos analisados.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Escalada no Verão</h4>
+                  <p>Janeiro e Fevereiro já sinalizam o surto (177 e 258 mil), indicando que a transmissão <span class="keep-tail">começa antes do pico do calor.</span></p>
+                  <p>Isso mostra que o crescimento não acontece de forma repentina em março. As notificações começam a aumentar durante o verão e continuam avançando até atingirem seu maior nível em maio.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Vale no Inverno/Primavera</h4>
+                  <p>Queda expressiva de agosto a outubro (69 a 85 mil casos), mas nunca chega a zero, o <span class="keep-tail">Aedes mantém atividade o ano todo.</span></p>
+                  <p>Mesmo nos meses com menor volume, ainda existem dezenas de milhares de registros. Portanto, a sazonalidade representa uma mudança de intensidade, mas não <span class="keep-tail">o desaparecimento completo da doença.</span></p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>O que essa análise demonstra?</h4>
+                  <p>A tendência encontrada nos dados acompanha o comportamento epidemiológico esperado: os casos começam a crescer durante o verão, atingem seu maior volume no início do outono e diminuem durante o inverno e a primavera.</p>
+                </section>
+              </div>
+            </article>
+
+            <article class="home-credit-analysis dengue-analysis">
+              <p class="home-credit-block-label">Análise · 02</p>
+              <h3>Quais sintomas aparecem com mais frequência nos casos confirmados? Os sintomas mais comuns também são os melhores para diferenciar dengue?</h3>
+              <p>Quando pensamos na identificação da dengue, alguns sintomas surgem imediatamente, como febre, cefaleia e mialgia. Por serem conhecidos como manifestações comuns da doença, seria razoável imaginar que eles também fossem suficientes para separar os casos confirmados dos descartados.</p>
+              <p>Porém, um sintoma pode aparecer com muita frequência entre os confirmados e, ao mesmo tempo, também estar presente em pessoas que receberam outra classificação. Dessa forma, não basta observar apenas quantas pessoas apresentaram o sintoma; também é necessário <span class="keep-tail">comparar sua frequência entre os dois grupos.</span></p>
+
+              <figure class="home-credit-media home-credit-media--wide dengue-media">
+                <img
+                  src="../../assets/projects/dengue/10-sintomas-por-classificacao.png"
+                  width="2180"
+                  height="1278"
+                  alt="Gráfico comparando a frequência de sintomas em casos confirmados e descartados, com febre, cefaleia e mialgia mais frequentes e maior diferença relativa em exantema"
+                  loading="lazy"
+                  decoding="async">
+                <figcaption>Sintomas Mais Frequentes por Classificação</figcaption>
+              </figure>
+
+              <p>O gráfico compara a frequência de cada sintoma entre casos confirmados e descartados. De maneira geral, os sintomas aparecem mais frequentemente nos confirmados, mas a distância <span class="keep-tail">entre os grupos varia bastante.</span></p>
+              <div class="dengue-insight-grid">
+                <section class="dengue-insight-card">
+                  <h4>Tríade dominante</h4>
+                  <p>Febre (85.9%), cefaleia (80.2%) e mialgia (79.6%) passam de 79% nos confirmados, são quase universais e pouco discriminantes quando vistos isolados.</p>
+                  <p>Esses sintomas ajudam a caracterizar o quadro geral da doença, mas sua alta frequência não significa que sejam capazes de resolver a classificação sozinhos. Como também aparecem nos descartados, sua presença isolada oferece apenas uma parte da informação necessária.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Maior diferença proporcional</h4>
+                  <p>Exantema tem o maior gap relativo entre as classes: 25.4% nos confirmados vs 15.6% nos descartados (+63% relativo). Um dos sinais mais diferenciadores.</p>
+                  <p>Mesmo aparecendo em menos pacientes que febre, cefaleia ou mialgia, o exantema apresenta uma diferença proporcional maior entre as classificações. Isso mostra que um sintoma menos frequente pode ser mais útil para diferenciar os grupos.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Dor retro-orbital</h4>
+                  <p>37.6% nos confirmados vs 26.8% nos descartados, uma diferença expressiva e consistente <span class="keep-tail">com a clínica clássica da dengue.</span></p>
+                  <p>Assim como o exantema, a dor retro-orbital não é o sintoma mais comum, mas apresenta uma diferença relevante entre confirmados e descartados.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Então qual sintoma identifica dengue?</h4>
+                  <p>A análise não aponta um único sintoma capaz de determinar a classificação. Febre, cefaleia e mialgia são muito frequentes, enquanto exantema e dor retro-orbital apresentam diferenças proporcionais maiores. O valor dessas informações aparece principalmente quando elas são observadas em conjunto.</p>
+                </section>
+              </div>
+            </article>
+
+            <article class="home-credit-analysis dengue-analysis">
+              <p class="home-credit-block-label">Análise · 03</p>
+              <h3>Existe diferença na distribuição dos casos confirmados entre homens e mulheres? O que pode ajudar a explicar essa diferença?</h3>
+              <p>Depois de analisar quando os casos acontecem e quais sintomas aparecem com maior frequência, também é importante observar quem são as pessoas presentes nos registros confirmados.</p>
+              <p>O sexo não determina sozinho se uma pessoa terá dengue, mas sua distribuição pode revelar diferenças de exposição, rotina, ocupação e procura por atendimento. A primeira etapa é verificar se homens e mulheres aparecem de maneira semelhante entre os casos confirmados.</p>
+
+              <figure class="home-credit-media home-credit-media--wide dengue-media">
+                <img
+                  src="../../assets/projects/dengue/11-casos-por-sexo.png"
+                  width="1763"
+                  height="980"
+                  alt="Gráfico comparando casos confirmados por sexo: 933.052 registros femininos, ou 55,7%, e 743.044 masculinos, ou 44,3%"
+                  loading="lazy"
+                  decoding="async">
+                <figcaption>Distribuição dos Casos Confirmados por Sexo</figcaption>
+              </figure>
+
+              <p>O gráfico mostra uma presença maior de mulheres entre os casos confirmados no período analisado.</p>
+              <div class="dengue-insight-grid">
+                <section class="dengue-insight-card">
+                  <h4>Distribuição</h4>
+                  <p>933.052 casos femininos (55.7%) contra 743.044 masculinos (44.3%), uma diferença de <span class="keep-tail">cerca de 190 mil casos em 3 anos.</span></p>
+                  <p>A diferença não é pequena: mais da metade dos registros confirmados pertencem ao grupo feminino. Isso levanta uma nova pergunta: essa distribuição pode estar relacionada aos ambientes e atividades presentes no cotidiano dessas pessoas?</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Hipótese de exposição</h4>
+                  <p>Segundo o ESTADO DE MINAS, a maior proporção feminina pode estar ligada à exposição doméstica. O Aedes aegypti se reproduz principalmente em reservatórios de água em casa, então quem passa mais tempo em casa fica mais exposto.</p>
+                  <p>Essa hipótese pode ser investigada utilizando outra informação disponível no conjunto de dados: a ocupação. Caso atividades ligadas ao ambiente doméstico também apareçam com frequência entre as mulheres, teremos mais uma informação para observar essa tendência.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Interação com ocupação</h4>
+                  <p>"Dona de Casa" lidera entre mulheres (77.874 casos), reforçando a hipótese de que o ambiente doméstico é o principal vetor de exposição feminina.</p>
+                  <p>A análise de sexo, portanto, não termina apenas na diferença de quantidade. Ela conduz a uma segunda análise, relacionada às ocupações registradas e aos possíveis ambientes de exposição.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Implicação para o modelo</h4>
+                  <p>Sexo é uma variável útil para o modelo, tanto sozinha quanto combinada com ocupação e localização. Essas relações permitem que o modelo observe o perfil do paciente de maneira mais ampla, em <span class="keep-tail">vez de depender apenas dos sintomas.</span></p>
+                </section>
+              </div>
+            </article>
+
+            <article class="home-credit-analysis dengue-analysis">
+              <p class="home-credit-block-label">Análise · 04</p>
+              <h3>As ocupações mais frequentes são as mesmas entre homens e mulheres? O perfil ocupacional pode revelar diferentes formas de exposição?</h3>
+              <p>A diferença observada entre homens e mulheres levanta a necessidade de analisar as ocupações. Como determinadas profissões estão relacionadas a ambientes e rotinas diferentes, elas podem ajudar a compreender alguns dos padrões de exposição presentes nos dados.</p>
+              <p>Para isso, as ocupações foram separadas por sexo. Dessa maneira, é possível verificar quais atividades aparecem com maior frequência em cada grupo e se os <span class="keep-tail">perfis encontrados são semelhantes ou distintos.</span></p>
+
+              <div class="home-credit-gallery home-credit-gallery--two dengue-occupation-gallery">
+                <figure class="home-credit-media dengue-media">
+                  <img
+                    src="../../assets/projects/dengue/12-ocupacoes-feminino.png"
+                    width="1979"
+                    height="1218"
+                    alt="Gráfico das ocupações com mais casos confirmados entre mulheres, liderado por dona de casa e seguido por estudantes"
+                    loading="lazy"
+                    decoding="async">
+                  <figcaption>Ocupações — Feminino</figcaption>
+                </figure>
+                <figure class="home-credit-media dengue-media">
+                  <img
+                    src="../../assets/projects/dengue/13-ocupacoes-masculino.png"
+                    width="1979"
+                    height="1218"
+                    alt="Gráfico das ocupações com mais casos confirmados entre homens, liderado por estudantes e com presença de pedreiros e trabalhadores agropecuários"
+                    loading="lazy"
+                    decoding="async">
+                  <figcaption>Ocupações — Masculino</figcaption>
+                </figure>
+              </div>
+
+              <p>Entre as mulheres, a ocupação "Dona de Casa" aparece na primeira posição. Estudantes também possuem uma participação elevada entre os casos confirmados.</p>
+              <p>Entre os homens, estudantes também aparecem em destaque, mas o restante da distribuição apresenta ocupações diferentes das observadas entre as mulheres.</p>
+              <div class="dengue-insight-grid">
+                <section class="dengue-insight-card">
+                  <h4>Exposição doméstica</h4>
+                  <p>Dona de Casa lidera entre mulheres com 77.874 casos.</p>
+                  <p>Esse resultado se conecta à análise anterior, em que foi observada uma presença feminina maior entre os confirmados. O ambiente doméstico aparece novamente como uma possível <span class="keep-tail">informação relacionada ao perfil de exposição.</span></p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Estudantes em ambos</h4>
+                  <p>Lidera entre homens (59k) e é 2º entre mulheres (60k).</p>
+                  <p>A presença elevada de estudantes nos dois grupos mostra que alguns perfis ocupacionais são compartilhados, mesmo quando a distribuição geral apresenta diferenças.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Exposição externa</h4>
+                  <p>Pedreiro e trabalhador agropecuário aparecem só entre homens.</p>
+                  <p>Essas ocupações representam rotinas diferentes da exposição doméstica observada entre as mulheres. Elas podem envolver maior permanência em ambientes externos e contato com localidades que possuem diferentes condições para a presença do mosquito.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>O que a comparação entre os dois gráficos demonstra?</h4>
+                  <p>Os casos confirmados apresentam perfis ocupacionais diferentes entre homens e mulheres. Algumas ocupações, como estudantes, aparecem nos dois grupos, enquanto outras se concentram em apenas um.</p>
+                  <p>Isso sugere analisar sexo e ocupação em conjunto, pois a ocupação acrescenta contexto demográfico e ajuda a representar diferenças no cotidiano dos pacientes.</p>
+                </section>
+              </div>
+            </article>
+          </div>
+
+          <section class="dengue-conclusion" aria-labelledby="titulo-conclusoes-eda">
+            <h3 id="titulo-conclusoes-eda">Principais conclusões da análise exploratória</h3>
+            <p>A análise começou investigando a distribuição temporal dos casos e confirmou uma forte sazonalidade, com crescimento durante o verão e maior concentração entre março e maio.</p>
+            <p>Em seguida, a comparação dos sintomas mostrou que os mais frequentes não são necessariamente os mais capazes de diferenciar as classificações. Febre, cefaleia e mialgia aparecem em grande parte dos confirmados, enquanto exantema e dor retro-orbital apresentam diferenças proporcionais maiores.</p>
+            <p>A análise demográfica mostrou uma presença maior de mulheres entre os casos confirmados. Essa descoberta levou à investigação das ocupações, em que foram encontrados perfis diferentes entre homens e mulheres, além da presença relevante de atividades relacionadas ao ambiente doméstico.</p>
+            <p>Em resumo, podemos concluir que:</p>
+            <ul>
+              <li>A dengue apresenta uma forte variação durante o ano, com maior <span class="keep-tail">concentração de notificações entre março e maio.</span></li>
+              <li>Os sintomas precisam ser observados em conjunto, porque nenhum deles é suficiente para diferenciar sozinho os casos confirmados e descartados.</li>
+              <li>Exantema e dor retro-orbital apresentam diferenças proporcionais relevantes entre as classificações.</li>
+              <li>Mulheres representam a maior parte dos casos confirmados no período analisado.</li>
+              <li>Sexo e ocupação apresentam relações que podem ajudar a representar diferentes perfis de exposição.</li>
+              <li>Informações temporais, clínicas, demográficas e territoriais devem ser analisadas simultaneamente durante a construção dos modelos.</li>
+            </ul>
+            <a href="https://github.com/Ang3k/Dengue-Ensembler-Classifier" target="_blank" rel="noreferrer">Ver repositório do projeto <span aria-hidden="true">↗</span></a>
+          </section>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <section class="case-next" aria-label="Próximo estudo de caso">
+    <a class="container" href="../home-credit/index.html">
+      <span>Próximo estudo</span>
+      <strong>Previsão de risco de crédito no Home Credit Group</strong>
+      <i aria-hidden="true">→</i>
+    </a>
+  </section>
+
+  <footer class="case-footer">
+    <div class="container">
+      <p>© 2026 Angel Mansilla</p>
+      <a href="#topo">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

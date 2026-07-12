@@ -1,0 +1,478 @@
+/* Ajustes específicos do SINAN sobre o padrão editorial compartilhado. */
+.dengue-refactor {
+  --project-accent: #087f78;
+  --project-ink: #111a1a;
+  --project-muted: #5f6a69;
+  --project-line: #ccd8d6;
+  --project-text-width: 840px;
+  --dengue-soft: #edf5f4;
+  --dengue-deep: #075e59;
+}
+
+.dengue-refactor code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 0.86em;
+  overflow-wrap: anywhere;
+}
+
+.dengue-refactor .keep-tail {
+  white-space: nowrap;
+}
+
+.dengue-cover {
+  position: relative;
+  display: grid;
+  height: clamp(430px, 50vw, 670px);
+  min-height: 0;
+  overflow: hidden;
+  place-items: center;
+  background: #050706;
+  color: #fff;
+}
+
+.dengue-cover > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.48) saturate(0.9);
+}
+
+.dengue-cover-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.36));
+}
+
+.dengue-cover-copy {
+  position: relative;
+  z-index: 1;
+  width: min(760px, calc(100% - 3rem));
+  padding: clamp(1.5rem, 4vw, 2.6rem);
+  background: transparent;
+  color: #fff;
+  text-align: center;
+}
+
+.dengue-cover-copy h1 {
+  width: auto;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(2.35rem, 5vw, 4.8rem);
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+  overflow-wrap: anywhere;
+}
+
+/* Mantém o mesmo intervalo entre o pipeline e o texto que vem depois dele. */
+.dengue-refactor .dengue-story .dengue-media + p {
+  margin-top: calc(var(--project-media-space) + 0.35rem);
+}
+
+.dengue-case-content {
+  width: min(1120px, calc(100% - 3rem));
+  margin: 0 auto;
+}
+
+/* Assim como em Home Credit e Churn, este bloco contém somente a navegação. */
+.dengue-overview {
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 1.25rem;
+}
+
+.dengue-chapter-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--project-ink);
+  border-bottom: 1px solid var(--project-ink);
+}
+
+.dengue-chapter-nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 5rem;
+  padding: 1rem clamp(0.75rem, 1.8vw, 1.25rem);
+  color: var(--project-ink);
+  font-family: var(--font-sans, Arial, sans-serif);
+  font-size: 0.7rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background-color 160ms ease;
+}
+
+.dengue-chapter-nav a + a {
+  border-left: 1px solid var(--project-line);
+}
+
+.dengue-chapter-nav .dengue-chapter-number {
+  color: var(--project-accent);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: 1.35rem;
+  font-weight: 300;
+}
+
+.dengue-chapter-nav .dengue-chapter-label {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.dengue-chapter-nav a:hover,
+.dengue-chapter-nav a:focus-visible {
+  background: var(--dengue-soft);
+  outline: 0;
+}
+
+.dengue-chapter-nav a:focus-visible {
+  box-shadow: inset 0 0 0 3px var(--project-accent);
+}
+
+.dengue-chapter {
+  scroll-margin-top: 1rem;
+}
+
+.dengue-refactor #contexto {
+  padding-top: 0.5rem;
+}
+
+.dengue-refactor #contexto .dengue-chapter-header {
+  padding-top: 0;
+}
+
+.dengue-refactor .dengue-chapter:not(#eda) :is(
+  .dengue-chapter-header,
+  .dengue-story,
+  .dengue-process
+) {
+  width: min(100%, var(--project-editorial-width));
+  text-align: left;
+}
+
+.dengue-refactor .dengue-chapter:not(#eda) :is(
+  .dengue-chapter-header,
+  .dengue-story,
+  .dengue-process
+) > :is(h2, h3, p, div, ul) {
+  margin-right: 0;
+  margin-left: 0;
+  text-align: left;
+}
+
+.dengue-refactor .dengue-chapter + .dengue-chapter {
+  position: relative;
+  border-top: 1px solid var(--project-line);
+}
+
+.dengue-refactor .dengue-chapter + .dengue-chapter::before {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 3rem;
+  height: 3px;
+  background: var(--project-accent);
+  content: "";
+  transform: translateX(-50%);
+}
+
+.dengue-dictionary {
+  width: min(100%, var(--project-media-width));
+  margin: var(--project-media-space) 0 0;
+}
+
+.dengue-dictionary dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--project-line);
+}
+
+.dengue-dictionary dl div {
+  min-width: 0;
+  padding: 0.9rem 1rem 0.9rem 0;
+  border-bottom: 1px solid var(--project-line);
+}
+
+.dengue-dictionary dl div:nth-child(even) {
+  padding-right: 0;
+  padding-left: 1rem;
+  border-left: 1px solid var(--project-line);
+}
+
+.dengue-dictionary dt,
+.dengue-dictionary dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.dengue-dictionary dt {
+  color: var(--dengue-deep);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.dengue-dictionary dd {
+  margin-top: 0.3rem;
+  color: #3e4948;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.dengue-method-list {
+  width: min(100%, var(--project-text-width));
+  margin: var(--project-follow-up-space) 0 0;
+  padding-left: 1.3rem;
+  color: #283231;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  line-height: 1.7;
+}
+
+.dengue-method-list li {
+  margin: 0.55rem 0;
+  padding-left: 0.3rem;
+}
+
+.dengue-method-list li::marker {
+  color: var(--project-accent);
+}
+
+.dengue-analysis-list {
+  width: min(100%, var(--project-wide-media-width));
+  margin: 0 auto;
+}
+
+.dengue-refactor #eda .dengue-chapter-header,
+.dengue-refactor #eda .dengue-analysis {
+  align-items: center;
+  width: min(100%, var(--project-wide-media-width));
+  margin-inline: auto;
+  text-align: center;
+}
+
+.dengue-refactor #eda :is(.dengue-chapter-header, .dengue-analysis) > :is(h2, h3, p, div) {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.dengue-analysis > h4 {
+  max-width: var(--project-text-width);
+  margin: clamp(1.5rem, 3vw, 2.2rem) auto 0;
+  color: var(--dengue-deep);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.dengue-insight-grid {
+  --dengue-insight-gap: clamp(0.75rem, 1.5vw, 1.1rem);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(100%, var(--project-media-width));
+  margin: var(--project-media-space) auto 0;
+  gap: var(--dengue-insight-gap);
+  text-align: left;
+}
+
+.dengue-insight-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(220px, 23vw, 290px);
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  border: 1px solid var(--project-line);
+  background: var(--dengue-soft);
+}
+
+.dengue-insight-card h4 {
+  margin: 0;
+  color: var(--dengue-deep);
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.dengue-insight-card p {
+  margin: 0.65rem 0 0;
+  color: #283231;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(0.92rem, 1.15vw, 1.02rem);
+  line-height: 1.6;
+  text-align: left;
+}
+
+.dengue-insight-grid > .dengue-insight-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  width: calc((100% - var(--dengue-insight-gap)) / 2);
+  justify-self: center;
+}
+
+.dengue-insight-grid--single {
+  grid-template-columns: 1fr;
+}
+
+.dengue-insight-grid--single > .dengue-insight-card:last-child {
+  grid-column: 1;
+  width: calc((100% - var(--dengue-insight-gap)) / 2);
+  justify-self: center;
+}
+
+.dengue-occupation-gallery {
+  align-items: stretch;
+}
+
+.dengue-occupation-gallery .dengue-media {
+  display: flex;
+  flex-direction: column;
+}
+
+.dengue-occupation-gallery .dengue-media img {
+  flex: 1;
+  width: 100%;
+  object-fit: contain;
+}
+
+.dengue-conclusion {
+  width: min(100%, var(--project-editorial-width));
+  margin: clamp(2.5rem, 6vw, 5rem) auto 0;
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
+  border-top: 1px solid var(--project-ink);
+  text-align: left;
+}
+
+.dengue-conclusion h3 {
+  max-width: 820px;
+  margin: 0;
+  font-family: var(--font-display, "Oswald", sans-serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.dengue-conclusion p,
+.dengue-conclusion ul {
+  max-width: var(--project-text-width);
+  color: #283231;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  line-height: 1.7;
+}
+
+.dengue-conclusion p {
+  margin: var(--project-follow-up-space) 0 0;
+}
+
+.dengue-conclusion ul {
+  margin: 1rem 0 0;
+  padding-left: 1.3rem;
+}
+
+.dengue-conclusion li {
+  margin: 0.55rem 0;
+  padding-left: 0.3rem;
+}
+
+.dengue-conclusion > a {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid currentColor;
+  color: var(--dengue-deep);
+  font-family: var(--font-sans, Arial, sans-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.dengue-conclusion > a:focus-visible {
+  outline: 2px solid var(--project-accent);
+  outline-offset: 5px;
+}
+
+.dengue-refactor .case-next {
+  border-top-color: var(--project-ink);
+}
+
+.dengue-refactor .case-footer {
+  border-top: 1px solid var(--project-line);
+  background: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dengue-chapter-nav a {
+    transition: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .dengue-refactor .keep-tail {
+    white-space: normal;
+  }
+
+  .dengue-chapter-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .dengue-chapter-nav a + a {
+    border-top: 1px solid var(--project-line);
+    border-left: 0;
+  }
+
+  .dengue-insight-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dengue-insight-grid > .dengue-insight-card:last-child:nth-child(odd),
+  .dengue-insight-grid--single > .dengue-insight-card:last-child {
+    grid-column: 1;
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .dengue-cover {
+    height: clamp(340px, 96vw, 470px);
+  }
+
+  .dengue-cover > img {
+    object-position: 42% center;
+  }
+
+  .dengue-cover-copy {
+    width: min(88%, 520px);
+    padding: 1.35rem 1rem;
+  }
+
+  .dengue-cover-copy h1 {
+    font-size: clamp(2rem, 10vw, 3.35rem);
+  }
+
+  .dengue-case-content {
+    width: min(100% - 2rem, 680px);
+  }
+
+  .dengue-dictionary dl {
+    grid-template-columns: 1fr;
+  }
+
+  .dengue-dictionary dl div,
+  .dengue-dictionary dl div:nth-child(even) {
+    padding-right: 0;
+    padding-left: 0;
+    border-left: 0;
+  }
+}
