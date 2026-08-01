@@ -10,6 +10,7 @@ from __future__ import annotations
 import re
 import subprocess
 from pathlib import Path
+from urllib.parse import quote
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -101,6 +102,7 @@ def process_page(page: Path, generated: set[Path]) -> tuple[int, int, int]:
             return match.group(0)
 
         mobile_src = str(Path(src).with_name(f"{Path(src).stem}-mobile.webp")).replace("\\", "/")
+        mobile_src = quote(mobile_src, safe="/:@-._~!$&'()*+,;=%")
         indented_tag = f"{indent}  {tag.replace(newline, newline + '  ')}"
         original_bytes += source.stat().st_size
         mobile_bytes += target.stat().st_size
