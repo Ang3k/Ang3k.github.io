@@ -1,5 +1,7 @@
-import { formatModelName } from "../services/dengueRules";
-import type { EvaluationResult } from "../services/dengueRules";
+import { formatModelName } from "../staticCases";
+import type { StaticDemoCase } from "../staticCases";
+
+type EvaluationResult = StaticDemoCase["prediction"];
 
 function Resultado({
   disease,

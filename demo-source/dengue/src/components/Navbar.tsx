@@ -6,7 +6,6 @@ function Navbar() {
       <div className="navbar-inner">
         <NavLink to="/" className="navbar-brand">
           Dengue Sense Classifier
-          <span className="navbar-brand-version">DEMO VISUAL</span>
         </NavLink>
 
         <nav className="navbar-links">

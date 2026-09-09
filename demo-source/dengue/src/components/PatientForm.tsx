@@ -34,16 +34,23 @@ const DEMO_OPTIONS: TriageOptions = {
     { code: 9, name: "Ignorada" },
   ],
   escolaridades: [
-    { code: 0, name: "Sem escolaridade" },
-    { code: 1, name: "Ensino fundamental" },
-    { code: 2, name: "Ensino médio" },
-    { code: 3, name: "Ensino superior" },
+    { code: 0, name: "Analfabeto" },
+    { code: 1, name: "1ª a 4ª série incompleta" },
+    { code: 2, name: "4ª série completa" },
+    { code: 3, name: "5ª à 8ª série incompleta" },
+    { code: 4, name: "Ensino fundamental completo" },
+    { code: 5, name: "Ensino médio incompleto" },
+    { code: 6, name: "Ensino médio completo" },
+    { code: 7, name: "Educação superior incompleta" },
+    { code: 8, name: "Educação superior completa" },
     { code: 9, name: "Ignorada" },
+    { code: 10, name: "Não se aplica" },
   ],
   situacoesGestacao: [
     { code: 1, name: "1º trimestre" },
     { code: 2, name: "2º trimestre" },
     { code: 3, name: "3º trimestre" },
+    { code: 4, name: "Idade gestacional ignorada" },
     { code: 5, name: "Não" },
     { code: 6, name: "Não se aplica" },
     { code: 9, name: "Ignorada" },
@@ -80,11 +87,20 @@ const DEMO_OPTIONS: TriageOptions = {
 };
 
 const DEMO_OCCUPATIONS: AutocompleteItem[] = [
-  { code: "231205", name: "Professor" },
-  { code: "225125", name: "Médico" },
+  { code: "999991", name: "Estudante" },
+  { code: "421125", name: "Operador de caixa" },
+  { code: "521110", name: "Vendedor de comércio varejista" },
+  { code: "223505", name: "Enfermeiro" },
+  { code: "223510", name: "Enfermeiro auditor" },
+  { code: "223530", name: "Enfermeiro do trabalho" },
+  { code: "252210", name: "Contador" },
   { code: "322205", name: "Técnico de enfermagem" },
   { code: "411010", name: "Assistente administrativo" },
-  { code: "999999", name: "Estudante" },
+  { code: "212415", name: "Analista de sistemas de automação" },
+  { code: "231305", name: "Professor de ciências exatas e naturais" },
+  { code: "223106", name: "Médico cardiologista" },
+  { code: "999993", name: "Aposentado/pensionista" },
+  { code: "999994", name: "Desempregado crônico (categoria do SINAN)" },
 ];
 
 const DEMO_MUNICIPALITIES: MunicipioItem[] = [
@@ -94,6 +110,11 @@ const DEMO_MUNICIPALITIES: MunicipioItem[] = [
   { code: 2927408, name: "Salvador", stateCode: 29, state: "BA" },
   { code: 2304400, name: "Fortaleza", stateCode: 23, state: "CE" },
   { code: 5300108, name: "Brasília", stateCode: 53, state: "DF" },
+  { code: 3506508, name: "Birigui", stateCode: 35, state: "SP" },
+  { code: 4205407, name: "Florianópolis", stateCode: 42, state: "SC" },
+  { code: 4115200, name: "Maringá", stateCode: 41, state: "PR" },
+  { code: 2616407, name: "Vitória de Santo Antão", stateCode: 26, state: "PE" },
+  { code: 3557105, name: "Votuporanga", stateCode: 35, state: "SP" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -153,7 +174,8 @@ function atualizarCamposDeData(
 function useAutocomplete(
   query: string,
   fetchFn: (q: string) => Promise<AutocompleteItem[]>,
-  delay = 300
+  delay = 300,
+  minimumQueryLength = 2
 ) {
   const [items, setItems] = useState<AutocompleteItem[]>([]);
   const [aberto, setAberto] = useState(false);
@@ -167,8 +189,8 @@ function useAutocomplete(
   }, []);
 
   const queryChanged = useCallback((value: string) => {
-    if (value.trim().length < 2) close();
-  }, [close]);
+    if (value.trim().length < minimumQueryLength) close();
+  }, [close, minimumQueryLength]);
 
   const itemSelected = useCallback((value: string) => {
     selectedQuery.current = value;
@@ -180,7 +202,7 @@ function useAutocomplete(
       selectedQuery.current = null;
       return;
     }
-    if (query.trim().length < 2) return;
+    if (query.trim().length < minimumQueryLength || query.trim() === "") return;
 
     const version = requestVersion.current + 1;
     requestVersion.current = version;
@@ -200,7 +222,13 @@ function useAutocomplete(
       window.clearTimeout(timer);
       requestVersion.current += 1;
     };
-  }, [delay, fetchFn, query]);
+  }, [delay, fetchFn, minimumQueryLength, query]);
+
+  const openForCurrentQuery = useCallback(async () => {
+    const resultado = await fetchFn(query);
+    setItems(resultado);
+    setAberto(resultado.length > 0);
+  }, [fetchFn, query]);
 
   return {
     items,
@@ -209,6 +237,7 @@ function useAutocomplete(
     close,
     queryChanged,
     itemSelected,
+    openForCurrentQuery,
   };
 }
 
@@ -224,6 +253,8 @@ type AutocompleteProps = {
   onSelect: (item: AutocompleteItem, label: string) => void;
   onInputChange: (value: string) => void;
   renderLabel?: (item: AutocompleteItem) => string;
+  showSuggestionsOnFocus?: boolean;
+  minimumQueryLength?: number;
   value: string;
 };
 
@@ -235,6 +266,8 @@ function Autocomplete({
   onSelect,
   onInputChange,
   renderLabel,
+  showSuggestionsOnFocus = false,
+  minimumQueryLength = 2,
   value,
 }: AutocompleteProps) {
   const {
@@ -244,7 +277,8 @@ function Autocomplete({
     close,
     queryChanged,
     itemSelected,
-  } = useAutocomplete(value, fetchFn);
+    openForCurrentQuery,
+  } = useAutocomplete(value, fetchFn, 300, minimumQueryLength);
   const containerRef = useRef<HTMLDivElement>(null);
   const [focusIndex, setFocusIndex] = useState(-1);
   const listId = `${id}-options`;
@@ -294,6 +328,9 @@ function Autocomplete({
           setFocusIndex(-1);
         }}
         onKeyDown={handleKeyDown}
+        onFocus={() => {
+          if (showSuggestionsOnFocus) void openForCurrentQuery();
+        }}
       />
       {aberto && (
         <ul className="autocomplete-list" role="listbox" id={listId}>
@@ -382,9 +419,6 @@ function PatientForm({ patientData, setPatientData }: PatientFormProps) {
   return (
     <section className="patient-form">
       <h2>Dados usados pelo modelo</h2>
-      <p className="form-hint">
-        Campos demonstrativos: as opções são locais e nenhum dado sai do navegador.
-      </p>
 
       <div className="form-grid">
 
@@ -450,8 +484,10 @@ function PatientForm({ patientData, setPatientData }: PatientFormProps) {
           <Autocomplete
             id="occupationName"
             label="Ocupação"
-            placeholder="Digite para buscar (ex: médico, professor...)"
+            placeholder="Clique ou digite para ver ocupações"
             fetchFn={fetchOcupacoes}
+            minimumQueryLength={0}
+            showSuggestionsOnFocus
             value={patientData.occupationName}
             onInputChange={value => {
               setPatientData(prev => ({

@@ -72,9 +72,9 @@ function Home() {
           </p>
           <p>
             <em>
-              Na simulação abaixo, o sistema seleciona um registro anonimizado do
-              teste de 2021 e compara a classificação registrada no SINAN com os
-              scores calculados pelos modelos.
+              Na simulação abaixo, o sistema seleciona um registro do teste de
+              2021 e compara a classificação registrada no SINAN com os scores
+              calculados pelos modelos.
             </em>
           </p>
         </div>

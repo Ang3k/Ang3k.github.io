@@ -68,35 +68,6 @@ select:focus-visible {
   padding: 40px 16px;
 }
 
-.demo-banner {
-  position: relative;
-  z-index: 60;
-  padding: 11px 20px;
-  color: #ecfeff;
-  background: #0f4f4a;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.demo-banner-inner {
-  width: min(1180px, 100%);
-  margin: 0 auto;
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 12px;
-  font-size: 13px;
-  line-height: 1.45;
-  text-align: center;
-}
-
-.demo-banner strong {
-  flex: 0 0 auto;
-  color: #fff;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
 .navbar-link-external {
   border: 1px solid var(--borda-forte);
 }
@@ -111,18 +82,6 @@ select:focus-visible {
   font-size: 14px;
   font-weight: 650;
   line-height: 1.55;
-}
-
-@media (max-width: 700px) {
-  .demo-banner {
-    padding: 10px 14px;
-  }
-
-  .demo-banner-inner {
-    align-items: center;
-    flex-direction: column;
-    gap: 3px;
-  }
 }
 
 .navbar {
@@ -150,15 +109,6 @@ select:focus-visible {
   color: var(--cor-primaria);
   text-decoration: none;
   letter-spacing: -0.3px;
-}
-
-.navbar-brand-version {
-  display: inline-block;
-  margin-left: 0.45em;
-  font-size: 0.6em;
-  font-weight: 800;
-  letter-spacing: 0;
-  vertical-align: middle;
 }
 
 .navbar-links {
@@ -1104,6 +1054,64 @@ h1 {
   grid-column: 1 / -1;
 }
 
+.static-example-picker {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  gap: 24px;
+  align-items: end;
+  margin: 28px 0;
+  padding: 20px;
+  background: #f0fdfa;
+  border: 1px solid #99f6e4;
+  border-radius: 16px;
+}
+
+.static-example-picker h2 {
+  margin: 4px 0 6px;
+  color: var(--cor-primaria);
+  font-size: 22px;
+}
+
+.static-example-picker p {
+  margin: 0;
+  color: var(--cor-texto-suave);
+  line-height: 1.5;
+}
+
+.static-triage-comparison {
+  margin-top: 16px;
+  padding: 18px 20px;
+  background: var(--superficie-suave);
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+}
+
+.static-triage-comparison strong {
+  display: block;
+  margin: 5px 0;
+  color: var(--cor-primaria);
+  font-size: 22px;
+}
+
+.static-triage-comparison p {
+  margin: 0;
+  color: var(--cor-texto-suave);
+}
+
+.btn-primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 700px) {
+  .static-example-picker {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Código interno exibido discretamente abaixo do campo */
 .form-hint {
   font-size: 0.75rem;
@@ -1315,6 +1323,8 @@ h1 {
 :root[data-theme="dark"] .home-aviso,
 :root[data-theme="dark"] .sim-card,
 :root[data-theme="dark"] .resultado-triagem,
+:root[data-theme="dark"] .static-example-picker,
+:root[data-theme="dark"] .static-triage-comparison,
 :root[data-theme="dark"] .insight-card,
 :root[data-theme="dark"] .checkbox-item,
 :root[data-theme="dark"] .patient-form,
