@@ -770,6 +770,31 @@ a {
   font-weight: 700;
 }
 
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem 1.25rem;
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.project-actions .project-link {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.project-link-demo {
+  padding: 0.65rem 0.9rem !important;
+  border: 1px solid var(--light-line);
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.project-link-demo:hover {
+  border-color: #f7f6f1;
+}
+
 .project-archive {
   display: grid;
   grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.6fr);
@@ -1121,6 +1146,15 @@ a {
 
   .project-link {
     margin-top: 2rem;
+  }
+
+  .project-actions {
+    margin-top: 2rem;
+    padding-top: 0;
+  }
+
+  .project-actions .project-link {
+    margin-top: 0;
   }
 
   .cpu-visual {
