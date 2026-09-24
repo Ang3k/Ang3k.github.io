@@ -58,6 +58,7 @@
 
   var done = false;
   var timers = [];
+  var frameRequest = 0;
   var outlierDot = null;
   var initialViewBox = [0, 0, 1000, 620];
 
@@ -73,6 +74,7 @@
     }
     done = true;
     timers.forEach(clearTimeout);
+    cancelAnimationFrame(frameRequest);
     document.removeEventListener("keydown", onKeydown);
     headerName.style.visibility = "";
     overlay.remove();
@@ -124,6 +126,104 @@
     outlierDot.setAttribute("r", 7.5);
     outlierDot.style.animationDelay = "0ms";
     pointsGroup.appendChild(outlierDot);
+  }
+
+  /* Equivalente a cubic-bezier() do CSS: resolve x(t) = progresso por
+     Newton-Raphson, com bisseção como garantia, e devolve y(t). */
+  function cubicBezier(x1, y1, x2, y2) {
+    function sample(t, p1, p2) {
+      return ((1 - 3 * p2 + 3 * p1) * t + (3 * p2 - 6 * p1)) * t * t + 3 * p1 * t;
+    }
+
+    function slope(t, p1, p2) {
+      return 3 * (1 - 3 * p2 + 3 * p1) * t * t + 2 * (3 * p2 - 6 * p1) * t + 3 * p1;
+    }
+
+    return function (progress) {
+      if (progress <= 0) {
+        return 0;
+      }
+      if (progress >= 1) {
+        return 1;
+      }
+
+      var t = progress;
+      for (var i = 0; i < 8; i++) {
+        var error = sample(t, x1, x2) - progress;
+        if (Math.abs(error) < 1e-7) {
+          return sample(t, y1, y2);
+        }
+        var derivative = slope(t, x1, x2);
+        if (Math.abs(derivative) < 1e-6) {
+          break;
+        }
+        t -= error / derivative;
+      }
+
+      var low = 0;
+      var high = 1;
+      t = progress;
+      while (high - low > 1e-7) {
+        if (sample(t, x1, x2) < progress) {
+          low = t;
+        } else {
+          high = t;
+        }
+        t = (low + high) / 2;
+      }
+      return sample(t, y1, y2);
+    };
+  }
+
+  var EASE_OUT = cubicBezier(0, 0, 0.58, 1);
+  var EASE_IN_OUT = cubicBezier(0.42, 0, 0.58, 1);
+  var ZOOM_EASE = cubicBezier(0.45, 0, 0.1, 1);
+
+  /* Zoom no outlier e anel pulsante, quadro a quadro. Antes eram uma
+     transição de transform no grupo e keyframes de opacity/scale no anel;
+     os valores são os mesmos, mas escritos como atributos do SVG, o Chrome
+     não cria camadas de composição para eles. O zoom é
+     translate(-714.8, -145) scale(1.9) em 1520ms; o anel entra em 400ms
+     (ease-out, escala 0.55 → 1) e depois pulsa a cada 1440ms (ease-in-out,
+     escala 1 → 1.12 e opacidade 1 → 0.65 no meio do ciclo). Escalar um
+     círculo pelo próprio centro equivale a multiplicar o raio. */
+  function animateOutlierFocus() {
+    var ringRadius = parseFloat(ring.getAttribute("r"));
+    var start = null;
+
+    function step(now) {
+      if (start === null) {
+        start = now;
+      }
+      var elapsed = now - start;
+
+      var zoom = ZOOM_EASE(elapsed / 1520);
+      world.setAttribute(
+        "transform",
+        "translate(" + -714.8 * zoom + " " + -145 * zoom + ") scale(" + (1 + 0.9 * zoom) + ")"
+      );
+
+      var scale;
+      var opacity;
+      if (elapsed < 400) {
+        var entry = EASE_OUT(elapsed / 400);
+        scale = 0.55 + 0.45 * entry;
+        opacity = entry;
+      } else {
+        var cycle = ((elapsed - 400) % 1440) / 1440;
+        var pulse = cycle < 0.5 ?
+          EASE_IN_OUT(cycle * 2) :
+          1 - EASE_IN_OUT(cycle * 2 - 1);
+        scale = 1 + 0.12 * pulse;
+        opacity = 1 - 0.35 * pulse;
+      }
+      ring.setAttribute("r", ringRadius * scale);
+      ring.style.strokeOpacity = opacity;
+
+      frameRequest = requestAnimationFrame(step);
+    }
+
+    frameRequest = requestAnimationFrame(step);
   }
 
   function getPageZoom() {
@@ -245,8 +345,7 @@
 
     pointsGroup.classList.add("intro-outlier-on");
     residual.classList.add("is-on");
-    ring.classList.add("is-on");
-    world.classList.add("is-zoomed");
+    animateOutlierFocus();
     await wait(1900);
 
     placeNameBesideOutlier();

@@ -1484,6 +1484,9 @@ html.intro-pending .intro-name.is-visible {
     0 0 0 1px rgba(0, 0, 0, 0.58),
     0 5px 12px rgba(0, 0, 0, 0.38),
     inset 0 0 0 1px rgba(17, 17, 17, 0.12);
+  /* Camada própria para a tela: o gráfico muda a cada quadro, mas as
+     sombras desfocadas da tampa, logo abaixo, são rasterizadas uma vez só. */
+  will-change: opacity;
 }
 
 .intro-screen::after {
@@ -1603,23 +1606,25 @@ html.intro-pending .intro-name.is-visible {
   opacity: 0;
 }
 
+/* Animações dentro do SVG usam fill-opacity, stroke-opacity e atributos
+   atualizados pelo intro.js em vez de opacity/transform animados: o Chrome
+   promove cada elemento SVG com animação de opacity/transform a uma camada
+   de composição, e dezenas de camadas sobrepostas travam máquinas modestas.
+   O zoom no outlier (transform do grupo) e o pulso do anel são desenhados
+   pelo intro.js com as mesmas curvas e durações. */
 .intro-world {
   transform-origin: 0 0;
-  transition: transform 1520ms cubic-bezier(0.45, 0, 0.1, 1);
 }
 
-.intro-world.is-zoomed {
-  transform: translate(-714.8px, -145px) scale(1.9);
-}
-
+/* Preenchimento só para trás: terminado o fade, o grupo volta à opacidade
+   estática 1 e deixa de ser uma camada separada. */
 .intro-frame {
-  opacity: 0;
-  animation: intro-fade-in 467ms ease 100ms forwards;
+  animation: intro-fade-in 467ms ease 100ms backwards;
 }
 
 @keyframes intro-fade-in {
-  to {
-    opacity: 1;
+  from {
+    opacity: 0;
   }
 }
 
@@ -1660,12 +1665,12 @@ html.intro-pending .intro-name.is-visible {
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 400ms ease;
+  fill-opacity: 0;
+  transition: fill-opacity 400ms ease;
 }
 
 .intro-caption.is-on {
-  opacity: 1;
+  fill-opacity: 1;
 }
 
 .intro-line {
@@ -1691,7 +1696,7 @@ html.intro-pending .intro-name.is-visible {
 .intro-point {
   fill: #111111;
   stroke: none;
-  opacity: 0;
+  fill-opacity: 0;
   shape-rendering: geometricPrecision;
   vector-effect: non-scaling-stroke;
 }
@@ -1703,7 +1708,7 @@ html.intro-pending .intro-name.is-visible {
 
 .intro-halo {
   fill: var(--red);
-  opacity: 0;
+  fill-opacity: 0;
   shape-rendering: geometricPrecision;
 }
 
@@ -1721,25 +1726,25 @@ html.intro-pending .intro-name.is-visible {
 
 @keyframes intro-halo-in {
   from {
-    opacity: 0;
+    fill-opacity: 0;
   }
 
   to {
-    opacity: 0.16;
+    fill-opacity: 0.16;
   }
 }
 
 @keyframes intro-point-in {
   from {
-    opacity: 0;
+    fill-opacity: 0;
   }
 
   60% {
-    opacity: 1;
+    fill-opacity: 1;
   }
 
   to {
-    opacity: 1;
+    fill-opacity: 1;
   }
 }
 
@@ -1749,53 +1754,21 @@ html.intro-pending .intro-name.is-visible {
   stroke-width: 1.5;
   stroke-dasharray: 5 7;
   vector-effect: non-scaling-stroke;
-  opacity: 0;
-  transition: opacity 400ms ease 200ms;
+  stroke-opacity: 0;
+  transition: stroke-opacity 400ms ease 200ms;
 }
 
 .intro-residual.is-on {
-  opacity: 1;
+  stroke-opacity: 1;
 }
 
+/* Entrada e pulso animados pelo intro.js (raio e stroke-opacity). */
 .intro-ring {
   fill: none;
   stroke: var(--red);
   stroke-width: 2;
   vector-effect: non-scaling-stroke;
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.intro-ring.is-on {
-  animation:
-    intro-ring-in 400ms ease-out forwards,
-    intro-ring-pulse 1440ms ease-in-out 400ms infinite;
-}
-
-@keyframes intro-ring-in {
-  from {
-    opacity: 0;
-    transform: scale(0.55);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes intro-ring-pulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.65;
-    transform: scale(1.12);
-  }
+  stroke-opacity: 0;
 }
 
 .intro-skip {
