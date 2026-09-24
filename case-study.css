@@ -985,6 +985,11 @@
   html:has(.wix-churn-case, .wix-imdb-case, .home-credit-case, .dengue-case) {
     zoom: 1;
   }
+
+  /* O cabeçalho mantém a mesma escala de 90% da página inicial. */
+  .case-page .site-header {
+    zoom: 0.9;
+  }
 }
 
 /* Churn — composição inspirada diretamente na página original do Wix.

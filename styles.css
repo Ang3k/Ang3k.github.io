@@ -95,6 +95,7 @@ a {
 .site-header {
   padding: clamp(1.75rem, 3.2vh, 3.5rem) 0 0;
   background: var(--paper);
+  color: var(--ink);
 }
 
 .masthead {
