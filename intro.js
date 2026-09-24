@@ -60,7 +60,9 @@
   var timers = [];
   var frameRequest = 0;
   var outlierDot = null;
-  var initialViewBox = [0, 0, 1000, 620];
+  /* Folga em volta do gráfico (1000x620) para os rótulos dos eixos não
+     serem cortados quando a câmera enquadra a tela inteira. */
+  var initialViewBox = [-16, -12, 1032, 668];
 
   function wait(ms) {
     return new Promise(function (resolve) {
@@ -104,6 +106,7 @@
       dot.setAttribute("cx", pair[0]);
       dot.setAttribute("cy", pair[1]);
       dot.setAttribute("r", pair[2]);
+      dot.style.setProperty("--intro-r", pair[2] + "px");
       var t = (pair[0] - minX) / (maxX - minX);
       dot.style.animationDelay = Math.round(t * sweep) + "ms";
       pointsGroup.appendChild(dot);
@@ -124,6 +127,7 @@
     outlierDot.setAttribute("cx", OUTLIER.x);
     outlierDot.setAttribute("cy", OUTLIER.y);
     outlierDot.setAttribute("r", 7.5);
+    outlierDot.style.setProperty("--intro-r", "7.5px");
     outlierDot.style.animationDelay = "0ms";
     pointsGroup.appendChild(outlierDot);
   }
@@ -294,6 +298,9 @@
     var targetRect = headerName.getBoundingClientRect();
     var zoom = getPageZoom();
 
+    /* Sem transição enquanto o nome é invertido para a posição inicial do
+       FLIP; a subida de entrada não pode animar esse salto. */
+    nameEl.style.transition = "none";
     nameEl.style.fontSize = targetFontSize + "px";
     placeFixedElement(nameEl, targetRect.left, targetRect.top);
 

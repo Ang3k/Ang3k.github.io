@@ -1339,12 +1339,16 @@ html.intro-pending .intro-name {
   line-height: 0.95;
   white-space: nowrap;
   opacity: 0;
+  transform: translateY(0.3em);
   transform-origin: 0 0;
-  transition: opacity 400ms ease;
+  transition:
+    opacity 400ms ease,
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html.intro-pending .intro-name.is-visible {
   opacity: 1;
+  transform: none;
 }
 
 .intro-device {
@@ -1352,7 +1356,7 @@ html.intro-pending .intro-name.is-visible {
   top: 50%;
   left: 50%;
   display: grid;
-  grid-template-rows: minmax(0, 1fr) 86px;
+  grid-template-rows: minmax(0, 1fr) auto;
   width: min(1040px, calc(100vw - 160px), calc(157.576vh - 267.88px));
   height: auto;
   aspect-ratio: 1040 / 660;
@@ -1510,90 +1514,26 @@ html.intro-pending .intro-name.is-visible {
 .intro-device-base {
   position: relative;
   z-index: 2;
-  height: 86px;
+  /* Mesma proporção do desktop (86px em 1040px) em qualquer largura. */
+  aspect-ratio: 1040 / 86;
   transform-origin: top center;
   transition:
     opacity 733ms ease 147ms,
     transform 933ms cubic-bezier(0.45, 0, 0.1, 1) 107ms;
 }
 
-.intro-device-base::before {
+/* Base desenhada em SVG (tampo em perspectiva, teclas, touchpad, dobradiça e
+   sombra de contato). É 10% mais larga que a tampa e escala uniformemente
+   com o notebook. */
+.intro-device-base-art {
   position: absolute;
-  top: -2px;
-  left: 50%;
+  top: 0;
+  left: -5%;
+  display: block;
   width: 110%;
-  height: 52px;
-  border-radius: 3px 3px 24px 24px;
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.5), transparent 9% 91%, rgba(255, 255, 255, 0.28)),
-    linear-gradient(180deg, #eef0ef 0%, #d2d4d3 38%, #a9abaa 76%, #8b8d8d 100%);
-  clip-path: polygon(4% 0, 96% 0, 100% 76%, 98% 100%, 2% 100%, 0 76%);
-  box-shadow:
-    0 22px 40px rgba(17, 17, 17, 0.22),
-    inset 0 2px 0 rgba(255, 255, 255, 0.88),
-    inset 0 -4px 7px rgba(17, 17, 17, 0.22);
-  content: "";
-  transform: translateX(-50%);
-}
-
-.intro-device-hinge {
-  position: absolute;
-  z-index: 3;
-  top: -4px;
-  left: 50%;
-  width: 32%;
-  height: 7px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 0 0 8px 8px;
-  background: linear-gradient(180deg, #3d3f41, #111214 72%);
-  box-shadow: 0 2px 4px rgba(17, 17, 17, 0.34);
-  transform: translateX(-50%);
-}
-
-.intro-device-keyboard {
-  position: absolute;
-  z-index: 3;
-  top: 8px;
-  left: 50%;
-  width: 58%;
-  height: 19px;
-  border-radius: 3px;
-  background:
-    repeating-linear-gradient(90deg, transparent 0 12px, rgba(250, 250, 248, 0.72) 12px 14px),
-    repeating-linear-gradient(180deg, #787b7c 0 3px, #b9bbba 3px 5px);
-  box-shadow:
-    0 0 0 1px rgba(17, 17, 17, 0.2),
-    inset 0 1px 2px rgba(17, 17, 17, 0.28);
-  opacity: 0.56;
-  transform: translateX(-50%) perspective(90px) rotateX(9deg);
-}
-
-.intro-device-trackpad {
-  position: absolute;
-  z-index: 3;
-  top: 31px;
-  left: 50%;
-  width: 17%;
-  height: 14px;
-  border: 1px solid rgba(17, 17, 17, 0.22);
-  border-radius: 3px 3px 7px 7px;
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.48);
-  transform: translateX(-50%);
-}
-
-.intro-device-base::after {
-  position: absolute;
-  top: 51px;
-  left: 50%;
-  width: 86%;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(17, 17, 17, 0.18);
-  box-shadow: 0 13px 22px rgba(17, 17, 17, 0.17);
-  content: "";
-  filter: blur(1.5px);
-  transform: translateX(-50%);
+  max-width: none;
+  height: auto;
+  overflow: visible;
 }
 
 .intro-chart {
@@ -1701,16 +1641,25 @@ html.intro-pending .intro-name.is-visible {
   width: 880px;
 }
 
+/* Contorno branco fino separa pontos sobrepostos e os destaca da curva.
+   Escala junto com o ponto, para manter a proporção em qualquer zoom. */
 .intro-point {
   fill: #111111;
-  stroke: none;
+  stroke: #ffffff;
+  stroke-width: 0.9;
   fill-opacity: 0;
+  stroke-opacity: 0;
   shape-rendering: geometricPrecision;
-  vector-effect: non-scaling-stroke;
 }
 
 .intro-point-outlier {
   fill: #e54242;
+}
+
+/* Faixa de incerteza da regressão, revelada junto com a curva. */
+.intro-band {
+  fill: var(--ink);
+  fill-opacity: 0.055;
   stroke: none;
 }
 
@@ -1742,9 +1691,13 @@ html.intro-pending .intro-name.is-visible {
   }
 }
 
+/* O raio parte de 35% e passa levemente do tamanho final (pop). Onde o
+   navegador não anima r, o ponto só faz o fade. */
 @keyframes intro-point-in {
   from {
     fill-opacity: 0;
+    stroke-opacity: 0;
+    r: calc(var(--intro-r) * 0.35);
   }
 
   60% {
@@ -1753,6 +1706,8 @@ html.intro-pending .intro-name.is-visible {
 
   to {
     fill-opacity: 1;
+    stroke-opacity: 1;
+    r: var(--intro-r);
   }
 }
 
@@ -1786,7 +1741,9 @@ html.intro-pending .intro-name.is-visible {
   padding: 0.6rem 0.2rem;
   border: 0;
   border-bottom: 1px solid currentColor;
-  background: none;
+  /* Fundo branco para o botão não se misturar ao eixo do gráfico ampliado. */
+  background: var(--paper);
+  box-shadow: 0 0 0 0.55rem var(--paper);
   color: var(--muted);
   cursor: pointer;
   font-family: var(--font-sans);
@@ -1800,7 +1757,6 @@ html.intro-pending .intro-name.is-visible {
 
 @media (max-width: 700px) {
   .intro-device {
-    grid-template-rows: minmax(0, 1fr) 57px;
     width: min(1040px, calc(100vw - 32px), calc(157.576vh - 151.27px));
     width: min(1040px, calc(100vw - 32px), calc(157.576svh - 151.27px));
     height: auto;
@@ -1836,37 +1792,6 @@ html.intro-pending .intro-name.is-visible {
     height: 0.5rem;
   }
 
-  .intro-device-base {
-    height: 57px;
-  }
-
-  .intro-device-base::before {
-    width: 106%;
-    height: 35px;
-    border-radius: 2px 2px 16px 16px;
-  }
-
-  .intro-device-base::after {
-    top: 34px;
-  }
-
-  .intro-device-hinge {
-    height: 5px;
-  }
-
-  .intro-device-keyboard {
-    top: 5px;
-    width: 56%;
-    height: 12px;
-    background:
-      repeating-linear-gradient(90deg, transparent 0 8px, rgba(250, 250, 248, 0.72) 8px 9px),
-      repeating-linear-gradient(180deg, #787b7c 0 2px, #b9bbba 2px 3px);
-  }
-
-  .intro-device-trackpad {
-    top: 20px;
-    height: 9px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
