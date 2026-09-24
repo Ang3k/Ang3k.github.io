@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="preload" href="../../assets/projects/dengue/sinan-logo.png" as="image" type="image/png">
+  <link rel="preload" href="../../assets/projects/dengue/sinan-logo-1586w.webp" as="image" type="image/webp">
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="../../case-study.css">
   <link rel="stylesheet" href="../../portfolio-case-standard.css">
@@ -64,7 +64,7 @@
   <main id="conteudo">
     <section class="dengue-cover" aria-labelledby="titulo-projeto">
       <img
-        src="../../assets/projects/dengue/sinan-logo.png"
+        src="../../assets/projects/dengue/sinan-logo-1586w.webp"
         width="1586"
         height="992"
         alt=""
@@ -103,13 +103,16 @@
             <p>Esses dados ajudam a identificar padrões além dos sintomas. Região, escolaridade e gravidez, por exemplo, podem contribuir para a classificação dos casos. Durante o projeto, observou-se maior ocorrência de dengue entre mulheres, um padrão também discutido em notícias e possivelmente relacionado a hábitos cotidianos e vestimentas, embora sua causa não seja conclusiva.</p>
 
             <figure class="home-credit-media home-credit-media--wide dengue-media">
-              <img
-                src="../../assets/projects/dengue/01-pipeline-projeto.png"
-                width="1462"
-                height="602"
-                alt="Fluxo do projeto: dados do SINAN, preparação de atributos, treino entre 2017 e 2019, otimização com Optuna, avaliação temporal em 2021 e disponibilização do modelo por API"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source srcset="../../assets/projects/dengue/01-pipeline-projeto-1462w.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/dengue/01-pipeline-projeto.png"
+                  width="1462"
+                  height="602"
+                  alt="Fluxo do projeto: dados do SINAN, preparação de atributos, treino entre 2017 e 2019, otimização com Optuna, avaliação temporal em 2021 e disponibilização do modelo por API"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
 
             <p>Com isso, nasceu a vontade de criar uma ferramenta de apoio, capaz de observar simultaneamente todas essas informações, e produzir um score de classificação, a intenção nunca foi de criar um diagnóstico automático, e sim algo para ajudar especialistas, ou talvez apoiar em momentos de "pico" dessas doenças e saber melhor quem realizar uma triagem física rapidamente.</p>
@@ -171,13 +174,16 @@
             <p>Essas colunas poderiam fazer um "vazamento" da classificação ou apenas não ajudar na classificação pelo próprio conceito da coluna. Também havia campos vazios ou marcados como ignorados, além disso, cada ano mostrava um padrão diferente em algumas colunas, e após o ano de 2021, não aparece dados com a classificação de "Descartado para Arbovirose X", por isso apenas até esse ano foi feita a extração de dados e uso para teste.</p>
 
             <figure class="home-credit-media home-credit-media--wide dengue-media">
-              <img
-                src="../../assets/projects/dengue/02-amostra-dados-sinan.png"
-                width="988"
-                height="322"
-                alt="Amostra tabular dos dados brutos do SINAN com datas, semana epidemiológica, município, região, unidade e valores ausentes"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source srcset="../../assets/projects/dengue/02-amostra-dados-sinan-988w.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/dengue/02-amostra-dados-sinan.png"
+                  width="988"
+                  height="322"
+                  alt="Amostra tabular dos dados brutos do SINAN com datas, semana epidemiológica, município, região, unidade e valores ausentes"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
           </article>
 
@@ -192,13 +198,16 @@
             </ul>
 
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
-              <img
-                src="../../assets/projects/dengue/03-divisao-temporal.png"
-                width="2296"
-                height="528"
-                alt="Código que seleciona os anos de 2017 a 2019 para treino, 2020 para validação e 2021 para teste"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source srcset="../../assets/projects/dengue/03-divisao-temporal-1760w.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/dengue/03-divisao-temporal.png"
+                  width="2296"
+                  height="528"
+                  alt="Código que seleciona os anos de 2017 a 2019 para treino, 2020 para validação e 2021 para teste"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
             </figure>
           </article>
 
@@ -213,6 +222,7 @@
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
               <picture class="mobile-picture">
                 <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/04-classificacao-casos-mobile.webp" type="image/webp">
+                <source srcset="../../assets/projects/dengue/04-classificacao-casos-1760w.webp" type="image/webp">
                 <img
                   src="../../assets/projects/dengue/04-classificacao-casos.png"
                   width="2272"
@@ -238,6 +248,7 @@
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
               <picture class="mobile-picture">
                 <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/05-tratamento-sintomas-mobile.webp" type="image/webp">
+                <source srcset="../../assets/projects/dengue/05-tratamento-sintomas-1760w.webp" type="image/webp">
                 <img
                   src="../../assets/projects/dengue/05-tratamento-sintomas.png"
                   width="3424"
@@ -262,6 +273,7 @@
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
               <picture class="mobile-picture">
                 <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/06-tempo-sazonalidade-mobile.webp" type="image/webp">
+                <source srcset="../../assets/projects/dengue/06-tempo-sazonalidade-1760w.webp" type="image/webp">
                 <img
                   src="../../assets/projects/dengue/06-tempo-sazonalidade.png"
                   width="3136"
@@ -285,6 +297,7 @@
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
               <picture class="mobile-picture">
                 <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/07-dados-demograficos-localizacao-mobile.webp" type="image/webp">
+                <source srcset="../../assets/projects/dengue/07-dados-demograficos-localizacao-1760w.webp" type="image/webp">
                 <img
                   src="../../assets/projects/dengue/07-dados-demograficos-localizacao.png"
                   width="3024"
@@ -308,6 +321,7 @@
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
               <picture class="mobile-picture">
                 <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/08-contexto-epidemiologico-mobile.webp" type="image/webp">
+                <source srcset="../../assets/projects/dengue/08-contexto-epidemiologico-1760w.webp" type="image/webp">
                 <img
                   src="../../assets/projects/dengue/08-contexto-epidemiologico.png"
                   width="3288"
@@ -340,13 +354,16 @@
               <p>Porém, ainda é necessário verificar se esse comportamento aparece de maneira clara nos dados utilizados pelo projeto. Caso as notificações realmente apresentem uma concentração em determinados meses, essa informação pode ser útil tanto para compreender o comportamento da dengue quanto para ajudar os modelos a reconhecer o contexto em que cada caso aconteceu.</p>
 
               <figure class="home-credit-media home-credit-media--wide dengue-media">
-                <img
-                  src="../../assets/projects/dengue/09-casos-por-mes.png"
-                  width="2181"
-                  height="1077"
-                  alt="Gráfico de barras com notificações mensais entre 2017 e 2019: crescimento de janeiro a maio, pico de 620 mil em maio e menor volume entre agosto e novembro"
-                  loading="lazy"
-                  decoding="async">
+                <picture class="mobile-picture">
+                  <source srcset="../../assets/projects/dengue/09-casos-por-mes-2150w.webp" type="image/webp">
+                  <img
+                    src="../../assets/projects/dengue/09-casos-por-mes.png"
+                    width="2181"
+                    height="1077"
+                    alt="Gráfico de barras com notificações mensais entre 2017 e 2019: crescimento de janeiro a maio, pico de 620 mil em maio e menor volume entre agosto e novembro"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
                 <figcaption>Total de Casos de Dengue por Mês — 2017–2019</figcaption>
               </figure>
 
@@ -383,6 +400,7 @@
               <figure class="home-credit-media home-credit-media--wide dengue-media">
                 <picture class="mobile-picture">
                   <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/10-sintomas-por-classificacao-mobile.webp" type="image/webp">
+                  <source srcset="../../assets/projects/dengue/10-sintomas-por-classificacao-2150w.webp" type="image/webp">
                   <img
                     src="../../assets/projects/dengue/10-sintomas-por-classificacao.png"
                     width="2180"
@@ -425,13 +443,16 @@
               <p>O sexo não determina sozinho se uma pessoa terá dengue, mas sua distribuição pode revelar diferenças de exposição, rotina, ocupação e procura por atendimento. A primeira etapa é verificar se homens e mulheres aparecem de maneira semelhante entre os casos confirmados.</p>
 
               <figure class="home-credit-media home-credit-media--wide dengue-media">
-                <img
-                  src="../../assets/projects/dengue/11-casos-por-sexo.png"
-                  width="1763"
-                  height="980"
-                  alt="Gráfico comparando casos confirmados por sexo: 933.052 registros femininos, ou 55,7%, e 743.044 masculinos, ou 44,3%"
-                  loading="lazy"
-                  decoding="async">
+                <picture class="mobile-picture">
+                  <source srcset="../../assets/projects/dengue/11-casos-por-sexo-1763w.webp" type="image/webp">
+                  <img
+                    src="../../assets/projects/dengue/11-casos-por-sexo.png"
+                    width="1763"
+                    height="980"
+                    alt="Gráfico comparando casos confirmados por sexo: 933.052 registros femininos, ou 55,7%, e 743.044 masculinos, ou 44,3%"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
                 <figcaption>Distribuição dos Casos Confirmados por Sexo</figcaption>
               </figure>
 
@@ -467,18 +488,22 @@
 
               <div class="home-credit-gallery home-credit-gallery--two dengue-occupation-gallery">
                 <figure class="home-credit-media dengue-media">
-                  <img
-                    src="../../assets/projects/dengue/12-ocupacoes-feminino.png"
-                    width="1979"
-                    height="1218"
-                    alt="Gráfico das ocupações com mais casos confirmados entre mulheres, liderado por dona de casa e seguido por estudantes"
-                    loading="lazy"
-                    decoding="async">
+                  <picture class="mobile-picture">
+                    <source srcset="../../assets/projects/dengue/12-ocupacoes-feminino-1060w.webp" type="image/webp">
+                    <img
+                      src="../../assets/projects/dengue/12-ocupacoes-feminino.png"
+                      width="1979"
+                      height="1218"
+                      alt="Gráfico das ocupações com mais casos confirmados entre mulheres, liderado por dona de casa e seguido por estudantes"
+                      loading="lazy"
+                      decoding="async">
+                  </picture>
                   <figcaption>Ocupações — Feminino</figcaption>
                 </figure>
                 <figure class="home-credit-media dengue-media">
                   <picture class="mobile-picture">
                     <source media="(max-width: 700px)" srcset="../../assets/projects/dengue/13-ocupacoes-masculino-mobile.webp" type="image/webp">
+                    <source srcset="../../assets/projects/dengue/13-ocupacoes-masculino-1060w.webp" type="image/webp">
                     <img
                       src="../../assets/projects/dengue/13-ocupacoes-masculino.png"
                       width="1979"
@@ -726,13 +751,16 @@
 
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-evaluation-figure">
               <a class="dengue-graph-link" href="../../assets/projects/dengue/20-threshold-analysis.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Abrir gráfico de seleção de limiar em tamanho completo">
-                <img
-                  src="../../assets/projects/dengue/20-threshold-analysis.png?v=20260712"
-                  width="2580"
-                  height="2129"
-                  alt="Curvas de Precision, Recall e F1 em diferentes limiares para MLP, XGBoost, LightGBM e ensemble"
-                  loading="lazy"
-                  decoding="async">
+                <picture class="mobile-picture">
+                  <source srcset="../../assets/projects/dengue/20-threshold-analysis-1760w.webp" type="image/webp">
+                  <img
+                    src="../../assets/projects/dengue/20-threshold-analysis.png?v=20260712"
+                    width="2580"
+                    height="2129"
+                    alt="Curvas de Precision, Recall e F1 em diferentes limiares para MLP, XGBoost, LightGBM e ensemble"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
               </a>
               <figcaption>Os pontos de operação foram definidos na validação de 2020; toque ou clique no gráfico para ampliá-lo.</figcaption>
             </figure>
@@ -746,13 +774,16 @@
 
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-evaluation-figure">
               <a class="dengue-graph-link" href="../../assets/projects/dengue/16-confusion-matrices.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Abrir matrizes de confusão em tamanho completo">
-                <img
-                  src="../../assets/projects/dengue/16-confusion-matrices.png?v=20260712"
-                  width="2113"
-                  height="1916"
-                  alt="Matrizes de confusão de MLP, XGBoost, LightGBM e ensemble, comparando as classes reais e previstas"
-                  loading="lazy"
-                  decoding="async">
+                <picture class="mobile-picture">
+                  <source srcset="../../assets/projects/dengue/16-confusion-matrices-1760w.webp" type="image/webp">
+                  <img
+                    src="../../assets/projects/dengue/16-confusion-matrices.png?v=20260712"
+                    width="2113"
+                    height="1916"
+                    alt="Matrizes de confusão de MLP, XGBoost, LightGBM e ensemble, comparando as classes reais e previstas"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
               </a>
               <figcaption>As matrizes mostram os acertos e os dois tipos de erro de cada modelo; toque ou clique para ampliar.</figcaption>
             </figure>
@@ -767,13 +798,16 @@
 
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-evaluation-figure">
               <a class="dengue-graph-link" href="../../assets/projects/dengue/17-model-metrics-comparison.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Abrir comparação das métricas em tamanho completo">
-                <img
-                  src="../../assets/projects/dengue/17-model-metrics-comparison.png?v=20260712"
-                  width="2780"
-                  height="1379"
-                  alt="Gráfico de barras comparando Accuracy, Accuracy balanceada, Precision, Recall, F1, ROC-AUC e PR-AUC dos quatro modelos"
-                  loading="lazy"
-                  decoding="async">
+                <picture class="mobile-picture">
+                  <source srcset="../../assets/projects/dengue/17-model-metrics-comparison-1760w.webp" type="image/webp">
+                  <img
+                    src="../../assets/projects/dengue/17-model-metrics-comparison.png?v=20260712"
+                    width="2780"
+                    height="1379"
+                    alt="Gráfico de barras comparando Accuracy, Accuracy balanceada, Precision, Recall, F1, ROC-AUC e PR-AUC dos quatro modelos"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
               </a>
               <figcaption>Cada modelo foi avaliado no ponto definido em 2020; toque ou clique no gráfico para ampliá-lo.</figcaption>
             </figure>
@@ -788,25 +822,31 @@
             <div class="dengue-evaluation-gallery">
               <figure class="home-credit-media dengue-media dengue-evaluation-figure">
                 <a class="dengue-graph-link" href="../../assets/projects/dengue/18-precision-recall-curves.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Abrir curvas Precision-Recall em tamanho completo">
-                  <img
-                    src="../../assets/projects/dengue/18-precision-recall-curves.png?v=20260712"
-                    width="1780"
-                    height="1380"
-                    alt="Curvas Precision-Recall de MLP, XGBoost, LightGBM e ensemble"
-                    loading="lazy"
-                    decoding="async">
+                  <picture class="mobile-picture">
+                    <source srcset="../../assets/projects/dengue/18-precision-recall-curves-870w.webp" type="image/webp">
+                    <img
+                      src="../../assets/projects/dengue/18-precision-recall-curves.png?v=20260712"
+                      width="1780"
+                      height="1380"
+                      alt="Curvas Precision-Recall de MLP, XGBoost, LightGBM e ensemble"
+                      loading="lazy"
+                      decoding="async">
+                  </picture>
                 </a>
                 <figcaption>Curvas Precision-Recall dos quatro modelos.</figcaption>
               </figure>
               <figure class="home-credit-media dengue-media dengue-evaluation-figure">
                 <a class="dengue-graph-link" href="../../assets/projects/dengue/19-roc-curves.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Abrir curvas ROC em tamanho completo">
-                  <img
-                    src="../../assets/projects/dengue/19-roc-curves.png?v=20260712"
-                    width="1780"
-                    height="1380"
-                    alt="Curvas ROC de MLP, XGBoost, LightGBM e ensemble, comparadas à referência aleatória"
-                    loading="lazy"
-                    decoding="async">
+                  <picture class="mobile-picture">
+                    <source srcset="../../assets/projects/dengue/19-roc-curves-870w.webp" type="image/webp">
+                    <img
+                      src="../../assets/projects/dengue/19-roc-curves.png?v=20260712"
+                      width="1780"
+                      height="1380"
+                      alt="Curvas ROC de MLP, XGBoost, LightGBM e ensemble, comparadas à referência aleatória"
+                      loading="lazy"
+                      decoding="async">
+                  </picture>
                 </a>
                 <figcaption>Curvas ROC dos quatro modelos.</figcaption>
               </figure>
@@ -840,13 +880,16 @@
             <p>A página de Triagem reúne as informações disponíveis no momento da notificação, como idade, sexo, gestação, raça, escolaridade, ocupação, localização, datas e sintomas. Também é possível escolher qual arbovirose será avaliada, com isso, a interface organiza os campos enviados ao backend e não depende de informações posteriores, como exame, evolução ou encerramento do caso.</p>
 
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-app-figure">
-              <img
-                src="../../assets/projects/dengue/21-aplicacao-triagem.png"
-                width="810"
-                height="602"
-                alt="Página de triagem da aplicação, com seleção da doença e campos de idade, sexo, gestação, raça, escolaridade e demais informações da notificação"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source srcset="../../assets/projects/dengue/21-aplicacao-triagem-810w.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/dengue/21-aplicacao-triagem.png"
+                  width="810"
+                  height="602"
+                  alt="Página de triagem da aplicação, com seleção da doença e campos de idade, sexo, gestação, raça, escolaridade e demais informações da notificação"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
               <figcaption>A triagem concentra os campos utilizados pelos modelos e os sintomas informados pelo usuário.</figcaption>
             </figure>
 
@@ -858,13 +901,16 @@
             <p>Na resposta, os três scores aparecem separadamente junto aos pesos utilizados no ensemble, e logo abaixo a aplicação mostra a classificação combinada e o limiar aplicado, isso ajuda a entender que o resultado final não vem de um único algoritmo, além de permitir observar quando os modelos apresentam valores semelhantes ou diferentes.</p>
 
             <figure class="home-credit-media home-credit-media--wide dengue-media dengue-app-figure">
-              <img
-                src="../../assets/projects/dengue/22-aplicacao-simulacao.png"
-                width="738"
-                height="530"
-                alt="Resultado de uma simulação histórica mostrando os scores da MLP, XGBoost e LightGBM, os pesos do ensemble, a classificação combinada e o registro do SINAN"
-                loading="lazy"
-                decoding="async">
+              <picture class="mobile-picture">
+                <source srcset="../../assets/projects/dengue/22-aplicacao-simulacao-738w.webp" type="image/webp">
+                <img
+                  src="../../assets/projects/dengue/22-aplicacao-simulacao.png"
+                  width="738"
+                  height="530"
+                  alt="Resultado de uma simulação histórica mostrando os scores da MLP, XGBoost e LightGBM, os pesos do ensemble, a classificação combinada e o registro do SINAN"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
               <figcaption>A simulação usa um registro anonimizado e compara a previsão combinada com a classificação histórica do SINAN.</figcaption>
             </figure>
 
@@ -877,23 +923,29 @@
 
             <div class="dengue-app-gallery">
               <figure class="home-credit-media dengue-media dengue-app-figure">
-                <img
-                  src="../../assets/projects/dengue/23-aplicacao-pipeline.png"
-                  width="810"
-                  height="602"
-                  alt="Página da aplicação que apresenta o pipeline desde os dados do SINAN até a predição no site"
-                  loading="lazy"
-                  decoding="async">
+                <picture class="mobile-picture">
+                  <source srcset="../../assets/projects/dengue/23-aplicacao-pipeline-810w.webp" type="image/webp">
+                  <img
+                    src="../../assets/projects/dengue/23-aplicacao-pipeline.png"
+                    width="810"
+                    height="602"
+                    alt="Página da aplicação que apresenta o pipeline desde os dados do SINAN até a predição no site"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
                 <figcaption>O pipeline separa experimentação, modelos salvos, API e predição no site.</figcaption>
               </figure>
               <figure class="home-credit-media dengue-media dengue-app-figure">
-                <img
-                  src="../../assets/projects/dengue/24-aplicacao-panorama.png"
-                  width="980"
-                  height="734"
-                  alt="Página de panorama epidemiológico com um gráfico mensal dos casos de dengue e textos de interpretação"
-                  loading="lazy"
-                  decoding="async">
+                <picture class="mobile-picture">
+                  <source srcset="../../assets/projects/dengue/24-aplicacao-panorama-870w.webp" type="image/webp">
+                  <img
+                    src="../../assets/projects/dengue/24-aplicacao-panorama.png"
+                    width="980"
+                    height="734"
+                    alt="Página de panorama epidemiológico com um gráfico mensal dos casos de dengue e textos de interpretação"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
                 <figcaption>O panorama transforma os gráficos da análise em uma leitura guiada dentro da aplicação.</figcaption>
               </figure>
             </div>
