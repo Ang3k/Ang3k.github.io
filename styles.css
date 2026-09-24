@@ -1009,8 +1009,15 @@ a {
     border-bottom: 1px solid var(--line);
   }
 
+  /* minmax(0, 1fr): a coluna não cresce além do container por causa de uma
+     palavra longa no título (acontecia com a fonte reserva, antes de a
+     Oswald carregar, cortando o texto na borda direita). */
   .section-heading {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .section-heading h2 {
+    overflow-wrap: break-word;
   }
 
   .section-heading > p {
