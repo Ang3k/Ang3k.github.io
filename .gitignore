@@ -14,3 +14,9 @@ Desktop.ini
 node_modules/
 .cache/
 dist/
+
+# Ferramentas de IA (locais)
+.claude/
+docs/superpowers/
+AGENTS.md
+CLAUDE.md
