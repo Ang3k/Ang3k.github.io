@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>ML Resume - Angel Mansilla</title>
+    <link rel="stylesheet" href="curriculo.css" />
+  </head>
+  <body>
+    <!--
+      Versão em inglês do currículo, publicada em assets/angel-mansilla-resume.pdf.
+      É a tradução de curriculo.html: quando um mudar, mude o outro também.
+      Gere com:  py -3.11 curriculo/gerar_pdf.py --idioma en
+      Negrito: <strong>…</strong>, no mesmo padrão da versão em português.
+    -->
+    <main class="page">
+      <header>
+        <h1 class="name" aria-label="Angel Mansilla"><span>ANGEL</span> <span>MANSILLA</span></h1>
+        <p class="headline">Data Scientist | AI &amp; Machine Learning Engineer</p>
+        <p class="contact">
+          Rio de Janeiro, Brazil | angejesufern@gmail.com | +55 (21) 99859-5855<br /><a
+            href="https://www.linkedin.com/in/angel-mansilla-ai"
+            >linkedin.com/in/angel-mansilla-ai</a
+          > | www.angelmansilla.com.br | <a href="https://github.com/Ang3k">github.com/Ang3k</a>
+        </p>
+        <div class="rule" aria-hidden="true"></div>
+      </header>
+
+      <section class="experiencia">
+        <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
+        <p class="lead">
+          <strong>Junior AI Engineer</strong> at <strong>RapidCanvas</strong> (10/2026 -
+          Present)
+        </p>
+        <ul class="list">
+          <li>
+            <strong>Demand forecasting</strong>: Data and ML engineering for a
+            <strong>raw material planning</strong> solution for an industrial client, with
+            <strong>consumption forecasting</strong> in LightGBM: integration with the
+            <strong>Epicor ERP</strong> and database migration to <strong>MySQL</strong> with
+            row-by-row verification. Technologies: Python, MLflow, FastAPI.
+          </li>
+          <li>
+            <strong>AI agents</strong>: Work on a <strong>claims automation</strong> system for
+            an insurance broker, with <strong>LLM agents</strong> that extract data from
+            documents and a <strong>rules engine</strong> that validates each case; mapping of
+            the workflows and a <strong>persistence proposal</strong> in MySQL. Technologies:
+            Python, FastAPI.
+          </li>
+        </ul>
+
+        <p class="lead">
+          <strong>ML Engineer Intern</strong> at <strong>Genesis Data Culture</strong>
+          (08/2025 - 10/2026)
+        </p>
+        <ul class="list">
+          <li>
+            <strong>Machine Learning</strong>: Implemented models for
+            <strong>failure prediction</strong> in electrical equipment, with data extraction
+            and processing via <strong>FastAPI</strong> and algorithms ranging from Linear
+            Regression to Autoencoders, <strong>reducing maintenance costs</strong>.
+            Technologies: Python, Pandas, Scikit-learn, PyTorch.
+          </li>
+          <li>
+            <strong>Automation</strong>: Built a <strong>data pipeline</strong> for the
+            <strong>collection, standardization and loading</strong> of industrial data via APIs
+            and Excel spreadsheets, <strong>automating</strong> the process and loading it into
+            <strong>PostgreSQL</strong> with Prisma ORM, ensuring
+            <strong>integrity and efficiency </strong>for future use. Technologies: Python,
+            Pandas, PostgreSQL, Prisma.
+          </li>
+          <li>
+            <strong>Endpoints</strong>: Developed <strong>RESTful endpoints</strong> in FastAPI
+            for batch <strong>ML model training and prediction</strong>. Versioning with
+            <strong>MLflow</strong>, storage in <strong>MinIO </strong>and asynchronous
+            processing. Technologies: Python, FastAPI, Scikit-learn, MLflow, MinIO, Docker.
+          </li>
+        </ul>
+      </section>
+
+      <section class="formacao">
+        <h2 class="section-title">EDUCATION</h2>
+        <p class="lead">
+          <strong>B.Sc. in Computer Science</strong>, <strong>UFRJ</strong> (Federal University
+          of Rio de Janeiro) — 7th semester (07/2023 – 12/2027)
+        </p>
+        <ul class="list">
+          <li>
+            Team: Member of the Development Team at <strong>UFRJ Analytica</strong>
+            (05/2025 - Present)
+          </li>
+        </ul>
+      </section>
+
+      <section class="habilidades">
+        <h2 class="section-title">TECHNICAL SKILLS</h2>
+        <ul class="list">
+          <li><strong>Programming languages</strong>: Python, SQL</li>
+          <li><strong>Databases</strong>: MySQL and PostgreSQL</li>
+          <li><strong>Version control</strong>: Git and GitHub</li>
+          <li>
+            <strong>Libraries: </strong>Pandas, NumPy, scikit-learn, Matplotlib, Seaborn,
+            PyTorch, LightGBM, XGBoost, Optuna
+          </li>
+          <li>
+            <strong>APIs and generative AI</strong>: FastAPI, LLM agents and data extraction
+            from documents
+          </li>
+          <li><strong>MLOps/DevOps</strong>: MLflow, Docker, Docker Compose, Poetry</li>
+        </ul>
+      </section>
+
+      <section class="projetos">
+        <h2 class="section-title">PROJECTS</h2>
+
+        <article class="project">
+          <h3 class="project-title">
+            Dengue Sense — Differential Diagnosis Support System for Arboviral Diseases
+          </h3>
+          <ul class="list">
+            <li>
+              Built a <strong>weighted ensemble</strong> for the differential diagnosis of
+              <strong>dengue, Zika and chikungunya</strong> on ~480k national epidemiological
+              notifications (2017–2019). Architecture with
+              <strong>categorical embeddings</strong> and optimization focused on
+              <strong>clinical recall</strong>, reaching <strong>88% recall</strong> without
+              relying on laboratory tests. Technologies: Python, LightGBM, XGBoost, PyTorch,
+              Pandas.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="idiomas">
+        <h2 class="section-title">LANGUAGES AND SOFT SKILLS</h2>
+        <ul class="list">
+          <li>
+            <strong>Portuguese</strong>: Native | <strong>English</strong>: Fluent / Very
+            Advanced (C1) | <strong>Spanish</strong>: Fluent (C1)
+          </li>
+          <li>
+            <strong>Soft skills</strong>: clear communication, analytical thinking,
+            autonomous collaboration and adaptability
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

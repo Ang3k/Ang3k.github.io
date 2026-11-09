@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Angel Mansilla's case study on predicting credit payment delays at Home Credit Group, with exploratory analysis and a LightGBM model.">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Home Credit Group Prediction on Credit Payment Delay | Angel Mansilla">
+  <meta property="og:description" content="Customer profile analysis and a Machine Learning model to predict credit payment delays.">
+
+  <meta property="og:site_name" content="Angel Mansilla">
+  <meta property="og:image" content="https://angelmansilla.com.br/assets/og/home-credit.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Home Credit Group logo with the case study title">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Home Credit Group Prediction on Credit Payment Delay | Angel Mansilla</title>
+
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="../../../assets/projects/home-credit/image_bckg-1832w.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../case-study.css">
+  <link rel="stylesheet" href="../../../portfolio-case-standard.css">
+  <link rel="stylesheet" href="../../../projetos/home-credit/home-credit.css">
+  <link rel="stylesheet" href="../../../mobile-media.css?v=20260801" media="(max-width: 700px)">
+  <!-- idioma: gerado por scripts/gerar_ingles.py -->
+    <link rel="canonical" href="https://angelmansilla.com.br/en/projects/home-credit/">
+    <link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/home-credit/">
+    <link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/home-credit/">
+    <link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/home-credit/">
+    <meta property="og:url" content="https://angelmansilla.com.br/en/projects/home-credit/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <script>
+      (function () {
+        var atual = "en";
+        var destino = "../../../projetos/home-credit/";
+        document.addEventListener("click", function (evento) {
+          var link = evento.target.closest && evento.target.closest("[data-idioma]");
+          if (!link) return;
+          try {
+            localStorage.setItem("idioma", link.getAttribute("data-idioma"));
+          } catch (erro) {}
+        });
+        if (/bot|crawl|spider|slurp|facebookexternalhit|embedly|preview|lighthouse/i.test(navigator.userAgent)) return;
+        var escolhido = null;
+        try {
+          escolhido = localStorage.getItem("idioma");
+        } catch (erro) {}
+        if (!escolhido) {
+          try {
+            if (document.referrer && new URL(document.referrer).origin === location.origin) return;
+          } catch (erro) {}
+          var lista = navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language || ""];
+          escolhido = "en";
+          for (var i = 0; i < lista.length; i++) {
+            var codigo = String(lista[i]).toLowerCase();
+            if (codigo.indexOf("pt") === 0) { escolhido = "pt"; break; }
+            if (codigo.indexOf("en") === 0) { escolhido = "en"; break; }
+          }
+        }
+        if (escolhido !== atual && (escolhido === "pt" || escolhido === "en")) {
+          location.replace(destino + location.hash);
+        }
+      })();
+    </script>
+    <!-- /idioma -->
+  </head>
+
+<body class="case-page portfolio-case-study home-credit-case home-credit-refactor" id="topo">
+  <a class="skip-link" href="#conteudo">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="masthead">
+        <a class="site-name" href="../../index.html" aria-label="Angel Mansilla, home">
+          Angel Mansilla
+        </a>
+        <p>Machine Learning Engineering · Data Science</p>
+      </div>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="../../index.html#sobre">About</a>
+        <a href="../../index.html#projetos">Projects</a>
+        <a href="../../index.html#experiencia">Experience</a>
+        <a href="../../index.html#contato">Contact</a>
+        <a
+          class="nav-external"
+          href="https://github.com/Ang3k"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub <span aria-hidden="true">↗</span>
+        </a>
+        <!-- seletor de idioma --><a class="nav-lang" href="../../../projetos/home-credit/" hreflang="pt-BR" lang="pt-BR" data-idioma="pt" aria-label="Ler esta página em português">PT</a><!-- /seletor de idioma -->
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="home-credit-hero home-credit-cover-hero" aria-labelledby="titulo-projeto">
+      <img
+        src="../../../assets/projects/home-credit/image_bckg-1832w.webp"
+        width="1832"
+        height="859"
+        alt=""
+        fetchpriority="high"
+        decoding="async">
+      <div class="home-credit-hero-shade" aria-hidden="true"></div>
+      <div class="home-credit-hero-copy">
+        <h1 id="titulo-projeto">Home Credit Group Prediction on Credit Payment Delay</h1>
+      </div>
+    </section>
+
+    <div class="home-credit-content">
+      <section class="home-credit-overview" aria-label="Case study navigation">
+        <div class="container">
+          <nav class="home-credit-chapter-nav" aria-label="Case study chapters">
+            <a href="#contexto"><span>01</span>Business Context</a>
+            <a href="#requisitos"><span>02</span>Project Solution Requirements</a>
+            <a href="#exploracao"><span>03</span>Exploratory Data Analysis</a>
+            <a href="#preparacao"><span>04</span>Predictive Modeling with Python</a>
+            <a href="#avaliacao"><span>05</span>Model Results</a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter" id="contexto" aria-labelledby="titulo-contexto">
+        <div class="container">
+          <header class="home-credit-chapter-header">
+            <p>PART 1</p>
+            <div>
+              <h2 id="titulo-contexto">Introduction to the Dataset</h2>
+            </div>
+          </header>
+
+          <article class="home-credit-story">
+            <h3>1 - Business Context</h3>
+            <p>A banking institution called Home Credit Group is struggling to identify when clients will have trouble repaying the credit they requested. Since the company is going through financial difficulties, it wants to make sure it only grants credit to clients who can pay it back, avoiding losses.</p>
+
+            <figure class="home-credit-media home-credit-media--wide">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/better%20images/06_evolucao_temporal_do_valor_dos_emprestimos-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/better%20images/06_evolucao_temporal_do_valor_dos_emprestimos-1760w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/better images/06_evolucao_temporal_do_valor_dos_emprestimos.png"
+                  width="2943"
+                  height="1464"
+                  alt="Timeline of cash loans comparing clients who pay on time and clients who pay late"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>So the company sought the help of a data scientist, with the goal of having this professional both build a Machine Learning model that could predict the probability of a client running into trouble, based on the clients' own data, such as gender, number of relatives, income and assets, and analyze the data to extract interesting insights about client profiles, behavior patterns and more.</p>
+          </article>
+
+          <article class="home-credit-story" id="requisitos">
+            <h3>2 - Project Solution Requirements</h3>
+            <p>In the conversation between the data scientist and the company, the scientist asked what the main information they wanted to obtain was. In response, the company defined a set of strategic business questions, highlighting the ones that would be essential to guide the analyses and decisions. Here are the questions:</p>
+
+            <ul class="home-credit-question-list">
+              <li>What is the profile of the clients who apply for credit? And of those who pay late?</li>
+              <li>Can natural factors such as age signal a risk of late payment?</li>
+              <li>Is the client's type of employment an indicator of late payment? What about education level?</li>
+              <li>Can marital status and number of dependents affect the need for credit?</li>
+              <li>Do the assets reported to the bank work as collateral? Or are they a placebo?</li>
+              <li>What is the financial situation of the bank's clients? How does it change for clients who pay late?</li>
+              <li>Does it make sense to think that clients with high incomes have less difficulty?</li>
+              <li>Do clients who ask for more than they need have more difficulty paying?</li>
+              <li>Are there types of contracts with a higher rate of late payment?</li>
+            </ul>
+
+            <p>Besides the questions, the company asked for a Machine Learning model trained to predict late payments, as well as a report detailing the potential financial impact of this model. It is also necessary to identify the factors that most objectively indicate that clients will pay late.</p>
+
+            <ul class="home-credit-question-list">
+              <li>Build a Machine Learning model able to predict which clients will pay late.</li>
+              <li>Identify the main characteristics that show whether a late payment will happen.</li>
+              <li>Produce an explanation or financial report on the benefits of the new model.</li>
+            </ul>
+
+            <p>It is worth noting that Home Credit Group already has a machine learning model that uses a Random Forest Classifier to make predictions. Even though this model does not have a bad AUC, at 0.71, it is practically unable to get it right when clients pay late, and that is the problem we are going to overcome.</p>
+          </article>
+
+          <article class="home-credit-story">
+            <h3>3 - Project Methodology</h3>
+            <p>In this project, I used one of the best-known methodologies for solving data problems: CRISP-DM, the Cross-Industry Standard Process for Data Mining. It is an iterative method that lets the data scientist "go back and forth" between the stages of the process, such as between Modeling and Data Preparation. This flexibility is useful, because some insights can come up at different stages, and CRISP-DM gives you the freedom to fix things at different phases of the work.</p>
+
+            <figure class="home-credit-media home-credit-media--diagram">
+              <picture class="mobile-picture">
+                <source srcset="../../../assets/projects/home-credit/wix-part1-crisp-dm-600w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/wix-part1-crisp-dm.png"
+                  width="600"
+                  height="205"
+                  alt="Diagram of the six stages of the CRISP-DM methodology"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+          </article>
+
+          <article class="home-credit-story">
+            <h3>4 - Data Dictionary</h3>
+            <p>The dataset provided by the company includes a wide range of information about the clients, such as location, age, marital status and employment status. It also contains information about their financial, asset, social and time-related relationships. Note that this dictionary does not list every column: with more than 120 columns, that would be excessive, so it includes the main ones used in the EDA.</p>
+
+            <div class="home-credit-details-content home-credit-dictionary" aria-label="Data dictionary">
+              <div>
+                <dl>
+                  <div><dt>SK_ID_CURR:</dt><dd>Unique client ID.</dd></div>
+                  <div><dt>TARGET:</dt><dd>Default indicator (1 = in default).</dd></div>
+                  <div><dt>NAME_CONTRACT_TYPE:</dt><dd>Type of credit contract.</dd></div>
+                  <div><dt>CODE_GENDER:</dt><dd>Client's gender.</dd></div>
+                  <div><dt>FLAG_OWN_CAR:</dt><dd>Client owns a car.</dd></div>
+                  <div><dt>FLAG_OWN_REALTY:</dt><dd>Client owns real estate.</dd></div>
+                  <div><dt>CNT_CHILDREN:</dt><dd>Number of children.</dd></div>
+                  <div><dt>AMT_INCOME_TOTAL:</dt><dd>Client's total annual income.</dd></div>
+                  <div><dt>AMT_CREDIT:</dt><dd>Total amount of credit granted.</dd></div>
+                  <div><dt>AMT_ANNUITY:</dt><dd>Annual credit payment amount.</dd></div>
+                  <div><dt>AMT_GOODS_PRICE:</dt><dd>Price of the financed goods.</dd></div>
+                  <div><dt>NAME_TYPE_SUITE:</dt><dd>Who accompanied the client during the credit application.</dd></div>
+                  <div><dt>NAME_INCOME_TYPE:</dt><dd>Type of income source.</dd></div>
+                  <div><dt>NAME_EDUCATION_TYPE:</dt><dd>Client's education level.</dd></div>
+                  <div><dt>NAME_FAMILY_STATUS:</dt><dd>Marital status.</dd></div>
+                </dl>
+              </div>
+
+              <div>
+                <dl>
+                  <div><dt>NAME_HOUSING_TYPE:</dt><dd>Type of housing.</dd></div>
+                  <div><dt>REGION_POPULATION_RELATIVE:</dt><dd>Population density of the region.</dd></div>
+                  <div><dt>DAYS_BIRTH:</dt><dd>Age in days (negative).</dd></div>
+                  <div><dt>DAYS_EMPLOYED:</dt><dd>Time employed in days (negative).</dd></div>
+                  <div><dt>DAYS_REGISTRATION:</dt><dd>Days since the client's registration.</dd></div>
+                  <div><dt>DAYS_ID_PUBLISH:</dt><dd>Days since the last ID document update.</dd></div>
+                  <div><dt>OWN_CAR_AGE:</dt><dd>Age of the client's car (in years).</dd></div>
+                  <div><dt>FLAG_EMP_PHONE:</dt><dd>Has a work phone.</dd></div>
+                  <div><dt>FLAG_WORK_PHONE:</dt><dd>Has a landline.</dd></div>
+                  <div><dt>FLAG_PHONE:</dt><dd>Has any landline.</dd></div>
+                  <div><dt>FLAG_EMAIL:</dt><dd>Has an email address.</dd></div>
+                  <div><dt>OCCUPATION_TYPE:</dt><dd>Type of occupation.</dd></div>
+                  <div><dt>CNT_FAM_MEMBERS:</dt><dd>Number of family members.</dd></div>
+                  <div><dt>REGION_RATING_CLIENT:</dt><dd>Rating of the region of residence.</dd></div>
+                  <div><dt>EXT_SOURCE_1:</dt><dd>External source score (credit risk).</dd></div>
+                </dl>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter" id="exploracao" aria-labelledby="titulo-exploracao">
+        <div class="container">
+          <header class="home-credit-chapter-header">
+            <p>PART 2</p>
+            <div>
+              <h2 id="titulo-exploracao">Exploratory Data Analysis</h2>
+              <p>In this section, we start extracting insights from the dataset provided by the company. We will explore ways to answer the questions asked and identify new correlations the company may not have considered. We include the code used to generate the charts, the charts themselves and the interpretations that can be drawn from them, all done in Python with Matplotlib and Seaborn.</p>
+            </div>
+          </header>
+
+          <article class="home-credit-analysis">
+            <h3>Impact of age on credit trust:<br>Does age bring more responsibility?</h3>
+            <p>It is common sense that <strong>older people tend to be more responsible</strong>, but this needs to be checked. To do so, I wrote code that displays a <strong>histogram</strong> counting how many people of different ages <strong>pay late or on time</strong>.</p>
+
+            <figure class="home-credit-media home-credit-media--wide">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/better%20images/01_distribuicao_de_idade_por_status_de_pagamento-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/better%20images/01_distribuicao_de_idade_por_status_de_pagamento-1920w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/better images/01_distribuicao_de_idade_por_status_de_pagamento.png"
+                  width="2926"
+                  height="1065"
+                  alt="Age histograms for clients who pay on time and clients who pay late"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>In this case, common sense seems to hold. Among clients who usually pay on time, <strong>age looks evenly distributed</strong>: the above-average values, marked in black, sit in the center of the chart. In the chart of clients who pay late, however, <strong>there is a clear drop as age increases</strong>, which may indicate that <strong>older clients are more reliable credit borrowers.</strong> Next, let's look at financial factors and then see how they relate to age.</p>
+
+            <figure class="home-credit-media home-credit-media--wide">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/better%20images/08_outliers_das_variaveis_financeiras-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/better%20images/08_outliers_das_variaveis_financeiras-1920w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/better images/08_outliers_das_variaveis_financeiras.png"
+                  width="5970"
+                  height="2451"
+                  alt="Boxplots of financial variables for clients who pay on time and clients who pay late"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>In these charts, the <strong>black line represents clients who pay on time</strong> and the <strong>gray line clients who pay late</strong>. Each <strong>circle represents a client</strong>, and circles outside the interquartile range are hollow and black. A few interesting things stand out right away: overall, <strong>clients who pay late request more credit than the others</strong> and also <strong>have more expensive goods to pay for</strong>, which makes sense. Both groups have <strong>similar goods prices within the range</strong>, but there are more late payers outside the IQR. The same can be said about the client's income, and this <strong>will become clearer in the next chart</strong>, together with age.</p>
+
+            <figure class="home-credit-media home-credit-media--wide">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/better%20images/02_fatores_financeiros_por_idade_e_status-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/better%20images/02_fatores_financeiros_por_idade_e_status-1920w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/better images/02_fatores_financeiros_por_idade_e_status.png"
+                  width="3960"
+                  height="2420"
+                  alt="Credit, income, annuity and goods price by age and client type"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>Comparing these lines reveals a problem. Even though <strong>income is very similar</strong>, as we saw before, <strong>clients who pay late tend to request more money</strong> (the gray line above the black one) and <strong>also tend to request these loans for more expensive goods</strong>. This problem tends to <strong>peak around age 50</strong>. Remember, though, that <strong>younger clients tend to request less money and pay late more often</strong>, as we saw at the start, so older clients tend to owe more money, <strong>but there are fewer of them.</strong></p>
+
+            <figure class="home-credit-media home-credit-media--wide">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/better%20images/07_relacao_entre_valor_dos_bens_e_credito_solicitado-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/better%20images/07_relacao_entre_valor_dos_bens_e_credito_solicitado-1920w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/better images/07_relacao_entre_valor_dos_bens_e_credito_solicitado.png"
+                  width="3159"
+                  height="1172"
+                  alt="Relationship between goods price and credit requested by clients who pay on time and clients who pay late"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>This makes the gap between late and on-time clients evident. In this chart, gray represents the value of the goods the clients have to pay for, and black the amount of credit requested. We can see that <strong>clients with late payments request more credit than on-time clients</strong>, on average <strong>$11,379</strong> more, which is a <strong>strong sign that one of the problems may be requesting too much credit.</strong></p>
+
+            <p><strong>In summary:</strong></p>
+            <ul class="home-credit-question-list">
+              <li>Younger clients are more likely to pay late, while older clients tend to be more punctual.</li>
+              <li>Older clients request more credit and finance more expensive goods, especially up to age 50.</li>
+              <li>Clients who pay late have incomes similar to those who pay on time, but they borrow more money and finance more expensive goods.</li>
+              <li>Clients who pay late appear more often outside the interquartile range, meaning there are more extreme cases of debt.</li>
+              <li>Young clients pay late more often but owe less; older clients pay late less often but owe more money.</li>
+              <li>Clients who pay late request, on average, $11,379 more in credit than those who pay on time, which may indicate excessive debt.</li>
+              <li>Age 50 seems to be the critical point, where credit requests and late payments become most evident.</li>
+            </ul>
+          </article>
+
+          <article class="home-credit-analysis">
+            <h3>Influence of the clients' occupational and family profile: How do these factors affect late payment?</h3>
+            <p>First, let's understand <strong>who our clients are</strong>. We have already seen how the clients' age affects their decisions; now let's look at different <strong>aspects of work and education</strong>, using this horizontal bar chart:</p>
+
+            <figure class="home-credit-media home-credit-media--composite">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/better%20images/04_perfil_profissional_e_educacional_dos_clientes-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/better%20images/04_perfil_profissional_e_educacional_dos_clientes-2040w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/better images/04_perfil_profissional_e_educacional_dos_clientes.png"
+                  width="5951"
+                  height="2415"
+                  alt="Horizontal bars comparing education level and occupation of clients who pay on time and clients who pay late"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>A pattern quickly emerges: the vast majority of clients <strong>do not have higher education</strong>, and clients who do have a higher on-time payment rate. In addition, <strong>clients in higher positions also appear to be more punctual</strong>. This is visible in the "Occupation Types" chart, where senior roles such as "Core Staff" or "High Skill Tech Staff" are more typical of on-time clients. This suggests that clients from higher social strata, <strong>with higher incomes, pay late less often</strong>. Let's check that:</p>
+
+            <figure class="home-credit-media home-credit-media--composite">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/better%20images/03_relacao_entre_credito_solicitado_e_salario-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/better%20images/03_relacao_entre_credito_solicitado_e_salario-2040w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/better images/03_relacao_entre_credito_solicitado_e_salario.png"
+                  width="3570"
+                  height="1515"
+                  alt="Scatter plot of annual income and credit amount for clients who pay on time and clients who pay late"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>In this chart, <strong>each point represents a bank client</strong>. The insight is not as obvious as it may have seemed, but it is still visible that <strong>on-time clients request relatively similar amounts of credit</strong> compared to those who pay late, while including more high-income members. This indicates that <strong>income may be an important factor in predicting late payments.</strong> Next, let's briefly look at which types of products this credit has been used for.</p>
+
+            <figure class="home-credit-media home-credit-media--composite">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/better%20images/09_credito_medio_e_quantidade_por_categoria_de_produto-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/better%20images/09_credito_medio_e_quantidade_por_categoria_de_produto-2040w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/better images/09_credito_medio_e_quantidade_por_categoria_de_produto.png"
+                  width="3960"
+                  height="2420"
+                  alt="Relationship between credit amount and number of products by category"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>This chart helps <strong>confirm some earlier findings</strong>: most clients really <strong>do not make large purchases</strong>. Most purchases are for electronics, and only a minority for tourism and medicine, reinforcing the idea of a <strong>low- to middle-income client base</strong>; expensive goods are rarely offered as a reason for credit. Now let's see whether anything can be drawn from the <strong>clients' family characteristics.</strong></p>
+
+            <figure class="home-credit-media home-credit-media--composite">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/better%20images/05_perfil_social_e_familiar_dos_clientes-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/better%20images/05_perfil_social_e_familiar_dos_clientes-2040w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/better images/05_perfil_social_e_familiar_dos_clientes.png"
+                  width="5956"
+                  height="2487"
+                  alt="Horizontal bars with the social and family profile of clients who pay on time and clients who pay late"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>In this chart, we can see that <strong>there are few differences between on-time and late clients</strong>; overall, the <strong>client base follows the same pattern in all four charts</strong>. Most clients are <strong>single</strong>, live with <strong>few people at home</strong> and <strong>usually have no children</strong>. There is a small increase in the late payment rate for clients with more children, but <strong>it is a small percentage</strong>.</p>
+
+            <p><strong>In summary:</strong></p>
+            <ul class="home-credit-question-list">
+              <li>Most clients do not have higher education, but those who do pay late less often.</li>
+              <li>Clients in higher positions at work tend to pay late less often.</li>
+              <li>Late and on-time clients request similar amounts of credit, and clients with higher incomes tend to pay late less often, although the difference is not very significant.</li>
+              <li>The products most often financed with credit are electronics, and they are not expensive. More expensive requests, for vehicles, medicine and tourism, are almost nonexistent or denied.</li>
+              <li>Family factors do not affect late payment, and most clients are single, with few family members.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter" id="preparacao" aria-labelledby="titulo-preparacao">
+        <div class="container">
+          <header class="home-credit-chapter-header">
+            <p>PART 3</p>
+            <div>
+              <h2 id="titulo-preparacao">Predictive Modeling with Python</h2>
+            </div>
+          </header>
+
+          <article class="home-credit-process">
+            <h3>1 - Data Modeling</h3>
+            <p>The dataset provided by the company contains some useless information, information that can be aggregated, missing information that needs to be filled in, and outliers that can hurt the model. After all these transformations, we still need to build a machine learning model that delivers good results for the company. Below is a view of the dataset provided, to make the process easier to follow.</p>
+
+            <figure class="home-credit-media home-credit-media--dataset">
+              <img
+                src="../../../assets/projects/home-credit/home-credit-dataset-overview.webp"
+                width="2000"
+                height="338"
+                alt="Initial view of the columns in the Home Credit dataset"
+                loading="lazy"
+                decoding="async">
+            </figure>
+          </article>
+
+          <article class="home-credit-process">
+            <h3>2 - Data Cleaning</h3>
+            <p>In this first piece of code, I removed some columns I considered irrelevant for modeling. To reduce the dimensionality of the dataset and avoid redundancy, I combined certain columns by averaging them, reducing the total number of variables without losing significant information. Working with a leaner, optimized dataset can contribute to better performance.</p>
+
+            <figure class="home-credit-media home-credit-media--wide">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/wix-part3-cleaning-columns-hq-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/wix-part3-cleaning-columns-hq-1760w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/wix-part3-cleaning-columns-hq.png"
+                  width="753"
+                  height="187"
+                  alt="Python code for removing and aggregating columns"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>Next, I created two functions to find missing values in the dataset. One returns a Series ranking the columns with the most missing values, and the other creates two charts, one for missing values in numerical columns and another for object columns. I then dropped the columns with more than 60% of their values missing and chose to fill in the rest with different strategies, explained right below.</p>
+
+            <figure class="home-credit-media home-credit-media--medium">
+              <img
+                src="../../../assets/projects/home-credit/wix-part3-missing-values.png"
+                width="670"
+                height="231"
+                alt="Charts with the percentage of missing values in numerical and categorical columns"
+                loading="lazy"
+                decoding="async">
+            </figure>
+
+            <p>Since filling in columns with more than 60% missing values could lead to inconsistencies or a loss of data quality, I chose to remove them entirely. For the remaining columns, I used a strategic imputation approach: in numerical variables, I replaced missing values with the column mean, and in object variables I filled them with the column's most frequent string. Here is the code used in this process:</p>
+
+            <figure class="home-credit-media home-credit-media--medium">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/wix-part3-imputation-numeric-hq-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/wix-part3-imputation-numeric-hq-1440w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/wix-part3-imputation-numeric-hq.png"
+                  width="485"
+                  height="321"
+                  alt="Python code to find and impute missing values"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>Next, I removed outliers using a filtering function applied to specific columns with potential outliers. Then I encoded the object variables, since the models only accept numbers: columns with only two string values were turned into zeros and ones, and an education level column was transformed with an OrdinalEncoder, keeping an order of importance.</p>
+
+            <figure class="home-credit-media home-credit-media--medium">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/wix-part3-imputation-categorical-hq-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/wix-part3-imputation-categorical-hq-1440w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/wix-part3-imputation-categorical-hq.png"
+                  width="485"
+                  height="321"
+                  alt="Python code for removing outliers and encoding categorical variables"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+          </article>
+
+          <article class="home-credit-process">
+            <h3>3 - Machine Learning Model</h3>
+            <p>I started by preprocessing the data, selecting the variables the model would be trained on and the target it would predict. Then I applied an undersampling technique called NearMiss, since there were fewer people paying late than people paying on time; this helps balance the classes and keeps the model from misreading the information. Finally, I standardized the data with StandardScaler.</p>
+
+            <figure class="home-credit-media home-credit-media--wide">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/wix-part3-cleaning-code-hq-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/wix-part3-cleaning-code-hq-1760w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/wix-part3-cleaning-code-hq.png"
+                  width="600"
+                  height="225"
+                  alt="Python code for splitting the data, applying NearMiss and standardizing"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>Next, I defined the LightGBM hyperparameters, using the DART method to improve regularization and avoid overfitting. I also tuned the learning rate, the number of leaves and the fraction of features used in each iteration. To handle class imbalance, I applied the scale_pos_weight parameter, giving more weight to the minority class. After that, I ran a stratified 5-fold cross-validation, keeping the class proportions in each split. During training, the model ran for up to 600 iterations, always monitoring AUC to evaluate its performance. Finally, I identified the optimal number of iterations by looking at the point where AUC reached its maximum, so the model would perform as well as possible.</p>
+
+            <figure class="home-credit-media home-credit-media--wide">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/wix-part3-preprocessing-code-hq-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/home-credit/wix-part3-preprocessing-code-hq-1760w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/home-credit/wix-part3-preprocessing-code-hq.png"
+                  width="600"
+                  height="199"
+                  alt="Python code for configuring LightGBM with DART and running cross-validation"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+          </article>
+
+          <article class="home-credit-process" id="avaliacao">
+            <h3>4 - Model Results</h3>
+            <p>With the model trained, we need to define how we will measure its success, and we will use 3 metrics for that: precision, recall and AUC (Area Under the Curve). Since the data is imbalanced, the trade-off between precision and recall is very costly, so we focus on AUC-ROC, which measures how well the model separates the classes. An AUC of 0.5 would be exactly like a random model, so we want to get as close to 1.0 as possible. This was the metric used in the competition that created the Home Credit Group challenge, where the record is 0.80570.</p>
+
+            <div class="home-credit-gallery home-credit-gallery--two">
+              <figure class="home-credit-media">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/home-credit/wix-part3-lightgbm-code-hq-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/home-credit/wix-part3-lightgbm-code-hq-870w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/home-credit/wix-part3-lightgbm-code-hq.png"
+                    width="556"
+                    height="281"
+                    alt="Python code for prediction, metric calculation and building the ROC curve"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+              </figure>
+
+              <figure class="home-credit-media">
+                <img
+                  src="../../../assets/projects/home-credit/wix-part3-baseline-metrics.png"
+                  width="333"
+                  height="264"
+                  alt="ROC curve of the LightGBM model with an AUC of about 0.764"
+                  loading="lazy"
+                  decoding="async">
+              </figure>
+            </div>
+
+            <p>In the end, we reached an AUC of 0.764, which means our model has a 76.4% chance of ranking a client who will pay late above a client who will not. The precision and recall metrics are included in the project code, but because of the strong class imbalance, the trade-off between these two metrics was always very costly, with one value always much higher than the other.</p>
+
+            <p>Comparing the models, the previous one had an AUC of 0.719. But how does this affect the company's profit? Even though one number is higher than the other, what matters most is the practical impact. The image below illustrates the difference: although the old model has a slightly higher overall hit rate, our new model stands out at identifying clients who default, making it more effective at mitigating financial risk, which we calculate next:</p>
+
+            <div class="home-credit-gallery home-credit-gallery--metrics">
+              <figure class="home-credit-media">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/home-credit/wix-part3-new-model-metrics-360w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/home-credit/wix-part3-new-model-metrics.png"
+                    width="360"
+                    height="223"
+                    alt="Classification metrics of the previous model, with four late payments correctly identified"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+              </figure>
+
+              <figure class="home-credit-media">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/home-credit/wix-part3-model-comparison-360w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/home-credit/wix-part3-model-comparison.png"
+                    width="360"
+                    height="223"
+                    alt="Classification metrics of the new model, with 222 late payments correctly identified"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+              </figure>
+            </div>
+
+            <p>Even with a small sample of clients, our new model showed a significant improvement in predicting late payments. While the old model correctly identified only 4 clients, the new model got 222 right, an increase of 5,450% in correctly identified late payers. Although both models still need improvement, this update is already a significant step forward for the company. Considering that, on average, each defaulting client requests ¥557,778 in credit and pays 4 months late, the bank can face an average loss of up to ¥100,400.</p>
+
+            <figure class="home-credit-media home-credit-media--wide">
+              <img
+                src="../../../assets/projects/home-credit/wix-part3-results-summary.png"
+                width="704"
+                height="59"
+                alt="Table comparing predicted clients, estimated cost per client and total cost between the models"
+                loading="lazy"
+                decoding="async">
+            </figure>
+
+            <p id="sintese">In the end, the new model predicted 218 more clients who could cause losses, a financial difference of more than ¥21.88 million in potential losses identified, and this within a scope of only 30,752 predictions. The number should only grow as new samples come in and the model improves. Thank you for reading.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <section class="case-next" aria-label="Next case study">
+    <a class="container" href="../imdb/index.html">
+      <span>Next study</span>
+      <strong>Film industry analysis</strong>
+      <i aria-hidden="true">→</i>
+    </a>
+  </section>
+
+  <footer class="case-footer">
+    <div class="container">
+      <p>© 2026 Angel Mansilla</p>
+      <a href="#topo">Back to top ↑</a>
+    </div>
+  </footer>
+  <script src="../../../mobile-media.js?v=20261108" defer></script>
+</body>
+</html>

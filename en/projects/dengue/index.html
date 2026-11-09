@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Case study of a temporal pipeline built on SINAN data, with an ensemble, predictive evaluation and a web application for the epidemiological classification of arboviruses.">
+  <meta name="theme-color" content="#ffffff">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Epidemiological Arbovirus Classifier | Angel Mansilla">
+  <meta property="og:description" content="Data preparation, exploratory analysis, modeling, temporal evaluation and a web application built on SINAN data.">
+  <meta property="og:site_name" content="Angel Mansilla">
+  <meta property="og:image" content="https://angelmansilla.com.br/assets/og/dengue.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SINAN logo with the title of the arbovirus case study">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Epidemiological Arbovirus Classifier | Angel Mansilla</title>
+
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" href="../../../assets/projects/dengue/sinan-logo-1586w.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../../case-study.css">
+  <link rel="stylesheet" href="../../../portfolio-case-standard.css">
+  <link rel="stylesheet" href="../../../projetos/dengue/dengue-standard.css?v=20260712">
+  <link rel="stylesheet" href="../../../mobile-media.css?v=20260801" media="(max-width: 700px)">
+  <!-- idioma: gerado por scripts/gerar_ingles.py -->
+    <link rel="canonical" href="https://angelmansilla.com.br/en/projects/dengue/">
+    <link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/dengue/">
+    <link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/dengue/">
+    <link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/dengue/">
+    <meta property="og:url" content="https://angelmansilla.com.br/en/projects/dengue/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <script>
+      (function () {
+        var atual = "en";
+        var destino = "../../../projetos/dengue/";
+        document.addEventListener("click", function (evento) {
+          var link = evento.target.closest && evento.target.closest("[data-idioma]");
+          if (!link) return;
+          try {
+            localStorage.setItem("idioma", link.getAttribute("data-idioma"));
+          } catch (erro) {}
+        });
+        if (/bot|crawl|spider|slurp|facebookexternalhit|embedly|preview|lighthouse/i.test(navigator.userAgent)) return;
+        var escolhido = null;
+        try {
+          escolhido = localStorage.getItem("idioma");
+        } catch (erro) {}
+        if (!escolhido) {
+          try {
+            if (document.referrer && new URL(document.referrer).origin === location.origin) return;
+          } catch (erro) {}
+          var lista = navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language || ""];
+          escolhido = "en";
+          for (var i = 0; i < lista.length; i++) {
+            var codigo = String(lista[i]).toLowerCase();
+            if (codigo.indexOf("pt") === 0) { escolhido = "pt"; break; }
+            if (codigo.indexOf("en") === 0) { escolhido = "en"; break; }
+          }
+        }
+        if (escolhido !== atual && (escolhido === "pt" || escolhido === "en")) {
+          location.replace(destino + location.hash);
+        }
+      })();
+    </script>
+    <!-- /idioma -->
+  </head>
+
+<body class="case-page portfolio-case-study dengue-case dengue-refactor" id="topo">
+  <a class="skip-link" href="#conteudo">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="masthead">
+        <a class="site-name" href="../../index.html" aria-label="Angel Mansilla, home">
+          Angel Mansilla
+        </a>
+        <p>Machine Learning Engineering · Data Science</p>
+      </div>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="../../index.html#sobre">About</a>
+        <a href="../../index.html#projetos">Projects</a>
+        <a href="../../index.html#experiencia">Experience</a>
+        <a href="../../index.html#contato">Contact</a>
+        <a
+          class="nav-external"
+          href="https://github.com/Ang3k"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub <span aria-hidden="true">↗</span>
+        </a>
+        <!-- seletor de idioma --><a class="nav-lang" href="../../../projetos/dengue/" hreflang="pt-BR" lang="pt-BR" data-idioma="pt" aria-label="Ler esta página em português">PT</a><!-- /seletor de idioma -->
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="dengue-cover" aria-labelledby="titulo-projeto">
+      <img
+        src="../../../assets/projects/dengue/sinan-logo-1586w.webp"
+        width="1586"
+        height="992"
+        alt=""
+        fetchpriority="high"
+        decoding="async">
+      <div class="dengue-cover-shade" aria-hidden="true"></div>
+      <div class="dengue-cover-copy">
+        <h1 id="titulo-projeto">Epidemiological Arbovirus Classifier</h1>
+      </div>
+    </section>
+
+    <article class="dengue-case-content">
+      <section class="dengue-overview" aria-label="Case study sections">
+        <nav class="dengue-chapter-nav" aria-label="Case study sections">
+          <a href="#contexto"><span class="dengue-chapter-number">01</span><span class="dengue-chapter-label">Introduction to the Project Context</span></a>
+          <a href="#tratamento"><span class="dengue-chapter-number">02</span><span class="dengue-chapter-label">Data Preparation</span></a>
+          <a href="#eda"><span class="dengue-chapter-number">03</span><span class="dengue-chapter-label">Exploratory Data Analysis</span></a>
+          <a href="#modelagem"><span class="dengue-chapter-number">04</span><span class="dengue-chapter-label">Predictive Modeling with Machine Learning</span></a>
+          <a href="#metricas"><span class="dengue-chapter-number">05</span><span class="dengue-chapter-label">Metrics and Model Evaluation</span></a>
+          <a href="#aplicacao"><span class="dengue-chapter-number">06</span><span class="dengue-chapter-label">Web Application and Deployment</span></a>
+        </nav>
+      </section>
+
+      <section class="home-credit-chapter dengue-chapter" id="contexto" aria-labelledby="titulo-contexto">
+        <div class="container">
+          <header class="home-credit-chapter-header dengue-chapter-header">
+            <p>PART 1</p>
+            <div>
+              <h2 id="titulo-contexto">Introduction to the Project Context</h2>
+            </div>
+          </header>
+
+          <article class="home-credit-story dengue-story">
+            <h3>Project Context</h3>
+            <p>Arboviruses are diseases caused by viruses transmitted by arthropods, mainly mosquitoes and ticks, and they can pose serious health risks. SINAN, Brazil's Notifiable Diseases Information System, holds millions of historical records on dengue, zika and chikungunya, including symptoms such as fever, rash and retro-orbital pain, and epidemiological information such as city, occupation and education level.</p>
+            <p>These data help identify patterns beyond the symptoms. Region, education level and pregnancy, for example, can contribute to classifying cases. During the project, dengue was observed more often among women, a pattern also discussed in the news and possibly related to daily habits and clothing, although its cause is not conclusive.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media">
+              <picture class="mobile-picture">
+                <source srcset="../../../assets/projects/dengue/01-pipeline-projeto-1462w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/dengue/01-pipeline-projeto.png"
+                  width="1462"
+                  height="602"
+                  alt="Project flow: SINAN data, feature preparation, training on 2017 to 2019, optimization with Optuna, temporal evaluation on 2021 and model deployment through an API"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>That is where the idea came from: a support tool that could look at all of this information at once and produce a classification score. The goal was never to build an automatic diagnosis, but something to help specialists, or perhaps to support teams during disease "peaks" and better decide who should get an in-person screening quickly.</p>
+            <p>The intended pipeline was to extract the data from SINAN, apply the necessary variable treatments, train, validate and test with a temporal split, use Optuna to find the best hyperparameters, and save everything for the application, whose main focus is patient screening. Each of these steps is described in the following sections of this report.</p>
+          </article>
+
+          <article class="home-credit-story dengue-story">
+            <h3>Data Dictionary</h3>
+            <div class="dengue-dictionary" aria-label="Data dictionary">
+              <dl>
+                <div><dt><code>final_classification</code>:</dt><dd>final case classification — confirmed or discarded.</dd></div>
+                <div><dt><code>age_years</code>:</dt><dd>patient's age in years.</dd></div>
+                <div><dt><code>sex</code>:</dt><dd>patient's recorded sex.</dd></div>
+                <div><dt><code>race</code>:</dt><dd>recorded race or skin color.</dd></div>
+                <div><dt><code>education_level</code>:</dt><dd>education level.</dd></div>
+                <div><dt><code>occupation_code</code>:</dt><dd>patient's occupation according to the CBO, the Brazilian Classification of Occupations.</dd></div>
+                <div><dt><code>pregnancy</code>:</dt><dd>indicates whether the patient was pregnant.</dd></div>
+                <div><dt><code>residence_state</code>:</dt><dd>state of residence.</dd></div>
+                <div><dt><code>residence_municipality</code>:</dt><dd>municipality of residence.</dd></div>
+                <div><dt><code>residence_health_region</code>:</dt><dd>health region of residence.</dd></div>
+                <div><dt><code>fever</code>:</dt><dd>presence of fever.</dd></div>
+                <div><dt><code>myalgia</code>:</dt><dd>presence of muscle pain.</dd></div>
+                <div><dt><code>headache</code>:</dt><dd>presence of headache.</dd></div>
+                <div><dt><code>rash</code>:</dt><dd>presence of rash or skin spots.</dd></div>
+                <div><dt><code>vomiting</code>:</dt><dd>presence of vomiting.</dd></div>
+                <div><dt><code>nausea</code>:</dt><dd>presence of nausea.</dd></div>
+                <div><dt><code>back_pain</code>:</dt><dd>presence of back pain.</dd></div>
+                <div><dt><code>conjunctivitis</code>:</dt><dd>presence of conjunctivitis.</dd></div>
+                <div><dt><code>arthritis</code>:</dt><dd>presence of arthritis.</dd></div>
+                <div><dt><code>joint_pain</code>:</dt><dd>presence of joint pain.</dd></div>
+                <div><dt><code>petechiae</code>:</dt><dd>presence of small hemorrhagic spots on the skin.</dd></div>
+                <div><dt><code>retro_orbital_pain</code>:</dt><dd>presence of pain behind the eyes.</dd></div>
+                <div><dt><code>number_of_symptoms</code>:</dt><dd>number of symptoms present.</dd></div>
+                <div><dt><code>number_of_reported_symptoms</code>:</dt><dd>number of symptoms that were reported.</dd></div>
+                <div><dt><code>days_to_notification</code>:</dt><dd>number of days between symptom onset and notification.</dd></div>
+                <div><dt><code>notification_month</code>:</dt><dd>month in which the case was notified.</dd></div>
+                <div><dt><code>symptom_epi_week_number</code>:</dt><dd>epidemiological week of symptom onset.</dd></div>
+                <div><dt><code>symptom_month</code>:</dt><dd>month in which symptoms began.</dd></div>
+                <div><dt><code>local_density</code>:</dt><dd>volume of notifications in the municipality over the previous four weeks.</dd></div>
+                <div><dt><code>local_positivity</code>:</dt><dd>recent share of confirmed cases in the municipality.</dd></div>
+              </dl>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter dengue-chapter" id="tratamento" aria-labelledby="titulo-tratamento">
+        <div class="container">
+          <header class="home-credit-chapter-header dengue-chapter-header">
+            <p>PART 2</p>
+            <div>
+              <h2 id="titulo-tratamento">Data Preparation</h2>
+            </div>
+          </header>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Initial state of the SINAN data</h3>
+            <p>One important point first: there is a term called "GIGO", short for "garbage in, garbage out", which captures how much a consistent treatment of the SINAN data matters. Before treatment, the data had several problems that would get in the way of both data analysis and a sound machine learning pipeline. Among them were many columns with no use for prediction.</p>
+            <p>Some of these columns could "leak" the classification, while others simply would not help because of what the column represents. There were also empty fields or fields marked as ignored, each year showed a different pattern in some columns, and after 2021 there is no data with the "Discarded for arbovirus X" classification, which is why data was only extracted, and used for testing, up to that year.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media">
+              <picture class="mobile-picture">
+                <source srcset="../../../assets/projects/dengue/02-amostra-dados-sinan-988w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/dengue/02-amostra-dados-sinan.png"
+                  width="988"
+                  height="322"
+                  alt="Tabular sample of raw SINAN data with dates, epidemiological week, municipality, region, health unit and missing values"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Selecting the years</h3>
+            <ul class="dengue-method-list">
+              <li>The years 2014 to 2016 had missing or incomplete symptoms.</li>
+              <li>Using them could teach the model differences in how the forms were filled out, rather than differences between confirmed and discarded cases.</li>
+              <li>For that reason, training used the most consistent data, from 2017 to 2019.</li>
+              <li>The year 2020 was set aside to tune the models' decisions.</li>
+              <li>The year 2021 was held out for the final evaluation.</li>
+            </ul>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <picture class="mobile-picture">
+                <source srcset="../../../assets/projects/dengue/03-divisao-temporal-1760w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/dengue/03-divisao-temporal.png"
+                  width="2296"
+                  height="528"
+                  alt="Code that selects 2017 to 2019 for training, 2020 for validation and 2021 for testing"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Case classification</h3>
+            <ul class="dengue-method-list">
+              <li>The original classification codes were simplified into two groups: confirmed and discarded.</li>
+              <li>Cases without a conclusion or with an inconclusive classification were not used to train the models.</li>
+              <li>That way, every record used had a clear answer for what the model was supposed to learn.</li>
+            </ul>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/dengue/04-classificacao-casos-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/dengue/04-classificacao-casos-1760w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/dengue/04-classificacao-casos.png"
+                  width="2272"
+                  height="1156"
+                  alt="Code that standardizes SINAN classification codes into confirmed and discarded cases"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Symptoms</h3>
+            <ul class="dengue-method-list">
+              <li>Symptoms were represented as present, absent or not reported.</li>
+              <li>“Did not have a fever” was kept distinct from “we do not know whether they had a fever”.</li>
+              <li>Besides the individual symptoms, the number of symptoms present was calculated.</li>
+              <li>The number of symptoms actually filled in was also recorded.</li>
+              <li>Combinations were created to represent symptoms that appear together.</li>
+              <li>Rash and retro-orbital pain received a specific summary because they showed relevant differences between confirmed and discarded cases.</li>
+            </ul>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/dengue/05-tratamento-sintomas-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/dengue/05-tratamento-sintomas-1760w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/dengue/05-tratamento-sintomas.png"
+                  width="3424"
+                  height="1156"
+                  alt="Code that normalizes symptoms, preserves unknown values and creates counts and combinations of clinical signs"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Time and seasonality</h3>
+            <ul class="dengue-method-list">
+              <li>The number of days between symptom onset and notification was calculated.</li>
+              <li>Month and epidemiological week were included because dengue circulation changes throughout the year.</li>
+              <li>This information was turned into cyclical variables.</li>
+              <li>This was needed because the calendar is a cycle: December is close to January, even though 12 looks far from 1 numerically.</li>
+              <li>The same logic was applied to epidemiological weeks.</li>
+            </ul>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/dengue/06-tempo-sazonalidade-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/dengue/06-tempo-sazonalidade-1760w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/dengue/06-tempo-sazonalidade.png"
+                  width="3136"
+                  height="1336"
+                  alt="Code that creates the time to notification and cyclical encodings of month and epidemiological week"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Demographic and location information</h3>
+            <p>Demographic characteristics are a very important part of the treatment. Education levels were grouped into similar levels and arranged on an increasing scale, so the variable represents a progression from missing or unreported schooling up to higher levels such as college, master's and doctorate.</p>
+            <ul class="dengue-method-list">
+              <li>Columns such as sex, race and pregnancy were transformed with one-hot encoding, which avoids implying an unrealistic progression</li>
+              <li>Since there were many occupations, following the CBO, those with few members were grouped into "Other"</li>
+            </ul>
+            <p>Location data was kept at three levels: state, municipality and health region. This is useful because different places have characteristics that can make it easier for these arboviruses to spread and infect people.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/dengue/07-dados-demograficos-localizacao-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/dengue/07-dados-demograficos-localizacao-1760w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/dengue/07-dados-demograficos-localizacao.png"
+                  width="3024"
+                  height="1156"
+                  alt="Code that treats education level, sex, race, pregnancy, occupation and location variables"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Epidemiological context</h3>
+            <p>One of the most interesting transformations in the project was representing what was happening in the municipality before each notification. This helps capture the local "recent scenario" of arbovirus circulation, and two main pieces of information were created for it:</p>
+            <ul class="dengue-method-list">
+              <li>Volume of notifications in the municipality over the previous four weeks</li>
+              <li>Share of confirmed cases over the same period</li>
+            </ul>
+            <p>The idea is that a person's symptoms can mean different things depending on recent dengue circulation in that area. Only previous weeks were considered, without using the patient's own result. This point deserves its own section because it connects data treatment to the project's epidemiological logic, and it was very useful for increasing the models' overall predictive power.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/dengue/08-contexto-epidemiologico-mobile.webp" type="image/webp">
+                <source srcset="../../../assets/projects/dengue/08-contexto-epidemiologico-1760w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/dengue/08-contexto-epidemiologico.png"
+                  width="3288"
+                  height="1428"
+                  alt="Code that counts notifications and confirmed cases over the previous four weeks per municipality, producing local density and positivity"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter dengue-chapter" id="eda" aria-labelledby="titulo-eda">
+        <div class="container">
+          <header class="home-credit-chapter-header dengue-chapter-header">
+            <p>PART 3</p>
+            <div>
+              <h2 id="titulo-eda">Exploratory Data Analysis</h2>
+              <p>This section presents the exploratory analysis of the data used in the project. Before training the models, it is important to understand how the cases are distributed and which characteristics seem to separate confirmed from discarded cases.</p>
+              <p>The analysis is guided by a few questions. First, we look at an expected behavior or a hypothesis about dengue. Then we use the data to check whether that trend also appears in the SINAN records. Finally, we connect the findings to the decisions made with the models.</p>
+            </div>
+          </header>
+
+          <div class="dengue-analysis-list">
+            <article class="home-credit-analysis dengue-analysis">
+              <p class="home-credit-block-label">Analysis · 01</p>
+              <h3>At what times of year does dengue appear most often? Does the seasonality in the data match the expected epidemiological behavior?</h3>
+              <p>It is well known in epidemiology that dengue tends to appear more often at the end of summer and the beginning of autumn (in Brazil, a Southern Hemisphere country). Temperature, humidity and standing water can favor mosquito development, making certain periods of the year more favorable for the disease to circulate.</p>
+              <p>Still, we need to check whether this behavior shows up clearly in the data used in the project. If notifications really are concentrated in certain months, that information can help both to understand how dengue behaves and to help the models recognize the context in which each case happened.</p>
+
+              <figure class="home-credit-media home-credit-media--wide dengue-media">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/dengue/09-casos-por-mes-2150w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/dengue/09-casos-por-mes.png"
+                    width="2181"
+                    height="1077"
+                    alt="Bar chart of monthly notifications from 2017 to 2019: growth from January to May, a peak of 620 thousand in May and lower volume from August to November"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+                <figcaption>Total Dengue Cases per Month — 2017–2019</figcaption>
+              </figure>
+
+              <p>The chart shows the total number of notifications recorded in each month between 2017 and 2019. Cases are clearly not spread evenly across the year. There is a build-up during summer, followed by a much larger concentration at the beginning of autumn.</p>
+              <div class="dengue-insight-grid">
+                <section class="dengue-insight-card">
+                  <h4>Absolute peak</h4>
+                  <p>May accounts for 620 thousand cases, the highest volume of the whole period. April (578 thousand) and March (396 thousand) complete the autumn peak, which accounts for 60% of annual notifications.</p>
+                  <p>This concentration shows that the March-to-May period is not just a small seasonal variation. It holds most of the notifications observed over the three years analyzed.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Summer build-up</h4>
+                  <p>January and February already signal the outbreak (177 and 258 thousand), showing that transmission starts before the peak of the heat.</p>
+                  <p>This shows that growth does not happen suddenly in March. Notifications start rising during summer and keep climbing until they reach their highest level in May.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Winter/spring trough</h4>
+                  <p>A sharp drop from August to October (69 to 85 thousand cases), but it never reaches zero: Aedes stays active all year round.</p>
+                  <p>Even in the lowest months, there are still tens of thousands of records. Seasonality is therefore a change in intensity, not the complete disappearance of the disease.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>What does this analysis show?</h4>
+                  <p>The trend in the data matches the expected epidemiological behavior: cases start growing during summer, peak at the beginning of autumn and decline through winter and spring.</p>
+                </section>
+              </div>
+            </article>
+
+            <article class="home-credit-analysis dengue-analysis">
+              <p class="home-credit-block-label">Analysis · 02</p>
+              <h3>Which symptoms appear most often in confirmed cases? Are the most common symptoms also the best at telling dengue apart?</h3>
+              <p>When we think about identifying dengue, some symptoms come to mind right away, such as fever, headache and myalgia. Since they are known as common manifestations of the disease, it would be reasonable to assume they are also enough to separate confirmed from discarded cases.</p>
+              <p>However, a symptom can be very frequent among confirmed cases and, at the same time, also present in people who received another classification. So it is not enough to look at how many people had the symptom; we also need to compare its frequency between the two groups.</p>
+
+              <figure class="home-credit-media home-credit-media--wide dengue-media">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/dengue/10-sintomas-por-classificacao-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/dengue/10-sintomas-por-classificacao-2150w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/dengue/10-sintomas-por-classificacao.png"
+                    width="2180"
+                    height="1278"
+                    alt="Chart comparing symptom frequency in confirmed and discarded cases, with fever, headache and myalgia the most frequent and the largest relative difference in rash"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+                <figcaption>Most Frequent Symptoms by Classification</figcaption>
+              </figure>
+
+              <p>The chart compares the frequency of each symptom between confirmed and discarded cases. Overall, symptoms appear more often in confirmed cases, but the gap between the groups varies a lot.</p>
+              <div class="dengue-insight-grid">
+                <section class="dengue-insight-card">
+                  <h4>The dominant triad</h4>
+                  <p>Fever (85.9%), headache (80.2%) and myalgia (79.6%) are all above 79% among confirmed cases. They are almost universal and not very discriminating on their own.</p>
+                  <p>These symptoms help characterize the overall clinical picture, but their high frequency does not mean they can settle the classification alone. Since they also appear in discarded cases, their presence on its own provides only part of the information needed.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Largest proportional difference</h4>
+                  <p>Rash has the largest relative gap between the classes: 25.4% in confirmed vs 15.6% in discarded cases (+63% relative). One of the most distinguishing signs.</p>
+                  <p>Even though it appears in fewer patients than fever, headache or myalgia, rash shows a larger proportional difference between the classifications. This shows that a less frequent symptom can be more useful for telling the groups apart.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Retro-orbital pain</h4>
+                  <p>37.6% in confirmed vs 26.8% in discarded cases, a substantial difference consistent with the classic clinical picture of dengue.</p>
+                  <p>Like rash, retro-orbital pain is not the most common symptom, but it shows a relevant difference between confirmed and discarded cases.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>So which symptom identifies dengue?</h4>
+                  <p>The analysis does not point to a single symptom that determines the classification. Fever, headache and myalgia are very frequent, while rash and retro-orbital pain show larger proportional differences. The value of this information appears mainly when it is considered together.</p>
+                </section>
+              </div>
+            </article>
+
+            <article class="home-credit-analysis dengue-analysis">
+              <p class="home-credit-block-label">Analysis · 03</p>
+              <h3>Is there a difference in the distribution of confirmed cases between men and women? What might help explain it?</h3>
+              <p>After looking at when cases happen and which symptoms appear most often, it is also important to look at who the people in the confirmed records are.</p>
+              <p>Sex alone does not determine whether someone will have dengue, but its distribution can reveal differences in exposure, routine, occupation and care-seeking. The first step is to check whether men and women appear in similar proportions among confirmed cases.</p>
+
+              <figure class="home-credit-media home-credit-media--wide dengue-media">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/dengue/11-casos-por-sexo-1763w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/dengue/11-casos-por-sexo.png"
+                    width="1763"
+                    height="980"
+                    alt="Chart comparing confirmed cases by sex: 933,052 female records, or 55.7%, and 743,044 male records, or 44.3%"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+                <figcaption>Distribution of Confirmed Cases by Sex</figcaption>
+              </figure>
+
+              <p>The chart shows a larger share of women among confirmed cases in the period analyzed.</p>
+              <div class="dengue-insight-grid">
+                <section class="dengue-insight-card">
+                  <h4>Distribution</h4>
+                  <p>933,052 female cases (55.7%) versus 743,044 male cases (44.3%), a difference of about 190 thousand cases over 3 years.</p>
+                  <p>The difference is not small: more than half of the confirmed records belong to women. This raises a new question: could this distribution be related to the environments and activities in these people's daily lives?</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Exposure hypothesis</h4>
+                  <p>According to the Brazilian newspaper Estado de Minas, the higher share of women may be linked to exposure at home. Aedes aegypti breeds mainly in household water containers, so people who spend more time at home are more exposed.</p>
+                  <p>This hypothesis can be explored using another piece of information in the dataset: occupation. If home-related activities also appear frequently among women, we will have one more piece of evidence for this trend.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Interaction with occupation</h4>
+                  <p>"Homemaker" leads among women (77,874 cases), reinforcing the hypothesis that the home environment is the main source of exposure for women.</p>
+                  <p>The analysis by sex, therefore, does not end with the difference in numbers. It leads to a second analysis, related to the recorded occupations and possible exposure environments.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Implication for the model</h4>
+                  <p>Sex is a useful variable for the model, both alone and combined with occupation and location. These relationships let the model look at the patient's profile more broadly, instead of relying only on symptoms.</p>
+                </section>
+              </div>
+            </article>
+
+            <article class="home-credit-analysis dengue-analysis">
+              <p class="home-credit-block-label">Analysis · 04</p>
+              <h3>Are the most frequent occupations the same for men and women? Can the occupational profile reveal different forms of exposure?</h3>
+              <p>The difference between men and women calls for an analysis of occupations. Since certain professions involve different environments and routines, they can help explain some of the exposure patterns in the data.</p>
+              <p>To do this, occupations were split by sex. This makes it possible to see which activities appear most often in each group and whether the resulting profiles are similar or different.</p>
+
+              <div class="home-credit-gallery home-credit-gallery--two dengue-occupation-gallery">
+                <figure class="home-credit-media dengue-media">
+                  <picture class="mobile-picture">
+                    <source srcset="../../../assets/projects/dengue/12-ocupacoes-feminino-1060w.webp" type="image/webp">
+                    <img
+                      src="../../../assets/projects/dengue/12-ocupacoes-feminino.png"
+                      width="1979"
+                      height="1218"
+                      alt="Chart of occupations with the most confirmed cases among women, led by homemakers and followed by students"
+                      loading="lazy"
+                      decoding="async">
+                  </picture>
+                  <figcaption>Occupations — Female</figcaption>
+                </figure>
+                <figure class="home-credit-media dengue-media">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/dengue/13-ocupacoes-masculino-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/dengue/13-ocupacoes-masculino-1060w.webp" type="image/webp">
+                    <img
+                      src="../../../assets/projects/dengue/13-ocupacoes-masculino.png"
+                      width="1979"
+                      height="1218"
+                      alt="Chart of occupations with the most confirmed cases among men, led by students and including bricklayers and farmworkers"
+                      loading="lazy"
+                      decoding="async">
+                  </picture>
+                  <figcaption>Occupations — Male</figcaption>
+                </figure>
+              </div>
+
+              <p>Among women, "Homemaker" ranks first. Students also make up a large share of the confirmed cases.</p>
+              <p>Among men, students also stand out, but the rest of the distribution shows occupations different from those seen among women.</p>
+              <div class="dengue-insight-grid">
+                <section class="dengue-insight-card">
+                  <h4>Exposure at home</h4>
+                  <p>Homemaker leads among women with 77,874 cases.</p>
+                  <p>This result connects to the previous analysis, which showed a larger share of women among confirmed cases. The home environment appears again as information possibly related to the exposure profile.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Students in both groups</h4>
+                  <p>Leads among men (59k) and ranks 2nd among women (60k).</p>
+                  <p>The high share of students in both groups shows that some occupational profiles are shared, even when the overall distribution differs.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>Outdoor exposure</h4>
+                  <p>Bricklayer and farmworker appear only among men.</p>
+                  <p>These occupations involve routines different from the home exposure seen among women. They may involve more time outdoors and contact with places that offer different conditions for the mosquito.</p>
+                </section>
+                <section class="dengue-insight-card">
+                  <h4>What does comparing the two charts show?</h4>
+                  <p>Confirmed cases show different occupational profiles for men and women. Some occupations, such as students, appear in both groups, while others are concentrated in only one.</p>
+                  <p>This suggests analyzing sex and occupation together, since occupation adds demographic context and helps represent differences in patients' daily lives.</p>
+                </section>
+              </div>
+            </article>
+          </div>
+
+          <section class="dengue-conclusion" aria-labelledby="titulo-conclusoes-eda">
+            <h3 id="titulo-conclusoes-eda">Key takeaways from the exploratory analysis</h3>
+            <p>The analysis started by looking at the temporal distribution of cases and confirmed strong seasonality, with growth during summer and the highest concentration between March and May.</p>
+            <p>Next, comparing symptoms showed that the most frequent ones are not necessarily the best at distinguishing the classifications. Fever, headache and myalgia appear in most confirmed cases, while rash and retro-orbital pain show larger proportional differences.</p>
+            <p>The demographic analysis showed a larger share of women among confirmed cases. This finding led to an investigation of occupations, which revealed different profiles for men and women, as well as a relevant presence of home-related activities.</p>
+            <p>In summary:</p>
+            <ul>
+              <li>Dengue varies strongly throughout the year, with notifications most concentrated between March and May.</li>
+              <li>Symptoms need to be considered together, because none of them alone is enough to separate confirmed from discarded cases.</li>
+              <li>Rash and retro-orbital pain show relevant proportional differences between the classifications.</li>
+              <li>Women account for most of the confirmed cases in the period analyzed.</li>
+              <li>Sex and occupation have relationships that can help represent different exposure profiles.</li>
+              <li>Temporal, clinical, demographic and geographic information should be analyzed together when building the models.</li>
+            </ul>
+            <a href="https://github.com/Ang3k/Dengue-Ensembler-Classifier" target="_blank" rel="noreferrer">View project repository <span aria-hidden="true">↗</span></a>
+          </section>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter dengue-chapter" id="modelagem" aria-labelledby="titulo-modelagem">
+        <div class="container">
+          <header class="home-credit-chapter-header dengue-chapter-header">
+            <p>PART 4</p>
+            <div>
+              <h2 id="titulo-modelagem">Predictive Modeling with Machine Learning</h2>
+              <p>With the data treated and the main relationships explored, the next step was to use all this information to train models that look at each notification as a whole, trying to separate confirmed from discarded cases.</p>
+            </div>
+          </header>
+
+          <article class="home-credit-process dengue-process">
+            <h3>From treated data to the training set</h3>
+            <p>During the exploratory analysis, we saw that no single group of information was enough to represent a case's classification on its own. Symptoms matter, but their meaning also changes when they are seen alongside the time of year, the place of notification and the recent context of the municipality. So I brought these perspectives together into a single set of 107 features, which became the common input for the Machine Learning models.</p>
+            <p>Training used 2,874,235 records from 2017 to 2019. For each row, the model received the information available about the notification and tried to tell confirmed cases from discarded ones. Test results, clinical progression, case closure, hospitalization and any other later information about the patient were deliberately left out of the features: if they were used, the model could learn the very answer it was supposed to predict, creating an ability that would not exist in a new screening.</p>
+            <p>I also kept the same feature schema throughout the whole pipeline. This means the order, names and treatment of the variables used in training are the same ones expected at prediction time, which prevents the models from receiving information organized one way during training and another way in use.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Why use three different models?</h3>
+            <p>With the training set ready, I could have picked a single algorithm and pushed it as far as possible, but different models can pick up different patterns in the same information. So I chose an MLP neural network and two tree-based gradient boosting models, XGBoost and LightGBM. All three receive the same 107 features, but they learn the relationships in the data in different ways.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-model-figure">
+              <picture class="mobile-picture">
+                <source media="(max-width: 800px)" srcset="../../../assets/projects/dengue/14-modelos-complementares-mobile.svg" type="image/svg+xml">
+                <img
+                  src="../../../assets/projects/dengue/14-modelos-complementares.svg"
+                  width="1600"
+                  height="900"
+                  alt="Diagram in which the 107 features feed three complementary models: a tabular MLP with embeddings, XGBoost and LightGBM, producing three individual scores"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+              <figcaption>The same features are interpreted by three different architectures before the ensemble is formed.</figcaption>
+            </figure>
+
+            <p>This difference is useful because the three models do not see the data the same way, so they do not have to make exactly the same mistakes. The MLP can find non-linear interactions among many variables at once, while XGBoost and LightGBM build sequences of trees that split the records according to the patterns they find. Each architecture can therefore contribute a different way of understanding the same problem.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>How does the MLP learn from tabular data?</h3>
+            <p>Neural networks are often associated with images or text, but they can also be used with tabular data. In this project, I built an MLP that handles categorical and numerical information separately. Education level, occupation, state, municipality and health region were turned into embeddings, smaller representations that let the network learn similarities between categories during training, instead of treating each code as just an ordinary number.</p>
+            <p>The numerical features were normalized and then joined with the embeddings before entering the network's four hidden layers, with 1024, 512, 256 and 128 neurons. Between these layers I used LeakyReLU, Batch Normalization and Dropout, which help the network learn complex relationships, keep training stable and reduce the risk of memorizing the training records. Below is the main part of the code used to build this structure:</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/dengue/14a-mlp-tabular-code-mobile.svg?v=20260712c" type="image/svg+xml">
+                <img
+                  src="../../../assets/projects/dengue/14a-mlp-tabular-code.svg?v=20260712c"
+                  width="1600"
+                  height="992"
+                  alt="Excerpt from the ArbovirosesMLP class that creates embeddings, normalizes numerical variables and builds the 1024, 512, 256 and 128 layers with LeakyReLU, BatchNorm and Dropout"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>To train the MLP, I used the AdamW optimizer and a loss function that takes the difference between the classes into account. Learning was monitored on the 2020 validation set and stopped when the network stopped improving. As a result, the saved model was not simply the one from the last epoch, but the one that performed best on validation.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>XGBoost and LightGBM: two tree-based perspectives</h3>
+            <p>XGBoost and LightGBM belong to the gradient boosting family. Unlike a single decision tree, these models build trees in sequence, with each new step trying to correct part of the previous errors. This is especially useful with tabular data, where symptoms, dates, occupations and locations can form many combinations that are hard to capture with isolated rules.</p>
+            <p>Even though both use the same principle, they do not build their trees in exactly the same way: XGBoost offers a more controlled regularization and growth process, while LightGBM was designed to train efficiently on large datasets. Since the project has millions of records and over a hundred features, comparing the two implementations showed how these differences played out in classifying cases. Below is the part of the code that creates each model:</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/dengue/14b-gradient-boosting-code-mobile.svg?v=20260712c" type="image/svg+xml">
+                <img
+                  src="../../../assets/projects/dengue/14b-gradient-boosting-code.svg?v=20260712c"
+                  width="1600"
+                  height="912"
+                  alt="Excerpt from the wrapper that configures LightGBM and XGBoost with binary objectives and applies the optimized parameters"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>To choose the hyperparameters, I used Optuna on stratified samples of the training and validation data. It tested different combinations of number and depth of trees, learning rate, share of rows and features used, and regularization levels. After finding the best configuration, each model was retrained on the full set, always using 2020 to monitor learning and apply early stopping when new trees stopped bringing improvements.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>The role of temporal validation</h3>
+            <p>Throughout this process, 2020 played a different role from the training years. Data from 2017 to 2019 was used to teach the models the patterns, while 2020 was used to compare configurations, stop training at the right moment and define how the predictions would be combined. These decisions were thus made by looking at a period after training, but without using the set reserved for the final evaluation.</p>
+            <p>This separation mattered because a random split would mix records from different years between training and validation. Since dengue circulation, the way notifications are filled out and the epidemiological context itself change over time, a random split could show a better result than what would actually happen in a future period. That is why I respected the order of the years, making the pipeline learn from the past and then classify new notifications.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-model-figure">
+              <picture class="mobile-picture">
+                <source media="(max-width: 800px)" srcset="../../../assets/projects/dengue/15-validacao-e-ensemble-mobile.svg" type="image/svg+xml">
+                <img
+                  src="../../../assets/projects/dengue/15-validacao-e-ensemble.svg"
+                  width="1600"
+                  height="900"
+                  alt="Timeline diagram in which 2017 to 2019 data trains the models, 2020 guides Optuna, early stopping and weights, and 2021 stays isolated until the final evaluation; the three scores are combined into an ensemble"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+              <figcaption>Training and validation define the pipeline; the 2021 test set is only opened after these decisions are frozen.</figcaption>
+            </figure>
+
+            <p>Only after finalizing the models, their hyperparameters, the ensemble weights and the classification rule was the 2021 set loaded for evaluation. Its 940,304 records took no part in any earlier choice, so the final result represents an evaluation outside the period used to build the system.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Combining the predictions into an ensemble</h3>
+            <p>After training, each model produced its own score for a case. Instead of a simple vote, I combined these three values with a weighted average. The weights were set from each model's recall on the 2020 validation set and then normalized, so the models that found more confirmed cases in that period had a slightly larger share of the combined result. Below is the part of the code that performs this combination:</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-media--code">
+              <picture class="mobile-picture">
+                <source media="(max-width: 700px)" srcset="../../../assets/projects/dengue/15a-ensemble-ponderado-code-mobile.svg?v=20260712c" type="image/svg+xml">
+                <img
+                  src="../../../assets/projects/dengue/15a-ensemble-ponderado-code.svg?v=20260712c"
+                  width="1600"
+                  height="752"
+                  alt="Excerpt that normalizes the validation recalls into weights and combines the model scores in the ensemble"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+
+            <p>The idea of the ensemble was to take advantage of the differences between the models. When MLP, XGBoost and LightGBM find a similar pattern, the combined score has the support of all three; when they disagree, the weights help balance the predictions according to how each model behaved on validation.</p>
+            <p>In the end, this process delivers a single classification score, which still has to be compared with a threshold to decide between confirmed and discarded. This value is not a calibrated clinical probability and does not make a diagnosis. The choice of operating point and its impact on hits and errors are analyzed in the next part, along with the model's metrics.</p>
+          </article>
+
+          <section class="dengue-conclusion" aria-labelledby="titulo-conclusoes-modelagem">
+            <h3 id="titulo-conclusoes-modelagem">What was settled before the evaluation</h3>
+            <p>With that, the modeling stage ended with a single, reproducible pipeline, in which all models receive the same set of information and no decision depends on the records reserved for the final test.</p>
+            <p>In summary:</p>
+            <ul>
+              <li>The 107 features bring clinical, temporal, demographic, geographic and epidemiological information together into a single input.</li>
+              <li>The MLP uses embeddings and dense layers to learn non-linear relationships in tabular data.</li>
+              <li>XGBoost and LightGBM use sequences of trees and bring two different ways of looking at the same problem.</li>
+              <li>The year 2020 guides optimization, early stopping and the ensemble, without taking part in the main training.</li>
+              <li>The ensemble weights are set on validation and stay frozen before the 2021 test set is opened.</li>
+              <li>The output is a classification score, not a diagnosis or a clinical probability.</li>
+            </ul>
+            <p>In the next part, we will look at how this ensemble performed on the 940,304 records from 2021, and at what Accuracy, Precision, Recall and ROC-AUC say about the classification.</p>
+          </section>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter dengue-chapter" id="metricas" aria-labelledby="titulo-metricas">
+        <div class="container">
+          <header class="home-credit-chapter-header dengue-chapter-header">
+            <p>PART 5</p>
+            <div>
+              <h2 id="titulo-metricas">Metrics and Model Evaluation</h2>
+              <p>After finishing training, setting the ensemble weights and freezing the decision threshold, I opened the 2021 temporal set to see how the model would perform on records that had not taken part in any earlier choice.</p>
+            </div>
+          </header>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Opening the final 2021 test</h3>
+            <p>The evaluation covered 940,304 notifications: 484,586 discarded cases and 455,718 confirmed cases. The two groups are close in size, and since the records come from a year after the training period, the test is closer to a real situation, in which the system learns from past data and then receives new notifications in the future.</p>
+            <p>At this point, no hyperparameter was changed, the models were not retrained and the 2021 result was not used to choose the threshold. So the metrics do not show the best fit that could be found by looking at the test itself, but the behavior of the pipeline that was already defined before these records were opened.</p>
+
+            <div class="dengue-metric-grid" aria-label="Main ensemble metrics on the 2021 temporal test">
+              <article class="dengue-metric-card">
+                <strong>72.1%</strong>
+                <h4>Accuracy</h4>
+                <p>Correctly classified 677,991 of the 940,304 records evaluated.</p>
+              </article>
+              <article class="dengue-metric-card">
+                <strong>66.1%</strong>
+                <h4>Precision</h4>
+                <p>Out of every 100 cases flagged as dengue, about 66 were confirmed.</p>
+              </article>
+              <article class="dengue-metric-card">
+                <strong>87.3%</strong>
+                <h4>Recall</h4>
+                <p>Found about 87 out of every 100 actually confirmed dengue cases.</p>
+              </article>
+              <article class="dengue-metric-card">
+                <strong>82.9%</strong>
+                <h4>ROC-AUC</h4>
+                <p>Measures the ability to separate confirmed and discarded cases across different thresholds.</p>
+              </article>
+            </div>
+
+            <p>Accuracy shows that the ensemble got just over seven out of ten classifications right, but this value should not be read alone: the goal of the chosen threshold was not to spread errors evenly, but to reduce the number of confirmed cases that would be missed. That is why Precision and Recall need to be read together to understand which type of error the system was designed to accept.</p>
+            <p>With a Precision of 66.1%, some of the notifications classified as dengue are still discarded cases, while the Recall of 87.3% shows that most of the actually confirmed cases were found. This balance makes sense for a screening support tool, since letting a true case slip through can be more worrying than sending an extra case for evaluation, even though it also increases the number of false positives.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Why does the 0.30 threshold change how we read the model?</h3>
+            <p>The ensemble does not directly output the words confirmed or discarded: it produces a continuous score, and the threshold turns that value into a classification. When the cutoff is lowered, more records are flagged as positive, Recall tends to increase and fewer confirmed cases fall below the cutoff. However, Precision and specificity may drop, because more discarded cases are also sent to the positive group.</p>
+            <p>The 0.30 threshold was set using only the 2020 validation set and stayed frozen before the final test, while the individual models kept their own thresholds chosen on the same period. So the 2021 evaluation was not used afterwards to look for the cutoff that would produce the most favorable metric.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-evaluation-figure">
+              <a class="dengue-graph-link" href="../../../assets/projects/dengue/20-threshold-analysis.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Open the threshold selection chart in full size">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/dengue/20-threshold-analysis-1760w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/dengue/20-threshold-analysis.png?v=20260712"
+                    width="2580"
+                    height="2129"
+                    alt="Precision, Recall and F1 curves across thresholds for MLP, XGBoost, LightGBM and the ensemble"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+              </a>
+              <figcaption>Operating points were set on the 2020 validation set; tap or click the chart to enlarge it.</figcaption>
+            </figure>
+
+            <p>There is a region where different thresholds produce similar F1 values, so the single highest value of this metric does not have to be the only decision rule. For the ensemble, the 0.30 point keeps a result close to the highest values and increases sensitivity, a choice consistent with the goal of finding more confirmed cases before the final evaluation.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Reading hits and errors in the confusion matrix</h3>
+            <p>Metrics summarize the model's behavior, but the confusion matrix shows where each percentage comes from, separating correct predictions on discarded and confirmed cases from the two possible types of error. Instead of looking only at Accuracy, we can see how many records the chosen threshold pushed to each side.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-evaluation-figure">
+              <a class="dengue-graph-link" href="../../../assets/projects/dengue/16-confusion-matrices.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Open the confusion matrices in full size">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/dengue/16-confusion-matrices-1760w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/dengue/16-confusion-matrices.png?v=20260712"
+                    width="2113"
+                    height="1916"
+                    alt="Confusion matrices for MLP, XGBoost, LightGBM and the ensemble, comparing actual and predicted classes"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+              </a>
+              <figcaption>The matrices show each model's correct predictions and both types of error; tap or click to enlarge.</figcaption>
+            </figure>
+
+            <p>The key reading lies in the relationship between the row of confirmed cases and the row of discarded cases: the bottom-right quadrant shows the confirmed cases found, while the top-right one gathers the discarded cases that were also sent to the positive class. This shows why increasing Recall can also increase false positives.</p>
+            <p>This trade-off needs to be clear to whoever uses the result: the system accepts sending more records to the positive group in order to reduce the number of confirmed cases below the threshold. This behavior can help with prioritization, but it should never be interpreted as an automatic diagnosis.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Was the ensemble better on every metric?</h3>
+            <p>Comparing the models shows that there is more than one way to decide which one was best. XGBoost and LightGBM reached slightly higher Accuracy and Precision at their own operating points, while the ensemble, using the 0.30 threshold, gave up some of that precision to find a much larger share of the confirmed cases.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-evaluation-figure">
+              <a class="dengue-graph-link" href="../../../assets/projects/dengue/17-model-metrics-comparison.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Open the metrics comparison in full size">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/dengue/17-model-metrics-comparison-1760w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/dengue/17-model-metrics-comparison.png?v=20260712"
+                    width="2780"
+                    height="1379"
+                    alt="Bar chart comparing Accuracy, balanced Accuracy, Precision, Recall, F1, ROC-AUC and PR-AUC for the four models"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+              </a>
+              <figcaption>Each model was evaluated at the point set in 2020; tap or click the chart to enlarge it.</figcaption>
+            </figure>
+
+            <p>The chart shows that the models reached similar results on several metrics, while the differences grow on those that depend on the cutoff. The main role of the ensemble is therefore not to beat the other models on every result, but to combine their predictions to deliver the behavior chosen for screening.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>The ability to separate the two groups</h3>
+            <p>ROC-AUC looks at the model across many thresholds, comparing the true positive rate with the false positive rate. It does not just show the decision made at 0.30, but the overall ability to rank confirmed cases above discarded ones at different cutoffs.</p>
+
+            <div class="dengue-evaluation-gallery">
+              <figure class="home-credit-media dengue-media dengue-evaluation-figure">
+                <a class="dengue-graph-link" href="../../../assets/projects/dengue/18-precision-recall-curves.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Open the Precision-Recall curves in full size">
+                  <picture class="mobile-picture">
+                    <source srcset="../../../assets/projects/dengue/18-precision-recall-curves-870w.webp" type="image/webp">
+                    <img
+                      src="../../../assets/projects/dengue/18-precision-recall-curves.png?v=20260712"
+                      width="1780"
+                      height="1380"
+                      alt="Precision-Recall curves for MLP, XGBoost, LightGBM and the ensemble"
+                      loading="lazy"
+                      decoding="async">
+                  </picture>
+                </a>
+                <figcaption>Precision-Recall curves for the four models.</figcaption>
+              </figure>
+              <figure class="home-credit-media dengue-media dengue-evaluation-figure">
+                <a class="dengue-graph-link" href="../../../assets/projects/dengue/19-roc-curves.png?v=20260712" target="_blank" rel="noreferrer" aria-label="Open the ROC curves in full size">
+                  <picture class="mobile-picture">
+                    <source srcset="../../../assets/projects/dengue/19-roc-curves-870w.webp" type="image/webp">
+                    <img
+                      src="../../../assets/projects/dengue/19-roc-curves.png?v=20260712"
+                      width="1780"
+                      height="1380"
+                      alt="ROC curves for MLP, XGBoost, LightGBM and the ensemble, compared with a random baseline"
+                      loading="lazy"
+                      decoding="async">
+                  </picture>
+                </a>
+                <figcaption>ROC curves for the four models.</figcaption>
+              </figure>
+            </div>
+
+            <p>The nearly overlapping curves show that the models have a similar ability to separate the groups, and that the most visible difference appears when the scores are turned into classes by a threshold, while the Precision-Recall curve shows the trade-off between finding more confirmed cases and keeping more confidence in the positive flags.</p>
+            <p>It is also important not to confuse ROC-AUC with Accuracy or with clinical probability. This metric summarizes the ranking produced by the score across thresholds; it does not mean that the same percentage of patients will be classified correctly, nor that the value produced represents a calibrated individual risk.</p>
+          </article>
+
+          <section class="dengue-conclusion" aria-labelledby="titulo-conclusoes-metricas">
+            <h3 id="titulo-conclusoes-metricas">What can we conclude from the metrics?</h3>
+            <p>The temporal test showed that the ensemble can find most of the confirmed cases and keep a good separation between the two groups, but this comes with a relevant number of false positives. It therefore makes more sense as a support and prioritization tool than as a final decision on each notification.</p>
+            <p>The metrics also show that the choice of threshold is part of the system's behavior: a model can separate the groups well and still produce very different classifications depending on the cutoff. That is why Accuracy, Precision, Recall, the confusion matrix and ROC-AUC were analyzed together, always keeping the temporal separation and avoiding decisions based on the final test.</p>
+            <p>In the next part, we will see how this score was used in a web application, what information reaches the API and how the result is presented without taking on the role of a clinical diagnosis.</p>
+          </section>
+        </div>
+      </section>
+
+      <section class="home-credit-chapter dengue-chapter" id="aplicacao" aria-labelledby="titulo-aplicacao">
+        <div class="container">
+          <header class="home-credit-chapter-header dengue-chapter-header">
+            <p>PART 6</p>
+            <div>
+              <h2 id="titulo-aplicacao">Web Application and Model Deployment</h2>
+              <p>After training and evaluating the models, the next step was to turn the whole pipeline into an interface, making it possible to fill in a notification, send its data to the API and see the result without running notebooks or code by hand.</p>
+            </div>
+          </header>
+
+          <article class="home-credit-process dengue-process">
+            <h3>From notification to model scores</h3>
+            <p>The Screening page brings together the information available at the time of notification, such as age, sex, pregnancy, race, education level, occupation, location, dates and symptoms. You can also choose which arbovirus will be evaluated. The interface organizes the fields sent to the backend and does not depend on later information, such as test results, clinical progression or case closure.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-app-figure">
+              <picture class="mobile-picture">
+                <source srcset="../../../assets/projects/dengue/21-aplicacao-triagem-810w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/dengue/21-aplicacao-triagem.png"
+                  width="810"
+                  height="602"
+                  alt="Application screening page, with disease selection and fields for age, sex, pregnancy, race, education level and other notification details"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+              <figcaption>The screening page gathers the fields used by the models and the symptoms entered by the user.</figcaption>
+            </figure>
+
+            <p>The interface was built with React and TypeScript, while the FastAPI API receives the fields, applies the same preparation used during training and creates the features the models expect. Then MLP, XGBoost and LightGBM produce their individual scores, which the ensemble combines before the response goes back to the browser.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Presenting the result without turning it into a diagnosis</h3>
+            <p>In the response, the three scores appear separately along with the weights used in the ensemble, and right below, the application shows the combined classification and the threshold applied. This makes it clear that the final result does not come from a single algorithm, and shows when the models agree or disagree.</p>
+
+            <figure class="home-credit-media home-credit-media--wide dengue-media dengue-app-figure">
+              <picture class="mobile-picture">
+                <source srcset="../../../assets/projects/dengue/22-aplicacao-simulacao-738w.webp" type="image/webp">
+                <img
+                  src="../../../assets/projects/dengue/22-aplicacao-simulacao.png"
+                  width="738"
+                  height="530"
+                  alt="Result of a historical simulation showing the MLP, XGBoost and LightGBM scores, the ensemble weights, the combined classification and the SINAN record"
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+              <figcaption>The simulation uses an anonymized record and compares the combined prediction with the historical SINAN classification.</figcaption>
+            </figure>
+
+            <p>Besides manual screening, the Home page lets you draw a random anonymized case from the test set and compare the prediction with the classification recorded in the historical database. This simulation is meant to demonstrate the full pipeline, not to clinically validate anyone, so the application presents the result as a classification score and keeps the notice that the tool does not replace evaluation by a health professional.</p>
+          </article>
+
+          <article class="home-credit-process dengue-process">
+            <h3>Showing the data journey too</h3>
+            <p>So that the application would not be limited to the form, I created a Pipeline page that explains the path from SINAN data through preparation, training, evaluation, saved models and the API. I also created an Epidemiological Overview page that brings together the main findings of the exploratory analysis, so visitors can understand both the result shown and the whole process behind it.</p>
+
+            <div class="dengue-app-gallery">
+              <figure class="home-credit-media dengue-media dengue-app-figure">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/dengue/23-aplicacao-pipeline-810w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/dengue/23-aplicacao-pipeline.png"
+                    width="810"
+                    height="602"
+                    alt="Application page presenting the pipeline from SINAN data to the prediction on the website"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+                <figcaption>The pipeline separates experimentation, saved models, the API and the prediction on the website.</figcaption>
+              </figure>
+              <figure class="home-credit-media dengue-media dengue-app-figure">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/dengue/24-aplicacao-panorama-870w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/dengue/24-aplicacao-panorama.png"
+                    width="980"
+                    height="734"
+                    alt="Epidemiological overview page with a monthly chart of dengue cases and interpretation notes"
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+                <figcaption>The overview turns the analysis charts into a guided reading inside the application.</figcaption>
+              </figure>
+            </div>
+          </article>
+
+          <section class="dengue-demo-callout" aria-labelledby="titulo-demo-visual">
+            <p class="dengue-demo-kicker">STATIC DEMO</p>
+            <h3 id="titulo-demo-visual">Explore the application's interface</h3>
+            <p>
+              Browse the screening, pipeline and epidemiological overview pages. The demo keeps the project's visual flow, but it does not run predictions or queries, because the models depend on their own server. The demo interface is in Portuguese.
+            </p>
+            <a href="../../../apps/dengue/">
+              Open visual demo <span aria-hidden="true">↗</span>
+            </a>
+          </section>
+
+          <section class="dengue-conclusion" aria-labelledby="titulo-conclusoes-aplicacao">
+            <h3 id="titulo-conclusoes-aplicacao">The final result of the project</h3>
+            <p>With the application, I brought data, models, API and interface together into a single flow, making it possible to test notifications, follow the individual scores and understand how the combined classification was formed.</p>
+            <p>At the same time, the project's main limitation remains visible in how the result is presented: the system offers screening support and a technical demonstration of Machine Learning on SINAN data, but it does not make a diagnosis and does not replace a clinical assessment.</p>
+          </section>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <section class="case-next" aria-label="Next case study">
+    <a class="container" href="../home-credit/index.html">
+      <span>Next study</span>
+      <strong>Credit risk prediction at Home Credit Group</strong>
+      <i aria-hidden="true">→</i>
+    </a>
+  </section>
+
+  <footer class="case-footer">
+    <div class="container">
+      <p>© 2026 Angel Mansilla</p>
+      <a href="#topo">Back to top ↑</a>
+    </div>
+  </footer>
+  <script src="../../../mobile-media.js?v=20261108" defer></script>
+</body>
+</html>

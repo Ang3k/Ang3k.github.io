@@ -1,0 +1,274 @@
+/*
+  Currículo de Angel Mansilla — réplica do layout original feito no Canva.
+
+  Todas as medidas estão em pontos (pt), a unidade do PDF. Os valores
+  "quebrados" (40.213pt, 12.005pt etc.) foram medidos no PDF exportado do
+  Canva para que a versão gerada aqui fique idêntica. Não arredonde.
+
+  Poppins usa ascendente 1,05em e descendente 0,35em. Numa linha com
+  font-size S e line-height L, a linha de base fica a (L/2 + 0,35·S) do topo.
+  As margens abaixo foram calculadas a partir disso.
+*/
+
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: block;
+}
+
+@page {
+  size: 595.5pt 842.25pt; /* A4 do Canva */
+  margin: 0;
+}
+
+:root {
+  --ink: #000;
+  --paper: #fff;
+  --body-size: 10pt;
+  --list-indent: 17pt;      /* do início do bloco ao início do texto do item */
+  --bullet-size: 3.75pt;
+  --bullet-gap: 9.87pt;     /* do centro da bolinha ao início do texto */
+  --bullet-rise: 3.373pt;   /* do centro da bolinha até a linha de base */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #e9e9e9;
+}
+
+body {
+  color: var(--ink);
+  font-family: "Poppins", sans-serif;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-feature-settings: "kern" 0, "liga" 0;
+  font-size: var(--body-size);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  text-rendering: geometricPrecision;
+}
+
+strong {
+  font-weight: 700;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page {
+  position: relative;
+  width: 595.5pt;
+  height: 842.25pt;
+  margin: 24px auto;
+  padding: 40.273pt 15.5pt 0 47.68pt;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+@media print {
+  html {
+    background: none;
+  }
+
+  .page {
+    margin: 0;
+  }
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.name {
+  font-size: 36.69pt;
+  font-weight: 700;
+  letter-spacing: 0.065em;
+  line-height: 36.77pt;
+}
+
+.name > span {
+  display: block;
+}
+
+.headline {
+  margin-top: 9.817pt;
+  font-size: 14pt;
+  font-weight: 500;
+  line-height: 19.6pt;
+}
+
+.contact {
+  margin-top: 5.504pt;
+  font-size: 9.16pt;
+  line-height: 10.5pt;
+}
+
+/* Linha fina de 0,75pt com pontas arredondadas e a barra grossa à esquerda. */
+.rule {
+  position: relative;
+  width: 476.4pt;
+  height: 0.75pt;
+  margin-top: 16.141pt;
+  margin-left: 0.15pt;
+  border-radius: 0.375pt;
+  background: var(--ink);
+}
+
+.rule::after {
+  position: absolute;
+  top: 0.375pt;
+  left: 0;
+  width: 31.35pt;
+  height: 3.92pt;
+  background: var(--ink);
+  content: "";
+}
+
+/* ---------- Seções ---------- */
+
+.section-title {
+  font-size: 12pt;
+  font-weight: 600;
+  line-height: 16.8pt;
+}
+
+.lead {
+  line-height: var(--lh);
+}
+
+.list {
+  list-style: none;
+  line-height: var(--lh);
+}
+
+.list > li {
+  position: relative;
+  padding-left: var(--list-indent);
+}
+
+.list > li::before {
+  position: absolute;
+  top: calc(var(--lh) / 2 + 0.35 * var(--body-size) - var(--bullet-rise) - var(--bullet-size) / 2);
+  left: calc(var(--list-indent) - var(--bullet-gap) - var(--bullet-size) / 2);
+  width: var(--bullet-size);
+  height: var(--bullet-size);
+  border-radius: 50%;
+  background: var(--ink);
+  content: "";
+}
+
+/* Experiência profissional */
+.experiencia {
+  --lh: 12.005pt;
+}
+
+.experiencia .section-title {
+  margin-top: 20.515pt;
+}
+
+.experiencia .lead {
+  margin-top: 6.357pt;
+}
+
+.experiencia .list {
+  margin-top: 2.995pt;
+}
+
+.experiencia .list > li + li {
+  margin-top: var(--lh); /* uma linha em branco entre os itens */
+}
+
+/* Uma segunda experiência começa depois de uma linha em branco. */
+.experiencia .list + .lead {
+  margin-top: var(--lh);
+}
+
+/* Formação acadêmica */
+.formacao {
+  --lh: 11.255pt;
+}
+
+.formacao .section-title {
+  margin-top: 17.457pt;
+}
+
+.formacao .lead {
+  margin-top: 7.233pt;
+}
+
+/* Habilidades técnicas */
+.habilidades {
+  --lh: 12.005pt;
+}
+
+.habilidades .section-title {
+  margin-top: 17.072pt;
+}
+
+.habilidades .list {
+  margin-top: 6.857pt;
+}
+
+/* Projetos (no original, este bloco fica 4,59pt mais à esquerda) */
+.projetos {
+  --lh: 11.255pt;
+}
+
+.projetos .section-title {
+  margin-top: 13.707pt;
+}
+
+.projetos .project {
+  margin-top: 7.232pt;
+  margin-left: -4.59pt;
+}
+
+.projetos .project + .project {
+  margin-top: var(--lh); /* uma linha em branco entre os projetos */
+}
+
+.project-title {
+  font-size: var(--body-size);
+  font-weight: 700;
+  line-height: var(--lh);
+}
+
+/* Idiomas e soft skills */
+.idiomas {
+  --lh: 12.0025pt;
+}
+
+.idiomas .section-title {
+  margin-top: 9.582pt;
+}
+
+.idiomas .list {
+  margin-top: 6.859pt;
+}

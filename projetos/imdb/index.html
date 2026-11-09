@@ -9,21 +9,18 @@
     >
     <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="article">
-    <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Data Analysis on IMDB | Angel Mansilla">
     <meta
       property="og:description"
       content="Extração, transformação e análise de mais de 158 milhões de linhas com Python, MySQL e Power BI."
     >
   <meta property="og:site_name" content="Angel Mansilla">
-  <meta property="og:url" content="https://angelmansilla.com.br/projetos/imdb/">
   <meta property="og:image" content="https://angelmansilla.com.br/assets/og/imdb.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Logotipo do IMDb com o título do estudo de caso">
   <meta name="twitter:card" content="summary_large_image">
     <title>Data Analysis on IMDB | Angel Mansilla</title>
-  <link rel="canonical" href="https://angelmansilla.com.br/projetos/imdb/">
     <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,6 +34,50 @@
     <link rel="stylesheet" href="../../portfolio-case-standard.css">
     <link rel="stylesheet" href="./imdb-standard.css">
     <link rel="stylesheet" href="../../mobile-media.css?v=20260801" media="(max-width: 700px)">
+    <!-- idioma: gerado por scripts/gerar_ingles.py -->
+    <link rel="canonical" href="https://angelmansilla.com.br/projetos/imdb/">
+    <link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/imdb/">
+    <link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/imdb/">
+    <link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/imdb/">
+    <meta property="og:url" content="https://angelmansilla.com.br/projetos/imdb/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale:alternate" content="en_US">
+    <script>
+      (function () {
+        var atual = "pt";
+        var destino = "../../en/projects/imdb/";
+        document.addEventListener("click", function (evento) {
+          var link = evento.target.closest && evento.target.closest("[data-idioma]");
+          if (!link) return;
+          try {
+            localStorage.setItem("idioma", link.getAttribute("data-idioma"));
+          } catch (erro) {}
+        });
+        if (/bot|crawl|spider|slurp|facebookexternalhit|embedly|preview|lighthouse/i.test(navigator.userAgent)) return;
+        var escolhido = null;
+        try {
+          escolhido = localStorage.getItem("idioma");
+        } catch (erro) {}
+        if (!escolhido) {
+          try {
+            if (document.referrer && new URL(document.referrer).origin === location.origin) return;
+          } catch (erro) {}
+          var lista = navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language || ""];
+          escolhido = "en";
+          for (var i = 0; i < lista.length; i++) {
+            var codigo = String(lista[i]).toLowerCase();
+            if (codigo.indexOf("pt") === 0) { escolhido = "pt"; break; }
+            if (codigo.indexOf("en") === 0) { escolhido = "en"; break; }
+          }
+        }
+        if (escolhido !== atual && (escolhido === "pt" || escolhido === "en")) {
+          location.replace(destino + location.hash);
+        }
+      })();
+    </script>
+    <!-- /idioma -->
   </head>
   <body class="case-page portfolio-case-study imdb-case wix-imdb-case imdb-refactor" id="top">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -63,6 +104,7 @@
           >
             GitHub <span aria-hidden="true">↗</span>
           </a>
+          <!-- seletor de idioma --><a class="nav-lang" href="../../en/projects/imdb/" hreflang="en" lang="en" data-idioma="en" aria-label="Read this page in English">EN</a><!-- /seletor de idioma -->
         </nav>
       </div>
     </header>
@@ -659,6 +701,6 @@
         <a href="#top">Voltar ao topo ↑</a>
       </div>
     </footer>
-    <script src="../../mobile-media.js?v=20260801" defer></script>
+    <script src="../../mobile-media.js?v=20261108" defer></script>
   </body>
 </html>

@@ -1,0 +1,701 @@
+# Traduções de projetos/churn/index.html -> en/projects/churn/index.html.
+# Veja scripts/gerar_ingles.py. "=" mantém o texto original.
+
+@@ e7ba1346c9
+Angel Mansilla's case study on analyzing and predicting credit card customer churn.
+
+@@ d7773f550e
+Bank Customer Churn Prediction | Angel Mansilla
+
+@@ 04f5be0df7
+Exploratory analysis, data treatment and model comparison to predict credit card cancellations.
+
+@@ 8f33fd93c5
+Skip to content
+
+@@ 4a3c2dbf05
+=
+
+@@ e49a5ef34a
+Main navigation
+
+@@ 23930282a1
+About
+
+@@ 56661c07cf
+Contact
+
+@@ d9eb05a6dc
+Abstract illustration of a credit card
+
+@@ 6c9a6a6896
+=
+
+@@ 22b0e121b1
+Case study sections
+
+@@ c1971b91af
+<span>01</span> Introduction to the Dataset
+
+@@ ed89de5def
+<span>02</span> Exploratory Data Analysis
+
+@@ e6553fc6cf
+<span>03</span> Data Preparation
+
+@@ bac4fe0bb9
+<span>04</span> Machine Learning Predictions
+
+@@ af697e1674
+<span>05</span> Insights and Conclusions
+
+@@ 4175fb9fdf
+PART <span>1</span>
+
+@@ 8366cd73a6
+Introduction to the Dataset
+
+@@ 66eeac9343
+1 - Business Context
+
+@@ 4a6e488a33
+A bank manager is worried about the growing number of customers leaving the credit card service. The bank would greatly appreciate being able to predict which customers are going to cancel, so it can act proactively, offering better service and changing those customers' minds.
+
+@@ c4ca3188f2
+The manager found a possible solution by hiring Angel, a data scientist, to extract insights from a dataset through exploratory data analysis. He also asked Angel to build a Machine Learning model that could predict, based on the data, whether or not a customer would cancel their credit card, and to report the model's accuracy.
+
+@@ c3b52210c9
+2 - Data Dictionary
+
+@@ cf92562da8
+<strong>CLIENTNUM:</strong> Unique identification number of the customer who holds the account.
+
+@@ cd79f88782
+<strong>Attrition_Flag:</strong> Internal event variable (customer activity)
+
+@@ 6af0877d29
+<strong>Customer_Age:</strong> Demographic variable - Customer's age in years.
+
+@@ 25bd8f1d82
+<strong>Gender:</strong> Demographic variable - Customer's gender
+
+@@ b4b70c3846
+<strong>Dependent_count:</strong> Demographic variable - Number of dependents.
+
+@@ c70059370f
+<strong>Education_Level:</strong> Demographic variable - Education level of the account holder
+
+@@ 2c8923ae4f
+<strong>Marital_Status:</strong> Demographic variable - Marital status
+
+@@ 9ac7ffe8ec
+<strong>Income_Category:</strong> Demographic variable - Annual income category of the account holder
+
+@@ 7b89928073
+<strong>Card_Category:</strong> Product variable - Card type (Blue, Silver, Gold, Platinum).
+
+@@ 72ee445f8e
+<strong>Months_on_book:</strong> Length of the relationship with the bank (in months).
+
+@@ 96b0a22ece
+<strong>Months_Inactive_12_mon:</strong> Number of inactive months in the last 12 months.
+
+@@ e3734949e3
+<strong>Contacts_Count_12_mon:</strong> Number of contacts in the last 12 months.
+
+@@ 5e3dfaaa0c
+<strong>Credit_Limit:</strong> Credit limit on the credit card.
+
+@@ c9783043b8
+<strong>Total_Revolving_Bal:</strong> Total revolving balance on the credit card.
+
+@@ 96dd61916f
+<strong>Avg_Open_To_Buy:</strong> Available credit line (average of the last 12 months).
+
+@@ e4fa8bc454
+<strong>Total_Amt_Chng_Q4_Q1:</strong> Change in transaction amount
+
+@@ d19c03e6c2
+<strong>Total_Trans_Amt:</strong> Total transaction amount (last 12 months).
+
+@@ e4978a5f79
+<strong>Total_Trans_Ct:</strong> Total number of transactions (last 12 months).
+
+@@ 7d59cea8c2
+<strong>Total_Ct_Chng_Q4_Q1:</strong> Change in number of transactions
+
+@@ 61ab22107b
+<strong>Avg_Utilization_Ratio:</strong> Average card utilization ratio.
+
+@@ 20dc59eab4
+<strong>Total_Relationship_Count:</strong> Total number of products held by the customer.
+
+@@ 631af124f1
+3 - Project Methodology
+
+@@ 82daf72d7e
+In this project, I chose to follow a data problem-solving methodology presented in one of the most renowned books on Machine Learning, "Hands-On Machine Learning with Scikit-Learn &amp; TensorFlow" by Aurélien Géron. Below are the recommended steps I follow throughout this project:
+
+@@ 816fb993c1
+Look at the big picture.
+
+@@ 64de128db4
+Get the data.
+
+@@ 2164eb7d5c
+Discover and visualize the data to gain insights.
+
+@@ 06446578bb
+Prepare the data for Machine Learning algorithms.
+
+@@ ac8b620687
+Select a model and train it.
+
+@@ 531b636ca0
+Fine-tune your model.
+
+@@ 23315fa267
+Present your solution.
+
+@@ a81dffebb1
+Launch, monitor and maintain your system.
+
+@@ bd6568505a
+4 - Project Solution Requirements
+
+@@ 744b369dd9
+In the conversation with the manager, Angel asked what the main information he wanted to obtain was. In response, the manager defined a set of strategic business questions, highlighting the ones that would be essential to guide the analyses and decisions. Here are the questions to be answered:
+
+@@ 818c9c0be4
+What is the profile of the customers most likely to cancel their card?
+
+@@ d57342f961
+How does customer gender affect financial condition and cancellation rates?
+
+@@ a64e084a08
+Does education level influence the likelihood of canceling the card?
+
+@@ f2eb77b0dd
+Do customers who use their card more receive higher or lower credit limits?
+
+@@ 867d3cb820
+Are customers with high incomes more likely to cancel their cards?
+
+@@ 15ba2b8d38
+What behaviors are common among customers who cancel their cards?
+
+@@ 8b3d32ed05
+Besides these questions, the manager asked Angel to train a Machine Learning model with accuracy above 85%. He stressed the importance of choosing an easily interpretable model, since that would let the bank better understand how the algorithm works and have more control over its decisions.
+
+@@ 08765ba843
+Build a Machine Learning model with accuracy above 85%.
+
+@@ 49a61de058
+Identify the main characteristics that influence customer churn.
+
+@@ a681d017a5
+Make sure the model is easily interpretable (optional)
+
+@@ d6ef5c44e9
+5 - Additional Information
+
+@@ 585c2e10ed
+<a href="https://angejesufern.wixsite.com/angel-mansilla/project-introduction" target="_blank" rel="noreferrer">On this page</a>, the project is presented as a story. If you prefer something more direct and detailed, the notebook in which this project was fully developed is on my <a href="https://github.com/Ang3k/Exploracao-Preditiva-de-Dados-para-Churn-de-Clientes-Bancarios-com-Machine-Learning" target="_blank" rel="noreferrer">GitHub,</a> which you can find at the bottom of this site, like every other project. With all that said, the next section starts the EDA (Exploratory Data Analysis). Let's dive in!
+
+@@ 9599b4b6f9
+PART <span>2</span>
+
+@@ 239728d1b9
+Exploratory Data Analysis
+
+@@ 4278af88bd
+In this section, we carry out an exploratory data analysis focused on categorical variables related to customer behavior. We use charts to explore patterns and correlations, for a better understanding of credit and churn dynamics. These analyses provide valuable insights into the customer profile and their interactions with financial products.
+
+@@ 9cf38a84f4
+1 - Distribution of Categorical Variables
+
+@@ 0f39d234aa
+This code creates 3 subplots that serve as a template for two overlaid chart types, a kdeplot and a histplot, both colored by the user's gender with a custom palette, all showing density.
+
+@@ 66e80270b1
+Code that creates the distribution subplots for the categorical variables
+
+@@ 892c9af3c0
+Customer Age: Customers' ages mostly range between 30 and 60.
+
+@@ 06823f153f
+Credit Limit: On average, customers have a credit limit between 2,000 and 10,000 dollars. A significant number of women, however, have credit limits in the 2,000 to 5,000 dollar range.
+
+@@ e9c61b7ba7
+Time as Customers: The distribution of customer tenure, in months, follows a parabolic trend, with a notable spike in the number of customers with 37 months of relationship.
+
+@@ 4b51fae7f8
+Distributions of age, credit limit and customer tenure
+
+@@ 3f72b03fee
+Distribution of customer age by gender
+
+@@ 78825ce43d
+Distribution of customer credit limit by gender
+
+@@ 66c120452c
+Distribution of the length of customers' relationship with the bank
+
+@@ c3ca9353ed
+2 - Relationship Between Variables and Credit Limit
+
+@@ c45c601e18
+The code groups each of the selected categorical variables by the average credit limit, also including the churn variable to make the analysis easier when coloring the charts. To improve readability, I set an arbitrary limit for the y-axis based on the lowest value in each group, subtracting 2000 from the minimum for better display.
+
+@@ 27b22ace07
+Code that groups categorical variables by credit limit
+
+@@ 6a2ee6038c
+Dependents: As the number of dependents increases, the credit limit tends to grow.
+
+@@ 5d8e583386
+Relationship: Customers without a partner generally have higher credit limits.
+
+@@ fc65beef24
+Average Income: The credit limit increases almost linearly with the customer's income.
+
+@@ 2b93dfb254
+Education: There is no apparent relationship between the customer's education level and their credit limit.
+
+@@ 7b46afc795
+Products: The fewer products linked to the customer, the higher the credit limit tends to be.
+
+@@ 4a888e2ebc
+Gender: Men have significantly higher credit limits than women.
+
+@@ 8cd6bc2bc6
+Credit limit by categorical variables
+
+@@ dab7cb5c75
+Credit limit by number of dependents
+
+@@ 8698b3bc06
+Credit limit by marital status
+
+@@ 6912894c7b
+Credit limit by income bracket
+
+@@ da658bc8e7
+Credit limit by education level
+
+@@ 089d400fa9
+Credit limit by total number of products
+
+@@ fdb877c2c8
+Credit limit by gender
+
+@@ 317c61ec56
+3 - Correlation Matrix of Numerical Variables
+
+@@ eb0f8eeee9
+This code selects only the numerical variables and builds a correlation matrix with pandas.corr(). Based on this matrix, a heatmap is plotted with Seaborn, where darker colors represent positive correlations and lighter colors indicate negative correlations.
+
+@@ 3099f37b40
+Code that builds the correlation matrix and the heatmap
+
+@@ a58a29f676
+Months As Customer vs Age: Strong correlation (0.79); older customers stay longer.
+
+@@ 0384bf7e99
+Credit Limit vs Average Open To Buy: Positive correlation (0.62); a higher limit means more available credit.
+
+@@ d860372e20
+Total Transactions Amount vs Total Transactions Count: High correlation (0.81); more transactions produce a higher total amount.
+
+@@ 7094cc60fe
+Average Utilization Ratio vs Credit Limit: Negative correlation (-0.48); high limits reduce average utilization.
+
+@@ a626dab289
+Average Open To Buy vs Average Utilization Ratio: Negative correlation (-0.54); more available credit reduces utilization.
+
+@@ 518b6190e3
+Correlation matrix of the numerical variables in the churn dataset
+
+@@ e83c93d743
+4 - Share of Categories by Churn Likelihood
+
+@@ 1ab4e9f16d
+Code for the analysis of category shares by churn likelihood
+
+@@ c46b236725
+Relationship: Most customers are either single or married, with a small percentage divorced. Overall, being married lowers the likelihood of card churn.
+
+@@ 10ff5be1cb
+Average Income: Customers with higher incomes are more prone to churn.
+
+@@ f99c566774
+Education: People with higher education levels tend to be more likely to churn.
+
+@@ 1b083d19b7
+Overall Distribution: For income and education, the customer shares follow the expected pattern, in line with the natural distribution of these factors in the population.
+
+@@ e1161e0639
+Marital status, income category and education related to churn
+
+@@ 18f65dee07
+Distribution of marital status among customers with and without churn
+
+@@ 0d861dfcc3
+Distribution of income category among customers with and without churn
+
+@@ 5811022c01
+Distribution of education level among customers with and without churn
+
+@@ 1c04def2ca
+5 - Customer Profile and Financial Variables
+
+@@ 52793e943c
+The code selects relevant financial columns, such as credit limit, total transaction amount and frequency of use, to explore how these factors relate to the customer profile, considering age and gender. To improve the visualization, we use a custom color palette that subtly distinguishes genders.
+
+@@ ada65b2ff9
+Code that relates the customer profile to financial variables
+
+@@ 3c2146d124
+After age 30, women have a lower credit limit than men.
+
+@@ 52aaaeec5c
+On the other hand, women use their credit card more than men.
+
+@@ 51f965543b
+The average transaction amount grows steadily until age 50, when it starts to decline.
+
+@@ ea3d10d1fc
+Card utilization is stable across age groups, with men catching up to women around age 60.
+
+@@ c4fe9d563b
+The number of transactions stays constant until age 65, after which it starts to decline gradually.
+
+@@ 9d1dc98cbf
+Customer profile and financial variables
+
+@@ 06fc38b438
+Relationship between age, gender, credit limit and churn
+
+@@ 2092354246
+Relationship between age, gender and total transaction amount
+
+@@ c8d41016b9
+Relationship between age, gender and number of transactions
+
+@@ 3b2016dc49
+Relationship between age, gender and average utilization ratio
+
+@@ bebee2baeb
+6 - Card Type and Education Level
+
+@@ 68cf6314d5
+This code visually analyzes the distribution of education levels across card categories, using stacked histograms for each card type. Each chart uses a grayscale palette and organized legends, for a clear, comparative view.
+
+@@ f37e09c2a5
+Code that compares card type with education level
+
+@@ 503f1ac52d
+The overwhelming majority of customers have a Blue card, showing how popular it is among users.
+
+@@ d5116f5111
+Education levels have no significant influence on the distribution of Blue, Silver and Gold cards.
+
+@@ e7ff827933
+Share at the Platinum Level: At the Platinum level, there is a considerable increase in the share of members with a Doctorate or Post-Doctorate, suggesting this card is more common among customers with advanced degrees.
+
+@@ a176614dd8
+Higher Education: Most customers have at least some higher education, which may reflect a more qualified customer profile, potentially more inclined to use premium credit cards.
+
+@@ a4e236217e
+Education levels by card category
+
+@@ 6c75e31d97
+Distribution of education levels for Blue cards
+
+@@ 8a78ad01c6
+Distribution of education levels for Gold cards
+
+@@ 621fb654fa
+Distribution of education levels for Silver cards
+
+@@ 28df77c23c
+Distribution of education levels for Platinum cards
+
+@@ e9ef72b3ae
+7 - Statistical Distribution of Variables by Churn
+
+@@ 569473921b
+This code creates a comprehensive view of the distribution of key churn-related variables, allowing visual comparisons between customers who canceled and those who stayed with the service. Each boxplot shows the median, the spread and the presence of outliers for the variables analyzed.
+
+@@ f4ccc907ee
+Code that creates boxplots of the churn-related variables
+
+@@ 5c5a6da4f0
+Customer loyalty to the bank ranges from 20 to 55 months, for both canceled and active customers.
+
+@@ c5a7b82831
+Customers who canceled make considerably fewer transactions.
+
+@@ 5b1488bc09
+The outlier in the canceled group falls within the IQR of active customers, highlighting the difference in behavior.
+
+@@ 272d8c3887
+Active customers make transactions with a higher average amount.
+
+@@ a2bdd4c577
+Despite the differences, credit limits are similar, with active customers having a slightly higher average.
+
+@@ 19e305d676
+Boxplots of the churn-related variables
+
+@@ faab37773e
+Boxplot of months of relationship by churn status
+
+@@ 0cd8aad6c0
+Boxplot of transaction amount by churn status
+
+@@ df65223362
+Boxplot of number of transactions by churn status
+
+@@ ca5b46d634
+Boxplot of credit limit by churn status
+
+@@ f16de73d9a
+PART <span>3</span>
+
+@@ 0a3bbbd2c6
+Data Preparation
+
+@@ 8dc0ca0f32
+1 - Strategies and Procedures
+
+@@ 7edf55d0e4
+Just like cleaning a bedroom or a living room, cleaning a dataset requires a procedure: you can't start by sweeping and then throw the water on the floor! That is why, in this and other projects, I usually follow this order: removing useless columns, identifying and removing null values, identifying and removing outliers, creating dummy variables and encoding. This ensures a clean dataset, ready to work in an ML model.
+
+@@ b54c6768a9
+2 - Handling Null Values
+
+@@ f3c5794a34
+As I worked with the dataset, I noticed there were no "np.nan" values, the null values we usually work with, because they appeared in another form, as "Unknown". So I created a function to convert these into "np.nan", making the work easier. I then created two more functions: one that returned a dataframe with the sum of null values for each column, and another that generated a bar chart showing the percentage of missing values for each feature, that is, each column.
+
+@@ 5217fe3634
+Finding and visualizing null values
+
+@@ b440e8912b
+Code to find null values in the dataset
+
+@@ 05236786ed
+Chart with the percentage of missing values per variable
+
+@@ bf40d79b52
+Looking at this chart, I saw that only a few rows had missing values. However, since the dataset has few rows, I did not want to drop any row with "np.nan". Instead, I chose to fill them with the value of the next cell, and to make this more accurate, I first sorted by "Credit_Limit", so neighboring cells would theoretically be closer to each other, since this column had already proven to be very impactful.
+
+@@ 1a63ab3edd
+Code to sort and impute the data
+
+@@ 564f2a402d
+3 - Handling Outliers
+
+@@ f6ab44f10e
+To identify and remove outliers, I used John Tukey's well-known method, the same one used to build a boxplot. I created a function that returns a dataframe filtered between a lower and an upper bound, defined from the percentiles of the column being processed, selected the columns that could have outliers and applied the method to each of them.
+
+@@ 7fb27893c8
+Code to find and remove outliers with Tukey's method
+
+@@ 0f7b8a15cf
+4 - Encoding Categorical Variables
+
+@@ ce6f1260b8
+As a last step, I needed to encode the categorical variables as numbers. Since the dataset had relatively few rows, I tried to use "pd.get_dummies" as little as possible, because it creates extra columns for each category. So I only turned "Gender" and "Relationship_Status" into dummies, creating 3 new columns, since "drop_first = True".
+
+@@ 0f045efe69
+Code to encode categorical variables
+
+@@ 538426d917
+For the other categorical variables, there was an implicit order of importance; for example, a "Platinum" card is expected to rank above a "Gold" card. I defined this order in several lists and used the sklearn.preprocessing function to assign numerical values that reflect this natural order. With the dataset completely clean, we move on to building the ML models.
+
+@@ 40951fdf22
+PART <span>4</span>
+
+@@ 33bef5af5a
+Machine Learning Predictions
+
+@@ 86964b7dae
+1 - Initial Model Selection
+
+@@ 1c32087686
+First, I split the variables into "features" and "prediction", that is, "x" and "y", and used a StandardScaler so that differences in scale would not affect model training. Then I picked some of the main classic Machine Learning models to test their performance, such as DecisionTreeClassifier, RandomForest, XGBoost and others shown in the code. After running cross-validation to get reliable results, I got this:
+
+@@ d5409ee4e1
+Code and results of the initial model selection
+
+@@ 0033030b21
+Code for the initial model selection and cross-validation
+
+@@ f9168a0f29
+Table with the average accuracy of the models initially tested
+
+@@ 16726cbfab
+Regardless of the model selected, the results are positive, with accuracy above 87% for every model. However, these models were created with default hyperparameters, which are probably not the best for maximizing accuracy. So I decided to tune 3 of them: XGBoost, because it is the most accurate model, and DecisionTreeClassifier and RandomForestClassifier, because their nature gives a clearer view of how the algorithm decides the "y" of a given row, especially the DecisionTreeClassifier. Let's tune:
+
+@@ 797d8b95bf
+2 - Tuning the DecisionTreeClassifier
+
+@@ e5bca8f8b7
+Note that on this site I only show the tuning of one model, since the process is similar and it would not be interesting to say the same things 3 times in a row; if you are interested, the fully commented code for the others is on my GitHub. For the tuning, I used GridSearch with a parameter grid to run a 10-fold cross-validation. A simple calculation shows that about 50 thousand trees were trained and evaluated to find the best parameters and maximize accuracy, which proved to be well worth the effort:
+
+@@ fed876aa5a
+Tuning the DecisionTreeClassifier
+
+@@ 25ca2031fc
+GridSearch code for tuning the Decision Tree
+
+@@ 36b97cbf02
+Decision Tree validation result after hyperparameter tuning
+
+@@ 476319597b
+Our decision tree went from 93.06% to 94.332% accuracy. That may seem like a small jump, but in business it can mean thousands or even millions of dollars more, depending on the size and reach of the company, so it is fair to say the tuning was a complete success!
+
+@@ 0e32f24f38
+3 - Comparing Predictions
+
+@@ 423239a295
+Here are predictions on a test set the model had not seen yet, using the three previously optimized models, producing arrays with the results. The code then builds a dictionary to organize and compare these predictions with the actual values, which are the true labels of the test set. Finally, the dictionary is converted into a DataFrame to make it easier to see and analyze the differences.
+
+@@ 2545c707fa
+Table comparing the actual values with the predictions of the three models
+
+@@ 8561ca1535
+As the cross-validation results suggested, the predictions are in line with reality, with few errors. In this specific slice, the only error occurs at index 3654, where the DTC and the RFC predicted a customer who would not cancel the card when, in reality, as the XGB predicted, it was a cancellation.
+
+@@ 4574dec219
+4 - Feature Importance Analysis
+
+@@ 65800792c0
+Using the feature_importances_ attribute, we can determine how important each column of the training dataset is, making it easier to identify the most relevant factors to consider. This analysis can better guide decision-making by the bank's staff. In the code, three horizontal bar plots are generated, using a combination of enumerate and zip to get the index and iterate over both lists at the same time.
+
+@@ 87c5a685f9
+Code that calculates and displays the feature importance of the three models
+
+@@ 01f9b51228
+These plots are interesting because they show how each model has its own way of understanding the information. Still, there are some clear patterns, such as columns like "Average Open to Buy" and "Income Lvl" always staying at the top, which indicates they are extremely relevant. On the other hand, others are consistently at the bottom, such as "Education", "Dependents" and "Gender", which shows these columns are almost dispensable for predicting customer churn and would probably not change training if removed.
+
+@@ 3757ba689f
+Feature importance in the three models
+
+@@ 28c8fb7d6a
+Feature importance for the Decision Tree
+
+@@ 14d6f4b902
+Feature importance for the Random Forest
+
+@@ 5027c14467
+Feature importance for XGBoost
+
+@@ 7ffd50c443
+4 - Confusion Matrix Analysis
+
+@@ 6d8cf8972a
+The confusion matrix is essential for evaluating classification models, since it gives a detailed view of true positives, false positives, true negatives and false negatives. This helps identify where the model makes mistakes and how to improve its accuracy. This code plots the confusion matrices for three classification models: XGBoost, Decision Tree and Random Forest. It calculates each matrix from the models' predictions and the true labels, shows them in subplots and displays each figure with the chosen palette and a custom title with the model name.
+
+@@ ab4f53e810
+Code that calculates and displays the confusion matrices
+
+@@ fa0f21188f
+The matrices show similar results, as expected given the models' accuracy: the DecisionTreeClassifier has the most false positives and negatives, and XGBoost the fewest. This highlights the importance of small percentages mentioned above: even though XGBoost has only a few percentage points of accuracy advantage, it avoids false positives/negatives up to 2.5x better than the others. Assuming, as a low estimate, that a bank customer generates $100 in profit, this could mean up to $25,000 in extra profit.
+
+@@ 50e90eaf3a
+Confusion matrices for XGBoost, Decision Tree and Random Forest
+
+@@ e2601f0b3f
+5 - Visualizing the Decision Trees
+
+@@ 20400cdbb7
+The code visualizes the decision trees of three models: it uses Scikit-learn's "plot_tree" for the DTC and for a random estimator from the RFC, while XGBoost is visualized with its own function. The figure is set up with three subplots, and the charts show the tree structure up to three levels deep, with readable feature names. The full charts are available on GitHub.
+
+@@ 03812c5982
+Code that visualizes the decision trees of the three models
+
+@@ 48f86b5cdd
+Decision tree visualizations
+
+@@ dd59d640b3
+Decision Tree visualization
+
+@@ 67f0db43a5
+=
+
+@@ 0582838bb0
+Visualization of one Random Forest tree
+
+@@ 64bce46344
+=
+
+@@ 80fccf3c4e
+XGBoost visualization
+
+@@ e63bae25e8
+=
+
+@@ 30836522b8
+6 - Insights and Conclusions
+
+@@ 84dc974f2c
+Finally, after a detailed analysis, we gathered a wide range of valuable insights. They are more than enough to give complete, well-founded answers to the questions raised at the start of the project, and here are the answers:
+
+@@ f343373741
+Older customers who make fewer transactions and have credit limits similar to active customers are at higher risk of canceling.
+
+@@ 3392c85a94
+Women tend to have lower credit limits but use their cards more often. This leads to different usage patterns between genders.
+
+@@ 4efdcf6b7d
+People with higher education levels tend to be more likely to cancel their cards
+
+@@ 0808d88829
+Customers who make more transactions often receive higher credit limits, since total transaction amount is directly related to the limit.
+
+@@ 9fb2bcd9f9
+Customers with higher incomes show a greater tendency to cancel.
+
+@@ 03d857e424
+Customers who cancel tend to make fewer transactions and use their card less actively than those who stay with the service.
+
+@@ 55c94a2395
+We also met the requirements for the Machine Learning models, building three models with accuracy above 85%. Each model comes with a detailed analysis of feature importance, which clearly and effectively identifies the main factors driving the predictions.
+
+@@ 1aacf767cd
+In addition, the DecisionTreeClassifier meets the high interpretability requirement, standing out for its simple structure, which allows easy visualization and clear, direct decision rules using a single tree. This is unlike more complex models such as RandomForestClassifier and XGBoost, which use multiple decision trees (Random Forest) or a set of trees with adaptive learning (XGBoost).
+
+@@ 8b10a4a7b0
+Next case study
+
+@@ 662685d97e
+Next study
+
+@@ f9957b500a
+Credit Risk Prediction at Home Credit Group
+
+@@ 7b1253867e
+=
+
+@@ d94bb43131
+Back to top ↑
+
+@@ 7af971db73
+Illustration of a credit card with the title of the churn case study
+
+@@ 06f184eb13
+Angel Mansilla, home
+
+@@ 9e11ee6bf5
+Machine Learning Engineering · Data Science
+
+@@ 2ae76d4e12
+Projects
+
+@@ c184eb0d89
+Experience
+
+@@ 38923037b9
+=

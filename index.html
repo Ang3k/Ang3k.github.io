@@ -9,21 +9,18 @@
     >
     <meta name="theme-color" content="#ffffff">
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="pt_BR">
     <meta property="og:title" content="Angel Mansilla | Machine Learning Engineering">
     <meta
       property="og:description"
       content="Projetos de Machine Learning, dados e sistemas inteligentes construídos do problema à aplicação."
     >
     <meta property="og:site_name" content="Angel Mansilla">
-    <meta property="og:url" content="https://angelmansilla.com.br/">
     <meta property="og:image" content="https://angelmansilla.com.br/assets/og/home.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Cabeçalho do portfólio de Angel Mansilla: Machine Learning Engineering e Ciência de Dados">
     <meta name="twitter:card" content="summary_large_image">
     <title>Angel Mansilla | Machine Learning Engineering</title>
-    <link rel="canonical" href="https://angelmansilla.com.br/">
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +28,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="./styles.css?v=20260924-quality">
+    <link rel="stylesheet" href="./styles.css?v=20261108-idioma">
     <script>
       (function () {
         try {
@@ -84,12 +81,56 @@
           ],
           "sameAs": [
             "https://github.com/Ang3k",
-            "https://www.linkedin.com/in/angel-mansilla-895001268/"
+            "https://www.linkedin.com/in/angel-mansilla-ai/"
           ]
         }
       ]
     }
     </script>
+    <!-- idioma: gerado por scripts/gerar_ingles.py -->
+    <link rel="canonical" href="https://angelmansilla.com.br/">
+    <link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/">
+    <link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/">
+    <link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/">
+    <meta property="og:url" content="https://angelmansilla.com.br/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale:alternate" content="en_US">
+    <script>
+      (function () {
+        var atual = "pt";
+        var destino = "en/";
+        document.addEventListener("click", function (evento) {
+          var link = evento.target.closest && evento.target.closest("[data-idioma]");
+          if (!link) return;
+          try {
+            localStorage.setItem("idioma", link.getAttribute("data-idioma"));
+          } catch (erro) {}
+        });
+        if (/bot|crawl|spider|slurp|facebookexternalhit|embedly|preview|lighthouse/i.test(navigator.userAgent)) return;
+        var escolhido = null;
+        try {
+          escolhido = localStorage.getItem("idioma");
+        } catch (erro) {}
+        if (!escolhido) {
+          try {
+            if (document.referrer && new URL(document.referrer).origin === location.origin) return;
+          } catch (erro) {}
+          var lista = navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language || ""];
+          escolhido = "en";
+          for (var i = 0; i < lista.length; i++) {
+            var codigo = String(lista[i]).toLowerCase();
+            if (codigo.indexOf("pt") === 0) { escolhido = "pt"; break; }
+            if (codigo.indexOf("en") === 0) { escolhido = "en"; break; }
+          }
+        }
+        if (escolhido !== atual && (escolhido === "pt" || escolhido === "en")) {
+          location.replace(destino + location.hash);
+        }
+      })();
+    </script>
+    <!-- /idioma -->
   </head>
   <body id="top">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -201,6 +242,7 @@
           >
             GitHub <span aria-hidden="true">↗</span>
           </a>
+          <!-- seletor de idioma --><a class="nav-lang" href="en/" hreflang="en" lang="en" data-idioma="en" aria-label="Read this page in English">EN</a><!-- /seletor de idioma -->
         </nav>
       </div>
     </header>
@@ -242,7 +284,7 @@
             </a>
             <a
               class="text-link"
-              href="https://www.linkedin.com/in/angel-mansilla-895001268/"
+              href="https://www.linkedin.com/in/angel-mansilla-ai/"
               target="_blank"
               rel="noreferrer"
             >
@@ -672,7 +714,7 @@
               GitHub <span aria-hidden="true">↗</span>
             </a>
             <a
-              href="https://www.linkedin.com/in/angel-mansilla-895001268/"
+              href="https://www.linkedin.com/in/angel-mansilla-ai/"
               target="_blank"
               rel="noreferrer"
             >

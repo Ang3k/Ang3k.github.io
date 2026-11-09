@@ -2,6 +2,28 @@
   const mobileQuery = window.matchMedia("(max-width: 700px)");
   const controlSelector = "[data-mobile-media-control]";
   const linkHandlers = new Map();
+  const english = document.documentElement.lang.toLowerCase().startsWith("en");
+  const text = english
+    ? {
+        close: "Close",
+        closeLabel: "Close enlarged image",
+        error: "This image could not be loaded.",
+        loading: "Loading image…",
+        panHint: "Drag sideways and up or down to explore the details.",
+        pinchHint: "Pinch to zoom in further if you need to.",
+        enlarge: "Enlarge",
+        enlargeLabel: (alt) => `Enlarge image: ${alt}`,
+      }
+    : {
+        close: "Fechar",
+        closeLabel: "Fechar imagem ampliada",
+        error: "Não foi possível carregar esta imagem.",
+        loading: "Carregando imagem…",
+        panHint: "Arraste para os lados e para cima ou para baixo para explorar os detalhes.",
+        pinchHint: "Use o gesto de pinça caso queira ampliar ainda mais.",
+        enlarge: "Ampliar",
+        enlargeLabel: (alt) => `Ampliar imagem: ${alt}`,
+      };
 
   let dialog;
   let dialogImage;
@@ -59,8 +81,8 @@
     closeButton = document.createElement("button");
     closeButton.className = "mobile-media-dialog__close";
     closeButton.type = "button";
-    closeButton.textContent = "Fechar";
-    closeButton.setAttribute("aria-label", "Fechar imagem ampliada");
+    closeButton.textContent = text.close;
+    closeButton.setAttribute("aria-label", text.closeLabel);
     closeButton.addEventListener("click", () => dialog.close());
 
     const viewport = document.createElement("div");
@@ -79,7 +101,7 @@
     });
     dialogImage.addEventListener("error", () => {
       dialogStatus.hidden = false;
-      dialogStatus.textContent = "Não foi possível carregar esta imagem.";
+      dialogStatus.textContent = text.error;
       viewport.removeAttribute("aria-busy");
     });
 
@@ -124,10 +146,10 @@
     dialogImage.dataset.pannable = String(pannable);
     dialogImage.style.width = `${targetWidth}px`;
     dialogStatus.hidden = false;
-    dialogStatus.textContent = "Carregando imagem…";
+    dialogStatus.textContent = text.loading;
     dialogHint.textContent = pannable
-      ? "Arraste para os lados e para cima ou para baixo para explorar os detalhes."
-      : "Use o gesto de pinça caso queira ampliar ainda mais.";
+      ? text.panHint
+      : text.pinchHint;
 
     const viewport = dialog.querySelector(".mobile-media-dialog__viewport");
     viewport.setAttribute("aria-busy", "true");
@@ -186,9 +208,9 @@
       const control = document.createElement("button");
       control.className = "mobile-media-trigger";
       control.type = "button";
-      control.textContent = "Ampliar";
+      control.textContent = text.enlarge;
       control.dataset.mobileMediaControl = "true";
-      control.setAttribute("aria-label", `Ampliar imagem: ${image.alt.trim()}`);
+      control.setAttribute("aria-label", text.enlargeLabel(image.alt.trim()));
       control.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();

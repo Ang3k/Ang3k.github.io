@@ -1,0 +1,503 @@
+# Traduções de projetos/imdb/index.html -> en/projects/imdb/index.html.
+# Veja scripts/gerar_ingles.py. "=" mantém o texto original.
+
+@@ a75044ec2d
+Angel Mansilla's case study analyzing the film industry with IMDb and TMDB data.
+
+@@ f8c78a7071
+Data Analysis on IMDb | Angel Mansilla
+
+@@ 9f9f3e04d7
+Extraction, transformation and analysis of more than 158 million rows with Python, MySQL and Power BI.
+
+@@ 8f33fd93c5
+Skip to content
+
+@@ 4a3c2dbf05
+=
+
+@@ e49a5ef34a
+Main navigation
+
+@@ 23930282a1
+About
+
+@@ 56661c07cf
+Contact
+
+@@ 6bd5f352e8
+IMDb logo in black on a yellow background
+
+@@ 103f82409f
+Data Analysis on IMDb
+
+@@ 22b0e121b1
+Case study sections
+
+@@ c4ad974d5e
+<span>01</span> Understanding and Collecting the Data
+
+@@ 978bc8c0dc
+<span>02</span> Analyzing with MySQL and Power BI
+
+@@ 401bf28524
+<span>03</span> Final Report
+
+@@ 4175fb9fdf
+PART <span>1</span>
+
+@@ 8a07a78068
+Understanding and Collecting the Data
+
+@@ 43f2d694a3
+1 - Introduction
+
+@@ c7eeca703f
+Júlia is a film enthusiast who decides to take a chance and invest in a startup, MoviesNow. She soon realizes the company is poorly organized and, even while preparing its first project, does not know the market patterns of this entertainment sector.
+
+@@ fc3b299dab
+To help MoviesNow improve its strategy and direction, Júlia decides to use her Data Analysis skills, aiming not only to collect data but also to turn it into valuable, actionable information. To do that, she goes looking for a dataset.
+
+@@ 82d6808a65
+2 - Dataset
+
+@@ c935d895b0
+Júlia looks for a robust, informative dataset for data analysis, which leads her to IMDb, an extensive and up-to-date data source that includes details on artists' births, their film work, movie ratings, production years and other data.
+
+@@ 4d9c41fa79
+List of data files available for download on IMDb
+
+@@ f1b1ff9cd1
+3 - Data Dictionary
+
+@@ 28b96b7c3d
+Table 1: title.akas.tsv.gz
+
+@@ 0899cbda38
+<strong>titleId (string):</strong> Unique identifier of the title.
+
+@@ f7d4bd64ff
+<strong>ordering (integer):</strong> Unique number to identify rows for a given titleId.
+
+@@ fc8765d686
+<strong>title (string):</strong> Localized title.
+
+@@ 23cedfe00d
+<strong>region (string):</strong> Region for this version of the title.
+
+@@ ae2e6f1455
+<strong>language (string):</strong> Language of the title.
+
+@@ b3c0573c29
+<strong>types (array):</strong> Enumerated set of attributes for this alternative title.
+
+@@ b8d08e9d7d
+<strong>attributes (array):</strong> Additional terms to describe this alternative title.
+
+@@ 688c76f4de
+<strong>isOriginalTitle (boolean):</strong> Indicates whether it is the original title.
+
+@@ 5324687d7d
+Table 2: title.basics.tsv.gz
+
+@@ ada2df4597
+<strong>tconst (string):</strong> Unique identifier of the title.
+
+@@ 5d0cb6d9da
+<strong>titleType (string):</strong> Type/format of the title (movie, TV series, etc.).
+
+@@ f841826f2a
+<strong>primaryTitle (string):</strong> The most popular title, or the one used by the filmmakers.
+
+@@ df2c7daa3e
+<strong>originalTitle (string):</strong> Original title, in the original language.
+
+@@ 3345a5b6c6
+<strong>isAdult (boolean):</strong> Indicates whether it is an adult title.
+
+@@ b686e6eef3
+<strong>startYear (YYYY):</strong> Release year (for movies) or start year of the series (for TV series).
+
+@@ 7e4209cf64
+<strong>endYear (YYYY):</strong> End year of the TV series.
+
+@@ 828ea3d1fb
+<strong>runtimeMinutes:</strong> Primary runtime of the title, in minutes.
+
+@@ cedea15d62
+<strong>genres (array):</strong> Up to three genres associated with the title.
+
+@@ 5702dac897
+Table 3: title.principals.tsv.gz
+
+@@ 66da630e3b
+<strong>nconst (string):</strong> Unique identifier of the person.
+
+@@ f09108faaf
+<strong>category (string):</strong> The person's job category.
+
+@@ 8ef4a16baf
+<strong>job (string):</strong> Specific job title (if applicable).
+
+@@ 523d64d42d
+<strong>characters (string):</strong> Name of the character played (if applicable).
+
+@@ 306b18161a
+Table 4: title.ratings.tsv.gz
+
+@@ c0e5c8b2b5
+<strong>averageRating:</strong> Weighted average of user ratings.
+
+@@ 1e9c8cf41d
+<strong>numVotes:</strong> Number of votes the title has received.
+
+@@ 7bfcc45882
+Table 5: name.basics.tsv.gz
+
+@@ 0e5bbd24a6
+<strong>primaryName (string):</strong> Name by which the person is most often credited.
+
+@@ b64ff5a778
+<strong>birthYear (YYYY):</strong> Year of birth.
+
+@@ 5b19f25425
+<strong>deathYear (YYYY):</strong> Year of death (if applicable).
+
+@@ b5a137a3f6
+<strong>primaryProfession (array):</strong> The person's top three professions.
+
+@@ 1752f74355
+<strong>knownForTitles (array):</strong> Titles the person is known for.
+
+@@ 0d2acb97d6
+4 - Entity Relationship Diagram
+
+@@ f854eb9281
+With this, we can build an Entity Relationship Diagram:
+
+@@ b8ea18fa4a
+Relationship diagram of the five tables used in the IMDb project
+
+@@ 95ad794f60
+5 - Transforming the Data
+
+@@ a3925639ee
+The first challenge of her project was converting IMDb's ".tsv" files into the ".csv" format supported by MySQL Workbench 8.0. Because of the size of the files, online converters could not handle the transformation. To get around this, Júlia used a Python script to do the conversion.
+
+@@ 29161ec385
+The Python script identified the specific patterns of the ".tsv" format and turned them into ".csv". This meant replacing tabs with commas and applying the other formatting needed for MySQL Workbench to read the data correctly. This method made it possible to convert very large files efficiently, preparing them for import and later analysis in MySQL.
+
+@@ d795ec7f31
+Python script used to convert TSV files into CSV
+
+@@ 67fb2769f4
+After the conversion, the files were ready to be loaded. Júlia considered using the Table Import Wizard, but ran into performance problems, so she chose a better method, the LOAD DATA LOCAL INFILE command, which completed the extraction of the database.
+
+@@ 728c4c357d
+LOAD DATA LOCAL INFILE command used to load the data into MySQL
+
+@@ 0fedd4f7da
+6 - Extra Information
+
+@@ fcda469ba5
+With the data loaded on her computer, Júlia found some interesting facts about the scope of the data she was working with. Here are a few highlights of the dataset used in this project.
+
+@@ 96ac96a118
+Rows
+
+@@ f7ac040008
+158,366,934 rows of information
+
+@@ 586f511710
+Collection Period
+
+@@ fd872157c0
+Data spanning 1894 to 2024
+
+@@ 6e8378dd5d
+Columns
+
+@@ a437aa95a5
+32 distinct columns across the 5 tables
+
+@@ bb7506f721
+Collection Region
+
+@@ 5646bb18d7
+More than 240 different countries
+
+@@ 430469732c
+Size
+
+@@ a6567af839
+12.73 GB of table files
+
+@@ 7cf0b5a876
+For more information, <a href="https://developer.imdb.com/non-commercial-datasets/" target="_blank" rel="noreferrer">click here</a>
+
+@@ 9599b4b6f9
+PART <span>2</span>
+
+@@ 1e6b3ef8f3
+Analyzing with MySQL and Power BI
+
+@@ 1982d8fc71
+This section of the project contains the main and most interesting queries developed throughout the project. Alongside them are comments that add context and curiosities and improve the overall storytelling, plus Power BI visualizations that make the results of the code clearer.
+
+@@ fb5f44c946
+1 - The Top 25 Movies on IMDb
+
+@@ b5d8009ec0
+This query returns the 25 highest-rated movies on IMDb. One detail is that it filters by averageRating twice to make the result more relevant, while keeping the order mainly by numVotes in the subquery.
+
+@@ 043de12732
+Chart of the 25 highest-rated movies on IMDb, comparing rating and number of votes
+
+@@ 58c3c766e0
+SQL query used to select the 25 highest-rated movies
+
+@@ 356833952b
+2 - Most Promising Genres for 2024+
+
+@@ 8d9fdd7778
+This query counts the genres expected for movies, series and short films to be released from 2024 onward. It is a simple query that helps us understand future trends in this market.
+
+@@ 20d7eb21cf
+Chart of the most common genres in releases from 2024 onward
+
+@@ f3e99f6e3b
+SQL query used to count genres in releases from 2024 onward
+
+@@ 21d7235be7
+3 - Age Group Breakdown Among Actors
+
+@@ 659c48a502
+This query returns information about the age groups credited on IMDb. Since this dataset did not include the artists' ages, I used the COALESCE function to calculate them, because many deathYear values were null.
+
+@@ 0c5e5ea4ca
+This was also the first query of this project.
+
+@@ 66f6c6239f
+Chart of the distribution of acting professionals by age group
+
+@@ 50ae6cfff0
+SQL query used to calculate the age groups
+
+@@ e7ffdcfd61
+4 - Short vs. Feature Films Over the Years
+
+@@ f23aa89d86
+This query compares the production of short films with that of feature films. Thanks to the breadth of this dataset, there is data from 1874 to the present day, a simply incredible span!
+
+@@ 3ffc8cd445
+Chart comparing the number of short and feature films over the years
+
+@@ edfa707556
+SQL query used to compare short and feature films
+
+@@ 9afd220108
+5 - Trends Over Time: Runtime vs. Ratings
+
+@@ acb8e4ebdf
+A very interesting query that shows how time has affected movie runtimes. We found that in 2008 the average runtime of a "10-rated movie" was 78 minutes, while today, in 2024, it is 102 minutes and 24&nbsp;seconds.
+
+@@ d930218f21
+The visualization above was built in Power BI to make the comparison between runtime, rating and changes over&nbsp;time clearer.
+
+@@ ee0790fd56
+Chart relating movie runtime, year and average rating
+
+@@ 63278d41a7
+SQL query used to relate runtime and rating over time
+
+@@ f792026553
+6 - Regions by Number of Adaptations
+
+@@ 0cb05add46
+One of the simplest queries, counting the titles adapted for regions around the globe. Brazil is in the TOP 13, with 126,385 adapted titles.
+
+@@ 411e958622
+World map with the number of title adaptations by region
+
+@@ 70a679f68d
+SQL query used to count adaptations by region
+
+@@ 4178c12196
+7 - Men vs. Women in Entertainment
+
+@@ 07151d338b
+This query brings up a very important discussion today: the gender gap in the job market. It is a pity this dataset does not include salaries, which would make the analysis even more interesting.
+
+@@ 8af9487398
+Chart comparing the presence of men and women in acting credits
+
+@@ 036eb8d8fe
+SQL query used to compare the representation of men and women
+
+@@ 1eca88bd48
+8 - The Industry's Most Prolific Professionals
+
+@@ c9b081ace1
+This query returns the most "credited" names on IMDb, that is, the people who most often appear in production credits. It is also one of the heaviest queries in terms of performance.
+
+@@ cde04212c3
+Word cloud of the professionals who appear most often in the credits
+
+@@ 81c64db07c
+SQL query used to identify the most prolific professionals
+
+@@ cc2bd1c6f9
+9 - Oldest Series Still Running
+
+@@ 9862c91316
+A query that is both interesting and useful: it returns the oldest series that are still receiving new episodes, and, impressively, The Simpsons is only in ninth place!
+
+@@ b7cf19189b
+Table of the oldest series that were still running
+
+@@ 1f4162d844
+SQL query used to list old series that are still running
+
+@@ 05e78afed4
+For the final queries, I use an additional table from TMDB with some interesting data on production costs and profits. However, only movies that have an IMDb ID are analyzed, to keep within the scope of the project.
+
+@@ 63eeb4ad26
+10 - Film Industry Profits by Year
+
+@@ 24b19efd6e
+This query returns the overall profit of the film industry over the years, from 1913 to 2024. A remarkable detail of this query is that it shows the impact of the COVID pandemic on this sector between 2019 and 2021, with a dramatic drop in overall profits during that period.
+
+@@ dc51eb04ab
+Chart of the film industry's aggregate profit by year
+
+@@ 080ae032ea
+SQL query used to calculate the industry's profit by year
+
+@@ 14ecaa0b84
+11 - Gross Earnings by Company Over the Years
+
+@@ 9859a4a240
+This query presents, by year, the cumulative sum of both the earnings and the costs of companies, based on a filter on those same sums. The Substring_Index function is used to select only the first (main) company among the set of companies involved in each production.
+
+@@ 6af9902227
+Visualizations of results by company
+
+@@ d69bba6246
+Overall chart of budget, revenue and profit by company and year
+
+@@ 6527e0c3c5
+Filtered chart of budget, revenue and profit for a selected company
+
+@@ 1798d70fc1
+12 - Industry Profits by World Region
+
+@@ b732c66252
+This query works from a single table. The SUM function is used with the OVER clause to calculate the cumulative sum of profits for each country.
+
+@@ 4c9d6d1ec9
+World map of film industry profit by region
+
+@@ 883f047f7d
+SQL query used to calculate profit by region
+
+@@ 62cd7f5f05
+13 - Profits by Movie Genre
+
+@@ c7e012a27d
+This query shows the relationship between production profits and the ratings received. Interestingly, they do not always go hand in hand: "Documentaries", for example, have the best ratings and also some of the worst profits.
+
+@@ 4521abeca9
+Chart comparing profit and average rating by movie genre
+
+@@ 82725d3e0a
+SQL query used to compare profit and rating by genre
+
+@@ f16de73d9a
+PART <span>3</span>
+
+@@ cfb05aa292
+Final Report
+
+@@ e1e5456f75
+The final section of this project brings together the main points observed in the insights from Part 2, organized by theme to make the conclusions easier to read.
+
+@@ 6499b9126d
+1 - Insights Report
+
+@@ 3febeca135
+Profile of the Industry's Members
+
+@@ 7603e87e10
+Most living actors and actresses are adults, a good share are seniors, and child actors make up a very small part of the total.
+
+@@ eecf4ace0f
+The gap between men and women in acting is still large, but it is smaller than in the past, when it reached 2:1, as in 1940.
+
+@@ eca2a8ec49
+Some of the best-known names in this industry are Reg Watson and Ernesto Alonso, with a highlight for the Kapoor family: Ekta and Shobha are in the TOP 3, both Indian women producers of television, film and web series.
+
+@@ 64ed7e3e93
+Industry Economics
+
+@@ e39286c758
+Overall, the industry showed steady growth in profits. With the COVID-19 pandemic, however, the sector suffered a sharp drop and has not yet recovered: in 2020, the industry's profits were similar to those of the mid-1980s.
+
+@@ a67fb8f687
+Most of the regions earning the most in this industry are in the Northern Hemisphere, especially the United States, whose profits exceed those of several continents.
+
+@@ 6349e53b5d
+The most profitable genres in this industry are Action, Comedy and Adventure, but they also have low ratings. Other options, such as Documentary, History and Mystery, have low profits but higher ratings. Genres such as Animation and Drama would be good middle-ground options.
+
+@@ fd64df2659
+Forecasts for 2024+
+
+@@ ef155fbcdb
+The genres we expect to see most from 2024 onward are Drama, Comedy, Documentary and Action. The genres we will see least are Talk Shows, Game Shows and News.
+
+@@ 1dfef025d2
+Until the early 2000s, larger productions were more common. With the rise of the internet, and with cameras and other equipment becoming more affordable, producing content became easier, so from that point on, smaller productions have become increasingly common and now dominate in volume.
+
+@@ 915b5527e8
+Ratings change depending on a movie's runtime. In 2001, the standard was movies of about 90 minutes, yet 58-minute movies had a higher average rating overall. Today, in 2022–2023, the standard has risen to 96 minutes, but movies of about 88 minutes get better ratings.
+
+@@ fee2edf886
+Miscellaneous
+
+@@ 6f7a1061a0
+Most adaptations go to Europe, India and Japan. The low number for the United States stands out, which makes sense, since it is the largest producer of the content that gets adapted. Brazil, though less prominent, is 13th on the list.
+
+@@ f1bf2cf92e
+Among the highest-rated movies on IMDb, three stand out: "The Shawshank Redemption", "The Godfather" and "The Dark Knight". The last one, despite having the same rating as "The Lord of the Rings", has many more votes, which indicates a higher degree of certainty.
+
+@@ f521ffc425
+2 - Conclusion
+
+@@ 34d1174b5c
+This concludes this data analysis project, in which the data was extracted, analyzed and visualized. The simulated scenario with the character Júlia and the company MoviesNow was useful for giving my work a business context. A lot of learning went into this project, and even more came out of it. Thank you for your attention!
+
+@@ 5e6cd3bfda
+View repository on GitHub <span aria-hidden="true">↗</span>
+
+@@ 7b1253867e
+=
+
+@@ d94bb43131
+Back to top ↑
+
+@@ 64750a9391
+IMDb logo with the case study title
+
+@@ 06f184eb13
+Angel Mansilla, home
+
+@@ 9e11ee6bf5
+Machine Learning Engineering · Data Science
+
+@@ 2ae76d4e12
+Projects
+
+@@ c184eb0d89
+Experience
+
+@@ 38923037b9
+=

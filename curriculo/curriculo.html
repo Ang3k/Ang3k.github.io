@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>ML Resume - Angel Mansilla</title>
+    <link rel="stylesheet" href="curriculo.css" />
+  </head>
+  <body>
+    <!--
+      Fonte do currículo publicado em assets/angel-mansilla-curriculo.pdf.
+      Edite o texto aqui e rode:  py -3.11 curriculo/gerar_pdf.py
+      Negrito: <strong>…</strong>. Os espaços dentro ou fora do <strong>
+      seguem o original do Canva; mantenha esse padrão nos textos novos.
+    -->
+    <main class="page">
+      <header>
+        <h1 class="name" aria-label="Angel Mansilla"><span>ANGEL</span> <span>MANSILLA</span></h1>
+        <p class="headline">Cientista de Dados | AI &amp; Machine Learning Engineer</p>
+        <p class="contact">
+          Rio de Janeiro, RJ | angejesufern@gmail.com | +55 (21) 99859-5855<br /><a
+            href="https://www.linkedin.com/in/angel-mansilla-ai"
+            >linkedin.com/in/angel-mansilla-ai</a
+          > | www.angelmansilla.com.br | <a href="https://github.com/Ang3k">github.com/Ang3k</a>
+        </p>
+        <div class="rule" aria-hidden="true"></div>
+      </header>
+
+      <section class="experiencia">
+        <h2 class="section-title">EXPERIÊNCIA PROFISSIONAL</h2>
+        <p class="lead">
+          <strong>Junior AI Engineer</strong> em <strong>RapidCanvas</strong>, (10/2026 -
+          Atual)
+        </p>
+        <ul class="list">
+          <li>
+            <strong>Previsão de demanda</strong>: Engenharia de dados e ML em solução de
+            <strong>planejamento de matéria-prima</strong> para cliente industrial, com
+            <strong>previsão de consumo</strong> em LightGBM: integração ao
+            <strong>ERP Epicor</strong> e migração do banco para <strong>MySQL</strong> com
+            verificação linha a linha. Tecnologias: Python, MLflow, FastAPI.
+          </li>
+          <li>
+            <strong>Agentes de IA</strong>: Atuação em sistema de
+            <strong>automação de sinistros</strong> para corretora de seguros, com
+            <strong>agentes de LLM</strong> que extraem dados de documentos e
+            <strong>motor de regras</strong> que valida os casos; mapeamento dos fluxos e
+            <strong>proposta de persistência</strong> em MySQL. Tecnologias: Python, FastAPI.
+          </li>
+        </ul>
+
+        <p class="lead">
+          <strong>ML Engineer Intern</strong> em <strong>Genesis Data Culture</strong>,
+          (08/2025 - 10/2026)
+        </p>
+        <ul class="list">
+          <li>
+            <strong>Machine Learning</strong>: Implementação de modelos para
+            <strong>predição de falhas</strong> em equipamentos elétricos, com extração e
+            tratamento de dados via <strong>FastAPI</strong> e uso de algoritmos desde Linear
+            Regression a Autoencoders, <strong>reduzindo custos de manutenção</strong>.
+            Tecnologias: Python, Pandas, Scikit-learn, PyTorch.
+          </li>
+          <li>
+            <strong>Automatização</strong>: Criação de <strong>data pipeline</strong> para
+            <strong>coleta, padronização e carga de dados</strong> industriais via APIs e
+            planilhas Excel, <strong>automatizando</strong> o processo e carregando em
+            <strong>PostgreSQL</strong> com Prisma ORM, garantindo
+            <strong>integridade e eficiência </strong>para uso futuro. Tecnologias: Python,
+            Pandas, PostgreSQL, Prisma.
+          </li>
+          <li>
+            <strong>Endpoints</strong>: Desenvolvimento de <strong>endpoints RESTful</strong> em
+            FastAPI para <strong>treinamento e predição de modelos ML</strong> em lote.
+            Versionamento via <strong>MLflow</strong>, armazenamento em
+            <strong>MinIO </strong>e processamento assíncrono. Tecnologias: Python, FastAPI,
+            Scikit-learn, MLflow, MinIO, Docker.
+          </li>
+        </ul>
+      </section>
+
+      <section class="formacao">
+        <h2 class="section-title">FORMAÇÃO ACADÊMICA</h2>
+        <p class="lead">
+          <strong>Ciência da Computação</strong>, <strong>UFRJ</strong> — 7º período (07/2023 –
+          12/2027)
+        </p>
+        <ul class="list">
+          <li>
+            Equipe: Membro da Equipe de Desenvolvimento da <strong>UFRJ Analytica</strong>
+            (05/2025 - Atual)
+          </li>
+        </ul>
+      </section>
+
+      <section class="habilidades">
+        <h2 class="section-title">HABILIDADES TÉCNICAS</h2>
+        <ul class="list">
+          <li><strong>Linguagens de programação</strong>: Python, SQL</li>
+          <li><strong>Banco de dados</strong>: MySQL e PostgreSQL</li>
+          <li><strong>Versionamento</strong>: Git e GitHub</li>
+          <li>
+            <strong>Bibliotecas: </strong>Pandas, NumPy, scikit-learn, Matplotlib, Seaborn,
+            PyTorch, LightGBM, XGBoost, Optuna
+          </li>
+          <li>
+            <strong>APIs e IA generativa</strong>: FastAPI, agentes de LLM e extração de dados
+            de documentos
+          </li>
+          <li><strong>MLOps/DevOps</strong>: MLflow, Docker, Docker Compose, Poetry</li>
+        </ul>
+      </section>
+
+      <section class="projetos">
+        <h2 class="section-title">PROJETOS</h2>
+
+        <article class="project">
+          <h3 class="project-title">
+            Dengue Sense — Sistema de Apoio ao Diagnóstico Diferencial de Arboviroses
+          </h3>
+          <ul class="list">
+            <li>
+              Desenvolvimento de <strong>ensemble ponderado</strong> para diagnóstico
+              diferencial de <strong>dengue, zika e chikungunya</strong> em ~480k notificações
+              epidemiológicas nacionais (2017–2019). Arquitetura com
+              <strong>embeddings categóricos</strong> e otimização voltada a
+              <strong>recall clínico</strong>, atingindo <strong>88% de recall</strong> sem
+              dependência de exames laboratoriais. Tecnologias: Python, LightGBM, XGBoost,
+              PyTorch, Pandas.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="idiomas">
+        <h2 class="section-title">IDIOMAS E SOFTSKILLS</h2>
+        <ul class="list">
+          <li>
+            <strong>Inglês</strong>: Fluente / Muito Avançado (C1) |
+            <strong>Espanhol</strong>: Fluente (C1)
+          </li>
+          <li>
+            <strong>Soft skills</strong>: comunicação objetiva, pensamento analítico,
+            colaboração autônoma e adaptabilidade
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!--
+      TRECHOS RETIRADOS PARA CABER NA PÁGINA (texto original do Canva).
+      Podem voltar se sobrar espaço ou se outra parte sair.
+
+      Projeto (seção PROJETOS):
+        <article class="project">
+          <h3 class="project-title">
+            Engenharia de Decisão Ambiental para Descomissionamento Offshore — Petrobras |
+            COPPE/UFRJ
+          </h3>
+          <ul class="list">
+            <li>
+              Desenvolvimento de protótipo para avaliação multicritério de
+              <strong>alternativas de descomissionamento</strong> submarino, traduzindo a
+              metodologia ambiental em regras de negócio e cálculos rastreáveis. Implementação
+              de <strong>simulador e estruturação de camada semântica</strong> para automatizar
+              notas de magnitude e sensibilidade, integrar
+              <strong>dados técnicos e validar resultados</strong> com planilhas de referência.
+              Tecnologias: JavaScript, Node.js, Express, PostgreSQL, Supabase, SQL e JSON.
+            </li>
+          </ul>
+        </article>
+
+      Formação (primeiro item da lista):
+        <li>Cursos Relevantes: Cálculo I e II, Álgebra Linear, Estatística e Probabilidade</li>
+
+      Soft skills (no lugar do item "Soft skills" da seção de idiomas):
+        <li><strong>Comunicação objetiva</strong> — clareza e transparência nas interações técnicas e em equipe</li>
+        <li><strong>Pensamento analítico</strong> — discernimento rápido para tomada de decisão e resolução de problemas</li>
+        <li><strong>Colaboração autônoma</strong> — contribuição técnica e estratégica, com senso de dono nos projetos</li>
+        <li><strong>Adaptabilidade </strong>— aprendizado acelerado; o que não sei, aprendo e executo</li>
+    -->
+  </body>
+</html>

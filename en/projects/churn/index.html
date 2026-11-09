@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Angel Mansilla's case study on analyzing and predicting credit card customer churn."
+    >
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Bank Customer Churn Prediction | Angel Mansilla">
+    <meta
+      property="og:description"
+      content="Exploratory analysis, data treatment and model comparison to predict credit card cancellations."
+    >
+    <meta property="og:site_name" content="Angel Mansilla">
+    <meta property="og:image" content="https://angelmansilla.com.br/assets/og/churn.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Illustration of a credit card with the title of the churn case study">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Bank Customer Churn Prediction | Angel Mansilla</title>
+    <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="preload" href="../../../assets/projects/churn/churn-card-hero.webp" as="image" type="image/webp">
+    <link rel="stylesheet" href="../../../styles.css">
+    <link rel="stylesheet" href="../../../case-study.css">
+    <link rel="stylesheet" href="../../../portfolio-case-standard.css">
+    <link rel="stylesheet" href="../../../projetos/churn/churn-standard.css">
+    <link rel="stylesheet" href="../../../mobile-media.css?v=20260801" media="(max-width: 700px)">
+    <!-- idioma: gerado por scripts/gerar_ingles.py -->
+    <link rel="canonical" href="https://angelmansilla.com.br/en/projects/churn/">
+    <link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/churn/">
+    <link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/churn/">
+    <link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/churn/">
+    <meta property="og:url" content="https://angelmansilla.com.br/en/projects/churn/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <script>
+      (function () {
+        var atual = "en";
+        var destino = "../../../projetos/churn/";
+        document.addEventListener("click", function (evento) {
+          var link = evento.target.closest && evento.target.closest("[data-idioma]");
+          if (!link) return;
+          try {
+            localStorage.setItem("idioma", link.getAttribute("data-idioma"));
+          } catch (erro) {}
+        });
+        if (/bot|crawl|spider|slurp|facebookexternalhit|embedly|preview|lighthouse/i.test(navigator.userAgent)) return;
+        var escolhido = null;
+        try {
+          escolhido = localStorage.getItem("idioma");
+        } catch (erro) {}
+        if (!escolhido) {
+          try {
+            if (document.referrer && new URL(document.referrer).origin === location.origin) return;
+          } catch (erro) {}
+          var lista = navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language || ""];
+          escolhido = "en";
+          for (var i = 0; i < lista.length; i++) {
+            var codigo = String(lista[i]).toLowerCase();
+            if (codigo.indexOf("pt") === 0) { escolhido = "pt"; break; }
+            if (codigo.indexOf("en") === 0) { escolhido = "en"; break; }
+          }
+        }
+        if (escolhido !== atual && (escolhido === "pt" || escolhido === "en")) {
+          location.replace(destino + location.hash);
+        }
+      })();
+    </script>
+    <!-- /idioma -->
+  </head>
+  <body class="case-page portfolio-case-study churn-case wix-churn-case churn-refactor" id="top">
+    <a class="skip-link" href="#conteudo">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <div class="masthead">
+          <a class="site-name" href="../../index.html" aria-label="Angel Mansilla, home">
+            Angel Mansilla
+          </a>
+          <p>Machine Learning Engineering · Data Science</p>
+        </div>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="../../index.html#sobre">About</a>
+          <a href="../../index.html#projetos">Projects</a>
+          <a href="../../index.html#experiencia">Experience</a>
+          <a href="../../index.html#contato">Contact</a>
+          <a
+            class="nav-external"
+            href="https://github.com/Ang3k"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+          <!-- seletor de idioma --><a class="nav-lang" href="../../../projetos/churn/" hreflang="pt-BR" lang="pt-BR" data-idioma="pt" aria-label="Ler esta página em português">PT</a><!-- /seletor de idioma -->
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="wix-churn-hero churn-hero" aria-labelledby="titulo-projeto">
+        <img
+          src="../../../assets/projects/churn/churn-card-hero.webp"
+          alt="Abstract illustration of a credit card"
+          width="1600"
+          height="1600"
+          fetchpriority="high"
+          decoding="async"
+        >
+        <div class="wix-churn-hero-shade" aria-hidden="true"></div>
+        <div class="churn-hero-copy">
+          <h1 id="titulo-projeto">Machine Learning for Prediction of Credit Card Churn</h1>
+        </div>
+      </section>
+
+      <article class="churn-case-content">
+        <section class="churn-overview" id="visao-geral" aria-label="Case study sections">
+          <nav class="churn-chapter-nav" aria-label="Case study sections">
+            <a href="#contexto"><span>01</span> Introduction to the Dataset</a>
+            <a href="#eda"><span>02</span> Exploratory Data Analysis</a>
+            <a href="#tratamento"><span>03</span> Data Preparation</a>
+            <a href="#modelagem"><span>04</span> Machine Learning Predictions</a>
+            <a href="#conclusoes"><span>05</span> Insights and Conclusions</a>
+          </nav>
+        </section>
+
+        <section class="case-section churn-chapter" id="contexto" aria-labelledby="titulo-contexto">
+          <header class="churn-chapter-header">
+            <p class="churn-chapter-number">PART <span>1</span></p>
+            <div>
+              <h2 id="titulo-contexto">Introduction to the Dataset</h2>
+            </div>
+          </header>
+
+          <div class="churn-story-flow">
+            <section class="churn-story-block">
+              <h3>1 - Business Context</h3>
+              <p>
+                A bank manager is worried about the growing number of customers leaving the credit card service. The bank would greatly appreciate being able to predict which customers are going to cancel, so it can act proactively, offering better service and changing those customers' minds.
+              </p>
+              <p>
+                The manager found a possible solution by hiring Angel, a data scientist, to extract insights from a dataset through exploratory data analysis. He also asked Angel to build a Machine Learning model that could predict, based on the data, whether or not a customer would cancel their credit card, and to report the model's accuracy.
+              </p>
+            </section>
+
+            <section class="churn-story-block">
+              <h3>2 - Data Dictionary</h3>
+              <ul class="churn-question-list">
+                <li><strong>CLIENTNUM:</strong> Unique identification number of the customer who holds the account.</li>
+                <li><strong>Attrition_Flag:</strong> Internal event variable (customer activity)</li>
+                <li><strong>Customer_Age:</strong> Demographic variable - Customer's age in years.</li>
+                <li><strong>Gender:</strong> Demographic variable - Customer's gender</li>
+                <li><strong>Dependent_count:</strong> Demographic variable - Number of dependents.</li>
+                <li><strong>Education_Level:</strong> Demographic variable - Education level of the account holder</li>
+                <li><strong>Marital_Status:</strong> Demographic variable - Marital status</li>
+                <li><strong>Income_Category:</strong> Demographic variable - Annual income category of the account holder</li>
+                <li><strong>Card_Category:</strong> Product variable - Card type (Blue, Silver, Gold, Platinum).</li>
+                <li><strong>Months_on_book:</strong> Length of the relationship with the bank (in months).</li>
+                <li><strong>Months_on_book:</strong> Length of the relationship with the bank (in months).</li>
+                <li><strong>Months_Inactive_12_mon:</strong> Number of inactive months in the last 12 months.</li>
+                <li><strong>Contacts_Count_12_mon:</strong> Number of contacts in the last 12 months.</li>
+                <li><strong>Credit_Limit:</strong> Credit limit on the credit card.</li>
+                <li><strong>Total_Revolving_Bal:</strong> Total revolving balance on the credit card.</li>
+                <li><strong>Avg_Open_To_Buy:</strong> Available credit line (average of the last 12 months).</li>
+                <li><strong>Total_Amt_Chng_Q4_Q1:</strong> Change in transaction amount</li>
+                <li><strong>Total_Trans_Amt:</strong> Total transaction amount (last 12 months).</li>
+                <li><strong>Total_Trans_Ct:</strong> Total number of transactions (last 12 months).</li>
+                <li><strong>Total_Ct_Chng_Q4_Q1:</strong> Change in number of transactions</li>
+                <li><strong>Avg_Utilization_Ratio:</strong> Average card utilization ratio.</li>
+                <li><strong>Total_Relationship_Count:</strong> Total number of products held by the customer.</li>
+              </ul>
+            </section>
+
+            <section class="churn-story-block">
+              <h3>3 - Project Methodology</h3>
+              <p>
+                In this project, I chose to follow a data problem-solving methodology presented in one of the most renowned books on Machine Learning, "Hands-On Machine Learning with Scikit-Learn &amp; TensorFlow" by Aurélien Géron. Below are the recommended steps I follow throughout this project:
+              </p>
+              <ul class="churn-method-list">
+                <li>Look at the big picture.</li>
+                <li>Get the data.</li>
+                <li>Discover and visualize the data to gain insights.</li>
+                <li>Prepare the data for Machine Learning algorithms.</li>
+                <li>Select a model and train it.</li>
+                <li>Fine-tune your model.</li>
+                <li>Present your solution.</li>
+                <li>Launch, monitor and maintain your system.</li>
+              </ul>
+            </section>
+
+            <section class="churn-story-block">
+              <h3>4 - Project Solution Requirements</h3>
+              <p>
+                In the conversation with the manager, Angel asked what the main information he wanted to obtain was. In response, the manager defined a set of strategic business questions, highlighting the ones that would be essential to guide the analyses and decisions. Here are the questions to be answered:
+              </p>
+              <ul class="churn-question-list">
+                <li>What is the profile of the customers most likely to cancel their card?</li>
+                <li>How does customer gender affect financial condition and cancellation rates?</li>
+                <li>Does education level influence the likelihood of canceling the card?</li>
+                <li>Do customers who use their card more receive higher or lower credit limits?</li>
+                <li>Are customers with high incomes more likely to cancel their cards?</li>
+                <li>What behaviors are common among customers who cancel their cards?</li>
+              </ul>
+              <p>
+                Besides these questions, the manager asked Angel to train a Machine Learning model with accuracy above 85%. He stressed the importance of choosing an easily interpretable model, since that would let the bank better understand how the algorithm works and have more control over its decisions.
+              </p>
+              <ul class="churn-question-list">
+                <li>Build a Machine Learning model with accuracy above 85%.</li>
+                <li>Identify the main characteristics that influence customer churn.</li>
+                <li>Make sure the model is easily interpretable (optional)</li>
+              </ul>
+            </section>
+
+            <section class="churn-story-block">
+              <h3>5 - Additional Information</h3>
+              <p>
+                <a href="https://angejesufern.wixsite.com/angel-mansilla/project-introduction" target="_blank" rel="noreferrer">On this page</a>, the project is presented as a story. If you prefer something more direct and detailed, the notebook in which this project was fully developed is on my <a href="https://github.com/Ang3k/Exploracao-Preditiva-de-Dados-para-Churn-de-Clientes-Bancarios-com-Machine-Learning" target="_blank" rel="noreferrer">GitHub,</a> which you can find at the bottom of this site, like every other project. With all that said, the next section starts the EDA (Exploratory Data Analysis). Let's dive in!
+              </p>
+            </section>
+          </div>
+        </section>
+
+        <section class="case-section churn-chapter" id="eda" aria-labelledby="titulo-eda">
+          <header class="churn-chapter-header">
+            <p class="churn-chapter-number">PART <span>2</span></p>
+            <div>
+              <h2 id="titulo-eda">Exploratory Data Analysis</h2>
+              <p>
+                In this section, we carry out an exploratory data analysis focused on categorical variables related to customer behavior. We use charts to explore patterns and correlations, for a better understanding of credit and churn dynamics. These analyses provide valuable insights into the customer profile and their interactions with financial products.
+              </p>
+            </div>
+          </header>
+
+          <div class="churn-analysis-list">
+            <article class="churn-analysis">
+              <h3>1 - Distribution of Categorical Variables</h3>
+              <p>
+                This code creates 3 subplots that serve as a template for two overlaid chart types, a kdeplot and a histplot, both colored by the user's gender with a custom palette, all showing density.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(67)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(67)-1880w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (67).png" width="3320" height="1655" alt="Code that creates the distribution subplots for the categorical variables" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <p>Customer Age: Customers' ages mostly range between 30 and 60.</p>
+              <p>
+                Credit Limit: On average, customers have a credit limit between 2,000 and 10,000 dollars. A significant number of women, however, have credit limits in the 2,000 to 5,000 dollar range.
+              </p>
+              <p>
+                Time as Customers: The distribution of customer tenure, in months, follows a parabolic trend, with a notable spike in the number of customers with 37 months of relationship.
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--three" aria-label="Distributions of age, credit limit and customer tenure">
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Customer_Age_distribution-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Customer_Age_distribution-730w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Customer_Age_distribution.png" width="5900" height="3901" alt="Distribution of customer age by gender" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Credit_Limit_distribution-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Credit_Limit_distribution-730w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Credit_Limit_distribution.png" width="5901" height="3901" alt="Distribution of customer credit limit by gender" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Months_on_book_distribution-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Months_on_book_distribution-730w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Months_on_book_distribution.png" width="5902" height="3901" alt="Distribution of the length of customers' relationship with the bank" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="churn-analysis">
+              <h3>2 - Relationship Between Variables and Credit Limit</h3>
+              <p>
+                The code groups each of the selected categorical variables by the average credit limit, also including the churn variable to make the analysis easier when coloring the charts. To improve readability, I set an arbitrary limit for the y-axis based on the lowest value in each group, subtracting 2000 from the minimum for better display.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(68)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(68)-1880w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (68).png" width="4085" height="1588" alt="Code that groups categorical variables by credit limit" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <p>Dependents: As the number of dependents increases, the credit limit tends to grow.</p>
+              <p>Relationship: Customers without a partner generally have higher credit limits.</p>
+              <p>Average Income: The credit limit increases almost linearly with the customer's income.</p>
+              <p>Education: There is no apparent relationship between the customer's education level and their credit limit.</p>
+              <p>Products: The fewer products linked to the customer, the higher the credit limit tends to be.</p>
+              <p>Gender: Men have significantly higher credit limits than women.</p>
+              <div class="churn-result-gallery churn-result-gallery--three" aria-label="Credit limit by categorical variables">
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Dependents_credit_limit-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Dependents_credit_limit-730w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Dependents_credit_limit.png" width="7901" height="4898" alt="Credit limit by number of dependents" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Marital%20Status_credit_limit-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Marital%20Status_credit_limit-730w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Marital Status_credit_limit.png" width="7901" height="4896" alt="Credit limit by marital status" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Income%20Level_credit_limit-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Income%20Level_credit_limit-730w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Income Level_credit_limit.png" width="7901" height="4895" alt="Credit limit by income bracket" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Education_credit_limit-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Education_credit_limit-730w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Education_credit_limit.png" width="7900" height="4896" alt="Credit limit by education level" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Total%20Products_credit_limit-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Total%20Products_credit_limit-730w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Total Products_credit_limit.png" width="7901" height="4895" alt="Credit limit by total number of products" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Gender_credit_limit-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Gender_credit_limit-730w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Gender_credit_limit.png" width="7901" height="4895" alt="Credit limit by gender" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="churn-analysis">
+              <h3>3 - Correlation Matrix of Numerical Variables</h3>
+              <p>
+                This code selects only the numerical variables and builds a correlation matrix with pandas.corr(). Based on this matrix, a heatmap is plotted with Seaborn, where darker colors represent positive correlations and lighter colors indicate negative correlations.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(69)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(69)-1880w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (69).png" width="2476" height="1185" alt="Code that builds the correlation matrix and the heatmap" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <p>Months As Customer vs Age: Strong correlation (0.79); older customers stay longer.</p>
+              <p>Credit Limit vs Average Open To Buy: Positive correlation (0.62); a higher limit means more available credit.</p>
+              <p>Total Transactions Amount vs Total Transactions Count: High correlation (0.81); more transactions produce a higher total amount.</p>
+              <p>Average Utilization Ratio vs Credit Limit: Negative correlation (-0.48); high limits reduce average utilization.</p>
+              <p>Average Open To Buy vs Average Utilization Ratio: Negative correlation (-0.54); more available credit reduces utilization.</p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/correlation-matrix-wix-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/correlation-matrix-wix-1880w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/correlation-matrix-wix.png" width="1883" height="1410" alt="Correlation matrix of the numerical variables in the churn dataset" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+            </article>
+
+            <article class="churn-analysis">
+              <h3>4 - Share of Categories by Churn Likelihood</h3>
+              <p>
+                The code groups each of the selected categorical variables by the average credit limit, also including the churn variable to make the analysis easier when coloring the charts. To improve readability, I set an arbitrary limit for the y-axis based on the lowest value in each group, subtracting 2000 from the minimum for better display.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(70)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(70)-1880w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (70).png" width="2713" height="1856" alt="Code for the analysis of category shares by churn likelihood" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <p>
+                Relationship: Most customers are either single or married, with a small percentage divorced. Overall, being married lowers the likelihood of card churn.
+              </p>
+              <p>Average Income: Customers with higher incomes are more prone to churn.</p>
+              <p>Education: People with higher education levels tend to be more likely to churn.</p>
+              <p>
+                Overall Distribution: For income and education, the customer shares follow the expected pattern, in line with the natural distribution of these factors in the population.
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--three" aria-label="Marital status, income category and education related to churn">
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Marital_Status_pie_plot-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Marital_Status_pie_plot-730w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Marital_Status_pie_plot.png" width="3000" height="3000" alt="Distribution of marital status among customers with and without churn" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Income_Category_pie_plot-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Income_Category_pie_plot-730w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Income_Category_pie_plot.png" width="3000" height="3000" alt="Distribution of income category among customers with and without churn" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Education_Level_pie_plot-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Education_Level_pie_plot-730w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Education_Level_pie_plot.png" width="3000" height="3000" alt="Distribution of education level among customers with and without churn" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="churn-analysis">
+              <h3>5 - Customer Profile and Financial Variables</h3>
+              <p>
+                The code selects relevant financial columns, such as credit limit, total transaction amount and frequency of use, to explore how these factors relate to the customer profile, considering age and gender. To improve the visualization, we use a custom color palette that subtly distinguishes genders.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(72)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(72)-1880w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (72).png" width="3162" height="1521" alt="Code that relates the customer profile to financial variables" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <p>After age 30, women have a lower credit limit than men.</p>
+              <p>On the other hand, women use their credit card more than men.</p>
+              <p>The average transaction amount grows steadily until age 50, when it starts to decline.</p>
+              <p>Card utilization is stable across age groups, with men catching up to women around age 60.</p>
+              <p>The number of transactions stays constant until age 65, after which it starts to decline gradually.</p>
+              <div class="churn-result-gallery churn-result-gallery--four" aria-label="Customer profile and financial variables">
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Credit_Limit_plot-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Credit_Limit_plot-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Credit_Limit_plot.png" width="3533" height="2740" alt="Relationship between age, gender, credit limit and churn" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Total_Trans_Amt_plot-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Total_Trans_Amt_plot-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Total_Trans_Amt_plot.png" width="3495" height="2740" alt="Relationship between age, gender and total transaction amount" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Total_Trans_Ct_plot-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Total_Trans_Ct_plot-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Total_Trans_Ct_plot.png" width="3417" height="2740" alt="Relationship between age, gender and number of transactions" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Avg_Utilization_Ratio_plot-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Avg_Utilization_Ratio_plot-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Avg_Utilization_Ratio_plot.png" width="3437" height="2741" alt="Relationship between age, gender and average utilization ratio" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="churn-analysis">
+              <h3>6 - Card Type and Education Level</h3>
+              <p>
+                This code visually analyzes the distribution of education levels across card categories, using stacked histograms for each card type. Each chart uses a grayscale palette and organized legends, for a clear, comparative view.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(73)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(73)-1880w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (73).png" width="2819" height="2730" alt="Code that compares card type with education level" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <p>The overwhelming majority of customers have a Blue card, showing how popular it is among users.</p>
+              <p>Education levels have no significant influence on the distribution of Blue, Silver and Gold cards.</p>
+              <p>
+                Share at the Platinum Level: At the Platinum level, there is a considerable increase in the share of members with a Doctorate or Post-Doctorate, suggesting this card is more common among customers with advanced degrees.
+              </p>
+              <p>
+                Higher Education: Most customers have at least some higher education, which may reflect a more qualified customer profile, potentially more inclined to use premium credit cards.
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--four" aria-label="Education levels by card category">
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/histogram_Blue-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/histogram_Blue-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/histogram_Blue.png" width="2096" height="1574" alt="Distribution of education levels for Blue cards" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/histogram_Gold-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/histogram_Gold-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/histogram_Gold.png" width="2073" height="1574" alt="Distribution of education levels for Gold cards" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/histogram_Silver-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/histogram_Silver-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/histogram_Silver.png" width="2073" height="1574" alt="Distribution of education levels for Silver cards" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/histogram_Platinum_edited-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/histogram_Platinum_edited-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/histogram_Platinum_edited.jpg" width="2050" height="1574" alt="Distribution of education levels for Platinum cards" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="churn-analysis">
+              <h3>7 - Statistical Distribution of Variables by Churn</h3>
+              <p>
+                This code creates a comprehensive view of the distribution of key churn-related variables, allowing visual comparisons between customers who canceled and those who stayed with the service. Each boxplot shows the median, the spread and the presence of outliers for the variables analyzed.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(74)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(74)-1880w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (74).png" width="3056" height="1185" alt="Code that creates boxplots of the churn-related variables" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <p>Customer loyalty to the bank ranges from 20 to 55 months, for both canceled and active customers.</p>
+              <p>Customers who canceled make considerably fewer transactions.</p>
+              <p>The outlier in the canceled group falls within the IQR of active customers, highlighting the difference in behavior.</p>
+              <p>Active customers make transactions with a higher average amount.</p>
+              <p>Despite the differences, credit limits are similar, with active customers having a slightly higher average.</p>
+              <div class="churn-result-gallery churn-result-gallery--four" aria-label="Boxplots of the churn-related variables">
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/boxplot_Months_on_book-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/boxplot_Months_on_book-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/boxplot_Months_on_book.png" width="1919" height="1584" alt="Boxplot of months of relationship by churn status" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/boxplot_Total_Trans_Amt-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/boxplot_Total_Trans_Amt-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/boxplot_Total_Trans_Amt.png" width="1919" height="1584" alt="Boxplot of transaction amount by churn status" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/boxplot_Total_Trans_Ct-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/boxplot_Total_Trans_Ct-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/boxplot_Total_Trans_Ct.png" width="1919" height="1584" alt="Boxplot of number of transactions by churn status" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/boxplot_Credit_Limit-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/boxplot_Credit_Limit-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/boxplot_Credit_Limit.png" width="1920" height="1584" alt="Boxplot of credit limit by churn status" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="case-section churn-chapter" id="tratamento" aria-labelledby="titulo-tratamento">
+          <header class="churn-chapter-header">
+            <p class="churn-chapter-number">PART <span>3</span></p>
+            <div>
+              <h2 id="titulo-tratamento">Data Preparation</h2>
+            </div>
+          </header>
+
+          <div class="churn-story-flow">
+            <section class="churn-story-block">
+              <h3>1 - Strategies and Procedures</h3>
+              <p>
+                Just like cleaning a bedroom or a living room, cleaning a dataset requires a procedure: you can't start by sweeping and then throw the water on the floor! That is why, in this and other projects, I usually follow this order: removing useless columns, identifying and removing null values, identifying and removing outliers, creating dummy variables and encoding. This ensures a clean dataset, ready to work in an ML model.
+              </p>
+            </section>
+
+            <section class="churn-story-block">
+              <h3>2 - Handling Null Values</h3>
+              <p>
+                As I worked with the dataset, I noticed there were no "np.nan" values, the null values we usually work with, because they appeared in another form, as "Unknown". So I created a function to convert these into "np.nan", making the work easier. I then created two more functions: one that returned a dataframe with the sum of null values for each column, and another that generated a bar chart showing the percentage of missing values for each feature, that is, each column.
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--two" aria-label="Finding and visualizing null values">
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(75)-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(75)-870w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/codetoimg-snippet (75).png" width="2396" height="1588" alt="Code to find null values in the dataset" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/missing-values-output-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/missing-values-output-870w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/missing-values-output.png" width="1712" height="1362" alt="Chart with the percentage of missing values per variable" loading="lazy" decoding="async">
+                </picture>
+                </figure>
+              </div>
+              <p>
+                Looking at this chart, I saw that only a few rows had missing values. However, since the dataset has few rows, I did not want to drop any row with "np.nan". Instead, I chose to fill them with the value of the next cell, and to make this more accurate, I first sorted by "Credit_Limit", so neighboring cells would theoretically be closer to each other, since this column had already proven to be very impactful.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(76)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(76)-1760w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (76).png" width="2159" height="782" alt="Code to sort and impute the data" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+            </section>
+
+            <section class="churn-story-block">
+              <h3>3 - Handling Outliers</h3>
+              <p>
+                To identify and remove outliers, I used John Tukey's well-known method, the same one used to build a boxplot. I created a function that returns a dataframe filtered between a lower and an upper bound, defined from the percentiles of the column being processed, selected the columns that could have outliers and applied the method to each of them.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(77)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(77)-1760w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (77).png" width="2739" height="1118" alt="Code to find and remove outliers with Tukey's method" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+            </section>
+
+            <section class="churn-story-block">
+              <h3>4 - Encoding Categorical Variables</h3>
+              <p>
+                As a last step, I needed to encode the categorical variables as numbers. Since the dataset had relatively few rows, I tried to use "pd.get_dummies" as little as possible, because it creates extra columns for each category. So I only turned "Gender" and "Relationship_Status" into dummies, creating 3 new columns, since "drop_first = True".
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(78)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(78)-1760w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (78).png" width="2951" height="1588" alt="Code to encode categorical variables" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <p>
+                For the other categorical variables, there was an implicit order of importance; for example, a "Platinum" card is expected to rank above a "Gold" card. I defined this order in several lists and used the sklearn.preprocessing function to assign numerical values that reflect this natural order. With the dataset completely clean, we move on to building the ML models.
+              </p>
+            </section>
+          </div>
+        </section>
+
+        <section class="case-section churn-chapter" id="modelagem" aria-labelledby="titulo-modelagem">
+          <header class="churn-chapter-header">
+            <p class="churn-chapter-number">PART <span>4</span></p>
+            <div>
+              <h2 id="titulo-modelagem">Machine Learning Predictions</h2>
+            </div>
+          </header>
+
+          <div class="churn-analysis-list">
+            <article class="churn-analysis">
+              <h3>1 - Initial Model Selection</h3>
+              <p>
+                First, I split the variables into "features" and "prediction", that is, "x" and "y", and used a StandardScaler so that differences in scale would not affect model training. Then I picked some of the main classic Machine Learning models to test their performance, such as DecisionTreeClassifier, RandomForest, XGBoost and others shown in the code. After running cross-validation to get reliable results, I got this:
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--two" aria-label="Code and results of the initial model selection">
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(79)-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(79)-870w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/codetoimg-snippet (79).png" width="3003" height="2461" alt="Code for the initial model selection and cross-validation" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source srcset="../../../assets/projects/churn/obrabo-642w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/obrabo.png" width="642" height="272" alt="Table with the average accuracy of the models initially tested" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+              <p>
+                Regardless of the model selected, the results are positive, with accuracy above 87% for every model. However, these models were created with default hyperparameters, which are probably not the best for maximizing accuracy. So I decided to tune 3 of them: XGBoost, because it is the most accurate model, and DecisionTreeClassifier and RandomForestClassifier, because their nature gives a clearer view of how the algorithm decides the "y" of a given row, especially the DecisionTreeClassifier. Let's tune:
+              </p>
+            </article>
+
+            <article class="churn-analysis">
+              <h3>2 - Tuning the DecisionTreeClassifier</h3>
+              <p>
+                Note that on this site I only show the tuning of one model, since the process is similar and it would not be interesting to say the same things 3 times in a row; if you are interested, the fully commented code for the others is on my GitHub. For the tuning, I used GridSearch with a parameter grid to run a 10-fold cross-validation. A simple calculation shows that about 50 thousand trees were trained and evaluated to find the best parameters and maximize accuracy, which proved to be well worth the effort:
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--two" aria-label="Tuning the DecisionTreeClassifier">
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(80)-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(80)-870w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/codetoimg-snippet (80).png" width="2819" height="1991" alt="GridSearch code for tuning the Decision Tree" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(81)-870w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/codetoimg-snippet (81).png" width="2212" height="446" alt="Decision Tree validation result after hyperparameter tuning" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+              <p>
+                Our decision tree went from 93.06% to 94.332% accuracy. That may seem like a small jump, but in business it can mean thousands or even millions of dollars more, depending on the size and reach of the company, so it is fair to say the tuning was a complete success!
+              </p>
+            </article>
+
+            <article class="churn-analysis">
+              <h3>3 - Comparing Predictions</h3>
+              <p>
+                Here are predictions on a test set the model had not seen yet, using the three previously optimized models, producing arrays with the results. The code then builds a dictionary to organize and compare these predictions with the actual values, which are the true labels of the test set. Finally, the dictionary is converted into a DataFrame to make it easier to see and analyze the differences.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/churn/Captura%20de%20tela%202024-10-19%20191356-937w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/Captura de tela 2024-10-19 191356.png" width="937" height="372" alt="Table comparing the actual values with the predictions of the three models" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <p>
+                As the cross-validation results suggested, the predictions are in line with reality, with few errors. In this specific slice, the only error occurs at index 3654, where the DTC and the RFC predicted a customer who would not cancel the card when, in reality, as the XGB predicted, it was a cancellation.
+              </p>
+            </article>
+
+            <article class="churn-analysis">
+              <h3>4 - Feature Importance Analysis</h3>
+              <p>
+                Using the feature_importances_ attribute, we can determine how important each column of the training dataset is, making it easier to identify the most relevant factors to consider. This analysis can better guide decision-making by the bank's staff. In the code, three horizontal bar plots are generated, using a combination of enumerate and zip to get the index and iterate over both lists at the same time.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(82)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(82)-1760w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (82).png" width="2845" height="1991" alt="Code that calculates and displays the feature importance of the three models" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <p>
+                These plots are interesting because they show how each model has its own way of understanding the information. Still, there are some clear patterns, such as columns like "Average Open to Buy" and "Income Lvl" always staying at the top, which indicates they are extremely relevant. On the other hand, others are consistently at the bottom, such as "Education", "Dependents" and "Gender", which shows these columns are almost dispensable for predicting customer churn and would probably not change training if removed.
+              </p>
+              <div class="churn-result-gallery churn-result-gallery--three" aria-label="Feature importance in the three models">
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Decision%20Tree_feature_importances-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Decision%20Tree_feature_importances-570w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Decision Tree_feature_importances.png" width="3200" height="2400" alt="Feature importance for the Decision Tree" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/Random%20Forest_feature_importances-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/Random%20Forest_feature_importances-570w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/Random Forest_feature_importances.png" width="3200" height="2400" alt="Feature importance for the Random Forest" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/XGBoost_feature_importances-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/XGBoost_feature_importances-570w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/XGBoost_feature_importances.png" width="3200" height="2400" alt="Feature importance for XGBoost" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="churn-analysis">
+              <h3>4 - Confusion Matrix Analysis</h3>
+              <p>
+                The confusion matrix is essential for evaluating classification models, since it gives a detailed view of true positives, false positives, true negatives and false negatives. This helps identify where the model makes mistakes and how to improve its accuracy. This code plots the confusion matrices for three classification models: XGBoost, Decision Tree and Random Forest. It calculates each matrix from the models' predictions and the true labels, shows them in subplots and displays each figure with the chosen palette and a custom title with the model name.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(84)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(84)-1760w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (84).png" width="2106" height="1521" alt="Code that calculates and displays the confusion matrices" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <p>
+                The matrices show similar results, as expected given the models' accuracy: the DecisionTreeClassifier has the most false positives and negatives, and XGBoost the fewest. This highlights the importance of small percentages mentioned above: even though XGBoost has only a few percentage points of accuracy advantage, it avoids false positives/negatives up to 2.5x better than the others. Assuming, as a low estimate, that a bank customer generates $100 in profit, this could mean up to $25,000 in extra profit.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/matriz_confusao_Random%20Forest-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/matriz_confusao_Random%20Forest-1760w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/matriz_confusao_Random Forest.png" width="4500" height="1500" alt="Confusion matrices for XGBoost, Decision Tree and Random Forest" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+            </article>
+
+            <article class="churn-analysis">
+              <h3>5 - Visualizing the Decision Trees</h3>
+              <p>
+                The code visualizes the decision trees of three models: it uses Scikit-learn's "plot_tree" for the DTC and for a random estimator from the RFC, while XGBoost is visualized with its own function. The figure is set up with three subplots, and the charts show the tree structure up to three levels deep, with readable feature names. The full charts are available on GitHub.
+              </p>
+              <figure class="churn-media churn-result churn-result--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/codetoimg-snippet%20(83)-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/churn/codetoimg-snippet%20(83)-1760w.webp" type="image/webp">
+                  <img src="../../../assets/projects/churn/codetoimg-snippet (83).png" width="2845" height="1789" alt="Code that visualizes the decision trees of the three models" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="churn-result-gallery churn-result-gallery--three" aria-label="Decision tree visualizations">
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/decision-tree-wix-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/decision-tree-wix-570w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/decision-tree-wix.png" width="4000" height="3000" alt="Decision Tree visualization" loading="lazy" decoding="async">
+                  </picture>
+                  <figcaption>DecisionTreeClassifier</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/random-forest-wix-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/random-forest-wix-570w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/random-forest-wix.png" width="2400" height="1800" alt="Visualization of one Random Forest tree" loading="lazy" decoding="async">
+                  </picture>
+                  <figcaption>RandomForestClassifier</figcaption>
+                </figure>
+                <figure class="churn-media churn-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/churn/xgboost-wix-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/churn/xgboost-wix-570w.webp" type="image/webp">
+                    <img src="../../../assets/projects/churn/xgboost-wix.jpg" width="1920" height="1440" alt="XGBoost visualization" loading="lazy" decoding="async">
+                  </picture>
+                  <figcaption>XGBoost</figcaption>
+                </figure>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="case-section churn-chapter" id="conclusoes" aria-labelledby="titulo-conclusoes">
+          <div class="churn-story-flow">
+            <section class="churn-story-block">
+              <h3 id="titulo-conclusoes">6 - Insights and Conclusions</h3>
+              <p>
+                Finally, after a detailed analysis, we gathered a wide range of valuable insights. They are more than enough to give complete, well-founded answers to the questions raised at the start of the project, and here are the answers:
+              </p>
+              <p><strong>What is the profile of the customers most likely to cancel their card?</strong></p>
+              <p>Older customers who make fewer transactions and have credit limits similar to active customers are at higher risk of canceling.</p>
+              <p><strong>How does customer gender affect financial condition and cancellation rates?</strong></p>
+              <p>Women tend to have lower credit limits but use their cards more often. This leads to different usage patterns between genders.</p>
+              <p><strong>Does education level influence the likelihood of canceling the card?</strong></p>
+              <p>People with higher education levels tend to be more likely to cancel their cards</p>
+              <p><strong>Do customers who use their card more receive higher or lower credit limits?</strong></p>
+              <p>Customers who make more transactions often receive higher credit limits, since total transaction amount is directly related to the limit.</p>
+              <p><strong>Are customers with high incomes more likely to cancel their cards?</strong></p>
+              <p>Customers with higher incomes show a greater tendency to cancel.</p>
+              <p><strong>What behaviors are common among customers who cancel their cards?</strong></p>
+              <p>Customers who cancel tend to make fewer transactions and use their card less actively than those who stay with the service.</p>
+              <p>
+                We also met the requirements for the Machine Learning models, building three models with accuracy above 85%. Each model comes with a detailed analysis of feature importance, which clearly and effectively identifies the main factors driving the predictions.
+              </p>
+              <p>
+                In addition, the DecisionTreeClassifier meets the high interpretability requirement, standing out for its simple structure, which allows easy visualization and clear, direct decision rules using a single tree. This is unlike more complex models such as RandomForestClassifier and XGBoost, which use multiple decision trees (Random Forest) or a set of trees with adaptive learning (XGBoost).
+              </p>
+            </section>
+          </div>
+        </section>
+      </article>
+
+      <section class="case-next" aria-label="Next case study">
+        <a class="container" href="../home-credit/index.html">
+          <span>Next study</span>
+          <strong>Credit Risk Prediction at Home Credit Group</strong>
+          <i aria-hidden="true">→</i>
+        </a>
+      </section>
+    </main>
+
+    <footer class="case-footer">
+      <div class="container">
+        <p>© 2026 Angel Mansilla</p>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+    <script src="../../../mobile-media.js?v=20261108" defer></script>
+  </body>
+</html>

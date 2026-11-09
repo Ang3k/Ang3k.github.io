@@ -1,0 +1,441 @@
+# Traduções de index.html -> en/index.html. Veja scripts/gerar_ingles.py.
+
+@@ 50c055a685
+Angel Mansilla's portfolio: Machine Learning Engineering, Data Science and applied projects.
+
+@@ 67c34ca992
+Machine Learning, data and intelligent systems projects, built from the problem all the way to the application.
+
+@@ 8f33fd93c5
+Skip to content
+
+@@ c184eb0d89
+Experience
+
+@@ 0df4c42ebf
+R² = 0.97
+
+@@ 06f184eb13
+Angel Mansilla, home
+
+@@ 9e11ee6bf5
+Machine Learning Engineering · Data Science
+
+@@ e49a5ef34a
+Main navigation
+
+@@ 23930282a1
+About
+
+@@ 2ae76d4e12
+Projects
+
+@@ 56661c07cf
+Contact
+
+@@ d7713dc9e8
+About me
+
+@@ ec9a593965
+Rio de Janeiro, Brazil
+
+@@ 055aa2695f
+Machine Learning <em>with context,</em> engineering and results.
+
+@@ 42445d81d3
+Computer Science student at UFRJ, working in Machine Learning Engineering and focused on turning real-world data into useful intelligent systems.
+
+@@ 36d7216cf2
+Here you will find a collection of my projects, case studies and hands-on work in Data Science and Machine Learning. Each project was a learning opportunity and shows how I apply theoretical concepts to real-world&nbsp;problems.
+
+@@ 494e3613c0
+Explore projects
+
+@@ ca11382a9e
+Current focus
+
+@@ 818cd8ce96
+Education
+
+@@ 1126399baa
+Computer Science · UFRJ
+
+@@ 2d70dd60f8
+Interests
+
+@@ 7dc0c58caf
+Ensembles · Anomaly detection · NLP
+
+@@ d581627341
+02 / Featured projects
+
+@@ 6a20249a68
+Featured Projects
+
+@@ fa97debbb1
+A straightforward look at the problem, the solution and the main results of each project, with full case studies for anyone who wants to understand the whole process.
+
+@@ bd6755f925
+SINAN · 2014 to 2021
+
+@@ d83ce9aca8
+Public health · Ensemble
+
+@@ 52d4ab9845
+Epidemiological Arbovirus Classifier
+
+@@ d44a1230cb
+Project summary
+
+@@ 62ec7ea52f
+I built an ensemble to classify dengue and chikungunya notifications using public data from SINAN, Brazil's notifiable diseases system, combining 107 features with the predictions of MLP, XGBoost and LightGBM models. The pipeline processed about 11.4 million raw records and, in the dengue test with 940,304 notifications from 2021, it found 87.3% of the confirmed cases. I then turned the model into an application with React and FastAPI.
+
+@@ cbd191869a
+Key results of the epidemiological classifier
+
+@@ 15db8bf2d3
+Raw records
+
+@@ fcf836b756
+11.4M
+
+@@ 6499b0cfab
+Temporal test
+
+@@ 3d667ca160
+940,304
+
+@@ 1c149fcf23
+87.3%
+
+@@ 8055c2c33d
+Technologies
+
+@@ 733cd22567
+Read the case study on the Epidemiological Arbovirus Classifier
+
+@@ 89449a060f
+Open the visual demo of the epidemiological application
+
+@@ 94cf404a53
+CREDIT · LIGHTGBM
+
+@@ de3503f3fa
+Credit risk · CRISP-DM
+
+@@ f9957b500a
+Credit Risk Prediction at Home Credit Group
+
+@@ 81bd90249b
+I built a LightGBM model to identify clients with a higher risk of late payment, handling the class imbalance and comparing the result with the previous model used as a baseline. AUC rose from 0.719 to 0.764 and, in a simulation with 30,752 predictions, the new model found 218 more clients who would pay late, representing over ¥21.88 million in potential losses identified.
+
+@@ 99ee0510d5
+Key results of the credit risk prediction
+
+@@ 8038681120
+AUC achieved
+
+@@ 8499564845
+0.764
+
+@@ 36a4fa2a81
+Late payers found
+
+@@ d9dcf5ab5d
+Potential losses
+
+@@ bb72eb962d
+¥21.88M
+
+@@ d2735f4d5c
+Read the case study on Credit Risk Prediction at Home Credit Group
+
+@@ 238441877d
+CLASSIFICATION · CHURN
+
+@@ 348db5df7a
+Financial services
+
+@@ 2a6042f075
+Bank Customer Churn Prediction
+
+@@ a1d01a5b56
+I analyzed the behavior of 11,573 bank customers to understand what was related to credit card cancellation, then compared Decision Tree, Random Forest and XGBoost to anticipate this churn. XGBoost delivered the best result, with 97.4% accuracy, combining the cancellation forecast with an analysis of the most important variables for each model.
+
+@@ e781fc2acb
+Key results of the churn prediction
+
+@@ 6dc828c98b
+Customers analyzed
+
+@@ 1f9938d1c3
+11,573
+
+@@ 72749ee1f3
+Models compared
+
+@@ b10987e0b4
+Best accuracy
+
+@@ bd3fe81118
+97.4%
+
+@@ a0448cb1e1
+Read the case study on Bank Customer Churn Prediction
+
+@@ d40aebbf7b
+MYSQL · POWER BI · FILM
+
+@@ 29cbd92cbf
+Data analysis · Film
+
+@@ a4becce9df
+Film Industry Analysis
+
+@@ 38ba122bec
+I built a pipeline with Python and MySQL to convert, store and analyze 158,366,934 IMDb and TMDB records, totaling about 12.73 GB of data. On top of this structure, I developed 13 analytical queries and Power BI visualizations on genres, ratings, representation, regions and financial performance, turning a large database into an overview of the film industry.
+
+@@ 0cc3a294a5
+Key results of the film industry analysis
+
+@@ 893470fba4
+Rows analyzed
+
+@@ 77e22ce649
+158.4M
+
+@@ c3bdfd01fa
+Data volume
+
+@@ e4c1f939a9
+12.73 GB
+
+@@ 99afce1255
+SQL analyses
+
+@@ 0602c44253
+Read the case study on the film industry analysis
+
+@@ f50ffb5f8c
+Other work
+
+@@ 853734968c
+More experiments, analyses and systems.
+
+@@ 58508754c3
+PC Sensor Anomaly Detector
+
+@@ 4ab2ff0174
+Impact of Sanctions on Global BGP Routing
+
+@@ e5daee5c5b
+Networking · Python
+
+@@ a104609b3a
+Used Car Pricing Model
+
+@@ 22ebbe0d26
+Extra Trees · Regression
+
+@@ b03f8c12f1
+Circular Round-Robin Scheduler Simulation
+
+@@ 8f80964e1c
+Operating systems · C
+
+@@ 2753845417
+Text clustering app
+
+@@ 16d1bffb7b
+03 / Experience and tools
+
+@@ dcebb1ba79
+I like to understand the problem before the model, and to treat evaluation, reproducibility and interface as parts of the same system.
+
+@@ aa24b2ac35
+Current role
+
+@@ d9e2b4a14d
+Experience with real-world data pipelines, feature engineering, model training and evaluation, and building interfaces that put the results in people's hands.
+
+@@ 1edaef474d
+Tools
+
+@@ bdaf45f4f9
+Languages
+
+@@ 7d36b8e817
+Data
+
+@@ 2668df9341
+Visualization
+
+@@ f7cf4eda51
+Workflow
+
+@@ c45ef3da15
+Git, GitHub, reproducible pipelines
+
+@@ 4de7c20480
+04 / Contact
+
+@@ ee1b9ffe41
+Let's talk
+
+@@ 27315cd099
+Social profiles
+@@ 58fa539649
+Skip intro <span aria-hidden="true">→</span>
+
+@@ 6562380d9e
+View resume <span aria-hidden="true">↗</span>
+
+@@ 0a789a4655
+View LinkedIn <span aria-hidden="true">↗</span>
+
+@@ e892c25b42
+Read case study <span aria-hidden="true">→</span>
+
+@@ ad766fdb99
+Open visual demo <span aria-hidden="true">↗</span>
+
+@@ 57d987cd3d
+Resume <span aria-hidden="true">↗</span>
+
+@@ d032d7fa8a
+Back to top <span aria-hidden="true">↑</span>
+
+@@ 4e2e84892b
+=
+
+@@ a3a060856f
+=
+
+@@ d68cc0493d
+=
+
+@@ b6589fc6ab
+=
+
+@@ 91032ad7bb
+=
+
+@@ af3e133428
+=
+
+@@ e6c3dd6304
+=
+
+@@ b888b29826
+=
+
+@@ 310b86e0b6
+=
+
+@@ 63c9045599
+=
+
+@@ 4a3c2dbf05
+=
+
+@@ 38923037b9
+=
+
+@@ ddfe163345
+=
+
+@@ d8ad501d23
+=
+
+@@ 3f7e1fd914
+=
+
+@@ 6e3604888c
+=
+
+@@ 98a2e30eeb
+=
+
+@@ 0610b86adb
+=
+
+@@ 4d1f996aa1
+=
+
+@@ bcac9d1d8e
+=
+
+@@ 1791ea1df3
+=
+
+@@ 6e2eacf229
+=
+
+@@ bca051d584
+=
+
+@@ aa03f53e41
+=
+
+@@ 3ea6c91e24
+=
+
+@@ 77de68daec
+=
+
+@@ e63bae25e8
+=
+
+@@ 798f861ee7
+=
+
+@@ bd307a3ec3
+=
+
+@@ deaa0c393a
+=
+
+@@ 5b3556fb28
+=
+
+@@ 27d7b1c5fd
+=
+
+@@ 8f172a49e8
+=
+
+@@ fb7d994a6d
+=
+
+@@ f97db96938
+=
+
+@@ 9e7933a263
+=
+
+@@ 111e08611d
+=
+
+@@ b356313f97
+=
+
+@@ a51676222f
+=
+
+@@ 9dee0f0665
+=
+
+@@ 1359219eec
+=
+
+@@ 86f961968a
+=
+
+@@ 7b1253867e
+=
+
+@@ a08d0cf4fb
+Header of Angel Mansilla's portfolio: Machine Learning Engineering and Data Science
+
+@@ af9733415e
+My profile and develop&shy;ment tools

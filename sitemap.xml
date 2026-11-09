@@ -1,23 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://angelmansilla.com.br/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/"/>
+  </url>
+  <url>
+    <loc>https://angelmansilla.com.br/en/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/"/>
   </url>
   <url>
     <loc>https://angelmansilla.com.br/projetos/dengue/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/dengue/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/dengue/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/dengue/"/>
+  </url>
+  <url>
+    <loc>https://angelmansilla.com.br/en/projects/dengue/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/dengue/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/dengue/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/dengue/"/>
   </url>
   <url>
     <loc>https://angelmansilla.com.br/projetos/home-credit/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/home-credit/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/home-credit/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/home-credit/"/>
+  </url>
+  <url>
+    <loc>https://angelmansilla.com.br/en/projects/home-credit/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/home-credit/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/home-credit/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/home-credit/"/>
   </url>
   <url>
     <loc>https://angelmansilla.com.br/projetos/churn/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/churn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/churn/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/churn/"/>
+  </url>
+  <url>
+    <loc>https://angelmansilla.com.br/en/projects/churn/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/churn/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/churn/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/churn/"/>
   </url>
   <url>
     <loc>https://angelmansilla.com.br/projetos/imdb/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/imdb/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/imdb/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/imdb/"/>
+  </url>
+  <url>
+    <loc>https://angelmansilla.com.br/en/projects/imdb/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/imdb/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/imdb/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/imdb/"/>
   </url>
 </urlset>

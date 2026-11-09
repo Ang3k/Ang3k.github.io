@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
@@ -9,16 +9,13 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="Classificador Epidemiológico de Arboviroses | Angel Mansilla">
   <meta property="og:description" content="Preparação, análise exploratória, modelagem, avaliação temporal e aplicação web com dados do SINAN.">
-  <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="Angel Mansilla">
-  <meta property="og:url" content="https://angelmansilla.com.br/projetos/dengue/">
   <meta property="og:image" content="https://angelmansilla.com.br/assets/og/dengue.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Logotipo do SINAN com o título do estudo de caso sobre arboviroses">
   <meta name="twitter:card" content="summary_large_image">
   <title>Classificador Epidemiológico de Arboviroses | Angel Mansilla</title>
-  <link rel="canonical" href="https://angelmansilla.com.br/projetos/dengue/">
 
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,7 +27,51 @@
   <link rel="stylesheet" href="../../portfolio-case-standard.css">
   <link rel="stylesheet" href="./dengue-standard.css?v=20260712">
   <link rel="stylesheet" href="../../mobile-media.css?v=20260801" media="(max-width: 700px)">
-</head>
+  <!-- idioma: gerado por scripts/gerar_ingles.py -->
+    <link rel="canonical" href="https://angelmansilla.com.br/projetos/dengue/">
+    <link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/dengue/">
+    <link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/dengue/">
+    <link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/dengue/">
+    <meta property="og:url" content="https://angelmansilla.com.br/projetos/dengue/">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale:alternate" content="en_US">
+    <script>
+      (function () {
+        var atual = "pt";
+        var destino = "../../en/projects/dengue/";
+        document.addEventListener("click", function (evento) {
+          var link = evento.target.closest && evento.target.closest("[data-idioma]");
+          if (!link) return;
+          try {
+            localStorage.setItem("idioma", link.getAttribute("data-idioma"));
+          } catch (erro) {}
+        });
+        if (/bot|crawl|spider|slurp|facebookexternalhit|embedly|preview|lighthouse/i.test(navigator.userAgent)) return;
+        var escolhido = null;
+        try {
+          escolhido = localStorage.getItem("idioma");
+        } catch (erro) {}
+        if (!escolhido) {
+          try {
+            if (document.referrer && new URL(document.referrer).origin === location.origin) return;
+          } catch (erro) {}
+          var lista = navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language || ""];
+          escolhido = "en";
+          for (var i = 0; i < lista.length; i++) {
+            var codigo = String(lista[i]).toLowerCase();
+            if (codigo.indexOf("pt") === 0) { escolhido = "pt"; break; }
+            if (codigo.indexOf("en") === 0) { escolhido = "en"; break; }
+          }
+        }
+        if (escolhido !== atual && (escolhido === "pt" || escolhido === "en")) {
+          location.replace(destino + location.hash);
+        }
+      })();
+    </script>
+    <!-- /idioma -->
+  </head>
 
 <body class="case-page portfolio-case-study dengue-case dengue-refactor" id="topo">
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -57,6 +98,7 @@
         >
           GitHub <span aria-hidden="true">↗</span>
         </a>
+        <!-- seletor de idioma --><a class="nav-lang" href="../../en/projects/dengue/" hreflang="en" lang="en" data-idioma="en" aria-label="Read this page in English">EN</a><!-- /seletor de idioma -->
       </nav>
     </div>
   </header>
@@ -988,6 +1030,6 @@
       <a href="#topo">Voltar ao topo ↑</a>
     </div>
   </footer>
-  <script src="../../mobile-media.js?v=20260801" defer></script>
+  <script src="../../mobile-media.js?v=20261108" defer></script>
 </body>
 </html>

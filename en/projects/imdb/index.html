@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Angel Mansilla's case study analyzing the film industry with IMDb and TMDB data."
+    >
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Data Analysis on IMDb | Angel Mansilla">
+    <meta
+      property="og:description"
+      content="Extraction, transformation and analysis of more than 158 million rows with Python, MySQL and Power BI."
+    >
+  <meta property="og:site_name" content="Angel Mansilla">
+  <meta property="og:image" content="https://angelmansilla.com.br/assets/og/imdb.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="IMDb logo with the case study title">
+  <meta name="twitter:card" content="summary_large_image">
+    <title>Data Analysis on IMDb | Angel Mansilla</title>
+    <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="preload" href="../../../assets/projects/imdb/imagem_2024-04-05_225210528_edited_edited_edited-1000w.webp" as="image" type="image/webp">
+    <link rel="stylesheet" href="../../../styles.css">
+    <link rel="stylesheet" href="../../../case-study.css">
+    <link rel="stylesheet" href="../../../portfolio-case-standard.css">
+    <link rel="stylesheet" href="../../../projetos/imdb/imdb-standard.css">
+    <link rel="stylesheet" href="../../../mobile-media.css?v=20260801" media="(max-width: 700px)">
+    <!-- idioma: gerado por scripts/gerar_ingles.py -->
+    <link rel="canonical" href="https://angelmansilla.com.br/en/projects/imdb/">
+    <link rel="alternate" hreflang="pt-BR" href="https://angelmansilla.com.br/projetos/imdb/">
+    <link rel="alternate" hreflang="en" href="https://angelmansilla.com.br/en/projects/imdb/">
+    <link rel="alternate" hreflang="x-default" href="https://angelmansilla.com.br/en/projects/imdb/">
+    <meta property="og:url" content="https://angelmansilla.com.br/en/projects/imdb/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <script>
+      (function () {
+        var atual = "en";
+        var destino = "../../../projetos/imdb/";
+        document.addEventListener("click", function (evento) {
+          var link = evento.target.closest && evento.target.closest("[data-idioma]");
+          if (!link) return;
+          try {
+            localStorage.setItem("idioma", link.getAttribute("data-idioma"));
+          } catch (erro) {}
+        });
+        if (/bot|crawl|spider|slurp|facebookexternalhit|embedly|preview|lighthouse/i.test(navigator.userAgent)) return;
+        var escolhido = null;
+        try {
+          escolhido = localStorage.getItem("idioma");
+        } catch (erro) {}
+        if (!escolhido) {
+          try {
+            if (document.referrer && new URL(document.referrer).origin === location.origin) return;
+          } catch (erro) {}
+          var lista = navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language || ""];
+          escolhido = "en";
+          for (var i = 0; i < lista.length; i++) {
+            var codigo = String(lista[i]).toLowerCase();
+            if (codigo.indexOf("pt") === 0) { escolhido = "pt"; break; }
+            if (codigo.indexOf("en") === 0) { escolhido = "en"; break; }
+          }
+        }
+        if (escolhido !== atual && (escolhido === "pt" || escolhido === "en")) {
+          location.replace(destino + location.hash);
+        }
+      })();
+    </script>
+    <!-- /idioma -->
+  </head>
+  <body class="case-page portfolio-case-study imdb-case wix-imdb-case imdb-refactor" id="top">
+    <a class="skip-link" href="#conteudo">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <div class="masthead">
+          <a class="site-name" href="../../index.html" aria-label="Angel Mansilla, home">
+            Angel Mansilla
+          </a>
+          <p>Machine Learning Engineering · Data Science</p>
+        </div>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="../../index.html#sobre">About</a>
+          <a href="../../index.html#projetos">Projects</a>
+          <a href="../../index.html#experiencia">Experience</a>
+          <a href="../../index.html#contato">Contact</a>
+          <a
+            class="nav-external"
+            href="https://github.com/Ang3k"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+          <!-- seletor de idioma --><a class="nav-lang" href="../../../projetos/imdb/" hreflang="pt-BR" lang="pt-BR" data-idioma="pt" aria-label="Ler esta página em português">PT</a><!-- /seletor de idioma -->
+        </nav>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section class="wix-imdb-hero" aria-labelledby="titulo-projeto">
+        <img
+          src="../../../assets/projects/imdb/imagem_2024-04-05_225210528_edited_edited_edited-1000w.webp"
+          alt="IMDb logo in black on a yellow background"
+          width="1000"
+          height="1000"
+          fetchpriority="high"
+          decoding="async"
+        >
+        <div class="imdb-hero-shade" aria-hidden="true"></div>
+        <div class="imdb-hero-copy">
+          <h1 id="titulo-projeto">Data Analysis on IMDb</h1>
+        </div>
+      </section>
+
+      <article class="imdb-case-content">
+        <section class="imdb-overview" aria-label="Case study sections">
+          <nav class="imdb-chapter-nav" aria-label="Case study sections">
+            <a href="#parte-1"><span>01</span> Understanding and Collecting the Data</a>
+            <a href="#parte-2"><span>02</span> Analyzing with MySQL and Power BI</a>
+            <a href="#parte-3"><span>03</span> Final Report</a>
+          </nav>
+        </section>
+
+        <section class="case-section imdb-chapter" id="parte-1" aria-labelledby="titulo-parte-1">
+          <header class="imdb-chapter-header">
+            <p class="imdb-chapter-number">PART <span>1</span></p>
+            <div>
+              <h2 id="titulo-parte-1">Understanding and Collecting the Data</h2>
+            </div>
+          </header>
+
+          <div class="imdb-story-flow">
+            <section class="imdb-story-block">
+              <h3>1 - Introduction</h3>
+              <p>
+                Júlia is a film enthusiast who decides to take a chance and invest in a startup, MoviesNow. She soon realizes the company is poorly organized and, even while preparing its first project, does not know the market patterns of this entertainment sector.
+              </p>
+              <p>
+                To help MoviesNow improve its strategy and direction, Júlia decides to use her Data Analysis skills, aiming not only to collect data but also to turn it into valuable, actionable information. To do that, she goes looking for a dataset.
+              </p>
+            </section>
+
+            <section class="imdb-story-block">
+              <h3>2 - Dataset</h3>
+              <p>
+                Júlia looks for a robust, informative dataset for data analysis, which leads her to IMDb, an extensive and up-to-date data source that includes details on artists' births, their film work, movie ratings, production years and other data.
+              </p>
+              <figure class="imdb-media imdb-media--wide">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part1-02-conjunto-dados-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/imdb/wix-part1-02-conjunto-dados-1688w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/imdb/wix-part1-02-conjunto-dados.png"
+                    width="1688"
+                    height="736"
+                    alt="List of data files available for download on IMDb"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </picture>
+              </figure>
+            </section>
+
+            <section class="imdb-story-block">
+              <h3>3 - Data Dictionary</h3>
+              <div class="imdb-dictionary">
+                <section>
+                  <h4>Table 1: title.akas.tsv.gz</h4>
+                  <ul>
+                    <li><strong>titleId (string):</strong> Unique identifier of the title.</li>
+                    <li><strong>ordering (integer):</strong> Unique number to identify rows for a given titleId.</li>
+                    <li><strong>title (string):</strong> Localized title.</li>
+                    <li><strong>region (string):</strong> Region for this version of the title.</li>
+                    <li><strong>language (string):</strong> Language of the title.</li>
+                    <li><strong>types (array):</strong> Enumerated set of attributes for this alternative title.</li>
+                    <li><strong>attributes (array):</strong> Additional terms to describe this alternative title.</li>
+                    <li><strong>isOriginalTitle (boolean):</strong> Indicates whether it is the original title.</li>
+                  </ul>
+                </section>
+                <section>
+                  <h4>Table 2: title.basics.tsv.gz</h4>
+                  <ul>
+                    <li><strong>tconst (string):</strong> Unique identifier of the title.</li>
+                    <li><strong>titleType (string):</strong> Type/format of the title (movie, TV series, etc.).</li>
+                    <li><strong>primaryTitle (string):</strong> The most popular title, or the one used by the filmmakers.</li>
+                    <li><strong>originalTitle (string):</strong> Original title, in the original language.</li>
+                    <li><strong>isAdult (boolean):</strong> Indicates whether it is an adult title.</li>
+                    <li><strong>startYear (YYYY):</strong> Release year (for movies) or start year of the series (for TV series).</li>
+                    <li><strong>endYear (YYYY):</strong> End year of the TV series.</li>
+                    <li><strong>runtimeMinutes:</strong> Primary runtime of the title, in minutes.</li>
+                    <li><strong>genres (array):</strong> Up to three genres associated with the title.</li>
+                  </ul>
+                </section>
+                <section>
+                  <h4>Table 3: title.principals.tsv.gz</h4>
+                  <ul>
+                    <li><strong>tconst (string):</strong> Unique identifier of the title.</li>
+                    <li><strong>ordering (integer):</strong> Unique number to identify rows for a given titleId.</li>
+                    <li><strong>nconst (string):</strong> Unique identifier of the person.</li>
+                    <li><strong>category (string):</strong> The person's job category.</li>
+                    <li><strong>job (string):</strong> Specific job title (if applicable).</li>
+                    <li><strong>characters (string):</strong> Name of the character played (if applicable).</li>
+                  </ul>
+                </section>
+                <section>
+                  <h4>Table 4: title.ratings.tsv.gz</h4>
+                  <ul>
+                    <li><strong>tconst (string):</strong> Unique identifier of the title.</li>
+                    <li><strong>averageRating:</strong> Weighted average of user ratings.</li>
+                    <li><strong>numVotes:</strong> Number of votes the title has received.</li>
+                  </ul>
+                </section>
+                <section>
+                  <h4>Table 5: name.basics.tsv.gz</h4>
+                  <ul>
+                    <li><strong>nconst (string):</strong> Unique identifier of the person.</li>
+                    <li><strong>primaryName (string):</strong> Name by which the person is most often credited.</li>
+                    <li><strong>birthYear (YYYY):</strong> Year of birth.</li>
+                    <li><strong>deathYear (YYYY):</strong> Year of death (if applicable).</li>
+                    <li><strong>primaryProfession (array):</strong> The person's top three professions.</li>
+                    <li><strong>knownForTitles (array):</strong> Titles the person is known for.</li>
+                  </ul>
+                </section>
+              </div>
+            </section>
+
+            <section class="imdb-story-block">
+              <h3>4 - Entity Relationship Diagram</h3>
+              <p>With this, we can build an Entity Relationship Diagram:</p>
+              <figure class="imdb-media imdb-media--diagram">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part1-04-diagrama-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/imdb/wix-part1-04-diagrama-1760w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/imdb/wix-part1-04-diagrama.png"
+                    width="4316"
+                    height="2792"
+                    alt="Relationship diagram of the five tables used in the IMDb project"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </picture>
+              </figure>
+            </section>
+
+            <section class="imdb-story-block">
+              <h3>5 - Transforming the Data</h3>
+              <p>
+                The first challenge of her project was converting IMDb's ".tsv" files into the ".csv" format supported by MySQL Workbench 8.0. Because of the size of the files, online converters could not handle the transformation. To get around this, Júlia used a Python script to do the conversion.
+              </p>
+              <p>
+                The Python script identified the specific patterns of the ".tsv" format and turned them into ".csv". This meant replacing tabs with commas and applying the other formatting needed for MySQL Workbench to read the data correctly. This method made it possible to convert very large files efficiently, preparing them for import and later analysis in MySQL.
+              </p>
+              <figure class="imdb-media imdb-media--code">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part1-05-python-conversao-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/imdb/wix-part1-05-python-conversao-1760w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/imdb/wix-part1-05-python-conversao.png"
+                    width="2465"
+                    height="1006"
+                    alt="Python script used to convert TSV files into CSV"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </picture>
+              </figure>
+              <p>
+                After the conversion, the files were ready to be loaded. Júlia considered using the Table Import Wizard, but ran into performance problems, so she chose a better method, the LOAD DATA LOCAL INFILE command, which completed the extraction of the database.
+              </p>
+              <figure class="imdb-media imdb-media--code">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/imdb/wix-part1-05-load-data-1727w.webp" type="image/webp">
+                  <img
+                    src="../../../assets/projects/imdb/wix-part1-05-load-data.png"
+                    width="1727"
+                    height="676"
+                    alt="LOAD DATA LOCAL INFILE command used to load the data into MySQL"
+                    loading="lazy"
+                    decoding="async"
+                  >
+                </picture>
+              </figure>
+            </section>
+
+            <section class="imdb-story-block">
+              <h3>6 - Extra Information</h3>
+              <p>
+                With the data loaded on her computer, Júlia found some interesting facts about the scope of the data she was working with. Here are a few highlights of the dataset used in this project.
+              </p>
+              <dl class="imdb-scale-grid">
+                <div><dt>Rows</dt><dd>158,366,934 rows of information</dd></div>
+                <div><dt>Collection Period</dt><dd>Data spanning 1894 to 2024</dd></div>
+                <div><dt>Columns</dt><dd>32 distinct columns across the 5 tables</dd></div>
+                <div><dt>Collection Region</dt><dd>More than 240 different countries</dd></div>
+                <div><dt>Size</dt><dd>12.73 GB of table files</dd></div>
+              </dl>
+              <p class="imdb-source-note">
+                For more information, <a href="https://developer.imdb.com/non-commercial-datasets/" target="_blank" rel="noreferrer">click here</a>
+              </p>
+            </section>
+          </div>
+        </section>
+
+        <section class="case-section imdb-chapter" id="parte-2" aria-labelledby="titulo-parte-2">
+          <header class="imdb-chapter-header">
+            <p class="imdb-chapter-number">PART <span>2</span></p>
+            <div>
+              <h2 id="titulo-parte-2">Analyzing with MySQL and Power BI</h2>
+              <p>
+                This section of the project contains the main and most interesting queries developed throughout the project. Alongside them are comments that add context and curiosities and improve the overall storytelling, plus Power BI visualizations that make the results of the code clearer.
+              </p>
+            </div>
+          </header>
+
+          <div class="imdb-analysis-list">
+            <article class="imdb-analysis" id="analise-01">
+              <h3>1 - The Top 25 Movies on IMDb</h3>
+              <p>
+                This query returns the 25 highest-rated movies on IMDb. One detail is that it filters by averageRating twice to make the result more relevant, while keeping the order mainly by numVotes in the subquery.
+              </p>
+              <figure class="imdb-media imdb-result">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-01-output-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/imdb/wix-part2-01-output-1320w.webp" type="image/webp">
+                  <img src="../../../assets/projects/imdb/wix-part2-01-output.png" width="1388" height="770" alt="Chart of the 25 highest-rated movies on IMDb, comparing rating and number of votes" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="imdb-query">
+                <figure>
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-01-query-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-01-query-840w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-01-query.png" width="1340" height="1034" alt="SQL query used to select the 25 highest-rated movies" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="imdb-analysis" id="analise-02">
+              <h3>2 - Most Promising Genres for 2024+</h3>
+              <p>
+                This query counts the genres expected for movies, series and short films to be released from 2024 onward. It is a simple query that helps us understand future trends in this market.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--medium">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/imdb/wix-part2-02-output-1092w.webp" type="image/webp">
+                  <img src="../../../assets/projects/imdb/wix-part2-02-output.png" width="1092" height="610" alt="Chart of the most common genres in releases from 2024 onward" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="imdb-query">
+                <figure>
+                  <picture class="mobile-picture">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-02-query-840w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-02-query.png" width="1164" height="721" alt="SQL query used to count genres in releases from 2024 onward" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="imdb-analysis" id="analise-03">
+              <h3>3 - Age Group Breakdown Among Actors</h3>
+              <p>
+                This query returns information about the age groups credited on IMDb. Since this dataset did not include the artists' ages, I used the COALESCE function to calculate them, because many deathYear values were null.
+              </p>
+              <p>
+                This was also the first query of this project.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--medium">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/imdb/wix-part2-03-output-808w.webp" type="image/webp">
+                  <img src="../../../assets/projects/imdb/wix-part2-03-output.png" width="808" height="589" alt="Chart of the distribution of acting professionals by age group" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="imdb-query">
+                <figure>
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-03-query-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-03-query-840w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-03-query.png" width="1481" height="1214" alt="SQL query used to calculate the age groups" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="imdb-analysis" id="analise-04">
+              <h3>4 - Short vs. Feature Films Over the Years</h3>
+              <p>
+                This query compares the production of short films with that of feature films. Thanks to the breadth of this dataset, there is data from 1874 to the present day, a simply incredible span!
+              </p>
+              <figure class="imdb-media imdb-result">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/imdb/wix-part2-04-output-1276w.webp" type="image/webp">
+                  <img src="../../../assets/projects/imdb/wix-part2-04-output.png" width="1276" height="715" alt="Chart comparing the number of short and feature films over the years" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="imdb-query">
+                <figure>
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-04-query-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-04-query-840w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-04-query.png" width="1428" height="900" alt="SQL query used to compare short and feature films" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="imdb-analysis" id="analise-05">
+              <h3>5 - Trends Over Time: Runtime vs. Ratings</h3>
+              <p>
+                A very interesting query that shows how time has affected movie runtimes. We found that in 2008 the average runtime of a "10-rated movie" was 78 minutes, while today, in 2024, it is 102 minutes and 24&nbsp;seconds.
+              </p>
+              <p>
+                The visualization above was built in Power BI to make the comparison between runtime, rating and changes over&nbsp;time clearer.
+              </p>
+              <figure class="imdb-media imdb-result">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/imdb/wix-part2-05-output-1260w.webp" type="image/webp">
+                  <img src="../../../assets/projects/imdb/wix-part2-05-output.png" width="1260" height="708" alt="Chart relating movie runtime, year and average rating" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="imdb-query">
+                <figure>
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-05-query-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-05-query-840w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-05-query.png" width="1111" height="945" alt="SQL query used to relate runtime and rating over time" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="imdb-analysis" id="analise-06">
+              <h3>6 - Regions by Number of Adaptations</h3>
+              <p>
+                One of the simplest queries, counting the titles adapted for regions around the globe. Brazil is in the TOP 13, with 126,385 adapted titles.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--map">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-06-output-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/imdb/wix-part2-06-output-1320w.webp" type="image/webp">
+                  <img src="../../../assets/projects/imdb/wix-part2-06-output.png" width="2376" height="1330" alt="World map with the number of title adaptations by region" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="imdb-query">
+                <figure>
+                  <picture class="mobile-picture">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-06-query-840w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-06-query.png" width="840" height="676" alt="SQL query used to count adaptations by region" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="imdb-analysis" id="analise-07">
+              <h3>7 - Men vs. Women in Entertainment</h3>
+              <p>
+                This query brings up a very important discussion today: the gender gap in the job market. It is a pity this dataset does not include salaries, which would make the analysis even more interesting.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--map">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-07-output-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/imdb/wix-part2-07-output-1320w.webp" type="image/webp">
+                  <img src="../../../assets/projects/imdb/wix-part2-07-output.png" width="2546" height="1424" alt="Chart comparing the presence of men and women in acting credits" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="imdb-query">
+                <figure>
+                  <picture class="mobile-picture">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-07-query-840w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-07-query.png" width="883" height="945" alt="SQL query used to compare the representation of men and women" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="imdb-analysis" id="analise-08">
+              <h3>8 - The Industry's Most Prolific Professionals</h3>
+              <p>
+                This query returns the most "credited" names on IMDb, that is, the people who most often appear in production credits. It is also one of the heaviest queries in terms of performance.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--medium">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-08-output-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/imdb/wix-part2-08-output-1320w.webp" type="image/webp">
+                  <img src="../../../assets/projects/imdb/wix-part2-08-output.png" width="1395" height="686" alt="Word cloud of the professionals who appear most often in the credits" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="imdb-query">
+                <figure>
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-08-query-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-08-query-840w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-08-query.png" width="1393" height="811" alt="SQL query used to identify the most prolific professionals" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="imdb-analysis" id="analise-09">
+              <h3>9 - Oldest Series Still Running</h3>
+              <p>
+                A query that is both interesting and useful: it returns the oldest series that are still receiving new episodes, and, impressively, The Simpsons is only in ninth place!
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--compact">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/imdb/wix-part2-09-output-453w.webp" type="image/webp">
+                  <img src="../../../assets/projects/imdb/wix-part2-09-output.png" width="453" height="416" alt="Table of the oldest series that were still running" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="imdb-query">
+                <figure>
+                  <picture class="mobile-picture">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-09-query-840w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-09-query.png" width="1182" height="721" alt="SQL query used to list old series that are still running" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <aside class="imdb-data-note">
+              <p>
+                For the final queries, I use an additional table from TMDB with some interesting data on production costs and profits. However, only movies that have an IMDb ID are analyzed, to keep within the scope of the project.
+              </p>
+            </aside>
+
+            <article class="imdb-analysis" id="analise-10">
+              <h3>10 - Film Industry Profits by Year</h3>
+              <p>
+                This query returns the overall profit of the film industry over the years, from 1913 to 2024. A remarkable detail of this query is that it shows the impact of the COVID pandemic on this sector between 2019 and 2021, with a dramatic drop in overall profits during that period.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--medium">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/imdb/wix-part2-10-output-1055w.webp" type="image/webp">
+                  <img src="../../../assets/projects/imdb/wix-part2-10-output.png" width="1055" height="683" alt="Chart of the film industry's aggregate profit by year" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="imdb-query">
+                <figure>
+                  <picture class="mobile-picture">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-10-query-840w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-10-query.png" width="1006" height="855" alt="SQL query used to calculate the industry's profit by year" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="imdb-analysis" id="analise-11">
+              <h3>11 - Gross Earnings by Company Over the Years</h3>
+              <p>
+                This query presents, by year, the cumulative sum of both the earnings and the costs of companies, based on a filter on those same sums. The Substring_Index function is used to select only the first (main) company among the set of companies involved in each production.
+              </p>
+              <div class="imdb-result-gallery" aria-label="Visualizations of results by company">
+                <figure class="imdb-media imdb-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-11-output-b-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-11-output-b-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-11-output-b.png" width="5048" height="2848" alt="Overall chart of budget, revenue and profit by company and year" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+                <figure class="imdb-media imdb-result">
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-11-output-a-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-11-output-a-1110w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-11-output-a.png" width="5424" height="3056" alt="Filtered chart of budget, revenue and profit for a selected company" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+
+            </article>
+
+            <article class="imdb-analysis" id="analise-12">
+              <h3>12 - Industry Profits by World Region</h3>
+              <p>
+                This query works from a single table. The SUM function is used with the OVER clause to calculate the cumulative sum of profits for each country.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--map">
+                <picture class="mobile-picture">
+                  <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-12-output-mobile.webp" type="image/webp">
+                  <source srcset="../../../assets/projects/imdb/wix-part2-12-output-1320w.webp" type="image/webp">
+                  <img src="../../../assets/projects/imdb/wix-part2-12-output.png" width="2706" height="1512" alt="World map of film industry profit by region" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="imdb-query">
+                <figure>
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-12-query-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-12-query-840w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-12-query.png" width="1939" height="900" alt="SQL query used to calculate profit by region" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+
+            <article class="imdb-analysis" id="analise-13">
+              <h3>13 - Profits by Movie Genre</h3>
+              <p>
+                This query shows the relationship between production profits and the ratings received. Interestingly, they do not always go hand in hand: "Documentaries", for example, have the best ratings and also some of the worst profits.
+              </p>
+              <figure class="imdb-media imdb-result imdb-result--medium">
+                <picture class="mobile-picture">
+                  <source srcset="../../../assets/projects/imdb/wix-part2-13-output-1018w.webp" type="image/webp">
+                  <img src="../../../assets/projects/imdb/wix-part2-13-output.png" width="1018" height="709" alt="Chart comparing profit and average rating by movie genre" loading="lazy" decoding="async">
+                </picture>
+              </figure>
+              <div class="imdb-query">
+                <figure>
+                  <picture class="mobile-picture">
+                    <source media="(max-width: 700px)" srcset="../../../assets/projects/imdb/wix-part2-13-query-mobile.webp" type="image/webp">
+                    <source srcset="../../../assets/projects/imdb/wix-part2-13-query-840w.webp" type="image/webp">
+                    <img src="../../../assets/projects/imdb/wix-part2-13-query.png" width="1235" height="990" alt="SQL query used to compare profit and rating by genre" loading="lazy" decoding="async">
+                  </picture>
+                </figure>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="case-section imdb-chapter" id="parte-3" aria-labelledby="titulo-parte-3">
+          <header class="imdb-chapter-header">
+            <p class="imdb-chapter-number">PART <span>3</span></p>
+            <div>
+              <h2 id="titulo-parte-3">Final Report</h2>
+              <p>
+                The final section of this project brings together the main points observed in the insights from Part 2, organized by theme to make the conclusions easier to read.
+              </p>
+            </div>
+          </header>
+
+          <div class="imdb-story-flow">
+            <section class="imdb-story-block">
+              <h3>1 - Insights Report</h3>
+
+              <section>
+                <h4>Profile of the Industry's Members</h4>
+                <ul>
+                  <li>Most living actors and actresses are adults, a good share are seniors, and child actors make up a very small part of the total.</li>
+                  <li>The gap between men and women in acting is still large, but it is smaller than in the past, when it reached 2:1, as in 1940.</li>
+                  <li>Some of the best-known names in this industry are Reg Watson and Ernesto Alonso, with a highlight for the Kapoor family: Ekta and Shobha are in the TOP 3, both Indian women producers of television, film and web series.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h4>Industry Economics</h4>
+                <ul>
+                  <li>Overall, the industry showed steady growth in profits. With the COVID-19 pandemic, however, the sector suffered a sharp drop and has not yet recovered: in 2020, the industry's profits were similar to those of the mid-1980s.</li>
+                  <li>Most of the regions earning the most in this industry are in the Northern Hemisphere, especially the United States, whose profits exceed those of several continents.</li>
+                  <li>The most profitable genres in this industry are Action, Comedy and Adventure, but they also have low ratings. Other options, such as Documentary, History and Mystery, have low profits but higher ratings. Genres such as Animation and Drama would be good middle-ground options.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h4>Forecasts for 2024+</h4>
+                <ul>
+                  <li>The genres we expect to see most from 2024 onward are Drama, Comedy, Documentary and Action. The genres we will see least are Talk Shows, Game Shows and News.</li>
+                  <li>Until the early 2000s, larger productions were more common. With the rise of the internet, and with cameras and other equipment becoming more affordable, producing content became easier, so from that point on, smaller productions have become increasingly common and now dominate in volume.</li>
+                  <li>Ratings change depending on a movie's runtime. In 2001, the standard was movies of about 90 minutes, yet 58-minute movies had a higher average rating overall. Today, in 2022–2023, the standard has risen to 96 minutes, but movies of about 88 minutes get better ratings.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h4>Miscellaneous</h4>
+                <ul>
+                  <li>Most adaptations go to Europe, India and Japan. The low number for the United States stands out, which makes sense, since it is the largest producer of the content that gets adapted. Brazil, though less prominent, is 13th on the list.</li>
+                  <li>Among the highest-rated movies on IMDb, three stand out: "The Shawshank Redemption", "The Godfather" and "The Dark Knight". The last one, despite having the same rating as "The Lord of the Rings", has many more votes, which indicates a higher degree of certainty.</li>
+                </ul>
+              </section>
+            </section>
+
+            <section class="imdb-story-block imdb-conclusion">
+              <h3>2 - Conclusion</h3>
+              <p>
+                This concludes this data analysis project, in which the data was extracted, analyzed and visualized. The simulated scenario with the character Júlia and the company MoviesNow was useful for giving my work a business context. A lot of learning went into this project, and even more came out of it. Thank you for your attention!
+              </p>
+              <a href="https://github.com/Ang3k/Analise-SQL-da-Industria-Cinematografica-com-IMDb-e-TMDB" target="_blank" rel="noreferrer">
+                View repository on GitHub <span aria-hidden="true">↗</span>
+              </a>
+            </section>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer class="case-footer">
+      <div class="container">
+        <p>© 2026 Angel Mansilla</p>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+    <script src="../../../mobile-media.js?v=20261108" defer></script>
+  </body>
+</html>

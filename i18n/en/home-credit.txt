@@ -1,0 +1,545 @@
+# Traduções de projetos/home-credit/index.html -> en/projects/home-credit/index.html.
+# Veja scripts/gerar_ingles.py. "=" mantém o texto original.
+
+@@ a9fd12bca1
+A banking institution called Home Credit Group is struggling to identify when clients will have trouble repaying the credit they requested. Since the company is going through financial difficulties, it wants to make sure it only grants credit to clients who can pay it back, avoiding losses.
+
+@@ 136e1d4ec3
+=
+
+@@ 8f33fd93c5
+Skip to content
+
+@@ 4a3c2dbf05
+=
+
+@@ e49a5ef34a
+Main navigation
+
+@@ 23930282a1
+About
+
+@@ 56661c07cf
+Contact
+
+@@ b9e98a13ef
+=
+
+@@ 0df802514e
+Case study navigation
+
+@@ 26bbfefee9
+Case study chapters
+
+@@ ff44bfc719
+<span>01</span>Business Context
+
+@@ 632032e297
+<span>02</span>Project Solution Requirements
+
+@@ c7653ba070
+<span>03</span>Exploratory Data Analysis
+
+@@ e61e4e6168
+<span>04</span>Predictive Modeling with Python
+
+@@ e4884e95a3
+<span>05</span>Model Results
+
+@@ 9d268603b0
+PART 1
+
+@@ 8366cd73a6
+Introduction to the Dataset
+
+@@ 66eeac9343
+1 - Business Context
+
+@@ 80637b6f1a
+Timeline of cash loans comparing clients who pay on time and clients who pay late
+
+@@ afb9a3a19c
+So the company sought the help of a data scientist, with the goal of having this professional both build a Machine Learning model that could predict the probability of a client running into trouble, based on the clients' own data, such as gender, number of relatives, income and assets, and analyze the data to extract interesting insights about client profiles, behavior patterns and more.
+
+@@ 134cafd4b4
+2 - Project Solution Requirements
+
+@@ f6f93b11c4
+In the conversation between the data scientist and the company, the scientist asked what the main information they wanted to obtain was. In response, the company defined a set of strategic business questions, highlighting the ones that would be essential to guide the analyses and decisions. Here are the questions:
+
+@@ d6558ab311
+What is the profile of the clients who apply for credit? And of those who pay late?
+
+@@ 2c1288565e
+Can natural factors such as age signal a risk of late payment?
+
+@@ 703aaad5c6
+Is the client's type of employment an indicator of late payment? What about education level?
+
+@@ b6f3b3bef9
+Can marital status and number of dependents affect the need for credit?
+
+@@ ced0dfc983
+Do the assets reported to the bank work as collateral? Or are they a placebo?
+
+@@ abf1e2fd93
+What is the financial situation of the bank's clients? How does it change for clients who pay late?
+
+@@ d31a175d50
+Does it make sense to think that clients with high incomes have less difficulty?
+
+@@ dcffb39201
+Do clients who ask for more than they need have more difficulty paying?
+
+@@ 911170b801
+Are there types of contracts with a higher rate of late payment?
+
+@@ 456d4afe77
+Besides the questions, the company asked for a Machine Learning model trained to predict late payments, as well as a report detailing the potential financial impact of this model. It is also necessary to identify the factors that most objectively indicate that clients will pay late.
+
+@@ e6551a374e
+Build a Machine Learning model able to predict which clients will pay late.
+
+@@ ffbb062ddc
+Identify the main characteristics that show whether a late payment will happen.
+
+@@ c8cc774061
+Produce an explanation or financial report on the benefits of the new model.
+
+@@ 9c5a56e4e1
+It is worth noting that Home Credit Group already has a machine learning model that uses a Random Forest Classifier to make predictions. Even though this model does not have a bad AUC, at 0.71, it is practically unable to get it right when clients pay late, and that is the problem we are going to overcome.
+
+@@ 631af124f1
+3 - Project Methodology
+
+@@ ab7d033346
+In this project, I used one of the best-known methodologies for solving data problems: CRISP-DM, the Cross-Industry Standard Process for Data Mining. It is an iterative method that lets the data scientist "go back and forth" between the stages of the process, such as between Modeling and Data Preparation. This flexibility is useful, because some insights can come up at different stages, and CRISP-DM gives you the freedom to fix things at different phases of the work.
+
+@@ 6cbd9ffd35
+Diagram of the six stages of the CRISP-DM methodology
+
+@@ 5875302f1d
+4 - Data Dictionary
+
+@@ d24ba749f9
+The dataset provided by the company includes a wide range of information about the clients, such as location, age, marital status and employment status. It also contains information about their financial, asset, social and time-related relationships. Note that this dictionary does not list every column: with more than 120 columns, that would be excessive, so it includes the main ones used in the EDA.
+
+@@ 979d8e827c
+Data dictionary
+
+@@ da7f80bfb1
+=
+
+@@ e00aa63f12
+Unique client ID.
+
+@@ a8d0039b89
+=
+
+@@ efd5d66a4c
+Default indicator (1 = in default).
+
+@@ 2027930b3d
+=
+
+@@ 2bfa15a2ec
+Type of credit contract.
+
+@@ 217f7fc7dc
+=
+
+@@ c6089164b3
+Client's gender.
+
+@@ a09bfb6cf1
+=
+
+@@ 0eae4ce647
+Client owns a car.
+
+@@ 27115be56c
+=
+
+@@ 966533513a
+Client owns real estate.
+
+@@ 29d50f2065
+=
+
+@@ b14703f187
+Number of children.
+
+@@ d0a34ac197
+=
+
+@@ 182ff20576
+Client's total annual income.
+
+@@ 0baeb5a8ed
+=
+
+@@ 37e389c8d6
+Total amount of credit granted.
+
+@@ cec5efbee5
+=
+
+@@ 6c75f5a2dc
+Annual credit payment amount.
+
+@@ 80c37c1472
+=
+
+@@ f3800eb986
+Price of the financed goods.
+
+@@ fdf7900959
+=
+
+@@ a407340c01
+Who accompanied the client during the credit application.
+
+@@ 80bcab7a6b
+=
+
+@@ b9cbba7449
+Type of income source.
+
+@@ db1bb3f57b
+=
+
+@@ c854c31825
+Client's education level.
+
+@@ 179ae61f70
+=
+
+@@ 83a39b0587
+Marital status.
+
+@@ 3493e48584
+=
+
+@@ 649a998645
+Type of housing.
+
+@@ 9e157e7412
+=
+
+@@ d4c1d646d4
+Population density of the region.
+
+@@ 517d5f7ad6
+=
+
+@@ e8d54cafa3
+Age in days (negative).
+
+@@ ac7a4222f3
+=
+
+@@ f398191907
+Time employed in days (negative).
+
+@@ acbf57ca99
+=
+
+@@ 536e6bcebc
+Days since the client's registration.
+
+@@ c5ddde13ba
+=
+
+@@ b697e6be76
+Days since the last ID document update.
+
+@@ f8c7101d2a
+=
+
+@@ 3b71ec78bc
+Age of the client's car (in years).
+
+@@ 0ef768913c
+=
+
+@@ cdb4de8c00
+Has a work phone.
+
+@@ f315fd97f2
+=
+
+@@ 9962e283fa
+Has a landline.
+
+@@ 864d87cad6
+=
+
+@@ f31a343aeb
+Has any landline.
+
+@@ 1d566ec365
+=
+
+@@ 0cb4f84109
+Has an email address.
+
+@@ 4e0453b7e0
+=
+
+@@ 4f139abf70
+Type of occupation.
+
+@@ 4a0fc0d23a
+=
+
+@@ 42dc2df078
+Number of family members.
+
+@@ 2fff3cd2cf
+=
+
+@@ 3e9555be80
+Rating of the region of residence.
+
+@@ 90820329f7
+=
+
+@@ 8b3d1d31ed
+External source score (credit risk).
+
+@@ 3723ffabcb
+PART 2
+
+@@ 239728d1b9
+Exploratory Data Analysis
+
+@@ 1bd1dd3c17
+In this section, we start extracting insights from the dataset provided by the company. We will explore ways to answer the questions asked and identify new correlations the company may not have considered. We include the code used to generate the charts, the charts themselves and the interpretations that can be drawn from them, all done in Python with Matplotlib and Seaborn.
+
+@@ 681003bfbb
+Impact of age on credit trust:<br>Does age bring more responsibility?
+
+@@ 5095153e37
+It is common sense that <strong>older people tend to be more responsible</strong>, but this needs to be checked. To do so, I wrote code that displays a <strong>histogram</strong> counting how many people of different ages <strong>pay late or on time</strong>.
+
+@@ 8666fcbfe6
+Age histograms for clients who pay on time and clients who pay late
+
+@@ 2d55dad68a
+In this case, common sense seems to hold. Among clients who usually pay on time, <strong>age looks evenly distributed</strong>: the above-average values, marked in black, sit in the center of the chart. In the chart of clients who pay late, however, <strong>there is a clear drop as age increases</strong>, which may indicate that <strong>older clients are more reliable credit borrowers.</strong> Next, let's look at financial factors and then see how they relate to age.
+
+@@ 7f42abdf24
+Boxplots of financial variables for clients who pay on time and clients who pay late
+
+@@ fab949dce1
+In these charts, the <strong>black line represents clients who pay on time</strong> and the <strong>gray line clients who pay late</strong>. Each <strong>circle represents a client</strong>, and circles outside the interquartile range are hollow and black. A few interesting things stand out right away: overall, <strong>clients who pay late request more credit than the others</strong> and also <strong>have more expensive goods to pay for</strong>, which makes sense. Both groups have <strong>similar goods prices within the range</strong>, but there are more late payers outside the IQR. The same can be said about the client's income, and this <strong>will become clearer in the next chart</strong>, together with age.
+
+@@ 9884d1d60e
+Credit, income, annuity and goods price by age and client type
+
+@@ 85136a278d
+Comparing these lines reveals a problem. Even though <strong>income is very similar</strong>, as we saw before, <strong>clients who pay late tend to request more money</strong> (the gray line above the black one) and <strong>also tend to request these loans for more expensive goods</strong>. This problem tends to <strong>peak around age 50</strong>. Remember, though, that <strong>younger clients tend to request less money and pay late more often</strong>, as we saw at the start, so older clients tend to owe more money, <strong>but there are fewer of them.</strong>
+
+@@ d77526c9ef
+Relationship between goods price and credit requested by clients who pay on time and clients who pay late
+
+@@ e9724ba96a
+This makes the gap between late and on-time clients evident. In this chart, gray represents the value of the goods the clients have to pay for, and black the amount of credit requested. We can see that <strong>clients with late payments request more credit than on-time clients</strong>, on average <strong>$11,379</strong> more, which is a <strong>strong sign that one of the problems may be requesting too much credit.</strong>
+
+@@ 60e2c5bc69
+In summary:
+
+@@ 7ab5eadb73
+Younger clients are more likely to pay late, while older clients tend to be more punctual.
+
+@@ 5493eafe3d
+Older clients request more credit and finance more expensive goods, especially up to age 50.
+
+@@ c6c7fdb809
+Clients who pay late have incomes similar to those who pay on time, but they borrow more money and finance more expensive goods.
+
+@@ 56e454a5a1
+Clients who pay late appear more often outside the interquartile range, meaning there are more extreme cases of debt.
+
+@@ de06fce2e2
+Young clients pay late more often but owe less; older clients pay late less often but owe more money.
+
+@@ 6faf95b167
+Clients who pay late request, on average, $11,379 more in credit than those who pay on time, which may indicate excessive debt.
+
+@@ f86d6f24a5
+Age 50 seems to be the critical point, where credit requests and late payments become most evident.
+
+@@ 275e749b8f
+Influence of the clients' occupational and family profile: How do these factors affect late payment?
+
+@@ cb91c9029b
+First, let's understand <strong>who our clients are</strong>. We have already seen how the clients' age affects their decisions; now let's look at different <strong>aspects of work and education</strong>, using this horizontal bar chart:
+
+@@ db683227ad
+Horizontal bars comparing education level and occupation of clients who pay on time and clients who pay late
+
+@@ f1a2a28956
+A pattern quickly emerges: the vast majority of clients <strong>do not have higher education</strong>, and clients who do have a higher on-time payment rate. In addition, <strong>clients in higher positions also appear to be more punctual</strong>. This is visible in the "Occupation Types" chart, where senior roles such as "Core Staff" or "High Skill Tech Staff" are more typical of on-time clients. This suggests that clients from higher social strata, <strong>with higher incomes, pay late less often</strong>. Let's check that:
+
+@@ e650303875
+Scatter plot of annual income and credit amount for clients who pay on time and clients who pay late
+
+@@ b5823f9c81
+In this chart, <strong>each point represents a bank client</strong>. The insight is not as obvious as it may have seemed, but it is still visible that <strong>on-time clients request relatively similar amounts of credit</strong> compared to those who pay late, while including more high-income members. This indicates that <strong>income may be an important factor in predicting late payments.</strong> Next, let's briefly look at which types of products this credit has been used for.
+
+@@ b9b8147f70
+Relationship between credit amount and number of products by category
+
+@@ 5d44c1411e
+This chart helps <strong>confirm some earlier findings</strong>: most clients really <strong>do not make large purchases</strong>. Most purchases are for electronics, and only a minority for tourism and medicine, reinforcing the idea of a <strong>low- to middle-income client base</strong>; expensive goods are rarely offered as a reason for credit. Now let's see whether anything can be drawn from the <strong>clients' family characteristics.</strong>
+
+@@ a526ae7bbe
+Horizontal bars with the social and family profile of clients who pay on time and clients who pay late
+
+@@ 2707c91b94
+In this chart, we can see that <strong>there are few differences between on-time and late clients</strong>; overall, the <strong>client base follows the same pattern in all four charts</strong>. Most clients are <strong>single</strong>, live with <strong>few people at home</strong> and <strong>usually have no children</strong>. There is a small increase in the late payment rate for clients with more children, but <strong>it is a small percentage</strong>.
+
+@@ 9a3964e687
+Most clients do not have higher education, but those who do pay late less often.
+
+@@ 4234ef441e
+Clients in higher positions at work tend to pay late less often.
+
+@@ f1aa5ca7c3
+Late and on-time clients request similar amounts of credit, and clients with higher incomes tend to pay late less often, although the difference is not very significant.
+
+@@ 9e09605c2b
+The products most often financed with credit are electronics, and they are not expensive. More expensive requests, for vehicles, medicine and tourism, are almost nonexistent or denied.
+
+@@ ed4894329a
+Family factors do not affect late payment, and most clients are single, with few family members.
+
+@@ 9f1e61523a
+PART 3
+
+@@ fd22a306d0
+Predictive Modeling with Python
+
+@@ d7925e5124
+1 - Data Modeling
+
+@@ 3d26c8995b
+The dataset provided by the company contains some useless information, information that can be aggregated, missing information that needs to be filled in, and outliers that can hurt the model. After all these transformations, we still need to build a machine learning model that delivers good results for the company. Below is a view of the dataset provided, to make the process easier to follow.
+
+@@ b3cbc11fb3
+Initial view of the columns in the Home Credit dataset
+
+@@ 179c7ba35a
+2 - Data Cleaning
+
+@@ b7b2c986c6
+In this first piece of code, I removed some columns I considered irrelevant for modeling. To reduce the dimensionality of the dataset and avoid redundancy, I combined certain columns by averaging them, reducing the total number of variables without losing significant information. Working with a leaner, optimized dataset can contribute to better performance.
+
+@@ 27734321b1
+Python code for removing and aggregating columns
+
+@@ 094de0c7c6
+Next, I created two functions to find missing values in the dataset. One returns a Series ranking the columns with the most missing values, and the other creates two charts, one for missing values in numerical columns and another for object columns. I then dropped the columns with more than 60% of their values missing and chose to fill in the rest with different strategies, explained right below.
+
+@@ d245f44863
+Charts with the percentage of missing values in numerical and categorical columns
+
+@@ b1bdda3d8c
+Since filling in columns with more than 60% missing values could lead to inconsistencies or a loss of data quality, I chose to remove them entirely. For the remaining columns, I used a strategic imputation approach: in numerical variables, I replaced missing values with the column mean, and in object variables I filled them with the column's most frequent string. Here is the code used in this process:
+
+@@ f66e0d8a96
+Python code to find and impute missing values
+
+@@ ea7563555f
+Next, I removed outliers using a filtering function applied to specific columns with potential outliers. Then I encoded the object variables, since the models only accept numbers: columns with only two string values were turned into zeros and ones, and an education level column was transformed with an OrdinalEncoder, keeping an order of importance.
+
+@@ 636f0ff32f
+Python code for removing outliers and encoding categorical variables
+
+@@ 44c20cc752
+3 - Machine Learning Model
+
+@@ 9a25ecc221
+I started by preprocessing the data, selecting the variables the model would be trained on and the target it would predict. Then I applied an undersampling technique called NearMiss, since there were fewer people paying late than people paying on time; this helps balance the classes and keeps the model from misreading the information. Finally, I standardized the data with StandardScaler.
+
+@@ ec4d2b88eb
+Python code for splitting the data, applying NearMiss and standardizing
+
+@@ 88af7598a6
+Next, I defined the LightGBM hyperparameters, using the DART method to improve regularization and avoid overfitting. I also tuned the learning rate, the number of leaves and the fraction of features used in each iteration. To handle class imbalance, I applied the scale_pos_weight parameter, giving more weight to the minority class. After that, I ran a stratified 5-fold cross-validation, keeping the class proportions in each split. During training, the model ran for up to 600 iterations, always monitoring AUC to evaluate its performance. Finally, I identified the optimal number of iterations by looking at the point where AUC reached its maximum, so the model would perform as well as possible.
+
+@@ 1a4305e49a
+Python code for configuring LightGBM with DART and running cross-validation
+
+@@ f8eb23e324
+4 - Model Results
+
+@@ 86fc14c275
+With the model trained, we need to define how we will measure its success, and we will use 3 metrics for that: precision, recall and AUC (Area Under the Curve). Since the data is imbalanced, the trade-off between precision and recall is very costly, so we focus on AUC-ROC, which measures how well the model separates the classes. An AUC of 0.5 would be exactly like a random model, so we want to get as close to 1.0 as possible. This was the metric used in the competition that created the Home Credit Group challenge, where the record is 0.80570.
+
+@@ a2515fdc6e
+Python code for prediction, metric calculation and building the ROC curve
+
+@@ 4236730d74
+ROC curve of the LightGBM model with an AUC of about 0.764
+
+@@ 9833613170
+In the end, we reached an AUC of 0.764, which means our model has a 76.4% chance of ranking a client who will pay late above a client who will not. The precision and recall metrics are included in the project code, but because of the strong class imbalance, the trade-off between these two metrics was always very costly, with one value always much higher than the other.
+
+@@ b458caf18b
+Comparing the models, the previous one had an AUC of 0.719. But how does this affect the company's profit? Even though one number is higher than the other, what matters most is the practical impact. The image below illustrates the difference: although the old model has a slightly higher overall hit rate, our new model stands out at identifying clients who default, making it more effective at mitigating financial risk, which we calculate next:
+
+@@ 9c3099d6ba
+Classification metrics of the previous model, with four late payments correctly identified
+
+@@ 5ad6027dfa
+Classification metrics of the new model, with 222 late payments correctly identified
+
+@@ ba9668d84e
+Even with a small sample of clients, our new model showed a significant improvement in predicting late payments. While the old model correctly identified only 4 clients, the new model got 222 right, an increase of 5,450% in correctly identified late payers. Although both models still need improvement, this update is already a significant step forward for the company. Considering that, on average, each defaulting client requests ¥557,778 in credit and pays 4 months late, the bank can face an average loss of up to ¥100,400.
+
+@@ f6e3cb4b66
+Table comparing predicted clients, estimated cost per client and total cost between the models
+
+@@ 9bd7e00a56
+In the end, the new model predicted 218 more clients who could cause losses, a financial difference of more than ¥21.88 million in potential losses identified, and this within a scope of only 30,752 predictions. The number should only grow as new samples come in and the model improves. Thank you for reading.
+
+@@ 8b10a4a7b0
+Next case study
+
+@@ 662685d97e
+Next study
+
+@@ d68c75bf87
+Film industry analysis
+
+@@ 7b1253867e
+=
+
+@@ d94bb43131
+Back to top ↑
+
+@@ 560a94e4ee
+Angel Mansilla's case study on predicting credit payment delays at Home Credit Group, with exploratory analysis and a LightGBM model.
+
+@@ 2b978176be
+Customer profile analysis and a Machine Learning model to predict credit payment delays.
+
+@@ 274a982fb1
+Home Credit Group logo with the case study title
+
+@@ 06f184eb13
+Angel Mansilla, home
+
+@@ 9e11ee6bf5
+Machine Learning Engineering · Data Science
+
+@@ 2ae76d4e12
+Projects
+
+@@ c184eb0d89
+Experience
+
+@@ 38923037b9
+=

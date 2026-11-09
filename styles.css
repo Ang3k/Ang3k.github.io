@@ -164,6 +164,26 @@ a {
   color: var(--muted);
 }
 
+.main-nav .nav-lang {
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  transition: border-color var(--ease), color var(--ease);
+}
+
+.main-nav .nav-lang::after {
+  content: none;
+}
+
+.main-nav .nav-lang:hover,
+.main-nav .nav-lang:focus-visible {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
 .intro {
   display: grid;
   grid-template-columns: 1fr;
@@ -1105,6 +1125,10 @@ a {
 
   .main-nav .nav-external {
     margin-left: 0;
+  }
+
+  .main-nav .nav-lang {
+    padding: 0.35rem 0.5rem;
   }
 
   .intro {
