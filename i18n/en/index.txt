@@ -1,11 +1,5 @@
 # Traduções de index.html -> en/index.html. Veja scripts/gerar_ingles.py.
 
-@@ 50c055a685
-Angel Mansilla's portfolio: Machine Learning Engineering, Data Science and applied projects.
-
-@@ 67c34ca992
-Machine Learning, data and intelligent systems projects, built from the problem all the way to the application.
-
 @@ 8f33fd93c5
 Skip to content
 
@@ -17,9 +11,6 @@ R² = 0.97
 
 @@ 06f184eb13
 Angel Mansilla, home
-
-@@ 9e11ee6bf5
-Machine Learning Engineering · Data Science
 
 @@ e49a5ef34a
 Main navigation
@@ -42,12 +33,6 @@ Rio de Janeiro, Brazil
 @@ 055aa2695f
 Machine Learning <em>with context,</em> engineering and results.
 
-@@ 42445d81d3
-Computer Science student at UFRJ, working in Machine Learning Engineering and focused on turning real-world data into useful intelligent systems.
-
-@@ 36d7216cf2
-Here you will find a collection of my projects, case studies and hands-on work in Data Science and Machine Learning. Each project was a learning opportunity and shows how I apply theoretical concepts to real-world&nbsp;problems.
-
 @@ 494e3613c0
 Explore projects
 
@@ -62,9 +47,6 @@ Computer Science · UFRJ
 
 @@ 2d70dd60f8
 Interests
-
-@@ 7dc0c58caf
-Ensembles · Anomaly detection · NLP
 
 @@ d581627341
 02 / Featured projects
@@ -252,12 +234,6 @@ Text clustering app
 @@ dcebb1ba79
 I like to understand the problem before the model, and to treat evaluation, reproducibility and interface as parts of the same system.
 
-@@ aa24b2ac35
-Current role
-
-@@ d9e2b4a14d
-Experience with real-world data pipelines, feature engineering, model training and evaluation, and building interfaces that put the results in people's hands.
-
 @@ 1edaef474d
 Tools
 
@@ -305,9 +281,6 @@ Resume <span aria-hidden="true">↗</span>
 @@ d032d7fa8a
 Back to top <span aria-hidden="true">↑</span>
 
-@@ 4e2e84892b
-=
-
 @@ a3a060856f
 =
 
@@ -342,9 +315,6 @@ Back to top <span aria-hidden="true">↑</span>
 =
 
 @@ ddfe163345
-=
-
-@@ d8ad501d23
 =
 
 @@ 3f7e1fd914
@@ -410,9 +380,6 @@ Back to top <span aria-hidden="true">↑</span>
 @@ f97db96938
 =
 
-@@ 9e7933a263
-=
-
 @@ 111e08611d
 =
 
@@ -434,8 +401,74 @@ Back to top <span aria-hidden="true">↑</span>
 @@ 7b1253867e
 =
 
-@@ a08d0cf4fb
-Header of Angel Mansilla's portfolio: Machine Learning Engineering and Data Science
-
 @@ af9733415e
 My profile and develop&shy;ment tools
+
+@@ 5c14cb5f86
+Portfolio of Angel Mansilla, Junior AI Engineer at RapidCanvas: Machine Learning, LLM agents, Data Science and applied projects.
+
+@@ 94a9f4ccfb
+=
+
+@@ 05425d4855
+Machine Learning, generative AI and data: projects built from the problem to the application.
+
+@@ 92d5540b7e
+Header of Angel Mansilla's portfolio: AI &amp; Machine Learning Engineering and Data Science
+
+@@ 734bf548db
+AI &amp; Machine Learning Engineering · Data Science
+
+@@ c3918c8da4
+Junior AI Engineer at RapidCanvas and Computer Science student at UFRJ. I work with forecasting models, LLM agents and data pipelines, from raw data to the&nbsp;API.
+
+@@ 92a3505f06
+Here are my main projects and case studies, with the problem, the method and the results of each&nbsp;one.
+
+@@ 42238365f6
+=
+
+@@ f275934818
+LLM agents · Ensembles · Anomaly detection
+
+@@ e9b669e7e9
+Career
+
+@@ b2d3298677
+10/2026 – present
+
+@@ a096166c7d
+=
+
+@@ c1972b23a3
+Demand forecasting with LightGBM integrated into an industrial client's ERP, and LLM agents that extract and validate data from documents for an insurance broker.
+
+@@ ef91d0333f
+=
+
+@@ cf2bf19872
+=
+
+@@ 6fee2ce78c
+Failure prediction models for electrical equipment, data pipelines in PostgreSQL and FastAPI endpoints for batch training and prediction, with MLflow, MinIO and Docker.
+
+@@ e7896bd7df
+05/2025 – present
+
+@@ 1bd91f783e
+Development Team <span>· UFRJ Analytica</span>
+
+@@ 0ba6fd402f
+=
+
+@@ e2891cf301
+Generative AI
+
+@@ faec0a0535
+LLM agents, data extraction from documents
+
+@@ d9482180f5
+=
+
+@@ d4eaf35da1
+=

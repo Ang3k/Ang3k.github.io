@@ -973,9 +973,6 @@ SINAN logo with the title of the arbovirus case study
 @@ 06f184eb13
 Angel Mansilla, home
 
-@@ 9e11ee6bf5
-Machine Learning Engineering · Data Science
-
 @@ 2ae76d4e12
 Projects
 
@@ -984,3 +981,6 @@ Experience
 
 @@ 38923037b9
 =
+
+@@ 734bf548db
+AI &amp; Machine Learning Engineering · Data Science

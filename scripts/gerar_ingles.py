@@ -384,10 +384,14 @@ TAGS_DO_BLOCO = re.compile(
     r'\n[ \t]*<(?:link rel="canonical"|meta property="og:(?:url|locale(?::alternate)?)")[^>]*>'
 )
 
-# Textos dentro do JSON-LD, que fica num <script> e não passa pelo catálogo.
-DADOS_ESTRUTURADOS_EN = [
+# Trocas diretas na versão em inglês: textos do JSON-LD (que fica num <script> e não
+# passa pelo catálogo) e a imagem de compartilhamento da página inicial, que tem texto.
+SUBSTITUICOES_EN = [
     ('"inLanguage": "pt-BR"', '"inLanguage": "en"'),
     ('"Ciência de Dados"', '"Data Science"'),
+    ('"Inteligência Artificial"', '"Artificial Intelligence"'),
+    ('"Agentes de LLM"', '"LLM agents"'),
+    ("/assets/og/home.jpg", "/assets/og/home-en.jpg"),
 ]
 
 
@@ -418,7 +422,7 @@ def versao_inglesa(html: str, pagina_pt: str, pagina_en: str, catalogo) -> tuple
     html, faltando = traduzir(html, catalogo)
     html = reescrever_caminhos(html, pagina_pt, pagina_en)
     html = html.replace('<html lang="pt-BR">', '<html lang="en">', 1)
-    for antes, depois in DADOS_ESTRUTURADOS_EN:
+    for antes, depois in SUBSTITUICOES_EN:
         html = html.replace(antes, depois)
     html = html.replace("<!--@@BLOCO@@-->", bloco_head(pagina_pt, pagina_en, "en"))
     html = html.replace("<!--@@SELETOR@@-->", seletor(pagina_pt, pagina_en, "en"))
