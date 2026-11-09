@@ -28,7 +28,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="../styles.css?v=20261108-idioma">
+    <link rel="stylesheet" href="../styles.css?v=20261108-idioma2">
     <script>
       (function () {
         try {
@@ -242,7 +242,6 @@
           >
             GitHub <span aria-hidden="true">↗</span>
           </a>
-          <!-- seletor de idioma --><a class="nav-lang" href="../" hreflang="pt-BR" lang="pt-BR" data-idioma="pt" aria-label="Ler esta página em português">PT</a><!-- /seletor de idioma -->
         </nav>
       </div>
     </header>
@@ -713,5 +712,11 @@
       defer
       onerror="document.documentElement.classList.remove('intro-pending')"
     ></script>
+    <!-- seletor de idioma -->
+    <nav class="lang-switch" aria-label="Language">
+      <a class="lang-switch__option" data-flag="br" href="../" hreflang="pt-BR" lang="pt-BR" data-idioma="pt" aria-label="Ler esta página em português">PT</a>
+      <span class="lang-switch__option is-current" data-flag="us" lang="en" aria-current="true">EN</span>
+    </nav>
+    <!-- /seletor de idioma -->
   </body>
 </html>

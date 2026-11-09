@@ -352,19 +352,25 @@ def bloco_head(pagina_pt: str, pagina_en: str, idioma: str) -> str:
 
 
 def seletor(pagina_pt: str, pagina_en: str, idioma: str) -> str:
+    """Pílula fixa no canto inferior direito (estilo .lang-switch em styles.css)."""
     if idioma == "pt":
-        href = link_pasta(pagina_pt, pagina_en)
-        botao = (
-            f'<a class="nav-lang" href="{href}" hreflang="en" lang="en" '
-            'data-idioma="en" aria-label="Read this page in English">EN</a>'
+        rotulo = "Idioma"
+        pt = '<span class="lang-switch__option is-current" data-flag="br" lang="pt-BR" aria-current="true">PT</span>'
+        en = (
+            f'<a class="lang-switch__option" data-flag="us" href="{link_pasta(pagina_pt, pagina_en)}" '
+            'hreflang="en" lang="en" data-idioma="en" aria-label="Read this page in English">EN</a>'
         )
     else:
-        href = link_pasta(pagina_en, pagina_pt)
-        botao = (
-            f'<a class="nav-lang" href="{href}" hreflang="pt-BR" lang="pt-BR" '
-            'data-idioma="pt" aria-label="Ler esta página em português">PT</a>'
+        rotulo = "Language"
+        pt = (
+            f'<a class="lang-switch__option" data-flag="br" href="{link_pasta(pagina_en, pagina_pt)}" '
+            'hreflang="pt-BR" lang="pt-BR" data-idioma="pt" aria-label="Ler esta página em português">PT</a>'
         )
-    return INICIO_SELETOR + botao + FIM_SELETOR
+        en = '<span class="lang-switch__option is-current" data-flag="us" lang="en" aria-current="true">EN</span>'
+    return (
+        f'{INICIO_SELETOR}\n    <nav class="lang-switch" aria-label="{rotulo}">\n'
+        f"      {pt}\n      {en}\n    </nav>\n    {FIM_SELETOR}"
+    )
 
 
 def trocar_entre(html: str, inicio: str, fim: str, novo: str) -> str:
@@ -393,14 +399,17 @@ def preparar_fonte(html: str, pagina_pt: str, pagina_en: str) -> str:
         html = html.replace("</head>", "  <!--@@BLOCO@@-->\n  </head>", 1)
     html = TAGS_DO_BLOCO.sub("", html)
     html = html.replace("<!--@@BLOCO@@-->", bloco_head(pagina_pt, pagina_en, "pt"))
+    # O seletor fica fixo no canto da tela; no HTML, vai no fim do <body>.
+    html = re.sub(
+        r"\s*" + re.escape(INICIO_SELETOR) + ".*?" + re.escape(FIM_SELETOR), "", html, flags=re.S
+    )
     botao = seletor(pagina_pt, pagina_en, "pt")
-    if INICIO_SELETOR in html:
-        return trocar_entre(html, INICIO_SELETOR, FIM_SELETOR, botao)
-    nav = re.search(r'<nav class="(?:main-nav|wix-project-nav)"[^>]*>.*?(\s*)</nav>', html, re.S)
-    if not nav:
-        raise SystemExit(f"{pagina_pt}: não achei a navegação principal para o botão PT/EN.")
-    posicao = nav.start(1)
-    return html[:posicao] + nav.group(1) + "  " + botao + html[posicao:]
+    html, trocas = re.subn(
+        r"(\n[ \t]*)</body>", lambda m: f"\n    {botao}{m.group(1)}</body>", html, count=1
+    )
+    if not trocas:
+        raise SystemExit(f"{pagina_pt}: não achei o </body> para o seletor de idioma.")
+    return html
 
 
 def versao_inglesa(html: str, pagina_pt: str, pagina_en: str, catalogo) -> tuple[str, list[Trecho]]:
